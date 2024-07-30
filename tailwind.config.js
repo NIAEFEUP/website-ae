@@ -29,7 +29,7 @@ module.exports = {
         black: "#181C31",
         blackho: "#2C3149",
         blacksection: "#1C2136",
-        primary: "#006BFF",
+        primary: "#97321D",
         primaryho: "#0063EC",
         meta: "#20C5A8",
         waterloo: "#757693",
@@ -37,6 +37,14 @@ module.exports = {
         alabaster: "#FBFBFB",
         zumthor: "#EDF5FF",
         socialicon: "#D1D8E0",
+
+        // secondary: "#C4C6B9",
+        // accent: #562920
+        // background: #FAFAFA
+        // dark-primary: #96311D
+        // dark-secondary: #444639
+        // dark-accent: #CDA59D
+        // dark-background: #161416
       },
       fontSize: {
         metatitle: ["12px", "20px"],
