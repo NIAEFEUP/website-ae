@@ -17,16 +17,24 @@
 Here are the steps you need to follow to install the dependencies.
 
 ```bash
-    npm install
+    pnpm install
+```
+
+Setup your environment variables with a database name and a password.
+
+Now you just need to create the database with docker:
+
+```bash
+    ./start-database.sh
 ```
 
 You can start the project on the local server
-    
+
 ```bash
-    npm run dev
+    pnpm run dev
  ```
 
-It’ll start the template on [localhost:3000](http://localhost:3000). 
+It’ll start the template on [localhost:3000](http://localhost:3000).
 
 ## Project structure
 
