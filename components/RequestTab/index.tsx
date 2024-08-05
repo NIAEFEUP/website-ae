@@ -30,11 +30,7 @@ const RequestTab = () => {
             >
               <div className="md:w-3/5 lg:w-auto ">
                 <button className="text-sm font-medium text-black dark:text-white xl:text-regular">
-<<<<<<< HEAD
                   Pedido de Reserva de Evento
-=======
-                  Event Request
->>>>>>> 28406ae (Request Page First Draft)
                 </button>
               </div>
             </div>
@@ -48,11 +44,7 @@ const RequestTab = () => {
             >
               <div className="md:w-3/5 lg:w-auto">
                 <button className="text-sm font-medium text-black dark:text-white xl:text-regular">
-<<<<<<< HEAD
                   Requisitar Material
-=======
-                  Material Request
->>>>>>> 28406ae (Request Page First Draft)
                 </button>
               </div>
             </div>
@@ -67,17 +59,12 @@ const RequestTab = () => {
                     <input type="text" name="name" id="name" className="p-2 border"/>
                   </div>
                   <div className="p-2 flex flex-col">
-<<<<<<< HEAD
                     <label htmlFor="space">Espaço</label>
                     <input type="text" name="space" id="space" className="p-2 border"/>
                   </div>
                   <div className="p-2 flex flex-col">
                     <label htmlFor="num_people">Número de pesssoas</label>
                     <input type="number" min={0} max={250} name="num_people" id="num_people" className="p-2 border"/>
-=======
-                    <label htmlFor="student_number">Número de estudante</label>
-                    <input type="text" name="student_number" id="student_number" className="p-2 border"/>
->>>>>>> 28406ae (Request Page First Draft)
                   </div>
                   <div className="p-2 flex flex-col">
                     <label htmlFor="start_date">Data de Início</label>
@@ -110,21 +97,16 @@ const RequestTab = () => {
                     ))}
                   </div>
 
-<<<<<<< HEAD
                   <button type="submit" className="w-full p-2 bg-primary text-white rounded hover:bg-gray-500 hover:text-white">Submeter</button>
-=======
-                  <button type="submit" className="w-full p-2 bg-primary text-white rounded hover:bg-gray-500 hover:text-white">Submit</button>
->>>>>>> 28406ae (Request Page First Draft)
               </form>
             </div>
             <div className={`lg:border lg:w-1/2 lg:p-10 mt-10 rounded ${currentTab == "tabTwo" ? "block": "hidden"}`}>
               <form action="#" method="post">
                   <div className="p-2 flex flex-col">
-<<<<<<< HEAD
                     <label htmlFor="name">Nome do núcleo/associação</label>
                     <input type="text" name="name" id="name" className="p-2 border"/>
                   </div>
-=======
+                  <div>
                     <label htmlFor="name">Nome do responsável</label>
                     <input type="text" name="name" id="name" className="p-2 border"/>
                   </div>
@@ -140,7 +122,6 @@ const RequestTab = () => {
                     <label htmlFor="end_date">Data de Fim</label>
                     <input type="datetime-local" name="end_date" id="end_date" className="p-2 border"/>
                   </div>
->>>>>>> 28406ae (Request Page First Draft)
                   <div className="flex flex-col p-2">
                     <label htmlFor="contact_number">Contacto telefónico</label>
                     <input type="text" name="contact_number" id="contact_number" className="p-2 border"/>
@@ -157,11 +138,7 @@ const RequestTab = () => {
                     ))}
                   </div>
 
-<<<<<<< HEAD
                   <button type="submit" className="w-full p-2 bg-primary text-white rounded hover:bg-gray-500 hover:text-white">Submeter</button>
-=======
-                  <button type="submit" className="w-full p-2 bg-primary text-white rounded hover:bg-gray-500 hover:text-white">Submit</button>
->>>>>>> 28406ae (Request Page First Draft)
               </form>
             </div>
           </div>
