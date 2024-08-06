@@ -12,6 +12,18 @@ importers:
 
   .:
     dependencies:
+      '@fullcalendar/core':
+        specifier: ^6.1.15
+        version: 6.1.15
+      '@fullcalendar/daygrid':
+        specifier: ^6.1.15
+        version: 6.1.15(@fullcalendar/core@6.1.15)
+      '@fullcalendar/google-calendar':
+        specifier: ^6.1.15
+        version: 6.1.15(@fullcalendar/core@6.1.15)
+      '@fullcalendar/react':
+        specifier: ^6.1.15
+        version: 6.1.15(@fullcalendar/core@6.1.15)(react-dom@19.0.0-rc-6230622a1a-20240610(react@19.0.0-rc-6230622a1a-20240610))(react@19.0.0-rc-6230622a1a-20240610)
       '@payloadcms/db-mongodb':
         specifier: 3.0.0-beta.71
         version: 3.0.0-beta.71(@aws-sdk/client-sso-oidc@3.621.0(@aws-sdk/client-sts@3.621.0))(payload@3.0.0-beta.71(@swc/core@1.7.3(@swc/helpers@0.5.12))(@swc/types@0.1.12)(graphql@16.9.0)(typescript@5.5.3))
@@ -681,6 +693,26 @@ packages:
 
   '@floating-ui/utils@0.2.5':
     resolution: {integrity: sha512-sTcG+QZ6fdEUObICavU+aB3Mp8HY4n14wYHdxK4fXjPmv3PXZZeY5RaguJmGyeH/CJQhX3fqKUtS4qc1LoHwhQ==}
+
+  '@fullcalendar/core@6.1.15':
+    resolution: {integrity: sha512-BuX7o6ALpLb84cMw1FCB9/cSgF4JbVO894cjJZ6kP74jzbUZNjtwffwRdA+Id8rrLjT30d/7TrkW90k4zbXB5Q==}
+
+  '@fullcalendar/daygrid@6.1.15':
+    resolution: {integrity: sha512-j8tL0HhfiVsdtOCLfzK2J0RtSkiad3BYYemwQKq512cx6btz6ZZ2RNc/hVnIxluuWFyvx5sXZwoeTJsFSFTEFA==}
+    peerDependencies:
+      '@fullcalendar/core': ~6.1.15
+
+  '@fullcalendar/google-calendar@6.1.15':
+    resolution: {integrity: sha512-u1EB/fx24f1GouOwsNo8qIobSrFNi5t2gChumpzR8zbCVUNEx1yOShs7i84WAFuiFHxfiFpuGQ5tvc1aAE1pHg==}
+    peerDependencies:
+      '@fullcalendar/core': ~6.1.15
+
+  '@fullcalendar/react@6.1.15':
+    resolution: {integrity: sha512-L0b9hybS2J4e7lq6G2CD4nqriyLEqOH1tE8iI6JQjAMTVh5JicOo5Mqw+fhU5bJ7hLfMw2K3fksxX3Ul1ssw5w==}
+    peerDependencies:
+      '@fullcalendar/core': ~6.1.15
+      react: ^16.7.0 || ^17 || ^18 || ^19
+      react-dom: ^16.7.0 || ^17 || ^18 || ^19
 
   '@humanwhocodes/config-array@0.11.14':
     resolution: {integrity: sha512-3T8LkOmg45BV5FICb15QQMsyUSWrQ8AygVfC7ZG32zOalnqrilm018ZVCw0eapXux8FtA33q8PSRSstjee3jSg==}
@@ -3183,6 +3215,9 @@ packages:
     resolution: {integrity: sha512-9ZhXKM/rw350N1ovuWHbGxnGh/SNJ4cnxHiM0rxE4VN41wsg8P8zWn9hv/buK00RP4WvlOyr/RBDiptyxVbkZQ==}
     engines: {node: '>=0.10.0'}
 
+  preact@10.12.1:
+    resolution: {integrity: sha512-l8386ixSsBdbreOAkqtrwqHwdvR35ID8c3rKPa8lCWuO86dBi32QWHV4vfsZK1utLLFMvw+Z5Ad4XLkZzchscg==}
+
   prebuild-install@7.1.2:
     resolution: {integrity: sha512-UnNke3IQb6sgarcZIDU3gbMeTp/9SSU1DAIkil7PrqG1vZlBtY5msYccSKSHDqa3hNg436IXK+SNImReuA1wEQ==}
     engines: {node: '>=10'}
@@ -4773,6 +4808,24 @@ snapshots:
       tabbable: 6.2.0
 
   '@floating-ui/utils@0.2.5': {}
+
+  '@fullcalendar/core@6.1.15':
+    dependencies:
+      preact: 10.12.1
+
+  '@fullcalendar/daygrid@6.1.15(@fullcalendar/core@6.1.15)':
+    dependencies:
+      '@fullcalendar/core': 6.1.15
+
+  '@fullcalendar/google-calendar@6.1.15(@fullcalendar/core@6.1.15)':
+    dependencies:
+      '@fullcalendar/core': 6.1.15
+
+  '@fullcalendar/react@6.1.15(@fullcalendar/core@6.1.15)(react-dom@19.0.0-rc-6230622a1a-20240610(react@19.0.0-rc-6230622a1a-20240610))(react@19.0.0-rc-6230622a1a-20240610)':
+    dependencies:
+      '@fullcalendar/core': 6.1.15
+      react: 19.0.0-rc-6230622a1a-20240610
+      react-dom: 19.0.0-rc-6230622a1a-20240610(react@19.0.0-rc-6230622a1a-20240610)
 
   '@humanwhocodes/config-array@0.11.14':
     dependencies:
@@ -6509,7 +6562,7 @@ snapshots:
       eslint: 8.57.0
       eslint-import-resolver-node: 0.3.9
       eslint-import-resolver-typescript: 3.6.1(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.5.3))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1(eslint@8.57.0))(eslint@8.57.0)
-      eslint-plugin-import: 2.29.1(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.5.3))(eslint-import-resolver-typescript@3.6.1(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.5.3))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1(eslint@8.57.0))(eslint@8.57.0))(eslint@8.57.0)
+      eslint-plugin-import: 2.29.1(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.5.3))(eslint-import-resolver-typescript@3.6.1)(eslint@8.57.0)
       eslint-plugin-jsx-a11y: 6.9.0(eslint@8.57.0)
       eslint-plugin-react: 7.35.0(eslint@8.57.0)
       eslint-plugin-react-hooks: 4.6.2(eslint@8.57.0)
@@ -6533,7 +6586,7 @@ snapshots:
       enhanced-resolve: 5.17.1
       eslint: 8.57.0
       eslint-module-utils: 2.8.1(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.5.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.1(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.5.3))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1(eslint@8.57.0))(eslint@8.57.0))(eslint@8.57.0)
-      eslint-plugin-import: 2.29.1(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.5.3))(eslint-import-resolver-typescript@3.6.1(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.5.3))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1(eslint@8.57.0))(eslint@8.57.0))(eslint@8.57.0)
+      eslint-plugin-import: 2.29.1(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.5.3))(eslint-import-resolver-typescript@3.6.1)(eslint@8.57.0)
       fast-glob: 3.3.2
       get-tsconfig: 4.7.6
       is-core-module: 2.15.0
@@ -6555,7 +6608,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-plugin-import@2.29.1(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.5.3))(eslint-import-resolver-typescript@3.6.1(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.5.3))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1(eslint@8.57.0))(eslint@8.57.0))(eslint@8.57.0):
+  eslint-plugin-import@2.29.1(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.5.3))(eslint-import-resolver-typescript@3.6.1)(eslint@8.57.0):
     dependencies:
       array-includes: 3.1.8
       array.prototype.findlastindex: 1.2.5
@@ -7752,6 +7805,8 @@ snapshots:
   postgres-interval@1.2.0:
     dependencies:
       xtend: 4.0.2
+
+  preact@10.12.1: {}
 
   prebuild-install@7.1.2:
     dependencies:

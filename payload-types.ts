@@ -14,6 +14,7 @@ export interface Config {
     users: User;
     media: Media;
     person: Person;
+    material: Material;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -95,6 +96,15 @@ export interface Person {
         id?: string | null;
       }[]
     | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "material".
+ */
+export interface Material {
+  id: number;
+  name: string;
+  quantity: number;
   updatedAt: string;
   createdAt: string;
 }

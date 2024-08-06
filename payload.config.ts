@@ -7,7 +7,11 @@ import sharp from "sharp";
 
 import { Users } from "./collections/Users";
 import { Media } from "./collections/Media";
+<<<<<<< HEAD
 import { Person } from "./collections/Person";
+=======
+>>>>>>> ebc44c9 (Request Page First Draft)
+import { Material } from "./collections/Material";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -17,11 +21,16 @@ export default buildConfig({
     user: Users.slug,
     dateFormat: "dd MMMM yyyy",
   },
+<<<<<<< HEAD
   collections: [
     Users,
     Media,
     Person,
+    Material
   ],
+=======
+  collections: [Users, Media,Material],
+>>>>>>> ebc44c9 (Request Page First Draft)
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {

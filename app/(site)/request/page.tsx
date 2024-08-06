@@ -1,22 +1,19 @@
-import SectionHeader from "@/components/Common/SectionHeader"
+import Material from "@/components/Materials"
+import CalendarComponent  from "@/components/Calendar"
 import { Metadata } from "next"
+import RequestTab from "@/components/RequestTab"
 
 export const metadata: Metadata = {
-	title: "Reequest Page",
+	title: "Request Page",
 	description: "yep"
 }
 
-export default function RequestPage() {
+export default function Request() {
 	return (
 		<>
-      <section className="pb-16 pt-24 md:pb-20 md:pt-28 lg:pb-24 lg:pt-32">
-				<SectionHeader
-					headerInfo={{
-						title: "Request",
-						subtitle: "Request Material",
-						description: "Vai po caralho"
-					}} />
-      </section>
+ 			<CalendarComponent /> 
+			<Material />
+			<RequestTab />
 		</>
 	)
 }
