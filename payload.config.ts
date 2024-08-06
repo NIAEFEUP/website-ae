@@ -1,4 +1,3 @@
-// storage-adapter-import-placeholder
 import { postgresAdapter } from "@payloadcms/db-postgres";
 import { lexicalEditor } from "@payloadcms/richtext-lexical";
 import path from "path";
@@ -8,6 +7,7 @@ import sharp from "sharp";
 
 import { Users } from "./collections/Users";
 import { Media } from "./collections/Media";
+import { Person } from "./collections/Person";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -15,8 +15,13 @@ const dirname = path.dirname(filename);
 export default buildConfig({
   admin: {
     user: Users.slug,
+    dateFormat: "dd MMMM yyyy",
   },
-  collections: [Users, Media],
+  collections: [
+    Users,
+    Media,
+    Person,
+  ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {
@@ -31,4 +36,5 @@ export default buildConfig({
   plugins: [
     // storage-adapter-placeholder
   ],
+  livePreview: false, // Lets set it to true if we use pages collection (Globals)
 });

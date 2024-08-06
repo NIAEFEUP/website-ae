@@ -13,6 +13,7 @@ export interface Config {
   collections: {
     users: User;
     media: Media;
+    person: Person;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -76,6 +77,26 @@ export interface Media {
   height?: number | null;
   focalX?: number | null;
   focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "person".
+ */
+export interface Person {
+  id: number;
+  name: string;
+  photo?: (number | null) | Media;
+  description?: string | null;
+  birthday?: string | null;
+  socials?:
+    | {
+        type: 'linkedin' | 'facebook' | 'website' | 'instagram';
+        link: string;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

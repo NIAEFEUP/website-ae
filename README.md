@@ -13,7 +13,6 @@
 - Framer Motion
 - Lucide Icons
 
-
 ## ⚡ Installation
 
 Here are the steps you need to follow to install the dependencies.
@@ -34,7 +33,7 @@ You can start the project on the local server
 
 ```bash
     pnpm run dev
- ```
+```
 
 It’ll start the template on [localhost:3000](http://localhost:3000).
 
@@ -47,3 +46,4 @@ It’ll start the template on [localhost:3000](http://localhost:3000).
 - The `public` directory contains all the static files used in the project like images.
 
 - The `collections` directory defines the schemas for the collections that will be managed in the Paylode dashboard.
+  - After creating a new collection, don't forget to add it to the `collections` array in the `payload.config.js` file.
