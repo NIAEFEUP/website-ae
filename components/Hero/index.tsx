@@ -13,7 +13,7 @@ const Hero = () => {
     <>
       <section className="overflow-hidden pb-20 pt-35 md:pt-40 xl:pb-25 xl:pt-46">
         <div className="mx-auto max-w-c-1390 px-4 md:px-8 2xl:px-0">
-          <div className="grid lg:grid-cols-2 min-h-[40vh] lg:items-center lg:gap-8 xl:gap-32.5">
+          <div className="grid lg:grid-cols-2  lg:items-center gap-8 xl:gap-32.5">
             <div>
               <h4 className="mb-4.5 text-lg font-medium text-black dark:text-white">
                 🔥 Eventos
@@ -50,7 +50,7 @@ const Hero = () => {
               </div>
             </div>
 
-            <div className="animate_right relative h-full w-full">
+            <div className="animate_right relative h-full w-full min-h-[40vh]">
               <Image
                 className="shadow-solid-l object-cover rounded-lg"
                 src="/images/hero/aefeup.jpg"
