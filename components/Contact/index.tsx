@@ -2,12 +2,9 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import React from "react";
+import { Instagram, Facebook, Linkedin} from 'lucide-react';
 
 const Contact = () => {
-  /**
-   * Source: https://www.joshwcomeau.com/react/the-perils-of-rehydration/
-   * Reason: To fix rehydration error
-   */
   const [hasMounted, setHasMounted] = React.useState(false);
   React.useEffect(() => {
     setHasMounted(true);
@@ -18,7 +15,6 @@ const Contact = () => {
 
   return (
     <>
-      {/* <!-- ===== Contact Start ===== --> */}
       <section id="support" className="px-4 md:px-8 2xl:px-0">
         <div className="relative mx-auto max-w-c-1390 px-7.5 pt-10 lg:px-15 lg:pt-15 xl:px-20 xl:pt-20">
           <div className="absolute left-0 top-0 -z-1 h-2/3 w-full rounded-lg bg-gradient-to-t from-transparent to-[#dee7ff47] dark:bg-gradient-to-t dark:to-[#252A42]"></div>
@@ -65,38 +61,46 @@ const Contact = () => {
                 method="POST"
               >
                 <div className="mb-7.5 flex flex-col gap-7.5 lg:flex-row lg:justify-between lg:gap-14">
-                  <input
-                    type="text"
-                    placeholder="Full name"
-                    className="w-full border-b border-stroke bg-transparent pb-3.5 focus:border-waterloo focus:placeholder:text-black focus-visible:outline-none dark:border-strokedark dark:focus:border-manatee dark:focus:placeholder:text-white lg:w-1/2"
-                  />
+                  <div className="p-2 flex flex-col">
+                  <label htmlFor="name">Full name</label>
+                    <input
+                      type="text"
+                      className="p-2 border border-gray-300  bg-transparent rounded  focus:border-[#97321D] focus:outline-none dark:border-gray-600 dark:focus:border-white"
+                    />
+                  </div>
 
-                  <input
-                    type="email"
-                    placeholder="Email address"
-                    className="w-full border-b border-stroke bg-transparent pb-3.5 focus:border-waterloo focus:placeholder:text-black focus-visible:outline-none dark:border-strokedark dark:focus:border-manatee dark:focus:placeholder:text-white lg:w-1/2"
-                  />
+                  <div className="p-2 flex flex-col">
+                  <label htmlFor="email">Email address</label>
+                    <input
+                      type="email"
+                      className="p-2 border border-gray-300  bg-transparent rounded  focus:border-[#97321D] focus:outline-none dark:border-gray-600 dark:focus:border-white"
+                    />
+                  </div>
                 </div>
 
                 <div className="mb-12.5 flex flex-col gap-7.5 lg:flex-row lg:justify-between lg:gap-14">
-                  <input
-                    type="text"
-                    placeholder="Subject"
-                    className="w-full border-b border-stroke bg-transparent pb-3.5 focus:border-waterloo focus:placeholder:text-black focus-visible:outline-none dark:border-strokedark dark:focus:border-manatee dark:focus:placeholder:text-white lg:w-1/2"
-                  />
+                  <div className="p-2 flex flex-col lg:w-2/3">
+                  <label htmlFor="text">Subject</label>
+                    <input
+                      type="text"
+                      className="p-2 border border-gray-300 bg-transparent rounded w-full focus:border-[#97321D] focus:outline-none dark:border-gray-600 dark:focus:border-white"
+                    />
+                  </div>
 
-                  <input
-                    type="text"
-                    placeholder="Phone number"
-                    className="w-full border-b border-stroke bg-transparent pb-3.5 focus:border-waterloo focus:placeholder:text-black focus-visible:outline-none dark:border-strokedark dark:focus:border-manatee dark:focus:placeholder:text-white lg:w-1/2"
-                  />
+                  <div className="p-2 flex flex-col">
+                  <label htmlFor="text">Phone number</label>
+                    <input
+                      type="text"
+                      className="p-2 border border-gray-300 bg-transparent rounded  focus:border-[#97321D] focus:outline-none dark:border-gray-600 dark:focus:border-white"
+                    />
+                  </div>
                 </div>
 
-                <div className="mb-11.5 flex">
-                  <textarea
-                    placeholder="Message"
+                <div className="mb-11.5 flex flex-col p-2">
+                <label htmlFor="Message">Message</label>
+                <textarea
                     rows={4}
-                    className="w-full border-b border-stroke bg-transparent focus:border-waterloo focus:placeholder:text-black focus-visible:outline-none dark:border-strokedark dark:focus:border-manatee dark:focus:placeholder:text-white"
+                    className="flex-grow p-2 border border-gray-300  bg-transparent rounded  focus:border-[#97321D] focus:outline-none dark:border-gray-600 dark:focus:border-white"
                   ></textarea>
                 </div>
 
@@ -105,7 +109,7 @@ const Contact = () => {
                     <input
                       id="default-checkbox"
                       type="checkbox"
-                      className="peer sr-only"
+                      className="peer sr-only "
                     />
                     <span className="border-gray-300 bg-gray-100 text-blue-600 dark:border-gray-600 dark:bg-gray-700 group mt-2 flex h-5 min-w-[20px] items-center justify-center rounded peer-checked:bg-primary">
                       <svg
@@ -135,22 +139,9 @@ const Contact = () => {
 
                   <button
                     aria-label="send message"
-                    className="inline-flex items-center gap-2.5 rounded-full bg-black px-6 py-3 font-medium text-white duration-300 ease-in-out hover:bg-blackho dark:bg-btndark"
+                    className="inline-flex items-center gap-2.5 rounded-full bg-[#97321D] px-6 py-3 font-medium text-white duration-300 ease-in-out hover:bg-blackho dark:bg-btndark dark:hover:bg-[#97321D]"
                   >
                     Send Message
-                    <svg
-                      className="fill-white"
-                      width="14"
-                      height="14"
-                      viewBox="0 0 14 14"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M10.4767 6.16664L6.00668 1.69664L7.18501 0.518311L13.6667 6.99998L7.18501 13.4816L6.00668 12.3033L10.4767 7.83331H0.333344V6.16664H10.4767Z"
-                        fill=""
-                      />
-                    </svg>
                   </button>
                 </div>
               </form>
@@ -175,21 +166,28 @@ const Contact = () => {
               className="animate_top w-full md:w-2/5 md:p-7.5 lg:w-[26%] xl:pt-15"
             >
               <h2 className="mb-12.5 text-3xl font-semibold text-black dark:text-white xl:text-sectiontitle2">
-                Find us
+                Contacts
               </h2>
-
-              <div className="5 mb-7">
-                <h3 className="mb-4 text-metatitle3 font-medium text-black dark:text-white">
-                  Our Loaction
-                </h3>
-                <p>290 Maryam Springs 260, Courbevoie, Paris, France</p>
+              <div className="5 mb-11">
+                <div className="flex space-x-12">
+                  <a href="https://www.instagram.com/aefeup/" target="_blank" rel="noopener noreferrer">
+                    <Instagram className="w-6 h-6 text-black dark:text-white" />
+                  </a>
+                  <a href="https://www.facebook.com/aefeup/" target="_blank" rel="noopener noreferrer">
+                    <Facebook className="w-6 h-6 text-black dark:text-white" />
+                  </a>
+                  <a href="https://www.linkedin.com/company/aefeup/" target="_blank" rel="noopener noreferrer">
+                    <Linkedin className="w-6 h-6 text-black dark:text-white" />
+                  </a>
+                </div>
               </div>
+              
               <div className="5 mb-7">
                 <h3 className="mb-4 text-metatitle3 font-medium text-black dark:text-white">
                   Email Address
                 </h3>
                 <p>
-                  <a href="#">yourmail@domainname.com</a>
+                  <a href="mailto:aefeup@aefeup.pt">aefeup@aefeup.pt</a>
                 </p>
               </div>
               <div>
@@ -197,14 +195,13 @@ const Contact = () => {
                   Phone Number
                 </h4>
                 <p>
-                  <a href="#">+009 42334 6343 843</a>
+                  <a href="tel:+35122 508 1556">22 508 1556</a>
                 </p>
               </div>
             </motion.div>
           </div>
         </div>
       </section>
-      {/* <!-- ===== Contact End ===== --> */}
     </>
   );
 };

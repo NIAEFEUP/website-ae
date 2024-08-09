@@ -1,6 +1,8 @@
+import { ReactElement } from 'react';
+
 export type Feature = {
   id: number;
-  icon: string;
+  icon: string | ReactElement;  
   title: string;
   description: string;
 };
