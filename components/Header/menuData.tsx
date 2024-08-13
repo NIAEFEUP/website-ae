@@ -8,24 +8,6 @@ const menuData: Menu[] = [
     path: "/",
   },
   {
-    id: 2,
-    title: "Features",
-    newTab: false,
-    path: "/#features",
-  },
-  {
-    id: 2.1,
-    title: "Blog",
-    newTab: false,
-    path: "/blog",
-  },
-  {
-    id: 2.3,
-    title: "Docs",
-    newTab: false,
-    path: "/docs",
-  },
-  {
     id: 3,
     title: "Pages",
     newTab: false,
@@ -54,14 +36,44 @@ const menuData: Menu[] = [
         newTab: false,
         path: "/error",
       },
+      {
+        id: 37,
+        title: "Features",
+        newTab: false,
+        path: "/#features",
+      },
+      {
+        id: 38,
+        title: "Support",
+        newTab: false,
+        path: "/support",
+      },
     ],
   },
-
   {
-    id: 4,
-    title: "Support",
+    id: 5,
+    title: "Desporto",
     newTab: false,
-    path: "/support",
+    submenu: [
+      {
+        id: 51,
+        title: "História e Troféus",
+        newTab: false,
+        path: "/sport/teams",
+      },
+      {
+        id: 52,
+        title: "Seleções",
+        newTab: false,
+        path: "/sport/teams",
+      },
+      {
+        id: 53,
+        title: "Velocidade",
+        newTab: false,
+        path: "/sport/teams",
+      },
+    ],
   },
 ];
 
