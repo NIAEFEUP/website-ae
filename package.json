@@ -17,6 +17,7 @@
     "@payloadcms/richtext-slate": "3.0.0-beta.71",
     "@payloadcms/ui": "3.0.0-beta.71",
     "autoprefixer": "^10.4.19",
+    "axios": "^1.7.4",
     "babel-plugin-react-compiler": "^0.0.0-experimental-592953e-20240517",
     "cross-env": "^7.0.3",
     "framer-motion": "^11.3.19",
