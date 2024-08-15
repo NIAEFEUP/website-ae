@@ -36,5 +36,5 @@ export default buildConfig({
   plugins: [
     // storage-adapter-placeholder
   ],
-  livePreview: false, // Lets set it to true if we use pages collection (Globals)
+  //livePreview: false, // Lets set it to true if we use pages collection (Globals)
 });
