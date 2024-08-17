@@ -14,7 +14,7 @@
     "incremental": true,
     "esModuleInterop": true,
     "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
@@ -25,11 +25,17 @@
     ],
     "paths": {
       "@/*": [
-        "./*",
+        "./*"
       ],
-      "react": [ "./node_modules/@types/react" ]
+      "react": [
+        "./node_modules/@types/react"
+      ],
+      "@payload-config": [
+        "./payload.config.ts"
+      ]
     },
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "target": "ES2017"
   },
   "include": [
     "next-env.d.ts",
@@ -41,4 +47,3 @@
     "node_modules"
   ]
 }
- 

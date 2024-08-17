@@ -34,31 +34,24 @@ const Contact = () => {
           </div>
 
           <div className="flex flex-col-reverse flex-wrap gap-8 md:flex-row md:flex-nowrap md:justify-between xl:gap-20">
-            <motion.div
-              variants={{
-                hidden: {
-                  opacity: 0,
-                  y: -20,
-                },
+            <div className="animate_top w-full rounded-lg bg-white p-7.5 shadow-solid-8 dark:border dark:border-strokedark dark:bg-black md:w-3/5 lg:w-3/4 xl:p-15">
+              <motion.div
+                variants={{
+                  hidden: {
+                    opacity: 0,
+                    y: -20,
+                  },
 
-                visible: {
-                  opacity: 1,
-                  y: 0,
-                },
-              }}
-              initial="hidden"
-              whileInView="visible"
-              transition={{ duration: 1, delay: 0.1 }}
-              viewport={{ once: true }}
-              className="animate_top w-full rounded-lg bg-white p-7.5 shadow-solid-8 dark:border dark:border-strokedark dark:bg-black md:w-3/5 lg:w-3/4 xl:p-15"
-            >
-              <h2 className="mb-15 text-3xl font-semibold text-black dark:text-white xl:text-sectiontitle2">
-                Send a message
-              </h2>
-
-              <form
-                action="https://formbold.com/s/unique_form_id"
-                method="POST"
+                  visible: {
+                    opacity: 1,
+                    y: 0,
+                  },
+                }}
+                initial="hidden"
+                whileInView="visible"
+                transition={{ duration: 1, delay: 0.1 }}
+                viewport={{ once: true }}
+              // className="animate_top w-full rounded-lg bg-white p-7.5 shadow-solid-8 dark:border dark:border-strokedark dark:bg-black md:w-3/5 lg:w-3/4 xl:p-15"
               >
                 <div className="mb-7.5 flex flex-col gap-7.5 lg:flex-row lg:justify-between lg:gap-14">
                   <div className="p-2 flex flex-col lg:w-2/3">
@@ -100,6 +93,7 @@ const Contact = () => {
                   </div>
                 </div>
 
+                <form>
                 <div className="mb-11.5 flex flex-col p-2">
                 <label htmlFor="message">Message</label>
                 <textarea
@@ -114,38 +108,11 @@ const Contact = () => {
                     <input
                       id="default-checkbox"
                       type="checkbox"
-                      className="peer sr-only "
-                    />
-                    <span className="border-gray-300 bg-gray-100 text-blue-600 dark:border-gray-600 dark:bg-gray-700 group mt-2 flex h-5 min-w-[20px] items-center justify-center rounded peer-checked:bg-primary">
-                      <svg
-                        className="opacity-0 peer-checked:group-[]:opacity-100"
-                        width="10"
-                        height="8"
-                        viewBox="0 0 10 8"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          clipRule="evenodd"
-                          d="M9.70704 0.792787C9.89451 0.980314 9.99983 1.23462 9.99983 1.49979C9.99983 1.76495 9.89451 2.01926 9.70704 2.20679L4.70704 7.20679C4.51951 7.39426 4.26521 7.49957 4.00004 7.49957C3.73488 7.49957 3.48057 7.39426 3.29304 7.20679L0.293041 4.20679C0.110883 4.01818 0.0100885 3.76558 0.0123669 3.50339C0.0146453 3.24119 0.119814 2.99038 0.305222 2.80497C0.490631 2.61956 0.741443 2.51439 1.00364 2.51211C1.26584 2.50983 1.51844 2.61063 1.70704 2.79279L4.00004 5.08579L8.29304 0.792787C8.48057 0.605316 8.73488 0.5 9.00004 0.5C9.26521 0.5 9.51951 0.605316 9.70704 0.792787Z"
-                          fill="white"
-                        />
-                      </svg>
-                    </span>
-                    <label
-                      htmlFor="default-checkbox"
-                      className="flex max-w-[425px] cursor-pointer select-none pl-5"
-                    >
-                      By clicking Checkbox, you agree to use our “Form” terms
-                      And consent cookie usage in browser.
-                    </label>
+                      className="peer sr-only "/>
                   </div>
-
-                  <button
+                <button
                     aria-label="send message"
-                    className="inline-flex items-center gap-2.5 rounded-full bg-[#97321D] px-6 py-3 font-medium text-white duration-300 ease-in-out hover:bg-blackho dark:bg-btndark dark:hover:bg-[#97321D]"
-                  >
+                    className="inline-flex items-center gap-2.5 rounded-full bg-[#97321D] px-6 py-3 font-medium text-white duration-300 ease-in-out hover:bg-blackho dark:bg-btndark dark:hover:bg-[#97321D]">
                     Send Message
                   </button>
                 </div>
@@ -204,6 +171,7 @@ const Contact = () => {
                 </p>
               </div>
             </motion.div>
+            </div>
           </div>
         </div>
       </section>

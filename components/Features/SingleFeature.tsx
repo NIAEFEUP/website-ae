@@ -40,6 +40,7 @@ const SingleFeature = ({ feature }: { feature: Feature }) => {
         </h3>
         <p>{description}</p>
       </motion.div>
+
     </>
   );
 };
