@@ -31,16 +31,16 @@ dependencies:
     specifier: ^10.4.19
     version: 10.4.20(postcss@8.4.40)
   babel-plugin-react-compiler:
-    specifier: ^0.0.0-experimental-592953e-20240517
+    specifier: ^0.0.0
     version: 0.0.0
   cross-env:
     specifier: ^7.0.3
     version: 7.0.3
   framer-motion:
-    specifier: ^11.3.19
-    version: 11.3.21(react-dom@19.0.0-rc-6230622a1a-20240610)(react@19.0.0-rc-6230622a1a-20240610)
+    specifier: ^11.3.24
+    version: 11.3.28(react-dom@19.0.0-rc-6230622a1a-20240610)(react@19.0.0-rc-6230622a1a-20240610)
   graphql:
-    specifier: ^16.8.2
+    specifier: ^16.9.0
     version: 16.9.0
   lucide-react:
     specifier: ^0.427.0
@@ -67,7 +67,7 @@ dependencies:
     specifier: 0.32.6
     version: 0.32.6
   swiper:
-    specifier: ^9.3.2
+    specifier: ^9.4.1
     version: 9.4.1
   tailwindcss:
     specifier: ^3.4.7
@@ -78,7 +78,7 @@ devDependencies:
     specifier: 3.0.0-beta.71
     version: 3.0.0-beta.71(graphql@16.9.0)(payload@3.0.0-beta.71)(typescript@5.5.3)
   '@types/node':
-    specifier: ^20.14.9
+    specifier: ^20.14.13
     version: 20.14.14
   '@types/react':
     specifier: npm:types-react@19.0.0-rc.0
@@ -4689,8 +4689,8 @@ packages:
     resolution: {integrity: sha512-ZsDfxO51wGAXREY55a7la9LScWpwv9RxIrYABrlvOFBlH/ShPnrtsXeuUIfXKKOVicNxQ+o8JTbJvjS4M89yew==}
     dev: false
 
-  /framer-motion@11.3.21(react-dom@19.0.0-rc-6230622a1a-20240610)(react@19.0.0-rc-6230622a1a-20240610):
-    resolution: {integrity: sha512-D+hfIsvzV8eL/iycld4K+tKlg2Q2LdwnrcBEohtGw3cG1AIuNYATbT5RUqIM1ndsAk+EfGhoSGf0UaiFodc5Tw==}
+  /framer-motion@11.3.28(react-dom@19.0.0-rc-6230622a1a-20240610)(react@19.0.0-rc-6230622a1a-20240610):
+    resolution: {integrity: sha512-dqhoawipEAjqdv32zbv72sOMJZjol7dROWn7t/FOq23WXJ40O4OUybgnO2ldnuS+3YquSn8xO/KKRavZ+TBVOQ==}
     peerDependencies:
       '@emotion/is-prop-valid': '*'
       react: ^18.0.0

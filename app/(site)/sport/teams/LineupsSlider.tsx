@@ -29,7 +29,7 @@ const LineupsSlider = () => {
       whileInView="visible"
       transition={{ duration: 1, delay: 0.1 }}
       viewport={{ once: true }}
-      className="animate_top mx-auto mt-15 max-w-c-1235 xl:mt-20 xl:px-0"
+    //className="animate_top mx-auto mt-15 max-w-c-1235 xl:mt-20 xl:px-0"
     >
       <div className="swiper-custom-pagination flex justify-center my-2 gap-5 mt-20" />
       <div className="swiper testimonial-01 mb-20 pb-22.5">
