@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import ScheduleTable from "../Table";
 
-const horariosData1 = [
+const ScheduleData1 = [
   { label: 'segunda-feira', value: '10:00–12:00, 14:00–17:00' },
   { label: 'terça-feira', value: '10:00–12:00, 14:00–17:00' },
   { label: 'quarta-feira', value: '10:00–12:00, 14:00–17:00' },
@@ -14,7 +14,7 @@ const horariosData1 = [
   { label: 'domingo', value: 'Encerrado' },
 ];
 
-const horariosData2 = [
+const ScheduleData2 = [
   { label: 'segunda-feira', value: '09:00–19:00' },
   { label: 'terça-feira', value: '09:00–19:00' },
   { label: 'quarta-feira', value: '09:00–19:00' },
@@ -30,7 +30,7 @@ const Info = () => {
       {/* <!-- ===== 1 ===== --> */}
       <section className="overflow-hidden pb-20 lg:pb-25 xl:pb-30">
         <div className="mx-auto max-w-c-1235 px-4 md:px-8 xl:px-0">
-          <div className="flex items-center gap-8 lg:gap-32.5">
+          <div className="flex flex-col-reverse md:flex-row items-center gap-8 lg:gap-32.5">
             <motion.div
               variants={{
                 hidden: {
@@ -53,13 +53,15 @@ const Info = () => {
                 src="/images/about/about-light-01.png"
                 alt="About"
                 className="dark:hidden"
-                fill
+                layout="fill"
+                objectFit="contain"
               />
               <Image
                 src="/images/about/about-dark-01.png"
                 alt="About"
                 className="hidden dark:block"
-                fill
+                layout="fill"
+                objectFit="contain"
               />
             </motion.div>
             <motion.div
@@ -81,7 +83,6 @@ const Info = () => {
               className="animate_right md:w-1/2"
             >
               <span className="font-medium uppercase text-black dark:text-white">
-                {" "}
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               </span>
               <h2 className="relative mb-6 text-3xl font-bold text-black dark:text-white xl:text-hero">
@@ -89,15 +90,15 @@ const Info = () => {
                 Secretaria                
                 </span>
               </h2>
-                <div className="contact-group mb-8">
-                  <div className="mb-4">
-                    <strong>Telefone:</strong> <span><a href="tel:+351225081556">22 508 1556</a></span>
-                  </div>
-                  <div className="mb-4">
-                    <strong>Email:</strong> <span><a href="mailto:aefeup@aefeup.pt">aefeup@aefeup.pt</a></span>
-                  </div>
+              <div className="mb-8 space-y-4">
+                <div>
+                  <strong>Telefone:</strong> <span><a href="tel:+351225081556">22 508 1556</a></span>
                 </div>
-              <ScheduleTable data={horariosData1} />
+                <div>
+                  <strong>Email:</strong> <span><a href="mailto:aefeup@aefeup.pt">aefeup@aefeup.pt</a></span>
+                </div>
+              </div>
+              <ScheduleTable data={ScheduleData1} />
             </motion.div>
           </div>
         </div>
@@ -107,7 +108,7 @@ const Info = () => {
       {/* <!-- ===== 2 ===== --> */}
       <section className="overflow-hidden pb-20 lg:pb-25 xl:pb-30">
         <div className="mx-auto max-w-c-1235 overflow-hidden px-4 md:px-8 2xl:px-0">
-          <div className="flex items-center gap-8 lg:gap-32.5">
+          <div className="flex flex-col md:flex-row items-center gap-8 lg:gap-32.5">
             <motion.div
               variants={{
                 hidden: {
@@ -127,7 +128,6 @@ const Info = () => {
               className="animate_left md:w-1/2"
             >
              <span className="font-medium uppercase text-black dark:text-white">
-                {" "}
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               </span>
               <h2 className="relative mb-6 text-3xl font-bold text-black dark:text-white xl:text-hero">
@@ -136,16 +136,15 @@ const Info = () => {
                 Efeitos Gráficos
                 </span>
               </h2>
-              <div className="contact-group mb-8">
-                <div className="mb-4">
+              <div className="mb-8 space-y-4">
+                <div>
                   <strong>Telefone:</strong> <span><a href="tel:+351225081556">22 508 1556</a></span>
                 </div>
-                <div className="mb-4">
+                <div>
                   <strong>Email:</strong> <span><a href="mailto:editorial@aefeup.pt">editorial@aefeup.pt</a></span>
                 </div>
               </div>
-
-              <ScheduleTable data={horariosData2} />
+              <ScheduleTable data={ScheduleData2} />
             </motion.div>
             <motion.div
               variants={{
@@ -169,13 +168,15 @@ const Info = () => {
                 src="/images/about/about-light-01.png"
                 alt="About"
                 className="dark:hidden"
-                fill
+                layout="fill"
+                objectFit="contain"
               />
               <Image
                 src="/images/about/about-dark-01.png"
                 alt="About"
                 className="hidden dark:block"
-                fill
+                layout="fill"
+                objectFit="contain"
               />
             </motion.div>
           </div>
@@ -185,7 +186,7 @@ const Info = () => {
       {/* <!-- ===== 3 ===== --> */}
       <section className="overflow-hidden pb-20 lg:pb-25 xl:pb-30">
         <div className="mx-auto max-w-c-1235 px-4 md:px-8 xl:px-0">
-          <div className="flex items-center gap-8 lg:gap-32.5">
+          <div className="flex flex-col-reverse md:flex-row items-center gap-8 lg:gap-32.5">
             <motion.div
               variants={{
                 hidden: {
@@ -208,13 +209,15 @@ const Info = () => {
                 src="/images/about/about-light-01.png"
                 alt="About"
                 className="dark:hidden"
-                fill
+                layout="fill"
+                objectFit="contain"
               />
               <Image
                 src="/images/about/about-dark-01.png"
                 alt="About"
                 className="hidden dark:block"
-                fill
+                layout="fill"
+                objectFit="contain"
               />
             </motion.div>
             <motion.div
@@ -236,15 +239,15 @@ const Info = () => {
               className="animate_right md:w-1/2"
             >
               <span className="font-medium uppercase text-black dark:text-white">
-                {" "}
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                </span>
+              </span>
               <h2 className="relative mb-6 text-3xl font-bold text-black dark:text-white xl:text-hero">
                 <span className="relative inline-block before:absolute before:bottom-2.5 before:left-0 before:-z-1 before:h-3 before:w-full before:bg-pink-300 dark:before:bg-titlebgdark">
                 Cafetaria
                 </span>
               </h2>
-              <ScheduleTable data={horariosData1} />
+              <ScheduleTable data={ScheduleData1} />
+
               <div>
                 <a
                   href="#"

@@ -61,10 +61,11 @@ const Contact = () => {
                 method="POST"
               >
                 <div className="mb-7.5 flex flex-col gap-7.5 lg:flex-row lg:justify-between lg:gap-14">
-                  <div className="p-2 flex flex-col">
+                  <div className="p-2 flex flex-col lg:w-2/3">
                   <label htmlFor="name">Full name</label>
                     <input
                       type="text"
+                      id="name"
                       className="p-2 border border-gray-300  bg-transparent rounded  focus:border-[#97321D] focus:outline-none dark:border-gray-600 dark:focus:border-white"
                     />
                   </div>
@@ -73,6 +74,7 @@ const Contact = () => {
                   <label htmlFor="email">Email address</label>
                     <input
                       type="email"
+                      id="email"
                       className="p-2 border border-gray-300  bg-transparent rounded  focus:border-[#97321D] focus:outline-none dark:border-gray-600 dark:focus:border-white"
                     />
                   </div>
@@ -80,25 +82,28 @@ const Contact = () => {
 
                 <div className="mb-12.5 flex flex-col gap-7.5 lg:flex-row lg:justify-between lg:gap-14">
                   <div className="p-2 flex flex-col lg:w-2/3">
-                  <label htmlFor="text">Subject</label>
+                  <label htmlFor="subject">Subject</label>
                     <input
                       type="text"
+                      id="subject"
                       className="p-2 border border-gray-300 bg-transparent rounded w-full focus:border-[#97321D] focus:outline-none dark:border-gray-600 dark:focus:border-white"
                     />
                   </div>
 
                   <div className="p-2 flex flex-col">
-                  <label htmlFor="text">Phone number</label>
+                  <label htmlFor="phone">Phone number</label>
                     <input
-                      type="text"
+                      type="tel"
+                      id="phone"
                       className="p-2 border border-gray-300 bg-transparent rounded  focus:border-[#97321D] focus:outline-none dark:border-gray-600 dark:focus:border-white"
                     />
                   </div>
                 </div>
 
                 <div className="mb-11.5 flex flex-col p-2">
-                <label htmlFor="Message">Message</label>
+                <label htmlFor="message">Message</label>
                 <textarea
+                    id="message"
                     rows={4}
                     className="flex-grow p-2 border border-gray-300  bg-transparent rounded  focus:border-[#97321D] focus:outline-none dark:border-gray-600 dark:focus:border-white"
                   ></textarea>
