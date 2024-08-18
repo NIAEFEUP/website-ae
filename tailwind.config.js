@@ -13,6 +13,7 @@ module.exports = {
   theme: {
     fontFamily: {
       inter: ["Inter", "sans-serif"],
+      serif: ["ui-serif", "Georgia"],
     },
     extend: {
       colors: {
@@ -37,6 +38,7 @@ module.exports = {
         alabaster: "#FBFBFB",
         zumthor: "#EDF5FF",
         socialicon: "#D1D8E0",
+        engenharia: "#8C2D19",
 
         // secondary: "#C4C6B9",
         // accent: #562920
