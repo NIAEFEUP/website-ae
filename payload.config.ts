@@ -13,6 +13,7 @@ import { StudentGuide } from "./collections/StudentGuide";
 import { Link } from "./collections/Link";
 import { Position } from "./collections/Position";
 import { BoardSection } from "./collections/BoardSection";
+import { Product } from "./collections/Product";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -31,6 +32,7 @@ export default buildConfig({
     Link,
     Position,
     BoardSection,
+    Product
   ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",

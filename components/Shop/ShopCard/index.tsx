@@ -3,11 +3,15 @@ import Image from "next/image";
 
 type ShopCardProps = {
   product: Product;
+  customClick?: () => void;
 };
 
-const ShopCard = ({ product }: ShopCardProps) => {
+const ShopCard = ({ product, customClick }: ShopCardProps) => {
   return (
-    <div className="relative border border-stroke bg-white min-w-52 max-w-52 shadow-solid-10 dark:border-strokedark dark:bg-blacksection dark:shadow-none md:w-[45%]">
+    <div
+      className="relative border border-stroke bg-white min-w-52 max-w-52 shadow-solid-10 dark:border-strokedark dark:bg-blacksection dark:shadow-none md:w-[45%]"
+      onClick={customClick}
+    >
       <Image
         src="/images/cactus.jpg"
         width={300}
@@ -17,7 +21,7 @@ const ShopCard = ({ product }: ShopCardProps) => {
       />
       <div className="px-4 py-4">
         <h4 className="mb-2.5 text-para2 text-black dark:text-white font-serif tracking-tight">
-          T-shirt oficial
+          {product.name}
         </h4>
 
         <button

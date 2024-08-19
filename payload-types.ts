@@ -19,6 +19,7 @@ export interface Config {
     link: Link;
     position: Position;
     board_section: BoardSection;
+    product: Product;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -232,6 +233,18 @@ export interface BoardSection {
         id?: string | null;
       }[]
     | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "product".
+ */
+export interface Product {
+  id: number;
+  name: string;
+  price: number;
+  description: string;
   updatedAt: string;
   createdAt: string;
 }
