@@ -1,9 +1,9 @@
 export default function Head() {
   return (
     <>
-      <title> Solid | Next.js Template for Startup and SaaS</title>
+      <title>AEFEUP</title>
       <meta content="width=device-width, initial-scale=1" name="viewport" />
-      <meta name="description" content="Built with Next.js and TypeScript" />
+      <meta name="description" content="Website da Associação de Estudantes da Faculdade de Engenharia da Universidade do Porto" />
       <link rel="icon" href="/images/favicon.ico" />
     </>
   );

@@ -30,9 +30,6 @@
       "react": [
         "./node_modules/@types/react"
       ],
-      "@payload-config": [
-        "./payload.config.ts"
-      ]
     },
     "strictNullChecks": true,
     "target": "ES2017"
