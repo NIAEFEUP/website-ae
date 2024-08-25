@@ -57,11 +57,12 @@ const LineupsSlider = ({ teams }: Props) => (
         {teams.map((team) => {
 
           const background = team.backgroundImage as Media;
+
           return (
-            <SwiperSlide key={team.id} className="pb-5">
-              <div className="flex justify-center gap-5 my-5">
-                <AvatarHorizontal person={team.coach as Person} description="Treinador" />
-                <div className="flex flex-col justify-center">
+            <SwiperSlide key={team.id} className="pb-5 px-10">
+              <div className="flex justify-center gap-5 my-5 flex-col-reverse sm:flex-row">
+                <AvatarHorizontal person={team.coach as Person} description="Treinador" className="w-fit mx-auto sm:mx-0" />
+                <div className="flex flex-col justify-center text-center sm:text-start">
                   <p className="font-semibold">Treinos</p>
                   {team.workouts?.map((workout, index) => (
                     <p key={index}>{workout.weekDay}: {workout.hour}</p>
@@ -70,13 +71,13 @@ const LineupsSlider = ({ teams }: Props) => (
               </div>
 
               <div
-                className="flex flex-col gap-5 bg-cover bg-center bg-no-repeat p-5 bg-opacity-80"
+                className="flex flex-col gap-5 bg-cover bg-center bg-no-repeat p-5 bg-opacity-80 sm:bg-none"
                 style={{
                   backgroundImage: `url('${background.url}')`,
                 }}
               >
                 {team.lineup?.map((line, index) => (
-                  <div key={index} className="flex gap-5 justify-center">
+                  <div key={index} className="flex gap-5 justify-center flex-wrap">
                     {line.lineupRow?.map((player, index) => {
                       if (player) {
                         return (

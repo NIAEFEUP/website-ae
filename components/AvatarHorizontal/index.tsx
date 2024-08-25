@@ -4,14 +4,15 @@ import Image from "next/image";
 interface Props {
   person: Person,
   description: string,
+  className?: string
 }
 
-const AvatarHorizontal = ({ person, description }: Props) => {
+const AvatarHorizontal = ({ person, description, className }: Props) => {
 
   const photo = person.photo as Media;
 
   return (
-    <div className="animate_top group relative rounded-lg border border-stroke bg-white p-5 shadow-solid-10 dark:border-strokedark dark:bg-blacksection dark:shadow-none flex gap-3">
+    <div className={`animate_top group relative rounded-lg border border-stroke bg-white p-5 shadow-solid-10 dark:border-strokedark dark:bg-blacksection dark:shadow-none flex gap-3 ${className}`}>
       {/* Image */}
       <Image
         src={photo.url || ""}
