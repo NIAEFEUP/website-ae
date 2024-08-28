@@ -2,6 +2,7 @@ import Image from "next/image";
 
 import { Linkedin } from "lucide-react";
 import { Media, Person } from "@/payload-types";
+import DefaultAvatarImage from "@/public/images/default_avatar.jpg";
 
 interface Props {
   person: Person;
@@ -14,8 +15,8 @@ const Avatar = ({ person }: Props) => {
   return (
     <div className="animate_top group relative rounded-lg border border-stroke bg-white p-5 shadow-solid-10 dark:border-strokedark dark:bg-blacksection dark:shadow-none">
       <Image
-        src={photo.url || ""}
-        alt={photo.alt || ""}
+        src={photo?.url ?? DefaultAvatarImage.src}
+        alt={photo?.alt ?? ""}
         width={80}
         height={80}
         className="w-20 h-20 object-cover mx-auto rounded-full"
