@@ -8,7 +8,7 @@ export default function EventsPage(){
     return (
         <>
           {/* <!-- ===== About Start ===== --> */}
-            <div className="overflow-hidden pb-20 pt-35 md:pt-25 xl:pb-25 xl:pt-30">
+            <div className="overflow-hidden pb-8 pt-36 md:pt-24 xl:pb-24 xl:pt-32">
                 <SectionHeader headerInfo={{
                     title: "Eventos",
                     subtitle: "Conhece os nossos eventos",
@@ -16,10 +16,10 @@ export default function EventsPage(){
                 }}
                 />
             </div>
-          <section className="overflow-hidden pb-20 lg:pb-25 xl:pb-30">
+          <section className="overflow-hidden pb-20 lg:pb-16 xl:pb-20">
             <div className="mx-auto max-w-c-1235 px-4 md:px-8 xl:px-0">
               <div className="flex items-top gap-8 lg:gap-32.5">
-                <div className="animate_left relative mx-auto hidden aspect-[588/526.5] md:block md:w-1/2">
+                <div className="animate_left relative mx-auto hidden aspect-[3/2] md:block md:w-1/2">
                   <motion.div
                     variants={{
                       hidden: {
@@ -39,15 +39,9 @@ export default function EventsPage(){
                     // className="animate_left relative mx-auto hidden aspect-[588/526.5] md:block md:w-1/2"
                   >
                     <Image
-                      src="/images/about/about-light-01.png"
-                      alt="About"
+                      src="/images/events/fed/fed1.jpg"
+                      alt="FED"
                       className="dark:hidden"
-                      fill
-                    />
-                    <Image
-                      src="/images/about/about-dark-01.png"
-                      alt="About"
-                      className="hidden dark:block"
                       fill
                     />
                   </motion.div>
@@ -110,9 +104,9 @@ export default function EventsPage(){
           {/* <!-- ===== About End ===== --> */}
     
           {/* <!-- ===== About Two Start ===== --> */}
-          <section>
+          <section className="pb-36 md:pb-24 xl:pb-32">
             <div className="mx-auto max-w-c-1235 overflow-hidden px-4 md:px-8 2xl:px-0">
-              <div className="flex items-top gap-8 lg:gap-32.5">
+              <div className="flex items-center gap-8 lg:gap-32.5">
                 <div className="animate_left md:w-1/2">
                   <motion.div
                     variants={{
@@ -173,7 +167,7 @@ export default function EventsPage(){
                     </div>
                   </motion.div>
                 </div>
-                <div className="animate_right relative mx-auto hidden aspect-[588/526.5] md:block md:w-1/2">
+                <div className="animate_right relative mx-auto hidden aspect-[3/2] md:block md:w-1/2">
                   <motion.div
                     variants={{
                       hidden: {
@@ -193,15 +187,9 @@ export default function EventsPage(){
                     // className="animate_right relative mx-auto hidden aspect-[588/526.5] md:block md:w-1/2"
                   >
                     <Image
-                      src="./images/about/about-light-02.svg"
-                      alt="About"
+                      src="/images/events/arraial/arraial4.jpg"
+                      alt="Arraial"
                       className="dark:hidden"
-                      fill
-                    />
-                    <Image
-                      src="./images/about/about-dark-02.svg"
-                      alt="About"
-                      className="hidden dark:block"
                       fill
                     />
                   </motion.div>
@@ -213,3 +201,4 @@ export default function EventsPage(){
         </>
     )
 }
+
