@@ -104,23 +104,14 @@ const RequestTab = () => {
               <form action="#" method="post">
                   <div className="p-2 flex flex-col">
                     <label htmlFor="name">Nome do núcleo/associação</label>
+<<<<<<< HEAD
                     <input type="text" name="name" id="name" className="p-2 border"/>
                   </div>
                   <div>
                     <label htmlFor="name">Nome do responsável</label>
+=======
+>>>>>>> cf9a5f1 (Finish page layout)
                     <input type="text" name="name" id="name" className="p-2 border"/>
-                  </div>
-                  <div className="p-2 flex flex-col">
-                    <label htmlFor="student_number">Número de estudante</label>
-                    <input type="text" name="student_number" id="student_number" className="p-2 border"/>
-                  </div>
-                  <div className="p-2 flex flex-col">
-                    <label htmlFor="start_date">Data de Início</label>
-                    <input type="datetime-local" name="start_date" id="start_date" className="p-2 border"/>
-                  </div>
-                  <div className="p-2 flex flex-col">
-                    <label htmlFor="end_date">Data de Fim</label>
-                    <input type="datetime-local" name="end_date" id="end_date" className="p-2 border"/>
                   </div>
                   <div className="flex flex-col p-2">
                     <label htmlFor="contact_number">Contacto telefónico</label>
