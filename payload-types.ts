@@ -15,6 +15,8 @@ export interface Config {
     media: Media;
     person: Person;
     material: Material;
+    
+    'sports-team': SportsTeam;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -81,7 +83,6 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
-<<<<<<< HEAD
  * via the `definition` "person".
  */
 export interface Person {
@@ -106,6 +107,74 @@ export interface Material {
   id: number;
   name: string;
   quantity: number;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "sports-team".
+ */
+export interface SportsTeam {
+  id: number;
+  sport_name: string;
+  fap_id?: number | null;
+  coach?: (number | null) | Person;
+  workouts?:
+    | {
+        weekDay: 'monday' | 'tuesday' | 'wednesday' | 'thursday' | 'friday' | 'saturday' | 'sunday';
+        hour: string;
+        id?: string | null;
+      }[]
+    | null;
+  emoji?:
+    | (
+        | '⚽️'
+        | '🏀'
+        | '🏈'
+        | '🎾'
+        | '🏐'
+        | '🏉'
+        | '🥏'
+        | '🏓'
+        | '🏸'
+        | '🏒'
+        | '🏑'
+        | '🏏'
+        | '🥍'
+        | '🥅'
+        | '🎱'
+        | '🏹'
+        | '🎿'
+        | '🛷'
+        | '🚴‍♂️'
+        | '🏄‍♂️'
+        | '🏇'
+        | '🏊‍♂️'
+        | '🏋️‍♂️'
+        | '🤼‍♂️'
+        | '🤸‍♂️'
+        | '🤺'
+        | '🤾‍♂️'
+        | '🏌️‍♂️'
+        | '🧗‍♂️'
+        | '🚣‍♂️'
+        | '🚵‍♂️'
+        | '🏎️'
+        | '🏍️'
+      )
+    | null;
+  lineup?:
+    | {
+        lineupRow?:
+          | {
+              person: number | Person;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  backgroundImage: number | Media;
   updatedAt: string;
   createdAt: string;
 }

@@ -24,6 +24,7 @@
     "babel-plugin-react-compiler": "^0.0.0",
     "cross-env": "^7.0.3",
     "dotenv": "^16.4.5",
+    "lucide-react": "^0.427.0",
     "framer-motion": "^11.3.24",
     "graphql": "^16.9.0",
     "lucide-react": "^0.436.0",

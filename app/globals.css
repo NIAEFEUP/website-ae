@@ -125,3 +125,9 @@ pre {
 .active-tab {
   @apply bg-stroke text-black dark:bg-blackho dark:text-white;
 }
+
+@media (max-width: 800px) {
+  .swiper-slide div[style] {
+    background-image: none !important;
+  }
+}
