@@ -8,6 +8,7 @@ import sharp from "sharp";
 import { Users } from "./collections/Users";
 import { Media } from "./collections/Media";
 import { Person } from "./collections/Person";
+import { Place, Category } from "./collections/Place";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -21,6 +22,8 @@ export default buildConfig({
     Users,
     Media,
     Person,
+    Place,
+    Category,
   ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",

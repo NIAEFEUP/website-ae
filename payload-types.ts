@@ -14,6 +14,8 @@ export interface Config {
     users: User;
     media: Media;
     person: Person;
+    place: Place;
+    category: Category;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -95,6 +97,39 @@ export interface Person {
         id?: string | null;
       }[]
     | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "place".
+ */
+export interface Place {
+  id: number;
+  name: string;
+  description?: string | null;
+  position: {
+    lat: number;
+    lng: number;
+  };
+  schedule?:
+    | {
+        day: string;
+        hours: string;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "category".
+ */
+export interface Category {
+  id: number;
+  name: string;
+  places?: (number | Place)[] | null;
   updatedAt: string;
   createdAt: string;
 }
