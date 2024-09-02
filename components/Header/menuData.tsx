@@ -44,9 +44,9 @@ const menuData: Menu[] = [
       },
       {
         id: 38,
-        title: "Support",
+        title: "Apoio Social e Bem-Estar",
         newTab: false,
-        path: "/support",
+        path: "/social-support",
       },
     ],
   },
