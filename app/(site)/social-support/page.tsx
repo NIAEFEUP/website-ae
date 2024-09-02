@@ -12,7 +12,7 @@ const ApoioSocialPage = async () => {
   return (
     <>
       {/* <!-- CANAIS DE APOIO --> */}
-      <section className="overflow-hidden pt-25">
+      <section className="overflow-hidden pb-20 pt-25 lg:pb-25 xl:pb-30">
         <div className="mx-auto max-w-c-1315 px-4 md:px-8 xl:px-0">
           {/* <!-- Section Title Start --> */}
           <div className="animate_top mx-auto text-center">
@@ -43,7 +43,7 @@ const ApoioSocialPage = async () => {
       </section>
 
       {/* <!-- SAUDE MENTAL --> */}
-      <section className="overflow-hidden pt-25">
+      <section className="overflow-hidden pb-20 pt-25 lg:pb-25 xl:pb-30">
         <div className="mx-auto max-w-c-1315 px-4 md:px-8 xl:px-0">
           {/* <!-- Section Title Start --> */}
           <div className="animate_top mx-auto text-center">
@@ -57,7 +57,7 @@ const ApoioSocialPage = async () => {
           </div>
           {/* <!-- Section Title End --> */}
         </div>
-        <div className="py-7.5">
+        <div className="py-20 ">
           <div className="flex flex-wrap justify-center gap-7.5 lg:flex-nowrap xl:gap-12.5">
             {mentalHealthData.map((feature) => (
               <LearnMore
