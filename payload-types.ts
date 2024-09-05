@@ -81,7 +81,6 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
-<<<<<<< HEAD
  * via the `definition` "person".
  */
 export interface Person {
@@ -97,6 +96,8 @@ export interface Person {
         id?: string | null;
       }[]
     | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
