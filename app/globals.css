@@ -179,6 +179,7 @@ pre {
   @apply bg-stroke text-black dark:bg-blackho dark:text-white;
 }
 
+<<<<<<< HEAD
 @layer base {
   * {
     @apply border-border;
@@ -187,3 +188,10 @@ pre {
     @apply bg-background text-foreground;
   }
 }
+=======
+@media (max-width: 800px) {
+  .swiper-slide div[style] {
+    background-image: none !important;
+  }
+}
+>>>>>>> 7e5c534485b64c5a58df6562adc94cb8b6eaf975
