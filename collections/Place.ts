@@ -52,6 +52,15 @@ export const Place: CollectionConfig = {
         },
       ],
     },
+    {
+      name: 'category',
+      label: 'Category',
+      type: 'relationship',
+      relationTo: 'category',
+      hasMany: false,
+      required: true,
+      depth: 0,
+    },
   ],
 };
 
