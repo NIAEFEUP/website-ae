@@ -14,7 +14,7 @@ export default function EventsPage(){
                     subtitle: "Conhece os nossos eventos",
                     description: `A AEFEUP organiza diversos eventos ao longo do ano letivo, com o objetivo de promover a integração dos estudantes e proporcionar momentos de convívio e diversão.`
                 }}
-                />
+              />
             </div>
           <section className="overflow-hidden pb-20 lg:pb-16 xl:pb-20">
             <div className="mx-auto max-w-c-1235 px-4 md:px-8 xl:px-0">
@@ -39,10 +39,10 @@ export default function EventsPage(){
                     // className="animate_left relative mx-auto hidden aspect-[588/526.5] md:block md:w-1/2"
                   >
                     <Image
-                      src="/images/events/fed/fed1.jpg"
+                      src="/images/events/fed/fed.webp"
                       alt="FED"
-                      className="dark:hidden"
                       fill
+                      priority
                     />
                   </motion.div>
                 </div>
@@ -187,10 +187,10 @@ export default function EventsPage(){
                     // className="animate_right relative mx-auto hidden aspect-[588/526.5] md:block md:w-1/2"
                   >
                     <Image
-                      src="/images/events/arraial/arraial4.jpg"
+                      src="/images/events/arraial/arraial.webp"
                       alt="Arraial"
-                      className="dark:hidden"
                       fill
+                      priority
                     />
                   </motion.div>
                 </div>
