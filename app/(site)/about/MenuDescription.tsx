@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import Avatar from "@/components/Avatar";
+import SectionHeader from "@/components/Common/SectionHeader";
 
 const sections = [
   {
@@ -102,8 +103,16 @@ const MenuDescription = () => {
   }, []);
 
   return (
-    <div className="mx-auto max-w-7xl">
-      <h3 className="text-3xl font-medium text-black dark:text-white">Departamentos</h3>
+    <div className="mx-auto max-w-7xl"> 
+      <SectionHeader
+          headerInfo={{
+            title: "Quem Somos",
+            subtitle: "Departamentos",
+            description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. In
+          convallis tortor eros. Donec vitae tortor lacus. Phasellus aliquam
+          ante in maximus.`,
+          }}
+        />
 
       <motion.div
         variants={{
@@ -124,10 +133,10 @@ const MenuDescription = () => {
         className="flex justify-center items-start h-full"
       >
         <div
-          ref={menuRef}
-          className="w-full flex items-start gap-8"
-        >
-          <div className="flex flex-col gap-4 w-1/4">
+        ref={menuRef}
+        className="w-full flex items-start gap-8 flex-col sm:flex-row"
+      >
+          <div className="flex flex-col gap-4 w-full sm:w-1/4">
             {sections.map((section, index) => (
               <button
                 key={index}
@@ -144,7 +153,7 @@ const MenuDescription = () => {
           </div>
 
           <div
-            className="flex flex-col w-3/4 items-center"
+            className="flex flex-col md:w-3/4 items-center"
             style={{ minHeight: menuHeight }}
           >
             {selected === null ? (
@@ -156,7 +165,7 @@ const MenuDescription = () => {
                 />
               </div>
             ) : (
-              <div className="p-5 rounded-lg shadow-lg bg-gray-200 w-full max-w-lg">
+              <div className="p-5 rounded-lg shadow-lg bg-gray-200 w-full min-h-80">
                 <h3 className="text-2xl font-semibold mb-4 text-center">
                   {sections[selected]?.title}
                 </h3>
@@ -164,7 +173,7 @@ const MenuDescription = () => {
                   {sections[selected]?.description}
                 </p>
 
-                <div className="flex justify-center gap-4 mb-6">
+                <div className="flex flex-col sm:flex-row justify-center gap-4 mb-6">
                   {sections[selected]?.avatars.map((avatar) => avatar)}
                 </div>
 
