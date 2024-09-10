@@ -1,4 +1,5 @@
 // LearnMore.tsx
+import { motion } from "framer-motion";
 import React from "react";
 
 interface LearnMoreProps {
@@ -20,6 +21,26 @@ const LearnMore = ({
 }: LearnMoreProps) => {
   return (
     <div className="animate_top group relative rounded-lg border border-stroke bg-white p-7.5 shadow-solid-10 dark:border-strokedark dark:bg-blacksection dark:shadow-none md:w-[45%] lg:w-1/3 xl:p-12.5">
+
+    <motion.div
+      variants={{
+        hidden: {
+          opacity: 0,
+          x: -20,
+        },
+
+        visible: {
+          opacity: 1,
+          x: 0,
+        },
+      }}
+      initial="hidden"
+      whileInView="visible"
+      transition={{ duration: 0.5, delay: 0.1 }}
+      viewport={{ once: true }}
+      // className="animate_left relative mx-auto hidden aspect-[588/526.5] md:block md:w-1/2"
+    >
+
       <div className="mb-4 text-primary dark:text-white">{icon}</div>
       <h4 className="mb-2.5 text-para2 font-bold text-black dark:text-white">
         {title}
@@ -63,6 +84,7 @@ const LearnMore = ({
           </svg>
         </a>
       )}
+      </motion.div>
     </div>
   );
 };
