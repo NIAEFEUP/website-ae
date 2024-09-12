@@ -1,24 +1,22 @@
 'use client'
 import { useState } from "react"
-import materialData from "./materialData";
 import SectionHeader from "../Common/SectionHeader";
 import { EventRequestInfo } from "@/types/eventRequestInfo";
 import { SingleMaterialRequest } from "@/types/singleMaterialRequest";
+import { Material } from "@/types/material";
+import DatePickerComponent from "./DatePickerComponent";
+import MaterialSelector from "./MaterialSelector";
 
-const RequestTab = () => {
+export default function RequestTab( { materialData } ) {
   const [currentTab,setCurrentTab] = useState("tabOne");
   const [showMaterial,setShowMaterial] = useState(false);
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
   
-  const getDateString = (d: string) =>{
-    const [date,time] = d.split("T")
-    const [yyyy,mm,dd] = date.split("-")
-    return `${dd}-${mm}-${yyyy} ${time}`
-  }
-
   const getRequestedMaterial = (data : FormData) => {
     return materialData
-    .filter((material) => (data.get(material.name) ?? 0) != 0)
-    .map((material) => {
+    .filter((material: Material) => (data.get(material.name) ?? 0) != 0)
+    .map((material: Material) => {
       return {name:material.name,quantity:parseInt(data.get(material.name)?.toString() ?? '0')}
     })
   }
@@ -56,11 +54,7 @@ const RequestTab = () => {
   const handleEventRequestSubmit = async (e) => {
     e.preventDefault()
     const data = new FormData(e.target)
-      
-    const start_date = getDateString(data.get("start_date")?.toString() ?? "")
-    const end_date = getDateString(data.get("end_date")?.toString() ?? "")
-
-    const requestedMaterial : Array<SingleMaterialRequest> = getRequestedMaterial(data)
+    const requestedMaterial : Array<SingleMaterialRequest> =  showMaterial ? getRequestedMaterial(data) : []
     const requestInfo: EventRequestInfo = {
       isEvent: true,
       name: data.get("name")?.toString() ?? '',
@@ -68,8 +62,8 @@ const RequestTab = () => {
       email: data.get("email")?.toString() ?? '',
       space: data.get("space")?.toString() ?? '',
       num_people: parseInt(data.get("num_people")?.toString() ?? ''),
-      start_date: start_date,
-      end_date: end_date,
+      start_date: startDate.toUTCString(),
+      end_date: endDate.toUTCString(),
       contact_number: data.get("contact_number")?.toString() ?? '',
       event_description: data.get("event_description")?.toString() ?? '',
       requestedMaterial: requestedMaterial
@@ -144,11 +138,11 @@ const RequestTab = () => {
                   </div>
                   <div className="p-2 flex flex-col">
                     <label htmlFor="start_date">Data de Início</label>
-                    <input type="datetime-local" name="start_date" id="start_date" className="p-2 border" required/>
+                    <DatePickerComponent currentDate={startDate} setDate={setStartDate}/>
                   </div>
                   <div className="p-2 flex flex-col">
                     <label htmlFor="end_date">Data de Fim</label>
-                    <input type="datetime-local" name="end_date" id="end_date" className="p-2 border" required/>
+                    <DatePickerComponent currentDate={endDate} setDate={setEndDate} minDate={startDate}/>
                   </div>
                   <div className="flex flex-col p-2">
                     <label htmlFor="contact_number">Contacto telefónico</label>
@@ -162,28 +156,16 @@ const RequestTab = () => {
                     <label htmlFor="">Descrição do Evento</label>
                     <textarea name="event_description" id="event_description" className="flex-grow p-2 border" required/>
                   </div>
-                  <div>
-                    <label htmlFor=""></label>
-                  </div>
 
-                  {/* Material Selector */}
                   <div className={showMaterial ? "block" : "hidden"}>
-                      <p className="p-2">Material</p>
-                      <div className="grid sm:grid-cols-2 lg:grid-cols-3 pb-2">
-                        {materialData.map((material) => (
-                          <div className="m-2 p-2 flex border rounded">
-                            <label htmlFor={material.name} className="flex-grow">{material.name}</label>
-                            <input type="number" name={material.name} id={material.name} min={0} max={material.quantity} defaultValue={0} className="pl-2 focus:outline-none"/>
-                          </div>
-                        ))}
-                      </div>
+                    <MaterialSelector materialData={materialData}/>
                   </div>
 
                   <button 
-                  type="button" 
-                  className="w-full my-4 p-2 bg-primary text-white rounded hover:bg-gray-500 hover:text-white"
-                  onClick={() => showMaterial ? setShowMaterial(false) : setShowMaterial(true)}>
-                  {showMaterial ? "Esconder Material" : "Adicionar Material"}
+                    type="button" 
+                    className="w-full my-4 p-2 bg-primary text-white rounded hover:bg-gray-500 hover:text-white"
+                    onClick={() => showMaterial ? setShowMaterial(false) : setShowMaterial(true)}>
+                    {showMaterial ? "Esconder Material" : "Adicionar Material"}
                   </button>
                   <button type="submit" className="w-full p-2 bg-primary text-white rounded hover:bg-gray-500 hover:text-white">Submeter</button>
               </form>
@@ -207,16 +189,7 @@ const RequestTab = () => {
                     <input type="text" name="email" id="email" className="p-2 border" required/>
                   </div>
                   
-                  {/* Material Selector */}
-                  <p className="p-2">Material</p>
-                  <div className="grid sm:grid-cols-2 lg:grid-cols-3 pb-2">
-                    {materialData.map((material) => (
-                      <div className="m-2 p-2 flex border rounded">
-                        <label htmlFor={material.name} className="flex-grow">{material.name}</label>
-                        <input type="number" name={material.name} id={material.name} min={0} max={material.quantity} defaultValue={0} className="pl-2 focus:outline-none"/>
-                      </div>
-                    ))}
-                  </div>
+                  <MaterialSelector materialData={materialData} />
 
                   <button type="submit" className="w-full p-2 bg-primary text-white rounded hover:bg-gray-500 hover:text-white">Submeter</button>
               </form>
@@ -228,5 +201,3 @@ const RequestTab = () => {
     </>
   )
 }
-
-export default RequestTab

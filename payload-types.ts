@@ -15,7 +15,6 @@ export interface Config {
     media: Media;
     person: Person;
     material: Material;
-    
     'sports-team': SportsTeam;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;

@@ -12,11 +12,17 @@ import {
     Hr,
   } from "@react-email/components";
   import * as React from "react";
-  
-  export const AppleReceiptEmail = ({requestEventInfo} : {requestEventInfo: EventRequestInfo }) => (
+
+  export const EmailTemplate= ({requestEventInfo} : {requestEventInfo: EventRequestInfo }) => (
     <Html>
       <Head />
-      <Preview>test</Preview>
+      <Preview>
+        {
+          requestEventInfo.isEvent 
+          ? `A organização ${requestEventInfo.name} submeteu uma requisição para um evento através de ${requestEventInfo.responsible_name}.`
+          : `A organização ${requestEventInfo.name} através de ${requestEventInfo.responsible_name} requisitou materiais.`
+        }
+      </Preview>
   
       <Body style={main}>
         <Container style={container}>
@@ -94,36 +100,43 @@ import {
                 </Column>
               </Row>
             </Section>
-            <Section>
-              <Text style={cupomText}>
-                O seguinte material foi requisitado:
-              </Text>
-            </Section>
             </div>
           ) : (
             <div/>
           )}
-          <Section style={informationTable}>
-            <Row style={informationTableRow}>
-              {requestEventInfo.requestedMaterial.map((material) => (
-                <Row>
-                  <Hr />
-                  <Column style={centeredElement}>
-                    <Text>{material.name}</Text> 
-                  </Column>
-                  <Column style={centeredElement}>
-                    <Text>{material.quantity}</Text>
-                  </Column>
+          {requestEventInfo.requestedMaterial.length !== 0 ?
+          (
+            <div>
+              <Section>
+                <Text style={cupomText}>
+                  O seguinte material foi requisitado:
+                </Text>
+              </Section>
+              <Section style={informationTable}>
+                <Row style={informationTableRow}>
+                  {requestEventInfo.requestedMaterial.map((material) => (
+                    <Row>
+                      <Hr />
+                      <Column style={centeredElement}>
+                        <Text>{material.name}</Text> 
+                      </Column>
+                      <Column style={centeredElement}>
+                        <Text>{material.quantity}</Text>
+                      </Column>
+                    </Row>
+                  ))}
                 </Row>
-              ))}
-            </Row>
-          </Section> 
+              </Section> 
+            </div>
+          )
+          : <div/>}
+
         </Container>
       </Body>
     </Html>
   );
   
-  export default AppleReceiptEmail;
+  export default EmailTemplate;
   
   const main = {
     fontFamily: '"Helvetica Neue",Helvetica,Arial,sans-serif',

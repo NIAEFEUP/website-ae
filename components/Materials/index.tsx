@@ -1,10 +1,9 @@
 "use client";
 import React from "react";
-import materialData from "./materialData";
 import SectionHeader from "../Common/SectionHeader";
 import SingleMaterial from "./SingleMaterial";
 
-const Material = () => {
+export default function Material( {materialData} ) {
   return (
     <>
       {/* <!-- ===== Features Start ===== --> */}
@@ -37,5 +36,3 @@ const Material = () => {
     </>
   );
 };
-
-export default Material;

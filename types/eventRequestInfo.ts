@@ -7,7 +7,7 @@ export type EventRequestInfo = {
     space: string,
     num_people?: number,
     start_date?: string,
-    end_date?: string ,
+    end_date?: string,
     contact_number: string,
     email: string,
     event_description?: string,
