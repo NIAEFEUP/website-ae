@@ -1,5 +1,5 @@
 'use client'
-import { useState } from "react"
+import { useRef, useState } from "react"
 import SectionHeader from "../Common/SectionHeader";
 import { EventRequestInfo } from "@/types/eventRequestInfo";
 import { SingleMaterialRequest } from "@/types/singleMaterialRequest";
@@ -48,6 +48,7 @@ export default function RequestTab( { materialData } ) {
     }
 
     await sendEmail(requestInfo)
+    document.getElementById("material-request-form")?.reset() // TODO: Change this
   }
 
 
@@ -70,6 +71,7 @@ export default function RequestTab( { materialData } ) {
     }
 
     await sendEmail(requestInfo)
+    document.getElementById("event-request-form")?.reset() // TODO: Change this
   }
 
   return (
@@ -119,7 +121,7 @@ export default function RequestTab( { materialData } ) {
         <div>
           <div className="lg:flex lg:justify-center lg:items-center">
             <div className={`lg:border lg:w-1/2 lg:p-10 mt-10 rounded ${currentTab == "tabOne" ? "block": "hidden"}`}>
-              <form onSubmit={handleEventRequestSubmit}>
+              <form onSubmit={handleEventRequestSubmit} id="event-request-form">
                   <div className="p-2 flex flex-col">
                     <label htmlFor="name">Nome do núcleo/associação</label>
                     <input type="text" name="name" id="name" className="p-2 border" required/>
@@ -171,7 +173,7 @@ export default function RequestTab( { materialData } ) {
               </form>
             </div>
             <div className={`lg:border lg:w-1/2 lg:p-10 mt-10 rounded ${currentTab == "tabTwo" ? "block": "hidden"}`}>
-              <form onSubmit={handleMaterialRequestSubmit}>
+              <form onSubmit={handleMaterialRequestSubmit} id="material-request-form">
                   <div className="p-2 flex flex-col">
                     <label htmlFor="name">Nome do núcleo/associação</label>
                     <input type="text" name="name" id="name" className="p-2 border" required/>

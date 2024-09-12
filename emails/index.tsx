@@ -42,8 +42,6 @@ import {
               }
             </Text>
           </Section>
-          {requestEventInfo.isEvent ? (
-            <div>
             <Section style={informationTable}>
               <Row style={informationTableRow}>
                 <Column colSpan={2}>
@@ -62,12 +60,6 @@ import {
                     </Row>
                     <Row>
                       <Column style={informationTableColumn}>
-                        <Text style={informationTableLabel}>Local do Evento</Text> 
-                        <Text style={informationTableValue}>{requestEventInfo.space}</Text>
-                      </Column>
-                    </Row>
-                    <Row>
-                      <Column style={informationTableColumn}>
                         <Text style={informationTableLabel}>Email</Text> 
                         <Text style={informationTableValue}>{requestEventInfo.email}</Text>
                       </Column>
@@ -76,6 +68,14 @@ import {
                       <Column style={informationTableColumn}>
                         <Text style={informationTableLabel}>Contacto Telefónico</Text> 
                         <Text style={informationTableValue}>{requestEventInfo.contact_number}</Text>
+                      </Column>
+                    </Row>
+          {requestEventInfo.isEvent ? (
+            <div>
+                    <Row>
+                      <Column style={informationTableColumn}>
+                        <Text style={informationTableLabel}>Local do Evento</Text> 
+                        <Text style={informationTableValue}>{requestEventInfo.space}</Text>
                       </Column>
                     </Row>
                     <Row>
@@ -96,14 +96,14 @@ import {
                         <Text style={informationTableValue}>{requestEventInfo.event_description}</Text>
                       </Column>
                     </Row>
-                  </Section>
-                </Column>
-              </Row>
-            </Section>
             </div>
           ) : (
             <div/>
           )}
+                  </Section>
+                </Column>
+              </Row>
+            </Section>
           {requestEventInfo.requestedMaterial.length !== 0 ?
           (
             <div>
