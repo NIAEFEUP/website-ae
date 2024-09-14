@@ -4,90 +4,13 @@ import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import Avatar from "@/components/Avatar";
 import SectionHeader from "@/components/Common/SectionHeader";
+import { BoardSection } from "@/payload-types";
 
-const sections = [
-  {
-    title: "Administração",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    avatars: [<Avatar key="1" />, <Avatar key="2" />, <Avatar key="3" />],
-    subgroups: [
-      {
-        title: "Logística",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      },
-      {
-        title: "Grupos e Tradições Acadêmicas",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      },
-    ],
-  },
-  {
-    title: "Atividades",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    avatars: [<Avatar key="4" />, <Avatar key="5" />, <Avatar key="6" />],
-    subgroups: [
-      {
-        title: "Recreativo",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      },
-      {
-        title: "Cultural",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      },
-    ],
-  },
-  {
-    title: "Desporto e Bem-Estar",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    avatars: [<Avatar key="7" />, <Avatar key="8" />, <Avatar key="9" />],
-    subgroups: [
-      {
-        title: "Desportivo",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      },
-      {
-        title: "Saúde e Sustentabilidade",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      },
-    ],
-  },
-  {
-    title: "Divulgação",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    avatars: [<Avatar key="10" />, <Avatar key="11" />, <Avatar key="12" />],
-    subgroups: [
-      {
-        title: "Design",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      },
-      {
-        title: "Comunicação e Marketing",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      },
-      {
-        title: "Vídeo",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      },
-    ],
-  },
-  {
-    title: "Política Educativa",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    avatars: [<Avatar key="13" />, <Avatar key="14" />, <Avatar key="15" />],
-    subgroups: [
-      {
-        title: "Cursos",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      },
-      {
-        title: "Workshops",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      },
-    ],
-  },
-];
+interface Props {
+  sections: BoardSection[]
+}
 
-const MenuDescription = () => {
+const MenuDescription = ({sections}: Props) => {
   const [selected, setSelected] = useState<number | null>(null);
   const [menuHeight, setMenuHeight] = useState(0);
   const menuRef = useRef<HTMLDivElement>(null);
@@ -137,7 +60,7 @@ const MenuDescription = () => {
         className="w-full flex items-start gap-8 flex-col sm:flex-row"
       >
           <div className="flex flex-col gap-4 w-full sm:w-1/4">
-            {sections.map((section, index) => (
+            {sections.map((section,index)=> (
               <button
                 key={index}
                 onClick={() => handleButtonClick(index)}
@@ -147,7 +70,7 @@ const MenuDescription = () => {
                     : "bg-gray-200 dark:bg-gray-400 dark:text-black hover:shadow-lg"
                 }`}
               >
-                {section.title}
+                {section.name}
               </button>
             ))}
           </div>
@@ -167,18 +90,18 @@ const MenuDescription = () => {
             ) : (
               <div className="p-5 rounded-lg shadow-lg bg-gray-200 w-full min-h-80">
                 <h3 className="text-2xl font-semibold mb-4 text-center">
-                  {sections[selected]?.title}
+                  {sections[selected]?.name}
                 </h3>
                 <p className="mb-4 text-center">
                   {sections[selected]?.description}
                 </p>
 
                 <div className="flex flex-col sm:flex-row justify-center gap-4 mb-6">
-                  {sections[selected]?.avatars.map((avatar) => avatar)}
+                  {sections[selected].members.map((person) => (<Avatar person={person.person}/>))}
                 </div>
 
                 <div className="space-y-6">
-                  {sections[selected]?.subgroups.map((subgroup, idx) => (
+                  {sections[selected]?.subgroups?.map((subgroup, idx) => (
                     <div key={idx}>
                       <h4 className="text-xl font-semibold mb-2">
                         {subgroup.title}

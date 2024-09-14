@@ -7,10 +7,17 @@ export const Person: CollectionConfig = {
     plural: 'Pessoas',
   },
   fields: [
-    {
+    { 
       name: 'name',
       label: "Nome",
       type: 'text',
+      required: true,
+    },
+    { 
+      name: 'position',
+      label: "Cargo",
+      type: 'relationship',
+      relationTo: 'position',
       required: true,
     },
     {

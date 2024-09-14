@@ -2,11 +2,24 @@ import { Metadata } from "next";
 import AvatarLineup from "./AvatarLineup";
 import SectionHeader from "@/components/Common/SectionHeader";
 import MenuDescription from "./MenuDescription";
+import { getPayload } from "payload";
+import config from "payload.config";
 
 export const metadata: Metadata = {
   title: "About",
   description: "",
 };
+
+const payload = await getPayload({config});
+const result = await payload.find({
+  collection: "board_section",
+})
+
+
+const mainBoardSections = ["Vice Presidentes","Conselho Fiscal","Mesa da Assembleia Geral"]
+const presidentSection = result.docs.filter((e) => e.name == "Presidência")[0]
+const mainSections = result.docs.filter((e) => mainBoardSections.includes(e.name))
+const otherSections = result.docs.filter((e) => !mainBoardSections.includes(e.name) && e.name != "Presidência")
 
 const AboutPage = async () => {
   return (
@@ -22,8 +35,8 @@ const AboutPage = async () => {
             }}
           />
         </div>
-        <AvatarLineup></AvatarLineup>
-        <MenuDescription></MenuDescription>
+        <AvatarLineup presidentSection={presidentSection} sections={mainSections}></AvatarLineup>
+        <MenuDescription sections={otherSections}></MenuDescription>
     </section>
   );
 };
