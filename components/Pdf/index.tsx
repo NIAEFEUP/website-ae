@@ -2,15 +2,16 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { StudentGuide } from "@/payload-types";
 
-const PdfViewer = () => {
-  const pdfFiles = [
-    { label: "Português", file: "lorem-ipsum.pdf" },
-    { label: "Inglês", file: "file2.pdf" },
-  ];
+interface Props {
+  files : StudentGuide[]
+}
+
+const PdfViewer = ({ files }: Props) => {
 
   // Initialize with the first PDF by default
-  const [pdf, setPdf] = useState<string>(pdfFiles[0].file);
+  const [pdf, setPdf] = useState<string>(files[0].url ?? '');
 
   const handleButtonClick = (file: string) => {
     setPdf(file);
@@ -49,17 +50,17 @@ const PdfViewer = () => {
           viewport={{ once: true }}
           className="flex flex-col gap-2 justify-center mt-6 mb-4 md:mb-6 md:flex-row"
         >
-          {pdfFiles.map((pdfItem, index) => (
+          {files.map((pdfItem, index) => (
             <div key={index} className="w-full md:w-auto">
               <button
-                onClick={() => handleButtonClick(pdfItem.file)}
+                onClick={() => handleButtonClick(pdfItem.url ?? '')}
                 className={`w-full py-2 px-4 rounded-lg transition-all duration-300 ${
-                  pdf === pdfItem.file
+                  pdf === pdfItem.url
                     ? "bg-[#97321D] text-white"
                     : "bg-gray-200 dark:bg-gray-400 dark:text-black hover:shadow-lg"
                 }`}
               >
-                {pdfItem.label}
+                {pdfItem.language}
               </button>
             </div>
           ))}

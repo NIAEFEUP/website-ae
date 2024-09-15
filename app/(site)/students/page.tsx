@@ -2,8 +2,13 @@ import { Metadata } from "next";
 import SectionHeader from "@/components/Common/SectionHeader";
 import PdfViewer from "@/components/Pdf";
 import Links from "@/components/Links";
+import { getPayload } from 'payload';
+import config from 'payload/config';
 
-
+const payload = await getPayload({config});
+const result = await payload.find({
+  collection: "board_section",
+})
 
 export const metadata: Metadata = {
   title: "Estudantes",
@@ -25,7 +30,7 @@ Aqui poderás encontrar conteúdo relacionado com os serviços da FEUP, redes de
           />
         </div>
     
-    <PdfViewer></PdfViewer>
+    <PdfViewer files={result.docs}></PdfViewer>
     <Links></Links>
 
 
