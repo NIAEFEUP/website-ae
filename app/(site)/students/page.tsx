@@ -3,11 +3,11 @@ import SectionHeader from "@/components/Common/SectionHeader";
 import PdfViewer from "@/components/Pdf";
 import Links from "@/components/Links";
 import { getPayload } from 'payload';
-import config from 'payload/config';
+import config from 'payload.config';
 
 const payload = await getPayload({config});
 const result = await payload.find({
-  collection: "board_section",
+  collection: "studentGuide",
 })
 
 export const metadata: Metadata = {

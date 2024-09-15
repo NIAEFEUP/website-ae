@@ -11,7 +11,7 @@ interface Props {
 const PdfViewer = ({ files }: Props) => {
 
   // Initialize with the first PDF by default
-  const [pdf, setPdf] = useState<string>(files[0].url ?? '');
+  const [pdf, setPdf] = useState<string>((files[0] ?? []).url ?? '');
 
   const handleButtonClick = (file: string) => {
     setPdf(file);
