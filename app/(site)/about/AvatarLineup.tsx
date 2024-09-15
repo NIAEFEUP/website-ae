@@ -12,43 +12,6 @@ interface Props {
   sections: BoardSection[]
 }
 
-const placeholderPerson : Person = {
-  id: 0,
-  name: "test",
-  position: {
-    id: 0,
-    name: "",
-    updatedAt:"",
-    createdAt:"",
-  },
-  updatedAt: "",
-  createdAt: ""
-}
-
-const avatarGroups = {
-  "Presidência": [
-    <Avatar key="1" person={placeholderPerson} />,
-    <Avatar key="2" person={placeholderPerson}/>,
-    <Avatar key="3" person={placeholderPerson}/>,
-  ],
-  "Vice Presidentes": [
-    <Avatar key="4" person={placeholderPerson}/>,
-    <Avatar key="5" person={placeholderPerson}/>,
-    <Avatar key="6" person={placeholderPerson}/>,
-    <Avatar key="7" person={placeholderPerson}/>,
-  ],
-  "Conselho Fiscal": [
-    <Avatar key="8" person={placeholderPerson}/>,
-    <Avatar key="9" person={placeholderPerson}/>,
-    <Avatar key="10" person={placeholderPerson}/>,
-  ],
-  "Mesa da Assembleia Geral": [
-    <Avatar key="11" person={placeholderPerson}/>,
-    <Avatar key="12" person={placeholderPerson}/>,
-    <Avatar key="13" person={placeholderPerson}/>,
-  ],
-};
-
 const AvatarLineup = ({ presidentSection,sections }: Props) => {
   const [showAll, setShowAll] = useState(false);
 
