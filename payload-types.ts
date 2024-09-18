@@ -15,6 +15,7 @@ export interface Config {
     media: Media;
     person: Person;
     'sports-team': SportsTeam;
+    association: Association;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -164,6 +165,27 @@ export interface SportsTeam {
       }[]
     | null;
   backgroundImage: number | Media;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "association".
+ */
+export interface Association {
+  id: number;
+  name: string;
+  in_aefeup: boolean;
+  description?: string | null;
+  logo: number | Media;
+  address?: string | null;
+  socials?:
+    | {
+        type: 'website' | 'linkedin' | 'facebook' | 'instagram';
+        link: string;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt: string;
   createdAt: string;
 }
