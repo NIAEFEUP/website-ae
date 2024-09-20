@@ -7,7 +7,7 @@ import { Material } from "@/types/material";
 import DatePickerComponent from "./DatePickerComponent";
 import MaterialSelector from "./MaterialSelector";
 
-export default function RequestTab( { materialData } ) {
+export default function RequestTab( { materialData,sendEmail } ) {
   const [currentTab,setCurrentTab] = useState("tabOne");
   const [showMaterial,setShowMaterial] = useState(false);
   const [startDate, setStartDate] = useState(new Date());
@@ -21,7 +21,7 @@ export default function RequestTab( { materialData } ) {
     })
   }
 
-  const sendEmail = async (requestInfo: EventRequestInfo) => {
+/*   const sendEmail = async (requestInfo: EventRequestInfo) => {
     try {
       await fetch('/api/mail', {
         method: 'POST',
@@ -30,7 +30,7 @@ export default function RequestTab( { materialData } ) {
     } catch(error) {
       console.error(error)
     }
-  }
+  } */
 
   const handleMaterialRequestSubmit = async (e) => {
     e.preventDefault()
@@ -124,7 +124,7 @@ export default function RequestTab( { materialData } ) {
               <form onSubmit={handleEventRequestSubmit} id="event-request-form">
                   <div className="p-2 flex flex-col">
                     <label htmlFor="name">Nome do núcleo/associação</label>
-                    <input type="text" name="name" id="name" className="p-2 border" required/>
+                    <input type="text" name="name" id="name" className="p-2 border" />
                   </div>
                   <div className="p-2 flex flex-col">
                     <label htmlFor="responsible_name">Nome do responsável</label>
@@ -176,7 +176,7 @@ export default function RequestTab( { materialData } ) {
               <form onSubmit={handleMaterialRequestSubmit} id="material-request-form">
                   <div className="p-2 flex flex-col">
                     <label htmlFor="name">Nome do núcleo/associação</label>
-                    <input type="text" name="name" id="name" className="p-2 border" required/>
+                    <input type="text" name="name" id="name" className="p-2 border" />
                   </div>
                   <div className="flex flex-col p-2">
                     <label htmlFor="responsible_name">Nome do responsável</label>
