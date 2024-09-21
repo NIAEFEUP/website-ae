@@ -6,9 +6,10 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/pagination';
+import { Slide } from "@/payload-types";
 
 //payload para slides??
-const slides = [
+/* const slides = [
   {
     id: 1,
     title: "Welcome to AEFEUP",
@@ -30,8 +31,12 @@ const slides = [
     link: "/sport/teams",
   },
 ];
+ */
+interface Props {
+  slidesData: Slide[] 
+}
 
-const Landing = () => {
+const Landing = ({slidesData} : Props) => {
   return (
     <>
       <section className="relative h-screen">
@@ -48,12 +53,12 @@ const Landing = () => {
           modules={[Autoplay, Pagination]}
           className="h-full"
         >
-          {slides.map((slide) => (
+          {slidesData.map((slide) => (
             <SwiperSlide key={slide.id}>
               {slide.id === 1 ? (
                 <div
                   className="relative flex items-center justify-center h-screen bg-cover bg-center"
-                  style={{ backgroundImage: `url(${slide.imageUrl})` }}
+                  style={{ backgroundImage: `url(${typeof slide.image != "number" ? slide.image.url : undefined})` }}
                 >
                   <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black opacity-50 z-0"></div>
 
@@ -86,9 +91,8 @@ const Landing = () => {
               ) : (
                 <div
                   className="relative flex items-center justify-start h-screen bg-cover bg-center px-6"
-                  style={{ backgroundImage: `url(${slide.imageUrl})` }}
+                  style={{ backgroundImage: `url(${ typeof slide.image != "number" ? slide.image.url : undefined})` }}
                 >
-                  {console.log(`Image URL ${slide.id}: ${slide.imageUrl}`)}
 
                   <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black opacity-50 z-0"></div>
                   
@@ -105,12 +109,12 @@ const Landing = () => {
                       className="w-full md:w-3/4 lg:w-1/2"
                     >
                       <h2 className="mb-4 text-4xl font-bold xl:text-5xl leading-tight">
-                        {slide.title}
+                        {slide.name}
                       </h2>
                       <p className="mb-6 text-lg xl:text-xl">
                         {slide.description}
                       </p>
-                      <Link href={slide.link}>
+                      <Link href={slide.link ?? ''}>
                         <motion.div
                           whileHover={{ scale: 1.05 }}
                           className="inline-flex items-center gap-2.5 rounded-full bg-[#97321D] px-6 py-2 font-medium text-white hover:bg-[#b54026] transition duration-300 cursor-pointer"
