@@ -16,6 +16,7 @@ export interface Config {
     person: Person;
     material: Material;
     'sports-team': SportsTeam;
+    spaceData: SpaceDatum;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -176,6 +177,16 @@ export interface SportsTeam {
       }[]
     | null;
   backgroundImage: number | Media;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "spaceData".
+ */
+export interface SpaceDatum {
+  id: number;
+  name: string;
   updatedAt: string;
   createdAt: string;
 }

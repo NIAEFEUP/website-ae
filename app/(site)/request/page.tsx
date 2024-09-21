@@ -13,21 +13,29 @@ export const metadata: Metadata = {
 	title: "Request Page",
 }
 
-const resend = new Resend(process.env.RESEND_API_KEY)
 
 export default async function Request() {
 	const calendarID= process.env.GOOGLE_CALENDAR_ID
 	const calendarApiKey= process.env.GOOGLE_CALENDAR_API_KEY
 
 	const payload = await getPayload({config});
-	const result = await payload.find({
+	const materialData = (await payload.find({
 		collection: "material",
-	})
+	})).docs
+
+	const availableSpaces = (await payload.find({
+		collection: "spaceData",
+	})).docs
 
 	const sendEmail = async (requestInfo: EventRequestInfo) => {
 		'use server'
+		const resend = new Resend(process.env.RESEND_API_KEY)
+
+		if(!requestInfo.isEvent && materialData.length === 0) {
+			return
+		}
 		const {data,error} = await resend.emails.send({
-			from: "Acme <onboarding@resend.dev>",
+			from: process.env.RESEND_EMAIL ? `AEFEUP <${process.env.RESEND_EMAIL}>` :'Acme <onboarding@resend.dev>',
 			to: [requestInfo.email],
 			subject: `${requestInfo.isEvent ? "Marcação de Evento": "Pedido de Material"}`,
 			html: await render(EmailTemplate({requestEventInfo: requestInfo})),
@@ -37,8 +45,8 @@ export default async function Request() {
 	return (
 		<>
  			<CalendarComponent calendarID={calendarID} calendarApiKey={calendarApiKey}/> 
-			<Material materialData={result.docs}/>
-			<RequestTab materialData={result.docs} sendEmail={sendEmail}/>
+			<Material materialData={materialData}/>
+			<RequestTab materialData={materialData} sendEmail={sendEmail} availableSpaces={availableSpaces}/>
 		</>
 	)
 }
