@@ -124,15 +124,15 @@ export default function RequestTab( { materialData,sendEmail,availableSpaces } :
               <form onSubmit={handleEventRequestSubmit} id="event-request-form">
                   <div className="p-2 flex flex-col">
                     <label htmlFor="name">Nome do núcleo/associação</label>
-                    <input type="text" name="name" id="name" className="p-2 border" />
+                    <input type="text" name="name" id="name" className="p-2 border rounded" />
                   </div>
                   <div className="p-2 flex flex-col">
                     <label htmlFor="responsible_name">Nome do responsável*</label>
-                    <input type="text" name="responsible_name" id="responsible_name" className="p-2 border" required/>
+                    <input type="text" name="responsible_name" id="responsible_name" className="p-2 border rounded" required/>
                   </div>
                   <div className="p-2 flex flex-col">
                     <label htmlFor="space">Espaço*</label>
-                    <select name="space" id="space" className="p-3 border bg-white" required>
+                    <select name="space" id="space" className="p-3 border bg-white rounded" required>
                       <option value="" selected hidden>Escolha um lugar</option>
                       {availableSpaces.map((space: SpaceDatum) => (
                         <option value={space.name}>{space.name}</option>
@@ -141,7 +141,7 @@ export default function RequestTab( { materialData,sendEmail,availableSpaces } :
                   </div>
                   <div className="p-2 flex flex-col">
                     <label htmlFor="num_people">Número de pesssoas*</label>
-                    <input type="number" min={0} max={250} name="num_people" id="num_people" className="p-2 border" required/>
+                    <input type="number" min={0} max={250} name="num_people" id="num_people" className="p-2 border rounded" required/>
                   </div>
                   <div className="p-2 flex flex-col">
                     <label htmlFor="start_date">Data de Início*</label>
@@ -153,15 +153,15 @@ export default function RequestTab( { materialData,sendEmail,availableSpaces } :
                   </div>
                   <div className="flex flex-col p-2">
                     <label htmlFor="contact_number">Contacto telefónico*</label>
-                    <input type="text" name="contact_number" id="contact_number" className="p-2 border" required/>
+                    <input type="text" name="contact_number" id="contact_number" className="p-2 border rounded" required/>
                   </div>
                   <div className="flex flex-col p-2">
                     <label htmlFor="email">Email de Contacto*</label>
-                    <input type="text" name="email" id="email" className="p-2 border" required/>
+                    <input type="text" name="email" id="email" className="p-2 border rounded" required/>
                   </div>
                   <div className="flex flex-col p-2">
                     <label htmlFor="">Descrição do Evento*</label>
-                    <textarea name="event_description" id="event_description" className="flex-grow p-2 border" required/>
+                    <textarea name="event_description" id="event_description" className="flex-grow p-2 border rounded" required/>
                   </div>
                   <div className={showMaterial ? "block" : "hidden"}>
                     <MaterialSelector materialData={materialData}/>
@@ -181,19 +181,19 @@ export default function RequestTab( { materialData,sendEmail,availableSpaces } :
               <form onSubmit={handleMaterialRequestSubmit} id="material-request-form">
                   <div className="p-2 flex flex-col">
                     <label htmlFor="name">Nome do núcleo/associação</label>
-                    <input type="text" name="name" id="name" className="p-2 border" />
+                    <input type="text" name="name" id="name" className="p-2 border rounded" />
                   </div>
                   <div className="flex flex-col p-2">
                     <label htmlFor="responsible_name">Nome do responsável*</label>
-                    <input type="text" name="responsible_name" id="responsible_name" className="p-2 border" required/>
+                    <input type="text" name="responsible_name" id="responsible_name" className="p-2 border rounded" required/>
                   </div>
                   <div className="flex flex-col p-2">
                     <label htmlFor="contact_number">Contacto telefónico*</label>
-                    <input type="text" name="contact_number" id="contact_number" className="p-2 border" required/>
+                    <input type="text" name="contact_number" id="contact_number" className="p-2 border rounded" required/>
                   </div>
                   <div className="flex flex-col p-2">
                     <label htmlFor="email">Email de Contacto*</label>
-                    <input type="text" name="email" id="email" className="p-2 border" required/>
+                    <input type="text" name="email" id="email" className="p-2 border rounded" required/>
                   </div>
                   
                   <MaterialSelector materialData={materialData} />

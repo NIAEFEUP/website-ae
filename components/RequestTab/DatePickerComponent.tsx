@@ -10,7 +10,7 @@ export default function DatePickerComponent({ currentDate, setDate, minDate = ne
             showTimeSelect
             dateFormat="dd/MM/yyyy HH:mm"
             timeFormat="HH:mm"
-            className="border p-2 w-full"
+            className="border p-2 w-full rounded"
             required
         />
     )
