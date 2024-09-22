@@ -9,6 +9,9 @@ services:
     environment:
       - PAYLOAD_SECRET=jawliejfilwajefSEANlawefawfewag349jwgo3gj4d
       - POSTGRES_URL=postgresql://postgres:postgres@postgres:5432/next-payload-3
+    volumes:
+      - .:/app
+      - /app/node_modules
   postgres:
     image: postgres
     ports:
