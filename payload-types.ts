@@ -15,6 +15,7 @@ export interface Config {
     media: Media;
     person: Person;
     'sports-team': SportsTeam;
+    slide: Slide;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -164,6 +165,19 @@ export interface SportsTeam {
       }[]
     | null;
   backgroundImage: number | Media;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "slide".
+ */
+export interface Slide {
+  id: number;
+  name: string;
+  description: string;
+  image: number | Media;
+  link?: string | null;
   updatedAt: string;
   createdAt: string;
 }
