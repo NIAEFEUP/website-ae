@@ -14,6 +14,7 @@ export interface Config {
     users: User;
     media: Media;
     person: Person;
+    sponsor: Sponsor;
     'sports-team': SportsTeam;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -96,6 +97,18 @@ export interface Person {
         id?: string | null;
       }[]
     | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "sponsor".
+ */
+export interface Sponsor {
+  id: number;
+  name: string;
+  url: string;
+  logo: number | Media;
   updatedAt: string;
   createdAt: string;
 }

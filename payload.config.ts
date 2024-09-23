@@ -9,6 +9,7 @@ import { Users } from "./collections/Users";
 import { Media } from "./collections/Media";
 import { Person } from "./collections/Person";
 import { SportsTeam } from "./collections/SportsTeam";
+import { Sponsor } from "./collections/Sponsor";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -22,6 +23,7 @@ export default buildConfig({
     Users,
     Media,
     Person,
+    Sponsor,
     SportsTeam
   ],
   editor: lexicalEditor(),
