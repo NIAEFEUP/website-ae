@@ -10,6 +10,7 @@
     "payload": "cross-env NODE_OPTIONS=--no-deprecation payload"
   },
   "dependencies": {
+    "@next/third-parties": "^14.2.13",
     "@payloadcms/db-mongodb": "3.0.0-beta.71",
     "@payloadcms/db-postgres": "3.0.0-beta.71",
     "@payloadcms/next": "3.0.0-beta.71",
@@ -19,7 +20,6 @@
     "autoprefixer": "^10.4.19",
     "babel-plugin-react-compiler": "^0.0.0",
     "cross-env": "^7.0.3",
-    "lucide-react": "^0.427.0",
     "framer-motion": "^11.3.24",
     "graphql": "^16.9.0",
     "lucide-react": "^0.436.0",
