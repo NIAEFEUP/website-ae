@@ -1,92 +1,113 @@
 import { Menu } from "@/types/menu";
 
+// TODO: add path attribute to the respective menu/submenu
+
 const menuData: Menu[] = [
   {
     id: 1,
-    title: "Home",
-    newTab: false,
-    path: "/",
-  },
-  {
-    id: 3,
-    title: "Pages",
+    title: "AEFEUP",
     newTab: false,
     submenu: [
       {
-        id: 31,
-        title: "Blog Grid",
+        id: 11,
+        title: "Quem Somos",
         newTab: false,
-        path: "/blog",
       },
       {
-        id: 35,
-        title: "Docs",
+        id: 12,
+        title: "História da AEFEUP",
         newTab: false,
-        path: "/docs",
       },
       {
-        id: 35.1,
-        title: "Support",
+        id: 13,
+        title: "Cedências de Espaço",
         newTab: false,
-        path: "/support",
       },
       {
-        id: 36,
-        title: "404",
+        id: 14,
+        title: "Serviços",
         newTab: false,
-        path: "/error",
       },
       {
-        id: 37,
-        title: "Features",
+        id: 15,
+        title: "Eventos",
         newTab: false,
-        path: "/#features",
       },
       {
-        id: 38,
-        title: "Support",
+        id: 16,
+        title: "Núcleos e Associações",
         newTab: false,
-        path: "/support",
+      },
+      {
+        id: 17,
+        title: "Documentos",
+        newTab: false,
       },
     ],
   },
   {
-    id: 5,
+    id: 2,
+    title: "Estudante",
+    newTab: false,
+    submenu: [
+      {
+        id: 21,
+        title: "Bem-vindo à FEUP",
+        newTab: false,
+      },
+      {
+        id: 22,
+        title: "Guia do Estudante",
+        newTab: false,
+      },
+      {
+        id: 23,
+        title: "Espaços",
+        newTab: false,
+      },
+      {
+        id: 24,
+        title: "Oportunidades",
+        newTab: false,
+      },
+      {
+        id: 25,
+        title: "Apoio Social e Bem-Estar",
+        newTab: false,
+      },
+    ],
+  },
+  {
+    id: 3,
     title: "Desporto",
     newTab: false,
     submenu: [
       {
-        id: 51,
-        title: "História e Troféus",
-        newTab: false,
-        path: "/sport/teams",
-      },
-      {
-        id: 52,
+        id: 21,
         title: "Seleções",
         newTab: false,
-        path: "/sport/teams",
       },
       {
-        id: 53,
-        title: "Velocidade",
+        id: 22,
+        title: "História e Troféus",
         newTab: false,
-        path: "/sport/teams",
+      },
+      {
+        id: 23,
+        title: "Motorsport",
+        newTab: false,
       },
     ],
   },
   {
     id: 4,
-    title: "Services",
+    title: "Loja",
     newTab: false,
-    path: "/services"
-  
   },
   {
-    id: 6,
-    title: "Contact us",
+    id: 4,
+    title: "Contactos",
     newTab: false,
-    path: "/contacts"
   },
 ];
 
