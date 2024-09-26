@@ -10,6 +10,7 @@ import { Media } from "./collections/Media";
 import { Person } from "./collections/Person";
 import { SportsTeam } from "./collections/SportsTeam";
 import { StudentGuide } from "./collections/StudentGuide";
+import { Link } from "./collections/Link";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -24,7 +25,8 @@ export default buildConfig({
     Media,
     Person,
     SportsTeam,
-    StudentGuide
+    StudentGuide,
+    Link
   ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",

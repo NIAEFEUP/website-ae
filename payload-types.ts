@@ -16,6 +16,7 @@ export interface Config {
     person: Person;
     'sports-team': SportsTeam;
     studentGuide: StudentGuide;
+    link: Link;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -186,6 +187,18 @@ export interface StudentGuide {
   height?: number | null;
   focalX?: number | null;
   focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "link".
+ */
+export interface Link {
+  id: number;
+  label: string;
+  url: string;
+  description?: string | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

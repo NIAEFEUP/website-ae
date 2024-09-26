@@ -1,31 +1,13 @@
 "use client";
 
+import { Link } from "@/payload-types";
 import { motion } from "framer-motion";
 
-const UsefulLinks = () => {
-  const links = [
-    {
-      label: "CICA",
-      url: "https://sigarra.up.pt/feup/pt/web_base.gera_pagina?P_pagina=21101",
-    },
-    {
-      label: "Sasup",
-      url: "https://www.up.pt/portal/pt/sasup/",
-    },
-    {
-      label: "Serviços Académicos",
-      url: "https://sigarra.up.pt/feup/pt/uni_geral.unidade_view?pv_unidade=73",
-    },
-    {
-      label: "Uni – A FEUP no teu bolso",
-      url: "https://play.google.com/store/apps/details?id=pt.up.fe.ni.uni&hl=pt_PT",
-    },
-    {
-      label: "Time Table Selector (TTS)",
-      url: "https://tts.niaefeup.pt/planner",
-    },
-  ];
+interface Props {
+  links: Link[]
+}
 
+const UsefulLinks = ({ links } : Props) => {
   return (
     <>
       <div className="animate_top mx-auto text-center">
@@ -51,15 +33,21 @@ const UsefulLinks = () => {
               Useful Links
             </h2>
             <div className="grid grid-cols-2">
-              {links.map((link,index) => (
-                <a
-                  href={link.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-base m-2 p-1 dark:text-white hover:text-white hover:bg-[#97321D] hover:rounded transition-colors duration-200 block text-center"
-                >
-                  {link.label}
-                </a>
+              {links.map((link,_index) => (
+                <div className="border solid rounded m-2 hover:shadow">
+                  <a
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-base  p-1 dark:text-white text-white bg-[#97321D] rounded transition-colors duration-200 block text-center"
+                  >
+                    {link.label}
+                  </a>
+                  <p >
+                    {link.description}
+                  </p>
+
+                </div>
               ))}
             </div>
           </section>

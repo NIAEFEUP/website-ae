@@ -6,9 +6,13 @@ import { getPayload } from 'payload';
 import config from 'payload.config';
 
 const payload = await getPayload({config});
-const result = await payload.find({
+const studentGuide = (await payload.find({
   collection: "studentGuide",
-})
+})).docs
+
+const linksData = (await payload.find({
+  collection: "link"
+})).docs
 
 export const metadata: Metadata = {
   title: "Estudantes",
@@ -30,8 +34,8 @@ Aqui poderás encontrar conteúdo relacionado com os serviços da FEUP, redes de
           />
         </div>
     
-    <PdfViewer files={result.docs}></PdfViewer>
-    <Links></Links>
+    <PdfViewer files={studentGuide}></PdfViewer>
+    <Links links={linksData}></Links>
 
 
 
