@@ -44,27 +44,24 @@ const UsefulLinks = () => {
           whileInView="visible"
           transition={{ duration: 1, delay: 0.1 }}
           viewport={{ once: true }}
+          className="flex flex-col items-center"
         >
-          <section className="mt-12 p-6 bg-gray-100 rounded-lg shadow-lg">
+          <section className="mt-12 p-6 rounded-lg flex flex-col w-1/2">
             <h2 className="text-2xl font-bold mb-6 text-center text-black">
               Useful Links
             </h2>
-
-            {/* Links Styled as SectionHeader Description */}
-            <ul className="list-none space-y-4 mx-auto md:w-4/5 lg:w-3/5 xl:w-[46%]">
-              {links.map((link, index) => (
-                <li key={index}>
-                  <a
-                    href={link.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-base  dark:text-white hover:text-[#97321D] transition-colors duration-200 block text-center"
-                  >
-                    {link.label}
-                  </a>
-                </li>
+            <div className="grid grid-cols-2">
+              {links.map((link,index) => (
+                <a
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-base m-2 p-1 dark:text-white hover:text-white hover:bg-[#97321D] hover:rounded transition-colors duration-200 block text-center"
+                >
+                  {link.label}
+                </a>
               ))}
-            </ul>
+            </div>
           </section>
         </motion.div>
       </div>

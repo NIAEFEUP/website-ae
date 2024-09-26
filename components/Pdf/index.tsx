@@ -86,7 +86,7 @@ const PdfViewer = ({ files }: Props) => {
         >
           <iframe
             src={pdf}
-            className="w-full h-[915px] border border-gray-300"
+            className="w-full h-[700px] sm:h-[700px] border border-gray-300 "
           />
         </motion.div>
       </div>
