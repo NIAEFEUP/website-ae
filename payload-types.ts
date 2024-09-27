@@ -14,7 +14,7 @@ export interface Config {
     users: User;
     media: Media;
     person: Person;
-    'sports-team': SportsTeam;
+    sportsTeam: SportsTeam;
     studentGuide: StudentGuide;
     link: Link;
     'payload-preferences': PayloadPreference;
@@ -103,7 +103,7 @@ export interface Person {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "sports-team".
+ * via the `definition` "sportsTeam".
  */
 export interface SportsTeam {
   id: number;
