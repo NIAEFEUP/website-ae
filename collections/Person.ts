@@ -2,6 +2,10 @@ import type { CollectionConfig } from 'payload'
 
 export const Person: CollectionConfig = {
   slug: 'person',
+  labels: {
+    singular: 'Pessoa',
+    plural: 'Pessoas',
+  },
   fields: [
     {
       name: 'name',
@@ -67,4 +71,7 @@ export const Person: CollectionConfig = {
       ],
     },
   ],
+  admin: {
+    useAsTitle: 'name',
+  }
 }

@@ -9,6 +9,8 @@ import { Users } from "./collections/Users";
 import { Media } from "./collections/Media";
 import { Person } from "./collections/Person";
 import { Place, Category } from "./collections/Place";
+import { SportsTeam } from "./collections/SportsTeam";
+
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -24,6 +26,7 @@ export default buildConfig({
     Person,
     Place,
     Category,
+    SportsTeam
   ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",
@@ -39,5 +42,5 @@ export default buildConfig({
   plugins: [
     // storage-adapter-placeholder
   ],
-  livePreview: false, // Lets set it to true if we use pages collection (Globals)
+  //livePreview: false, // Lets set it to true if we use pages collection (Globals)
 });

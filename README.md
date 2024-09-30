@@ -37,6 +37,17 @@ You can start the project on the local server
 
 It’ll start the template on [localhost:3000](http://localhost:3000).
 
+## Payload 3.0 and Next.js conflicts
+
+As Payload 3.0 has some conflicts with Next.js version 13.4.13 and higher, we need to properly initialize Payload before trying to access the local API.
+
+```typescript
+import { getPayload } from 'payload'
+import config from 'payload.config'
+
+const payload = await getPayload({ config })
+```
+
 ## Project structure
 
 - The `pages` directory contains all the pages of the project with app routing, as each file in this directory corresponds to a page.
