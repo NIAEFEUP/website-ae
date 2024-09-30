@@ -19,6 +19,7 @@ export interface Config {
     link: Link;
     position: Position;
     board_section: BoardSection;
+    document: Document;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -188,7 +189,7 @@ export interface SportsTeam {
  */
 export interface StudentGuide {
   id: number;
-  language: 'Português' | 'Inglês';
+  title: 'Português' | 'Inglês';
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -234,6 +235,25 @@ export interface BoardSection {
     | null;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "document".
+ */
+export interface Document {
+  id: number;
+  title: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
