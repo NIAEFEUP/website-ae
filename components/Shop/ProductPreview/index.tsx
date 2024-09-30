@@ -1,11 +1,13 @@
 import { Product } from "@/payload-types";
 import Image from "next/image";
+import SizePicker from "../SizePicker";
 
 type ProductPreviewProps = {
   product: Product;
+  setCartState: Function;
 };
 
-const ProductPreview = ({ product }: ProductPreviewProps) => {
+const ProductPreview = ({ product, setCartState }: ProductPreviewProps) => {
   return (
     <>
       <Image
@@ -26,11 +28,14 @@ const ProductPreview = ({ product }: ProductPreviewProps) => {
       <h1 className="text-xs mt-4 text-gray-500 flex-wrap">
         {product.description}
       </h1>
-      <button className="bg-engenharia mt-6 max-w-36 items-center gap-2.5 text-sm text-primary transition-all py-2 rounded-full duration-300 dark:text-white dark:hover:text-primary">
-        <span className="duration-300 text-white font-extralight tracking-tight">
-          {product.price}$ · Compra já
-        </span>
-      </button>
+      <div className="flex items-center mt-6 gap-2.5">
+        <button className="bg-engenharia max-w-36 items-center text-sm text-primary transition-all p-3 rounded-full duration-300 dark:text-white dark:hover:text-primary" onClick={() => setCartState(true)}>
+          <span className="duration-300 text-white font-extralight tracking-tight">
+            {product.price}$ · Compra já
+          </span>
+        </button>
+        <SizePicker></SizePicker>
+      </div>
     </>
   );
 };

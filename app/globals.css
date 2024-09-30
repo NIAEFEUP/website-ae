@@ -23,6 +23,9 @@
   body {
     @apply relative z-1 font-inter text-regular font-normal text-waterloo dark:text-manatee;
   }
+  :root {
+    --radius: 0.5rem;
+  }
 }
 
 @layer components {

@@ -1,6 +1,8 @@
 "use client";
 
 import SectionHeader from "@/components/Common/SectionHeader";
+import ShopCart from "@/components/Shop/Cart";
+import CartItem from "@/components/Shop/CartItem";
 import ProductPreview from "@/components/Shop/ProductPreview";
 import ShopCard from "@/components/Shop/ShopCard";
 import { Product } from "@/payload-types";
@@ -8,22 +10,15 @@ import React from "react";
 
 export default function ShopPageContent({ products }) {
   const [previewProduct, setPreviewProduct] = React.useState(products[0]);
+  const [openCart, setOpenCart] = React.useState(false);
 
   return (
     <>
-      <div className="mt-25">
-        <SectionHeader
-          headerInfo={{
-            title: "Shop",
-            subtitle: "",
-            description: "",
-          }}
-        ></SectionHeader>
-      </div>
-      <div className="flex flex-row my-5 mx-20">
+      <div className="flex flex-row my-5 mx-20 mt-40">
         <section className="flex flex-col max-w-[300px]">
-          <ProductPreview product={previewProduct}></ProductPreview>
+          <ProductPreview product={previewProduct} setCartState={setOpenCart}></ProductPreview>
         </section>
+        <ShopCart isOpen={openCart} onOpenChange={setOpenCart} products={products}></ShopCart>
         <section className="flex flex-col ml-30">
           <h1 className="text-7xl font-serif tracking-tight text-black">
             Student Essentials
