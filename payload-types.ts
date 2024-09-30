@@ -14,7 +14,9 @@ export interface Config {
     users: User;
     media: Media;
     person: Person;
-    'sports-team': SportsTeam;
+    sportsTeam: SportsTeam;
+    studentGuide: StudentGuide;
+    link: Link;
     position: Position;
     board_section: BoardSection;
     'payload-preferences': PayloadPreference;
@@ -114,7 +116,7 @@ export interface Position {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "sports-team".
+ * via the `definition` "sportsTeam".
  */
 export interface SportsTeam {
   id: number;
@@ -177,6 +179,37 @@ export interface SportsTeam {
       }[]
     | null;
   backgroundImage: number | Media;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "studentGuide".
+ */
+export interface StudentGuide {
+  id: number;
+  language: 'Português' | 'Inglês';
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "link".
+ */
+export interface Link {
+  id: number;
+  label: string;
+  url: string;
+  description?: string | null;
   updatedAt: string;
   createdAt: string;
 }

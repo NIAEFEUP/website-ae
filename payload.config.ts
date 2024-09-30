@@ -9,6 +9,8 @@ import { Users } from "./collections/Users";
 import { Media } from "./collections/Media";
 import { Person } from "./collections/Person";
 import { SportsTeam } from "./collections/SportsTeam";
+import { StudentGuide } from "./collections/StudentGuide";
+import { Link } from "./collections/Link";
 import { Position } from "./collections/Position";
 import { BoardSection } from "./collections/BoardSection";
 
@@ -25,6 +27,8 @@ export default buildConfig({
     Media,
     Person,
     SportsTeam,
+    StudentGuide,
+    Link,
     Position,
     BoardSection,
   ],

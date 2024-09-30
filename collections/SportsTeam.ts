@@ -5,7 +5,7 @@ const emojies = [
 ];
 
 export const SportsTeam: CollectionConfig = {
-    slug: 'sports-team',
+    slug: 'sportsTeam',
     labels: {
         singular: 'Seleção',
         plural: 'Seleções',
