@@ -15,6 +15,8 @@ export interface Config {
     media: Media;
     person: Person;
     'sports-team': SportsTeam;
+    position: Position;
+    board_section: BoardSection;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -86,6 +88,7 @@ export interface Media {
 export interface Person {
   id: number;
   name: string;
+  position: number | Position;
   photo?: (number | null) | Media;
   description?: string | null;
   birthday?: string | null;
@@ -96,6 +99,16 @@ export interface Person {
         id?: string | null;
       }[]
     | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "position".
+ */
+export interface Position {
+  id: number;
+  name: string;
   updatedAt: string;
   createdAt: string;
 }
@@ -164,6 +177,28 @@ export interface SportsTeam {
       }[]
     | null;
   backgroundImage: number | Media;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "board_section".
+ */
+export interface BoardSection {
+  id: number;
+  name: string;
+  members: {
+    person: number | Person;
+    id?: string | null;
+  }[];
+  description?: string | null;
+  subgroups?:
+    | {
+        title?: string | null;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt: string;
   createdAt: string;
 }

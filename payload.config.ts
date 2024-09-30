@@ -9,6 +9,8 @@ import { Users } from "./collections/Users";
 import { Media } from "./collections/Media";
 import { Person } from "./collections/Person";
 import { SportsTeam } from "./collections/SportsTeam";
+import { Position } from "./collections/Position";
+import { BoardSection } from "./collections/BoardSection";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -22,7 +24,9 @@ export default buildConfig({
     Users,
     Media,
     Person,
-    SportsTeam
+    SportsTeam,
+    Position,
+    BoardSection,
   ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",
