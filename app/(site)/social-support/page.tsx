@@ -18,7 +18,7 @@ const ApoioSocialPage = async () => {
           <div className="animate_top mx-auto text-center">
             <SectionHeader
               headerInfo={{
-                title: `CANAIS DE APOIO`,
+                title: `Canais de Apoio`,
                 subtitle: `Canais de Apoio`,
                 description: `Explore os nossos programas de suporte para garantir o seu bem-estar e sucesso académico.`,
               }}
@@ -49,7 +49,7 @@ const ApoioSocialPage = async () => {
           <div className="animate_top mx-auto text-center">
             <SectionHeader
               headerInfo={{
-                title: `SAÚDE MENTAL`,
+                title: `Saúde Mental`,
                 subtitle: `Saúde Mental`,
                 description: `Apoio psicológico para o bem-estar e sucesso dos estudantes.`,
               }}
@@ -81,7 +81,7 @@ const ApoioSocialPage = async () => {
           <div className="animate_top mx-auto text-center">
             <SectionHeader
               headerInfo={{
-                title: `VOLUNTARIADO`,
+                title: `Voluntariado`,
                 subtitle: `Voluntariado Estudantil`,
                 description: `Ações de interesse social e comunitário realizadas de forma desinteressada que desenvolvem competências pessoais e sociais e promovem a responsabilidade, ética e compromisso social.`,
               }}
@@ -99,6 +99,7 @@ const ApoioSocialPage = async () => {
                 title={feature.title}
                 description={feature.description}
                 details={feature.details}
+                href={feature.href}
               />
             ))}
 
