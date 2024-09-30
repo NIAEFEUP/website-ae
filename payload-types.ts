@@ -17,6 +17,7 @@ export interface Config {
     'sports-team': SportsTeam;
     position: Position;
     board_section: BoardSection;
+    president: President;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -199,6 +200,19 @@ export interface BoardSection {
         id?: string | null;
       }[]
     | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "president".
+ */
+export interface President {
+  id: number;
+  name: string;
+  photo?: (number | null) | Media;
+  start_year: number;
+  end_year: number;
   updatedAt: string;
   createdAt: string;
 }
