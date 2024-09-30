@@ -5,10 +5,16 @@ import { motion } from "framer-motion";
 import { StudentGuide } from "@/payload-types";
 
 interface Props {
+  title?: String,
   files : StudentGuide[]
 }
 
-const PdfViewer = ({ files }: Props) => {
+
+const PdfViewer = ({ title,files }: Props) => {
+
+  const testFiles = [
+    files[0],
+  ]
 
   // Initialize with the first PDF by default
   const [pdf, setPdf] = useState<string>((files[0] ?? []).url ?? '');
@@ -22,15 +28,20 @@ const PdfViewer = ({ files }: Props) => {
       <div className="mx-auto max-w-c-1235 px-4 md:px-8 xl:px-0">
         
         {/* Title Section */}
-        <motion.h2
-          className="text-2xl font-bold mt-12 mb-6 text-center text-black"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.1 }}
-          viewport={{ once: true }}
-        >
-          Guia de Estudante
-        </motion.h2>
+        {
+          title && (
+              <motion.h2
+              className="text-2xl font-bold mt-12 mb-6 text-center text-black"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.1 }}
+              viewport={{ once: true }}
+            >
+              Guia de Estudante
+            </motion.h2>
+          )
+        }
+
 
         {/* Buttons Section with the Same Motion as Links */}
         <motion.div
@@ -50,7 +61,7 @@ const PdfViewer = ({ files }: Props) => {
           viewport={{ once: true }}
           className="flex flex-col gap-2 justify-center mt-6 mb-4 md:mb-6 md:flex-row"
         >
-          {files.map((pdfItem, index) => (
+          {testFiles.map((pdfItem, index) => (
             <div key={index} className="w-full md:w-auto">
               <button
                 onClick={() => handleButtonClick(pdfItem.url ?? '')}
@@ -60,7 +71,7 @@ const PdfViewer = ({ files }: Props) => {
                     : "bg-gray-200 dark:bg-gray-400 dark:text-black hover:shadow-lg"
                 }`}
               >
-                {pdfItem.language}
+                {pdfItem.title}
               </button>
             </div>
           ))}
