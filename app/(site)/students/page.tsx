@@ -34,10 +34,8 @@ Aqui poderás encontrar conteúdo relacionado com os serviços da FEUP, redes de
           />
         </div>
     
-    <PdfViewer files={studentGuide}></PdfViewer>
     <Links links={linksData}></Links>
-
-
+    <PdfViewer files={studentGuide}></PdfViewer>
 
     </section>
   );
