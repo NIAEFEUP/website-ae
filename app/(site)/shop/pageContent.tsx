@@ -11,14 +11,23 @@ import React from "react";
 export default function ShopPageContent({ products }) {
   const [previewProduct, setPreviewProduct] = React.useState(products[0]);
   const [openCart, setOpenCart] = React.useState(false);
+  const [cartProducts, setCardProducts] = React.useState<Product[]>([]);
+
+  const addToCart = (product: Product) => {
+    setCardProducts((prevCardProducts) => [...prevCardProducts, product]);
+  }
+
+  const removeFromCart = (productID: number) => {
+    setCardProducts((prevCardProducts) => prevCardProducts.filter((product) => product.id !== productID));
+  }
 
   return (
     <>
       <div className="flex flex-row my-5 mx-20 mt-40">
         <section className="flex flex-col max-w-[300px]">
-          <ProductPreview product={previewProduct} setCartState={setOpenCart}></ProductPreview>
+          <ProductPreview product={previewProduct} setCartState={setOpenCart} addToCart={addToCart}></ProductPreview>
         </section>
-        <ShopCart isOpen={openCart} onOpenChange={setOpenCart} products={products}></ShopCart>
+        <ShopCart isOpen={openCart} onOpenChange={setOpenCart} products={cartProducts} removeFromCart={removeFromCart}></ShopCart>
         <section className="flex flex-col ml-30">
           <h1 className="text-7xl font-serif tracking-tight text-black">
             Student Essentials

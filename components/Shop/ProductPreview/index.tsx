@@ -3,11 +3,12 @@ import Image from "next/image";
 import SizePicker from "../SizePicker";
 
 type ProductPreviewProps = {
-  product: Product;
-  setCartState: Function;
+  product: Product,
+  setCartState: (bool: boolean) => void,
+  addToCart: (product: Product) => void,
 };
 
-const ProductPreview = ({ product, setCartState }: ProductPreviewProps) => {
+const ProductPreview = ({ product, setCartState, addToCart }: ProductPreviewProps) => {
   return (
     <>
       <Image
@@ -29,7 +30,7 @@ const ProductPreview = ({ product, setCartState }: ProductPreviewProps) => {
         {product.description}
       </h1>
       <div className="flex items-center mt-6 gap-2.5">
-        <button className="bg-engenharia max-w-36 items-center text-sm text-primary transition-all p-3 rounded-full duration-300 dark:text-white dark:hover:text-primary" onClick={() => setCartState(true)}>
+        <button className="bg-engenharia max-w-36 items-center text-sm text-primary transition-all p-3 rounded-full duration-300 dark:text-white dark:hover:text-primary" onClick={() => { setCartState(true); addToCart(product) }}>
           <span className="duration-300 text-white font-extralight tracking-tight">
             {product.price}$ · Compra já
           </span>
