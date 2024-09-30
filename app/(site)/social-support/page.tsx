@@ -57,7 +57,7 @@ const ApoioSocialPage = async () => {
           </div>
           {/* <!-- Section Title End --> */}
         </div>
-        <div className="py-20 ">
+        <div className="py-7.5">
           <div className="flex flex-wrap justify-center gap-7.5 lg:flex-nowrap xl:gap-12.5">
             {mentalHealthData.map((feature) => (
               <LearnMore
