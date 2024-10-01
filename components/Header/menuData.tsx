@@ -76,11 +76,24 @@ const menuData: Menu[] = [
     ],
   },
   {
+    id: 7,
+    title: "AEFEUP",
+    newTab: false,
+    submenu: [
+      {
+        id: 71,
+        title: "Núcleos e Associações",
+        newTab: false,
+        path: "/aefeup/associations",
+      }
+    ]
+  },
+  {
     id: 4,
     title: "Services",
     newTab: false,
     path: "/services"
-  
+
   },
   {
     id: 6,

@@ -95,12 +95,12 @@ export interface Person {
   description?: string | null;
   birthday?: string | null;
   socials?:
-    | {
-        type: 'linkedin' | 'facebook' | 'website' | 'instagram';
-        link: string;
-        id?: string | null;
-      }[]
-    | null;
+  | {
+    type: 'linkedin' | 'facebook' | 'website' | 'instagram';
+    link: string;
+    id?: string | null;
+  }[]
+  | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -124,60 +124,60 @@ export interface SportsTeam {
   fap_id?: number | null;
   coach?: (number | null) | Person;
   workouts?:
-    | {
-        weekDay: 'monday' | 'tuesday' | 'wednesday' | 'thursday' | 'friday' | 'saturday' | 'sunday';
-        hour: string;
-        id?: string | null;
-      }[]
-    | null;
+  | {
+    weekDay: 'monday' | 'tuesday' | 'wednesday' | 'thursday' | 'friday' | 'saturday' | 'sunday';
+    hour: string;
+    id?: string | null;
+  }[]
+  | null;
   emoji?:
-    | (
-        | '⚽️'
-        | '🏀'
-        | '🏈'
-        | '🎾'
-        | '🏐'
-        | '🏉'
-        | '🥏'
-        | '🏓'
-        | '🏸'
-        | '🏒'
-        | '🏑'
-        | '🏏'
-        | '🥍'
-        | '🥅'
-        | '🎱'
-        | '🏹'
-        | '🎿'
-        | '🛷'
-        | '🚴‍♂️'
-        | '🏄‍♂️'
-        | '🏇'
-        | '🏊‍♂️'
-        | '🏋️‍♂️'
-        | '🤼‍♂️'
-        | '🤸‍♂️'
-        | '🤺'
-        | '🤾‍♂️'
-        | '🏌️‍♂️'
-        | '🧗‍♂️'
-        | '🚣‍♂️'
-        | '🚵‍♂️'
-        | '🏎️'
-        | '🏍️'
-      )
-    | null;
+  | (
+    | '⚽️'
+    | '🏀'
+    | '🏈'
+    | '🎾'
+    | '🏐'
+    | '🏉'
+    | '🥏'
+    | '🏓'
+    | '🏸'
+    | '🏒'
+    | '🏑'
+    | '🏏'
+    | '🥍'
+    | '🥅'
+    | '🎱'
+    | '🏹'
+    | '🎿'
+    | '🛷'
+    | '🚴‍♂️'
+    | '🏄‍♂️'
+    | '🏇'
+    | '🏊‍♂️'
+    | '🏋️‍♂️'
+    | '🤼‍♂️'
+    | '🤸‍♂️'
+    | '🤺'
+    | '🤾‍♂️'
+    | '🏌️‍♂️'
+    | '🧗‍♂️'
+    | '🚣‍♂️'
+    | '🚵‍♂️'
+    | '🏎️'
+    | '🏍️'
+  )
+  | null;
   lineup?:
+  | {
+    lineupRow?:
     | {
-        lineupRow?:
-          | {
-              person: number | Person;
-              id?: string | null;
-            }[]
-          | null;
-        id?: string | null;
-      }[]
+      person: number | Person;
+      id?: string | null;
+    }[]
     | null;
+    id?: string | null;
+  }[]
+  | null;
   backgroundImage: number | Media;
   updatedAt: string;
   createdAt: string;
@@ -223,15 +223,57 @@ export interface BoardSection {
   members: {
     person: number | Person;
     id?: string | null;
-  }[];
-  description?: string | null;
-  subgroups?:
+  }[]
+  | null;
+  emoji?:
+  | (
+    | '⚽️'
+    | '🏀'
+    | '🏈'
+    | '🎾'
+    | '🏐'
+    | '🏉'
+    | '🥏'
+    | '🏓'
+    | '🏸'
+    | '🏒'
+    | '🏑'
+    | '🏏'
+    | '🥍'
+    | '🥅'
+    | '🎱'
+    | '🏹'
+    | '🎿'
+    | '🛷'
+    | '🚴‍♂️'
+    | '🏄‍♂️'
+    | '🏇'
+    | '🏊‍♂️'
+    | '🏋️‍♂️'
+    | '🤼‍♂️'
+    | '🤸‍♂️'
+    | '🤺'
+    | '🤾‍♂️'
+    | '🏌️‍♂️'
+    | '🧗‍♂️'
+    | '🚣‍♂️'
+    | '🚵‍♂️'
+    | '🏎️'
+    | '🏍️'
+  )
+  | null;
+  lineup?:
+  | {
+    lineupRow?:
     | {
-        title?: string | null;
-        description?: string | null;
-        id?: string | null;
-      }[]
+      person: number | Person;
+      id?: string | null;
+    }[]
     | null;
+    id?: string | null;
+  }[]
+  | null;
+  backgroundImage: number | Media;
   updatedAt: string;
   createdAt: string;
 }
@@ -247,14 +289,14 @@ export interface PayloadPreference {
   };
   key?: string | null;
   value?:
-    | {
-        [k: string]: unknown;
-      }
-    | unknown[]
-    | string
-    | number
-    | boolean
-    | null;
+  | {
+    [k: string]: unknown;
+  }
+  | unknown[]
+  | string
+  | number
+  | boolean
+  | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -279,5 +321,5 @@ export interface Auth {
 
 
 declare module 'payload' {
-  export interface GeneratedTypes extends Config {}
+  export interface GeneratedTypes extends Config { }
 }
