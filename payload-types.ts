@@ -14,7 +14,11 @@ export interface Config {
     users: User;
     media: Media;
     person: Person;
-    'sports-team': SportsTeam;
+    sportsTeam: SportsTeam;
+    studentGuide: StudentGuide;
+    link: Link;
+    position: Position;
+    board_section: BoardSection;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -112,7 +116,7 @@ export interface Position {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "sports-team".
+ * via the `definition` "sportsTeam".
  */
 export interface SportsTeam {
   id: number;
@@ -123,6 +127,101 @@ export interface SportsTeam {
   | {
     weekDay: 'monday' | 'tuesday' | 'wednesday' | 'thursday' | 'friday' | 'saturday' | 'sunday';
     hour: string;
+    id?: string | null;
+  }[]
+  | null;
+  emoji?:
+  | (
+    | '⚽️'
+    | '🏀'
+    | '🏈'
+    | '🎾'
+    | '🏐'
+    | '🏉'
+    | '🥏'
+    | '🏓'
+    | '🏸'
+    | '🏒'
+    | '🏑'
+    | '🏏'
+    | '🥍'
+    | '🥅'
+    | '🎱'
+    | '🏹'
+    | '🎿'
+    | '🛷'
+    | '🚴‍♂️'
+    | '🏄‍♂️'
+    | '🏇'
+    | '🏊‍♂️'
+    | '🏋️‍♂️'
+    | '🤼‍♂️'
+    | '🤸‍♂️'
+    | '🤺'
+    | '🤾‍♂️'
+    | '🏌️‍♂️'
+    | '🧗‍♂️'
+    | '🚣‍♂️'
+    | '🚵‍♂️'
+    | '🏎️'
+    | '🏍️'
+  )
+  | null;
+  lineup?:
+  | {
+    lineupRow?:
+    | {
+      person: number | Person;
+      id?: string | null;
+    }[]
+    | null;
+    id?: string | null;
+  }[]
+  | null;
+  backgroundImage: number | Media;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "studentGuide".
+ */
+export interface StudentGuide {
+  id: number;
+  language: 'Português' | 'Inglês';
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "link".
+ */
+export interface Link {
+  id: number;
+  label: string;
+  url: string;
+  description?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "board_section".
+ */
+export interface BoardSection {
+  id: number;
+  name: string;
+  members: {
+    person: number | Person;
     id?: string | null;
   }[]
   | null;

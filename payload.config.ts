@@ -10,6 +10,8 @@ import { Media } from "./collections/Media";
 import { Person } from "./collections/Person";
 import { SportsTeam } from "./collections/SportsTeam";
 import { Association } from "./collections/Association";
+import { StudentGuide } from "./collections/StudentGuide";
+import { Link } from "./collections/Link";
 import { Position } from "./collections/Position";
 import { BoardSection } from "./collections/BoardSection";
 
@@ -27,6 +29,8 @@ export default buildConfig({
     Person,
     SportsTeam,
     Association,
+    StudentGuide,
+    Link,
     Position,
     BoardSection,
   ],
