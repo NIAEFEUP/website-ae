@@ -66,7 +66,7 @@ const AssociationsClientPage = ({ associations }) => {
                         initial="hidden"
                         animate="show"
                     >
-                        <div className="flex gap-5">
+                        <div className="flex gap-5 justify-center">
                             {aefeup_associations.map((association, index) => {
                                 return (
                                     <motion.div
@@ -103,7 +103,7 @@ const AssociationsClientPage = ({ associations }) => {
                             initial="hidden"
                             animate="show"
                         >
-                            <div className="flex gap-5">
+                            <div className="flex gap-5 justify-center">
                                 {feup_associations.map((association, index) => {
                                     return (
                                         <motion.li
