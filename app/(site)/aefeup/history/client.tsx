@@ -1,7 +1,9 @@
 "use client"
 
+import AvatarHorizontal from "@/components/AvatarHorizontal";
 import SectionHeader from "@/components/Common/SectionHeader";
 import { President } from "@/payload-types";
+import { motion } from "framer-motion";
 
 interface Props {
   history_text: string;
@@ -27,13 +29,30 @@ const AEFEUPHistoryClientPage = ({ history_text, presidents }: Props) => {
             description: ""
           }}
         />
-        {/* TODO: (thePeras) Nice fade transition here with delay in each president */}
-        {presidents.map((president) => (
-          <div key={president.id}>
-            <h3>{president.name}</h3>
-            <p>{president.start_year} - {president.end_year}</p>
-          </div>
-        ))}
+        <section className="px-20 flex gap-5 justify-center">
+          {presidents.map((president, index) =>
+            <motion.div
+              variants={{
+                hidden: {
+                  opacity: 0,
+                  y: -20,
+                },
+
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                },
+              }}
+              initial="hidden"
+              whileInView="visible"
+              transition={{ duration: 1, delay: index * 0.3 }}
+              viewport={{ once: true }}
+            // className="animate_top mx-auto text-center"
+            >
+              <AvatarHorizontal className="w-fit" key={president.id} person={{ ...president, position: 0 }} description={`${president.start_year} - ${president.end_year}`} />
+            </motion.div>
+          )}
+        </section>
       </section>
 
     </main>
