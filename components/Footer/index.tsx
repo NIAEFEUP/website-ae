@@ -17,7 +17,14 @@ const Footer = () => {
                 height={150}
                 src="/images/logo/feup.png"
                 alt="Logo"
-                className="mb-5"
+                className="mb-5 dark:hidden"
+              />
+              <Image
+                width={150}
+                height={150}
+                src="/images/logo/feup-white.png"
+                alt="Logo"
+                className="mb-5 hidden dark:block"
               />
             </a>
             <a href="/">
