@@ -10,6 +10,12 @@ import { Media } from "./collections/Media";
 import { Person } from "./collections/Person";
 import { SportsTeam } from "./collections/SportsTeam";
 import { Sponsor } from "./collections/Sponsor";
+import { Association } from "./collections/Association";
+import { StudentGuide } from "./collections/StudentGuide";
+import { Link } from "./collections/Link";
+import { Position } from "./collections/Position";
+import { BoardSection } from "./collections/BoardSection";
+import { President } from "./collections/President";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -24,7 +30,13 @@ export default buildConfig({
     Media,
     Person,
     Sponsor,
-    SportsTeam
+    SportsTeam,
+    Association,
+    StudentGuide,
+    Link,
+    Position,
+    BoardSection,
+    President,
   ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",

@@ -7,6 +7,7 @@ type HeaderInfo = {
   description: string;
 };
 
+//TODO (thePeras): Why not passing it as title and description and not headerInfo?
 const SectionHeader = ({ headerInfo }: { headerInfo: HeaderInfo }) => {
   const { title, description } = headerInfo;
 
