@@ -2,104 +2,87 @@ import { Menu } from "@/types/menu";
 
 const menuData: Menu[] = [
   {
-    id: 1,
-    title: "Home",
-    newTab: false,
-    path: "/",
-  },
-  {
-    id: 3,
-    title: "Pages",
-    newTab: false,
-    submenu: [
-      {
-        id: 31,
-        title: "Blog Grid",
-        newTab: false,
-        path: "/blog",
-      },
-      {
-        id: 35,
-        title: "Docs",
-        newTab: false,
-        path: "/docs",
-      },
-      {
-        id: 35.1,
-        title: "Support",
-        newTab: false,
-        path: "/support",
-      },
-      {
-        id: 36,
-        title: "404",
-        newTab: false,
-        path: "/error",
-      },
-      {
-        id: 37,
-        title: "Features",
-        newTab: false,
-        path: "/#features",
-      },
-      {
-        id: 38,
-        title: "Apoio Social e Bem-Estar",
-        newTab: false,
-        path: "/social-support",
-      },
-    ],
-  },
-  {
-    id: 5,
-    title: "Desporto",
-    newTab: false,
-    submenu: [
-      {
-        id: 51,
-        title: "História e Troféus",
-        newTab: false,
-        path: "/sport/teams",
-      },
-      {
-        id: 52,
-        title: "Seleções",
-        newTab: false,
-        path: "/sport/teams",
-      },
-      {
-        id: 53,
-        title: "Velocidade",
-        newTab: false,
-        path: "/sport/teams",
-      },
-    ],
-  },
-  {
-    id: 7,
     title: "AEFEUP",
-    newTab: false,
     submenu: [
       {
-        id: 71,
+        title: "Quem Somos",
+        path: "aefeup/about",
+      },
+      {
+        title: "História da AEFEUP",
+        path: "aefeup/history",
+      },
+      {
+        title: "Cedências de Espaço",
+        path: "aefeup/requests"
+      },
+      {
+        title: "Serviços",
+        path: "aefeup/services"
+      },
+      {
+        title: "Eventos",
+        path: "aefeup/events"
+      },
+      {
         title: "Núcleos e Associações",
-        newTab: false,
-        path: "/aefeup/associations",
-      }
-    ]
+        path: "aefeup/associations"
+      },
+      {
+        title: "Documentos",
+        path: "aefeup/documents"
+      },
+    ],
   },
   {
-    id: 4,
-    title: "Services",
-    newTab: false,
-    path: "/services"
-
+    title: "Estudante",
+    submenu: [
+      {
+        title: "Bem-vindo à FEUP",
+        path: "student/welcome"
+      },
+      {
+        title: "Guia do Estudante",
+        path: "student/guide"
+      },
+      {
+        title: "Espaços",
+        path: "student/spaces"
+      },
+      {
+        title: "Oportunidades",
+        path: "student/opportunities"
+      },
+      {
+        title: "Apoio Social e Bem-Estar",
+        path: "student/support"
+      },
+    ],
   },
   {
-    id: 6,
-    title: "Contact us",
-    newTab: false,
-    path: "/contacts"
+    title: "Desporto",
+    submenu: [
+      {
+        title: "História e Troféus",
+        path: "sports/history"
+      },
+      {
+        title: "Seleções",
+        path: "sports/teams"
+      },
+      {
+        title: "Motorsport",
+        path: "sports/motorsport"
+      },
+    ],
+  },
+  {
+    title: "Loja",
+    path: "store",
+  },
+  {
+    title: "Contactos",
+    path: "contacts",
   },
 ];
 

@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import Hero from "@/components/Hero";
-import Brands from "@/components/Brands";
+import Sponsors from "@/components/Sponsors";
 import Feature from "@/components/Features";
 import About from "@/components/About";
 import FeaturesTab from "@/components/FeaturesTab";
@@ -12,6 +12,8 @@ import Pricing from "@/components/Pricing";
 import Contact from "@/components/Contact";
 import Blog from "@/components/Blog";
 import Testimonial from "@/components/Testimonial";
+import { getPayload } from 'payload'
+import config from 'payload.config'
 
 export const metadata: Metadata = {
   title: "Next.js Starter Template for SaaS Startups - Solid SaaS Boilerplate",
@@ -19,22 +21,18 @@ export const metadata: Metadata = {
   // other metadata
 };
 
-export default function Home() {
+const Home = async() => {
+
+  const sponsors = await (await getPayload({ config })).find({
+    collection: 'sponsor',
+  });
+
   return (
     <main>
       <Hero />
-      <Brands />
-      <Feature />
-      <About />
-      <FeaturesTab />
-      <FunFact />
-      <Integration />
-      <CTA />
-      <FAQ />
-      <Testimonial />
-      <Pricing />
-      <Contact />
-      <Blog />
+      <Sponsors sponsors={sponsors.docs.filter(sponsor => sponsor.name)} />
     </main>
   );
 }
+
+export default Home;

@@ -9,6 +9,7 @@ import { Users } from "./collections/Users";
 import { Media } from "./collections/Media";
 import { Person } from "./collections/Person";
 import { SportsTeam } from "./collections/SportsTeam";
+import { Sponsor } from "./collections/Sponsor";
 import { Association } from "./collections/Association";
 import { StudentGuide } from "./collections/StudentGuide";
 import { Link } from "./collections/Link";
@@ -28,6 +29,7 @@ export default buildConfig({
     Users,
     Media,
     Person,
+    Sponsor,
     SportsTeam,
     Association,
     StudentGuide,
