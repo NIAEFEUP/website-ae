@@ -9,7 +9,7 @@ const Footer = () => {
     <footer className="border-t border-stroke bg-white dark:border-strokedark dark:bg-blacksection">
       <div className="mx-auto max-w-[1390px] px-12">
         {/* <!-- Footer Top --> */}
-        <div className="flex items-center justify-around flex-wrap mb-3 py-10 gap-5">          
+        <div className="flex items-center justify-around flex-wrap m-3 py-10 gap-5">          
           <div className="flex items-center gap-5 h-10">
             <a href="https://sigarra.up.pt/feup/pt/web_page.inicial">
               <Image

@@ -1,113 +1,88 @@
 import { Menu } from "@/types/menu";
 
-// TODO: add path attribute to the respective menu/submenu
-
 const menuData: Menu[] = [
   {
-    id: 1,
     title: "AEFEUP",
-    newTab: false,
     submenu: [
       {
-        id: 11,
         title: "Quem Somos",
-        newTab: false,
+        path: "aefeup/about",
       },
       {
-        id: 12,
         title: "História da AEFEUP",
-        newTab: false,
+        path: "aefeup/history",
       },
       {
-        id: 13,
         title: "Cedências de Espaço",
-        newTab: false,
+        path: "aefeup/requests"
       },
       {
-        id: 14,
         title: "Serviços",
-        newTab: false,
+        path: "aefeup/services"
       },
       {
-        id: 15,
         title: "Eventos",
-        newTab: false,
+        path: "aefeup/events"
       },
       {
-        id: 16,
         title: "Núcleos e Associações",
-        newTab: false,
+        path: "aefeup/associations"
       },
       {
-        id: 17,
         title: "Documentos",
-        newTab: false,
+        path: "aefeup/documents"
       },
     ],
   },
   {
-    id: 2,
     title: "Estudante",
-    newTab: false,
     submenu: [
       {
-        id: 21,
         title: "Bem-vindo à FEUP",
-        newTab: false,
+        path: "student/welcome"
       },
       {
-        id: 22,
         title: "Guia do Estudante",
-        newTab: false,
+        path: "student/guide"
       },
       {
-        id: 23,
         title: "Espaços",
-        newTab: false,
+        path: "student/spaces"
       },
       {
-        id: 24,
         title: "Oportunidades",
-        newTab: false,
+        path: "student/opportunities"
       },
       {
-        id: 25,
         title: "Apoio Social e Bem-Estar",
-        newTab: false,
+        path: "student/support"
       },
     ],
   },
   {
-    id: 3,
     title: "Desporto",
-    newTab: false,
     submenu: [
       {
-        id: 21,
-        title: "Seleções",
-        newTab: false,
-      },
-      {
-        id: 22,
         title: "História e Troféus",
-        newTab: false,
+        path: "sports/history"
       },
       {
-        id: 23,
+        title: "Seleções",
+        path: "sports/teams"
+      },
+      {
         title: "Motorsport",
-        newTab: false,
+        path: "sports/motorsport"
       },
     ],
   },
   {
-    id: 4,
     title: "Loja",
-    newTab: false,
+    path: "store",
   },
   {
-    id: 4,
     title: "Contactos",
-    newTab: false,
+    path: "contacts",
   },
 ];
 
