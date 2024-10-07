@@ -8,12 +8,12 @@ import {
 } from "@/components/ui/sheet"
 import React from "react";
 import CartItem from "../CartItem";
-import { Product } from "@/payload-types";
+import { cartProduct } from "@/types/cartProduct";
 
 type ShopCartProps = {
    isOpen: boolean,
    onOpenChange: (bool: boolean) => void,
-   products: Product[],
+   products: cartProduct[],
    removeFromCart: (productID: number) => void,
 }
 

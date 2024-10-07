@@ -6,15 +6,21 @@ import CartItem from "@/components/Shop/CartItem";
 import ProductPreview from "@/components/Shop/ProductPreview";
 import ShopCard from "@/components/Shop/ShopCard";
 import { Product } from "@/payload-types";
+import { cartProduct } from "@/types/cartProduct";
 import React from "react";
 
 export default function ShopPageContent({ products }) {
   const [previewProduct, setPreviewProduct] = React.useState(products[0]);
   const [openCart, setOpenCart] = React.useState(false);
-  const [cartProducts, setCardProducts] = React.useState<Product[]>([]);
+  const [cartProducts, setCardProducts] = React.useState<cartProduct[]>([]);
 
-  const addToCart = (product: Product) => {
-    setCardProducts((prevCardProducts) => [...prevCardProducts, product]);
+  const addToCart = (product: cartProduct) => {
+    setCardProducts((prevCardProducts) => {
+      if (prevCardProducts.every((p) => p.id !== product.id)) {
+        return [...prevCardProducts, product];
+      }
+      return prevCardProducts;
+    });
   }
 
   const removeFromCart = (productID: number) => {

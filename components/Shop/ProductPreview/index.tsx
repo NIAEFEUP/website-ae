@@ -1,12 +1,23 @@
 import { Product } from "@/payload-types";
 import Image from "next/image";
 import SizePicker from "../SizePicker";
+import { cartProduct } from "@/types/cartProduct";
 
 type ProductPreviewProps = {
   product: Product,
   setCartState: (bool: boolean) => void,
-  addToCart: (product: Product) => void,
+  addToCart: (product: cartProduct) => void,
 };
+
+const buildCartProduct = (product: Product): cartProduct => ({
+  id: product.id,
+  name: product.name,
+  price: product.price,
+  quantity: 1,
+  size: 'XS',
+  color: 'Green',
+  description: product.description,
+});
 
 const ProductPreview = ({ product, setCartState, addToCart }: ProductPreviewProps) => {
   return (
@@ -30,7 +41,7 @@ const ProductPreview = ({ product, setCartState, addToCart }: ProductPreviewProp
         {product.description}
       </h1>
       <div className="flex items-center mt-6 gap-2.5">
-        <button className="bg-engenharia max-w-36 items-center text-sm text-primary transition-all p-3 rounded-full duration-300 dark:text-white dark:hover:text-primary" onClick={() => { setCartState(true); addToCart(product) }}>
+        <button className="bg-engenharia max-w-36 items-center text-sm text-primary transition-all p-3 rounded-full duration-300 dark:text-white dark:hover:text-primary" onClick={() => { setCartState(true); addToCart(buildCartProduct(product)) }}>
           <span className="duration-300 text-white font-extralight tracking-tight">
             {product.price}$ · Compra já
           </span>
