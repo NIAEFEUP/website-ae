@@ -11,6 +11,13 @@ import { Person } from "./collections/Person";
 import { Material } from "./collections/Material";
 import { SportsTeam } from "./collections/SportsTeam";
 import { SpaceData } from "./collections/SpaceData";
+import { Sponsor } from "./collections/Sponsor";
+import { Association } from "./collections/Association";
+import { StudentGuide } from "./collections/StudentGuide";
+import { Link } from "./collections/Link";
+import { Position } from "./collections/Position";
+import { BoardSection } from "./collections/BoardSection";
+import { President } from "./collections/President";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -26,6 +33,13 @@ export default buildConfig({
     Person,
     Material,
     SportsTeam,
+    Sponsor,
+    Association,
+    StudentGuide,
+    Link,
+    Position,
+    BoardSection,
+    President,
     SpaceData
   ],
   editor: lexicalEditor(),

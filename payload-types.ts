@@ -15,7 +15,14 @@ export interface Config {
     media: Media;
     person: Person;
     material: Material;
-    'sports-team': SportsTeam;
+    sportsTeam: SportsTeam;
+    sponsor: Sponsor;
+    association: Association;
+    studentGuide: StudentGuide;
+    link: Link;
+    position: Position;
+    board_section: BoardSection;
+    president: President;
     spaceData: SpaceDatum;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -88,6 +95,7 @@ export interface Media {
 export interface Person {
   id: number;
   name: string;
+  position: number | Position;
   photo?: (number | null) | Media;
   description?: string | null;
   birthday?: string | null;
@@ -98,6 +106,16 @@ export interface Person {
         id?: string | null;
       }[]
     | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "position".
+ */
+export interface Position {
+  id: number;
+  name: string;
   updatedAt: string;
   createdAt: string;
 }
@@ -114,7 +132,7 @@ export interface Material {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "sports-team".
+ * via the `definition` "sportsTeam".
  */
 export interface SportsTeam {
   id: number;
@@ -177,6 +195,105 @@ export interface SportsTeam {
       }[]
     | null;
   backgroundImage: number | Media;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "sponsor".
+ */
+export interface Sponsor {
+  id: number;
+  name: string;
+  url: string;
+  logo: number | Media;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "association".
+ */
+export interface Association {
+  id: number;
+  name: string;
+  in_aefeup: boolean;
+  description?: string | null;
+  logo: number | Media;
+  address?: string | null;
+  socials?:
+    | {
+        type: 'website' | 'linkedin' | 'facebook' | 'instagram';
+        link: string;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "studentGuide".
+ */
+export interface StudentGuide {
+  id: number;
+  language: 'Português' | 'Inglês';
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "link".
+ */
+export interface Link {
+  id: number;
+  label: string;
+  url: string;
+  description?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "board_section".
+ */
+export interface BoardSection {
+  id: number;
+  name: string;
+  members: {
+    person: number | Person;
+    id?: string | null;
+  }[];
+  description?: string | null;
+  subgroups?:
+    | {
+        title?: string | null;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "president".
+ */
+export interface President {
+  id: number;
+  name: string;
+  photo?: (number | null) | Media;
+  start_year: number;
+  end_year: number;
   updatedAt: string;
   createdAt: string;
 }
