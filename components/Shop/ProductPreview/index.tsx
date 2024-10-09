@@ -50,7 +50,7 @@ const ProductPreview = ({ product, setCartState, addToCart }: ProductPreviewProp
           </span>
         </button>
         <SizePicker product={product} setInstance={setInstance}></SizePicker>
-      </div>
+      </div >
     </>
   );
 };

@@ -41,9 +41,9 @@ const ShopCart = ({ isOpen, onOpenChange, products, removeFromCart }: ShopCartPr
                <Input type="email" placeholder="Phone Number" onChange={(e) => setNumber(e.target.value)} />
                <Button type="submit" onClick={() => requestMBWAY(number)}>Pay</Button>
             </div>
-         </SheetFooter>
-      </SheetContent>
-   </Sheet>
+         </SheetFooter >
+      </SheetContent >
+   </Sheet >
 }
 
 export default ShopCart;
