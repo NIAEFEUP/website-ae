@@ -23,7 +23,6 @@ const CartItem = ({ product, removeFromCart }: CartItemProps) => {
       }
    }
 
-
    return <div className="flex gap-5">
       <Image
          src="/images/cactus.jpg"
@@ -41,8 +40,8 @@ const CartItem = ({ product, removeFromCart }: CartItemProps) => {
                   <span className="px-4">{product.quantity} un</span>
                   <button onClick={() => increaseQuantity()}>+</button>
                </div>
-               <span className="px-5 border-r">XS</span>
-               <span className="ml-5">Green</span>
+               <span className="px-5 border-r">{product.size}</span>
+               <span className="ml-5">{product.color}</span>
             </div>
          </div>
          <div className="flex gap-1 self-end">

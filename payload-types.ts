@@ -20,6 +20,7 @@ export interface Config {
     position: Position;
     board_section: BoardSection;
     product: Product;
+    productInstance: ProductInstance;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -245,6 +246,19 @@ export interface Product {
   name: string;
   price: number;
   description: string;
+  color: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "productInstance".
+ */
+export interface ProductInstance {
+  id: number;
+  product: number | Product;
+  quantity: number;
+  size: 'XS' | 'S' | 'M' | 'L' | 'XL' | 'XXL';
   updatedAt: string;
   createdAt: string;
 }

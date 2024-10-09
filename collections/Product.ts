@@ -18,5 +18,10 @@ export const Product: CollectionConfig = {
       type: "text",
       required: true,
     },
+    {
+      name: "color",
+      type: "text",
+      required: true,
+    },
   ],
 };

@@ -9,6 +9,9 @@ import {
 import React from "react";
 import CartItem from "../CartItem";
 import { cartProduct } from "@/types/cartProduct";
+import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button";
+import { requestMBWAY } from "./apiCall";
 
 type ShopCartProps = {
    isOpen: boolean,
@@ -18,6 +21,8 @@ type ShopCartProps = {
 }
 
 const ShopCart = ({ isOpen, onOpenChange, products, removeFromCart }: ShopCartProps) => {
+   const [number, setNumber] = React.useState("")
+
    return <Sheet open={isOpen} onOpenChange={onOpenChange}>
       <SheetContent className="z-100000 flex flex-col justify-between">
          <SheetHeader>
@@ -32,7 +37,10 @@ const ShopCart = ({ isOpen, onOpenChange, products, removeFromCart }: ShopCartPr
             </SheetDescription>
          </SheetHeader>
          <SheetFooter>
-            <button>Checkout</button>
+            <div className="flex w-full max-w-sm items-center space-x-2">
+               <Input type="email" placeholder="Phone Number" onChange={(e) => setNumber(e.target.value)} />
+               <Button type="submit" onClick={() => requestMBWAY(number)}>Pay</Button>
+            </div>
          </SheetFooter>
       </SheetContent>
    </Sheet>

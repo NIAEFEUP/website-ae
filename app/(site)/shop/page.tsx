@@ -1,19 +1,10 @@
-"use server";
-
-import ShopCard from "components/Shop/ShopCard";
-import ProductPreview from "components/Shop/ProductPreview";
-import { getPayload } from "payload";
-import config from "payload.config";
+import { getProducts } from "components/Shop/SizePicker/payloadAction"
 import React from "react";
-import SectionHeader from "@/components/Common/SectionHeader";
 import ShopPageContent from "./pageContent";
 
 export default async function ShopPage() {
-  const payload = await getPayload({ config });
 
-  const result = await payload.find({
-    collection: "product",
-  });
+  const products = (await getProducts()).docs
 
-  return <ShopPageContent products={result.docs} />;
+  return <ShopPageContent products={products} />;
 }
