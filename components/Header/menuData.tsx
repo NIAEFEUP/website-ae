@@ -2,91 +2,87 @@ import { Menu } from "@/types/menu";
 
 const menuData: Menu[] = [
   {
-    id: 1,
-    title: "Home",
-    newTab: false,
-    path: "/",
-  },
-  {
-    id: 3,
-    title: "Pages",
-    newTab: false,
+    title: "AEFEUP",
     submenu: [
       {
-        id: 31,
-        title: "Blog Grid",
-        newTab: false,
-        path: "/blog",
+        title: "Quem Somos",
+        path: "aefeup/about",
       },
       {
-        id: 35,
-        title: "Docs",
-        newTab: false,
-        path: "/docs",
+        title: "História da AEFEUP",
+        path: "aefeup/history",
       },
       {
-        id: 35.1,
-        title: "Support",
-        newTab: false,
-        path: "/support",
+        title: "Cedências de Espaço",
+        path: "aefeup/requests"
       },
       {
-        id: 36,
-        title: "404",
-        newTab: false,
-        path: "/error",
+        title: "Serviços",
+        path: "aefeup/services"
       },
       {
-        id: 37,
-        title: "Features",
-        newTab: false,
-        path: "/#features",
+        title: "Eventos",
+        path: "aefeup/events"
       },
       {
-        id: 38,
+        title: "Núcleos e Associações",
+        path: "aefeup/associations"
+      },
+      {
+        title: "Documentos",
+        path: "aefeup/documents"
+      },
+    ],
+  },
+  {
+    title: "Estudante",
+    submenu: [
+      {
+        title: "Bem-vindo à FEUP",
+        path: "student/welcome"
+      },
+      {
+        title: "Guia do Estudante",
+        path: "student/guide"
+      },
+      {
+        title: "Espaços",
+        path: "student/spaces"
+      },
+      {
+        title: "Oportunidades",
+        path: "student/opportunities"
+      },
+      {
         title: "Apoio Social e Bem-Estar",
-        newTab: false,
-        path: "/social-support",
+        path: "student/support"
       },
     ],
   },
   {
-    id: 5,
     title: "Desporto",
-    newTab: false,
     submenu: [
       {
-        id: 51,
         title: "História e Troféus",
-        newTab: false,
-        path: "/sport/teams",
+        path: "sports/history"
       },
       {
-        id: 52,
         title: "Seleções",
-        newTab: false,
-        path: "/sport/teams",
+        path: "sports/teams"
       },
       {
-        id: 53,
-        title: "Velocidade",
-        newTab: false,
-        path: "/sport/teams",
+        title: "Motorsport",
+        path: "sports/motorsport"
       },
     ],
   },
   {
-    id: 4,
-    title: "Services",
-    newTab: false,
-    path: "/services"
-  
+    title: "Loja",
+    path: "store",
   },
   {
-    id: 6,
-    title: "Contact us",
-    newTab: false,
-    path: "/contacts"
+    title: "Contactos",
+    path: "contacts",
   },
 ];
 

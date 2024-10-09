@@ -14,13 +14,16 @@ export interface Config {
     users: User;
     media: Media;
     person: Person;
+    sponsor: Sponsor;
     sportsTeam: SportsTeam;
+    association: Association;
     studentGuide: StudentGuide;
     link: Link;
     position: Position;
     board_section: BoardSection;
     product: Product;
     productInstance: ProductInstance;
+    president: President;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -118,6 +121,18 @@ export interface Position {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "sponsor".
+ */
+export interface Sponsor {
+  id: number;
+  name: string;
+  url: string;
+  logo: number | Media;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "sportsTeam".
  */
 export interface SportsTeam {
@@ -181,6 +196,27 @@ export interface SportsTeam {
       }[]
     | null;
   backgroundImage: number | Media;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "association".
+ */
+export interface Association {
+  id: number;
+  name: string;
+  in_aefeup: boolean;
+  description?: string | null;
+  logo: number | Media;
+  address?: string | null;
+  socials?:
+    | {
+        type: 'website' | 'linkedin' | 'facebook' | 'instagram';
+        link: string;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -259,6 +295,19 @@ export interface ProductInstance {
   product: number | Product;
   quantity: number;
   size: 'XS' | 'S' | 'M' | 'L' | 'XL' | 'XXL';
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "president".
+ */
+export interface President {
+  id: number;
+  name: string;
+  photo?: (number | null) | Media;
+  start_year: number;
+  end_year: number;
   updatedAt: string;
   createdAt: string;
 }
