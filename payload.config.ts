@@ -8,7 +8,9 @@ import sharp from "sharp";
 import { Users } from "./collections/Users";
 import { Media } from "./collections/Media";
 import { Person } from "./collections/Person";
+import { Material } from "./collections/Material";
 import { SportsTeam } from "./collections/SportsTeam";
+import { SpaceData } from "./collections/SpaceData";
 import { Sponsor } from "./collections/Sponsor";
 import { Association } from "./collections/Association";
 import { StudentGuide } from "./collections/StudentGuide";
@@ -29,14 +31,16 @@ export default buildConfig({
     Users,
     Media,
     Person,
-    Sponsor,
+    Material,
     SportsTeam,
+    Sponsor,
     Association,
     StudentGuide,
     Link,
     Position,
     BoardSection,
     President,
+    SpaceData
   ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",
