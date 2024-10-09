@@ -1,4 +1,3 @@
-import Material from "@/components/Materials"
 import CalendarComponent  from "@/components/Calendar"
 import { Metadata } from "next"
 import RequestTab from "@/components/RequestTab"
@@ -45,7 +44,6 @@ export default async function Request() {
 	return (
 		<>
  			<CalendarComponent calendarID={calendarID} calendarApiKey={calendarApiKey}/> 
-			<Material materialData={materialData}/>
 			<RequestTab materialData={materialData} sendEmail={sendEmail} availableSpaces={availableSpaces}/>
 		</>
 	)

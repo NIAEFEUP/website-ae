@@ -80,7 +80,7 @@ export default function RequestTab( { materialData,sendEmail,availableSpaces } :
       <div className="relative mx-auto max-w-c-1390 px-4 md:px-8 2xl:px-0">
         <SectionHeader 
           headerInfo={{
-            title: "REQUEST",
+            title: "Request",
             subtitle: "Request Material or Space",
             description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. In
           convallis tortor eros. Donec vitae tortor lacus. Phasellus aliquam

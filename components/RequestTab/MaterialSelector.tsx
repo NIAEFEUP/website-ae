@@ -33,7 +33,7 @@ export default function MaterialSelector( { materialData } : Props ) {
                     <div className="flex flex-col">
                         <p className="p-2">Material</p>
                         <select name="space" id="space" className="flex p-3 border bg-white mx-2 rounded" required>
-                            <option value="" selected hidden>Escolha um material</option>
+                            <option value="" selected >Escolha um material</option>
                             { materialData
                                 .filter((material: Material) => !selectedMaterials.includes(material))
                                 .map((material: Material) => (
@@ -44,13 +44,13 @@ export default function MaterialSelector( { materialData } : Props ) {
                     </div>
                     <div className="pb-2">
                         {selectedMaterials.map((material : Material) => (
-                            <div className="m-2 py-2 flex border rounded items-center justify-between">
+                            <div className="m-2 py-2 flex border rounded items-center place-content-center justify-between">
                                 <div>
-                                    <button onClick={handleRemoveMaterialButton} className="h-full border-r pr-1 m-1 border-gray">
-                                        <X size={15} className="w-full h-full" id={material.name}/>
+                                    <button onClick={handleRemoveMaterialButton} className="h-full border-r pr-1 m-2 border-gray">
+                                        <X size={15} className="w-full h-full text-primary" id={material.name}/>
                                     </button>
-                                    <label htmlFor={material.name} className="">{material.name}</label>
                                 </div>
+                                <p className="">{material.name}</p>
                                 <input type="number" name={material.name} id={material.name} min={0} max={material.quantity} defaultValue={0} className="pr-2 focus:outline-none w-12"/>
                             </div>
                         ))}

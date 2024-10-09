@@ -11,7 +11,7 @@ const CalendarComponent = ({calendarID,calendarApiKey} : {calendarID:string | un
         <div className="mx-auto max-w-c-1315 px-4 md:px-8 xl:px-0">
           <SectionHeader 
             headerInfo={{
-              title: "CALENDAR",
+              title: "Calendar",
               subtitle: "Available Dates",
               description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. In
             convallis tortor eros. Donec vitae tortor lacus. Phasellus aliquam
@@ -22,7 +22,7 @@ const CalendarComponent = ({calendarID,calendarApiKey} : {calendarID:string | un
             plugins={[ dayGridPlugin, googleCalendarPlugin ]}
             initialView='dayGridMonth'
             headerToolbar={{
-              right:"prev,next"
+              right:"today,prev,next"
             }}
             googleCalendarApiKey={calendarApiKey}
             events={{
