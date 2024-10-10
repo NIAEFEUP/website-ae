@@ -15,6 +15,7 @@ import { StudentGuide } from "./collections/StudentGuide";
 import { Link } from "./collections/Link";
 import { Position } from "./collections/Position";
 import { BoardSection } from "./collections/BoardSection";
+import { Product } from "./collections/Product";
 import { President } from "./collections/President";
 
 const filename = fileURLToPath(import.meta.url);
@@ -36,6 +37,7 @@ export default buildConfig({
     Link,
     Position,
     BoardSection,
+    Product,
     President,
   ],
   editor: lexicalEditor(),
