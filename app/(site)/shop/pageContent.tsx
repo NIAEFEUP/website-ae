@@ -14,17 +14,17 @@ export default function ShopPageContent({ products }) {
   const [openCart, setOpenCart] = React.useState(false);
   const [cartProducts, setCardProducts] = React.useState<cartProduct[]>([]);
 
-  const addToCart = (product: cartProduct) => {
+  const addToCart = (item: cartProduct) => {
     setCardProducts((prevCardProducts) => {
-      if (prevCardProducts.every((p) => p.id !== product.id)) {
-        return [...prevCardProducts, product];
+      if (prevCardProducts.some((p) => p.product.id === item.product.id && p.size === item.size)) {
+        return prevCardProducts;
       }
-      return prevCardProducts;
+      return [...prevCardProducts, item];
     });
   }
 
-  const removeFromCart = (productID: number) => {
-    setCardProducts((prevCardProducts) => prevCardProducts.filter((product) => product.id !== productID));
+  const removeFromCart = (itemCart: cartProduct) => {
+    setCardProducts((prevCardProducts) => prevCardProducts.filter((item) => item.product.id !== itemCart.product.id || (item.product.id === itemCart.product.id && item.size !== itemCart.size)));
   }
 
   return (

@@ -1,25 +1,24 @@
-import { Product } from "@/payload-types";
 import { cartProduct } from "@/types/cartProduct";
 import Image from 'next/image';
 import React from "react";
 
 type CartItemProps = {
-   product: cartProduct,
-   removeFromCart: (productID: number) => void,
+   item: cartProduct,
+   removeFromCart: (item: cartProduct) => void,
 }
 
-const CartItem = ({ product, removeFromCart }: CartItemProps) => {
-   const [quantity, setQuantity] = React.useState(product.quantity);
+const CartItem = ({ item, removeFromCart }: CartItemProps) => {
+   const [quantity, setQuantity] = React.useState(item.quantity);
 
    const increaseQuantity = () => {
       setQuantity(quantity + 1)
-      product.quantity = quantity + 1
+      item.quantity = quantity + 1
    }
 
    const decreaseQuantity = () => {
       if (quantity - 1 > 0) {
          setQuantity(quantity - 1)
-         product.quantity = quantity - 1
+         item.quantity = quantity - 1
       }
    }
 
@@ -32,20 +31,20 @@ const CartItem = ({ product, removeFromCart }: CartItemProps) => {
       />
       <div className="flex flex-col text-black justify-between flex-grow">
          <div>
-            <h1 className="text-base">{product.name}</h1>
-            <h1 className="font-bold">{product.price} €</h1>
+            <h1 className="text-base">{item.product.name}</h1>
+            <h1 className="font-bold">{item.product.price} €</h1>
             <div className="mt-1 text-xs text-gray-500 flex">
                <div className="pr-5 border-r">
                   <button onClick={() => decreaseQuantity()}>-</button>
-                  <span className="px-4">{product.quantity} un</span>
+                  <span className="px-4">{item.quantity} un</span>
                   <button onClick={() => increaseQuantity()}>+</button>
                </div>
-               <span className="px-5 border-r">{product.size}</span>
-               <span className="ml-5">{product.color}</span>
+               <span className="px-5 border-r">{item.size}</span>
+               <span className="ml-5">{item.product.color}</span>
             </div>
          </div>
          <div className="flex gap-1 self-end">
-            <button className="rounded-full w-8 h-8 bg-slate-400 text-white" onClick={() => removeFromCart(product.id)}>R</button>
+            <button className="rounded-full w-8 h-8 bg-slate-400 text-white" onClick={() => removeFromCart(item)}>R</button>
          </div>
       </div>
    </div >

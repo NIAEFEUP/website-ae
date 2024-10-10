@@ -1,9 +1,7 @@
+import { Product } from "@/payload-types";
+
 export type cartProduct = {
-   id: number,
-   name: string,
+   product: Product,
    quantity: number,
    size: string,
-   color: string,
-   price: number,
-   description: string,
 }

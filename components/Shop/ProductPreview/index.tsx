@@ -1,8 +1,9 @@
-import { Product, ProductInstance } from "@/payload-types";
+import { Product } from "@/payload-types";
 import Image from "next/image";
 import SizePicker from "../SizePicker";
 import { cartProduct } from "@/types/cartProduct";
 import React from "react";
+import { ProductInstance } from "@/types/productInstance";
 
 type ProductPreviewProps = {
   product: Product,
@@ -14,13 +15,9 @@ const ProductPreview = ({ product, setCartState, addToCart }: ProductPreviewProp
   const [instance, setInstance] = React.useState<ProductInstance>();
 
   const buildCartProduct = (instance: ProductInstance): cartProduct => ({
-    id: instance.id,
-    name: product.name,
-    price: product.price,
+    product: product,
     quantity: 1,
     size: instance.size,
-    color: product.color,
-    description: product.description,
   });
 
   return (

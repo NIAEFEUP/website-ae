@@ -1,7 +1,8 @@
 import axios from 'axios';
-import { Database } from 'lucide-react';
 
-export async function requestMBWAY(phoneNumber: string) {
+export async function requestMBWAY(phoneNumber: string, amount: number) {
+   console.log("Function requestMBWAY called with:", phoneNumber, amount); // Initial log
+
    const options = {
       method: 'POST',
       url: 'https://api.ifthenpay.com/spg/payment/mbway',
@@ -9,17 +10,20 @@ export async function requestMBWAY(phoneNumber: string) {
       data: {
          mbWayKey: 'BYX-186558',
          orderId: 'teste',
-         amount: '499.99',
+         amount: amount.toString(),
          mobileNumber: '351#' + phoneNumber,
       }
    };
 
+   console.log("Options prepared:", options); // Log options
+
    try {
       const { data } = await axios.request(options);
-      console.log(data);
-      pollPaymentStatus(data.requestId);
+      console.log("Response data:", data); // Log response data
+      pollPaymentStatus(data.RequestId);
+      return;
    } catch (error) {
-      console.error(error);
+      console.error("Error occurred:", error); // Log error
    }
 }
 
@@ -40,10 +44,16 @@ export async function checkPayment(requestID: string) {
 }
 
 const pollPaymentStatus = (requestID: string) => {
-   setInterval(async () => {
+   const paymentStatus = setInterval(async () => {
       const status = await checkPayment(requestID)
 
-      if (status.Message == "Success") alert("euerka")
-      else alert(status.Message)
+      if (status.Message == "Success") {
+         alert("euerka");
+         clearInterval(paymentStatus)
+      }
+      if (status.Message == "Declined by user") {
+         alert("declined by user");
+         clearInterval(paymentStatus)
+      }
    }, 5000)
 }

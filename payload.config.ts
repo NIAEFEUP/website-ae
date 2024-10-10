@@ -16,7 +16,6 @@ import { Link } from "./collections/Link";
 import { Position } from "./collections/Position";
 import { BoardSection } from "./collections/BoardSection";
 import { Product } from "./collections/Product";
-import { ProductInstance } from "./collections/ProductInstance";
 import { President } from "./collections/President";
 
 const filename = fileURLToPath(import.meta.url);
@@ -39,7 +38,6 @@ export default buildConfig({
     Position,
     BoardSection,
     Product,
-    ProductInstance,
     President,
   ],
   editor: lexicalEditor(),

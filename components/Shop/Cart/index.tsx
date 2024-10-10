@@ -9,19 +9,20 @@ import {
 import React from "react";
 import CartItem from "../CartItem";
 import { cartProduct } from "@/types/cartProduct";
-import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button";
-import { requestMBWAY } from "./apiCall";
+import startPaymentProcess from "./payment";
+import PaymentForm from "../PaymentForm";
+import PuffLoader from "react-spinners/PuffLoader";
 
 type ShopCartProps = {
    isOpen: boolean,
    onOpenChange: (bool: boolean) => void,
    products: cartProduct[],
-   removeFromCart: (productID: number) => void,
+   removeFromCart: (item: cartProduct) => void,
 }
 
 const ShopCart = ({ isOpen, onOpenChange, products, removeFromCart }: ShopCartProps) => {
    const [number, setNumber] = React.useState("")
+   const [processingPayment, setProcessingPayment] = React.useState(false)
 
    return <Sheet open={isOpen} onOpenChange={onOpenChange}>
       <SheetContent className="z-100000 flex flex-col justify-between">
@@ -30,17 +31,19 @@ const ShopCart = ({ isOpen, onOpenChange, products, removeFromCart }: ShopCartPr
             <SheetDescription className="flex flex-col gap-5">
                {products.map((p) => {
                   return <>
-                     <CartItem product={p} removeFromCart={removeFromCart}></CartItem>
+                     <CartItem item={p} removeFromCart={removeFromCart}></CartItem>
                      <hr></hr>
                   </>
                })}
             </SheetDescription>
          </SheetHeader>
          <SheetFooter>
-            <div className="flex w-full max-w-sm items-center space-x-2">
-               <Input type="email" placeholder="Phone Number" onChange={(e) => setNumber(e.target.value)} />
-               <Button type="submit" onClick={() => requestMBWAY(number)}>Pay</Button>
-            </div>
+            {!processingPayment ? <PaymentForm setNumber={setNumber} products={products} setProcessingPayment={setProcessingPayment}></PaymentForm> :
+               <div className="flex gap-2 items-center">
+                  <h2>Waiting for confirmation</h2>
+                  <PuffLoader size={25} color="#90ee90" />
+               </div>
+            }
          </SheetFooter >
       </SheetContent >
    </Sheet >
