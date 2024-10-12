@@ -14,6 +14,13 @@ export const Person: CollectionConfig = {
       required: true,
     },
     {
+      name: 'position',
+      label: "Cargo",
+      type: 'relationship',
+      relationTo: 'position',
+      required: true, //TODO: This shouldn't be required. What about players in the sports teams?
+    },
+    {
       name: 'photo',
       label: 'Foto',
       type: 'relationship',

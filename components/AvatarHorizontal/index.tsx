@@ -16,13 +16,15 @@ const AvatarHorizontal = ({ person, description, className }: Props) => {
   return (
     <div className={`animate_top group relative rounded-lg border border-stroke bg-white p-5 shadow-solid-10 dark:border-strokedark dark:bg-blacksection dark:shadow-none flex gap-3 ${className}`}>
       {/* Image */}
-      <Image
-        src={photo?.url ?? DefaultAvatarImage.src}
-        alt={photo?.alt ?? ""}
-        width={80}
-        height={80}
-        className="w-20 h-20 object-cover mx-auto rounded-full"
-      />
+      {photo && (
+        <Image
+          src={photo.url ?? DefaultAvatarImage.src}
+          alt={photo.alt}
+          width={80}
+          height={80}
+          className="w-20 h-20 object-cover mx-auto rounded-full"
+        />
+      )}
       <div className="flex flex-col justify-center">
         <h6 className="text-para2 font-medium text-black dark:text-white">
           {person.name}

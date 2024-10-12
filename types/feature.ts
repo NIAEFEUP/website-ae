@@ -5,4 +5,6 @@ export type Feature = {
   icon: string | ReactElement;  
   title: string;
   description: string;
+  details?: string[]; 
+  href?: string;
 };
