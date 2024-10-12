@@ -8,6 +8,7 @@ import sharp from "sharp";
 import { Users } from "./collections/Users";
 import { Media } from "./collections/Media";
 import { Person } from "./collections/Person";
+import { Place, Category } from "./collections/Place";
 import { SportsTeam } from "./collections/SportsTeam";
 import { Sponsor } from "./collections/Sponsor";
 import { Association } from "./collections/Association";
@@ -16,6 +17,7 @@ import { Link } from "./collections/Link";
 import { Position } from "./collections/Position";
 import { BoardSection } from "./collections/BoardSection";
 import { President } from "./collections/President";
+
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -29,6 +31,8 @@ export default buildConfig({
     Users,
     Media,
     Person,
+    Place,
+    Category,
     Sponsor,
     SportsTeam,
     Association,

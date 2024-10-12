@@ -14,6 +14,8 @@ export interface Config {
     users: User;
     media: Media;
     person: Person;
+    place: Place;
+    category: Category;
     sponsor: Sponsor;
     sportsTeam: SportsTeam;
     studentGuide: StudentGuide;
@@ -26,7 +28,7 @@ export interface Config {
   };
   db: {
     defaultIDType: number;
-  };
+  }
   globals: {};
   locale: null;
   user: User & {
@@ -108,6 +110,28 @@ export interface Person {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "place".
+ */
+export interface Place {
+  id: number;
+  name: string;
+  description?: string | null;
+  position: {
+    lat: number;
+    lng: number;
+  };
+  schedule?:
+    | {
+        day: string;
+        hours: string;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "sponsor".
  */
 export interface Sponsor {
@@ -120,9 +144,12 @@ export interface Sponsor {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "position".
+ * via the `definition` "category".
  */
-export interface Position {
+export interface Category {
+  id: number;
+  name: string;
+  places?: (number | Place)[] | null;
   id: number;
   name: string;
   updatedAt: string;
