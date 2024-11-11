@@ -3,28 +3,29 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { Instagram, Facebook, Youtube, Linkedin } from "lucide-react";
+import Link from "next/link";
 
 const Footer = () => {
   return (
     <footer className="border-t border-stroke bg-white dark:border-strokedark dark:bg-blacksection">
       <div className="mx-auto max-w-[1390px] px-12">
         {/* <!-- Footer Top --> */}
-        <div className="flex items-center justify-around flex-wrap m-3 py-10 gap-5">          
-          <div className="flex items-center gap-5 h-10">
+        <div className="flex items-center justify-around flex-wrap m-3 py-10 gap-5">
+          <div className="flex flex-col items-center gap-2">
             <a href="https://sigarra.up.pt/feup/pt/web_page.inicial">
               <Image
                 width={150}
                 height={150}
                 src="/images/logo/feup.png"
                 alt="Logo"
-                className="mb-5 dark:hidden"
+                className="dark:hidden"
               />
               <Image
                 width={150}
                 height={150}
                 src="/images/logo/feup-white.png"
                 alt="Logo"
-                className="mb-5 hidden dark:block"
+                className="hidden dark:block"
               />
             </a>
             <a href="/">
@@ -33,12 +34,11 @@ const Footer = () => {
                 height={200}
                 src="/images/logo/aefeup.png"
                 alt="Logo"
-                className="mb-5"
               />
             </a>
           </div>
           <div className="flex w-fit flex-col gap-8 md:flex-row justify-between">
-            <div>
+            <div className="flex flex-col justify-center items-start">
               <h4 className="mb-3 text-itemtitle2 font-medium text-black dark:text-white">
                 AEFEUP
               </h4>
@@ -80,21 +80,21 @@ const Footer = () => {
           </div>
 
           <div className="flex items-center justify-center gap-5">
-              <p>Developed and Powered by <a href="https://niafeup.pt" className="hover:text-primary">NIAEFEUP</a></p>
-              <a href="https://niaefeup.pt">
-                <Image
-                  width={70}
-                  height={70}
-                  src="/images/logo/niaefeup.svg"
-                  alt="Logo"
-                  className=""
-                />
-              </a>
-            </div>
+            <p>Developed and Powered by <a href="https://niafeup.pt" className="hover:text-primary">NIAEFEUP</a></p>
+            <a href="https://niaefeup.pt">
+              <Image
+                width={70}
+                height={70}
+                src="/images/logo/niaefeup.svg"
+                alt="Logo"
+                className=""
+              />
+            </a>
+          </div>
         </div>
         {/* <!-- Footer Top --> */}
 
-        {/* <!-- Footer Bottom --> */}
+        {/* <!-- Social Links --> */}
         <div className="flex items-center justify-center gap-5 border-t border-stroke py-7 dark:border-strokedark">
           <div>
             <motion.div
@@ -116,24 +116,24 @@ const Footer = () => {
             >
               <ul className="flex items-center gap-5 w-full">
                 <li>
-                  <a href="https://instagram.com/aefeup" aria-label="social icon">
+                  <Link href="https://instagram.com/aefeup">
                     <Instagram className="w-6 h-6 dark:text-white" />
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="https://www.facebook.com/aefeup/" aria-label="social icon">
+                  <Link href="https://www.facebook.com/aefeup/">
                     <Facebook className="w-6 h-6 dark:text-white" />
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="https://www.youtube.com/channel/UCo6vXzxIaPYguq5Vd6efkyQ" aria-label="social icon">
+                  <Link href="https://www.youtube.com/channel/UCo6vXzxIaPYguq5Vd6efkyQ">
                     <Youtube className="w-6 h-6 dark:text-white" />
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="https://www.linkedin.com/company/aefeup" aria-label="social icon">
+                  <Link href="https://www.linkedin.com/company/aefeup">
                     <Linkedin className="w-6 h-6 dark:text-white" />
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </motion.div>
@@ -142,7 +142,7 @@ const Footer = () => {
         {/* <!-- Footer Bottom --> */}
       </div>
     </footer>
-  
+
   );
 };
 

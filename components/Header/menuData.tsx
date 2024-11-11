@@ -6,31 +6,31 @@ const menuData: Menu[] = [
     submenu: [
       {
         title: "Quem Somos",
-        path: "aefeup/about",
+        path: "about",
       },
       {
         title: "História da AEFEUP",
-        path: "aefeup/history",
+        path: "history",
       },
       {
         title: "Cedências de Espaço",
-        path: "aefeup/requests"
+        path: "requests"
       },
       {
         title: "Serviços",
-        path: "aefeup/services"
+        path: "services"
       },
       {
         title: "Eventos",
-        path: "aefeup/events"
+        path: "events"
       },
       {
         title: "Núcleos e Associações",
-        path: "aefeup/associations"
+        path: "associations"
       },
       {
-        title: "Documentos",
-        path: "aefeup/documents"
+        title: "Documentos (wip)",
+        path: "documents"
       },
     ],
   },
@@ -38,7 +38,7 @@ const menuData: Menu[] = [
     title: "Estudante",
     submenu: [
       {
-        title: "Bem-vindo à FEUP",
+        title: "Bem-vindo à FEUP (wip)",
         path: "student/welcome"
       },
       {
@@ -46,11 +46,11 @@ const menuData: Menu[] = [
         path: "student/guide"
       },
       {
-        title: "Espaços",
+        title: "Espaços (wip)",
         path: "student/spaces"
       },
       {
-        title: "Oportunidades",
+        title: "Oportunidades (wip)",
         path: "student/opportunities"
       },
       {
@@ -63,26 +63,26 @@ const menuData: Menu[] = [
     title: "Desporto",
     submenu: [
       {
-        title: "História e Troféus",
-        path: "sports/history"
+        title: "História e Troféus (wip)",
+        path: "sport/history"
       },
       {
-        title: "Seleções",
-        path: "sports/teams"
+        title: "Seleções (error)",
+        path: "sport/teams"
       },
       {
-        title: "Motorsport",
-        path: "sports/motorsport"
+        title: "Motorsport (wip)",
+        path: "sport/motorsport"
       },
     ],
   },
   {
-    title: "Loja",
+    title: "Loja (wip)",
     path: "store",
   },
   {
     title: "Contactos",
-    path: "contacts",
+    path: "contact",
   },
 ];
 

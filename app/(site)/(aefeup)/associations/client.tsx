@@ -3,7 +3,7 @@
 import { Media } from "@/payload-types";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { getSociaIcon } from "./socials";
+import { SocialIcon } from "./socials";
 import Link from "next/link";
 
 const AssociationCard = ({ association }) => {
@@ -22,7 +22,7 @@ const AssociationCard = ({ association }) => {
             <ul className="flex gap-1 mt-1 justify-center">
                 {association.socials?.map((social) => {
                     return <Link key={social.type} href={social.link}>
-                        {getSociaIcon(social.type)}
+                        <SocialIcon type={social.type} />
                     </Link>
                 })}
             </ul>

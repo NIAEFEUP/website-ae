@@ -3,16 +3,16 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Avatar from "@/components/Avatar";
-import { ArrowUp , ArrowDown  } from "lucide-react";
+import { ArrowUp, ArrowDown } from "lucide-react";
 import { BoardSection, Person } from "@/payload-types";
 
 
 interface Props {
-  presidentSection : BoardSection,
+  presidentSection: BoardSection,
   sections: BoardSection[]
 }
 
-const AvatarLineup = ({ presidentSection,sections }: Props) => {
+const AvatarLineup = ({ presidentSection, sections }: Props) => {
   const [showAll, setShowAll] = useState(false);
 
   return (
@@ -29,7 +29,7 @@ const AvatarLineup = ({ presidentSection,sections }: Props) => {
       <div className="flex flex-col items-center mt-5 gap-7 ">
         <h3 className="text-black dark:text-white text-3xl font-medium  text-center">Presidência</h3>
         <div className="flex justify-center flex-wrap gap-5 ">
-          {presidentSection.members.map((person) => (<Avatar person={person.person}/>))}
+          {presidentSection && presidentSection.members.map((person) => (<Avatar person={person.person} />))}
         </div>
       </div>
 
@@ -48,7 +48,7 @@ const AvatarLineup = ({ presidentSection,sections }: Props) => {
                 <h3 className="text-3xl font-medium text-black dark:text-white text-center">{section.name}</h3>
                 <div className="flex justify-center gap-5 flex-wrap">
                   {section.members.map((person) => (
-                    <Avatar person={person.person}/>
+                    <Avatar person={person.person} />
                   ))}
                 </div>
               </div>
@@ -71,7 +71,7 @@ const AvatarLineup = ({ presidentSection,sections }: Props) => {
           onClick={() => setShowAll(!showAll)}
           className="px-6 py-3 bg-[#A42810] text-white rounded-full hover:bg-[#a42910] transition-all flex items-center"
         >
-          {showAll ? <ArrowUp size={24} /> : <ArrowDown  size={24} />}
+          {showAll ? <ArrowUp size={24} /> : <ArrowDown size={24} />}
         </button>
       </motion.div>
     </motion.div>
