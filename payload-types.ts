@@ -14,13 +14,16 @@ export interface Config {
     users: User;
     media: Media;
     person: Person;
-    sponsor: Sponsor;
+    material: Material;
     sportsTeam: SportsTeam;
+    sponsor: Sponsor;
+    association: Association;
     studentGuide: StudentGuide;
     link: Link;
     position: Position;
     board_section: BoardSection;
     president: President;
+    spaceData: SpaceDatum;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -97,12 +100,101 @@ export interface Person {
   description?: string | null;
   birthday?: string | null;
   socials?:
-  | {
-    type: 'linkedin' | 'facebook' | 'website' | 'instagram';
-    link: string;
-    id?: string | null;
-  }[]
-  | null;
+    | {
+        type: 'linkedin' | 'facebook' | 'website' | 'instagram';
+        link: string;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "position".
+ */
+export interface Position {
+  id: number;
+  name: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "material".
+ */
+export interface Material {
+  id: number;
+  name: string;
+  quantity: number;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "sportsTeam".
+ */
+export interface SportsTeam {
+  id: number;
+  sport_name: string;
+  fap_id?: number | null;
+  coach?: (number | null) | Person;
+  workouts?:
+    | {
+        weekDay: 'monday' | 'tuesday' | 'wednesday' | 'thursday' | 'friday' | 'saturday' | 'sunday';
+        hour: string;
+        id?: string | null;
+      }[]
+    | null;
+  emoji?:
+    | (
+        | '⚽️'
+        | '🏀'
+        | '🏈'
+        | '🎾'
+        | '🏐'
+        | '🏉'
+        | '🥏'
+        | '🏓'
+        | '🏸'
+        | '🏒'
+        | '🏑'
+        | '🏏'
+        | '🥍'
+        | '🥅'
+        | '🎱'
+        | '🏹'
+        | '🎿'
+        | '🛷'
+        | '🚴‍♂️'
+        | '🏄‍♂️'
+        | '🏇'
+        | '🏊‍♂️'
+        | '🏋️‍♂️'
+        | '🤼‍♂️'
+        | '🤸‍♂️'
+        | '🤺'
+        | '🤾‍♂️'
+        | '🏌️‍♂️'
+        | '🧗‍♂️'
+        | '🚣‍♂️'
+        | '🚵‍♂️'
+        | '🏎️'
+        | '🏍️'
+      )
+    | null;
+  lineup?:
+    | {
+        lineupRow?:
+          | {
+              person: number | Person;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  backgroundImage: number | Media;
   updatedAt: string;
   createdAt: string;
 }
@@ -120,79 +212,22 @@ export interface Sponsor {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "position".
+ * via the `definition` "association".
  */
-export interface Position {
+export interface Association {
   id: number;
   name: string;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "sportsTeam".
- */
-export interface SportsTeam {
-  id: number;
-  sport_name: string;
-  fap_id?: number | null;
-  coach?: (number | null) | Person;
-  workouts?:
-  | {
-    weekDay: 'monday' | 'tuesday' | 'wednesday' | 'thursday' | 'friday' | 'saturday' | 'sunday';
-    hour: string;
-    id?: string | null;
-  }[]
-  | null;
-  emoji?:
-  | (
-    | '⚽️'
-    | '🏀'
-    | '🏈'
-    | '🎾'
-    | '🏐'
-    | '🏉'
-    | '🥏'
-    | '🏓'
-    | '🏸'
-    | '🏒'
-    | '🏑'
-    | '🏏'
-    | '🥍'
-    | '🥅'
-    | '🎱'
-    | '🏹'
-    | '🎿'
-    | '🛷'
-    | '🚴‍♂️'
-    | '🏄‍♂️'
-    | '🏇'
-    | '🏊‍♂️'
-    | '🏋️‍♂️'
-    | '🤼‍♂️'
-    | '🤸‍♂️'
-    | '🤺'
-    | '🤾‍♂️'
-    | '🏌️‍♂️'
-    | '🧗‍♂️'
-    | '🚣‍♂️'
-    | '🚵‍♂️'
-    | '🏎️'
-    | '🏍️'
-  )
-  | null;
-  lineup?:
-  | {
-    lineupRow?:
+  in_aefeup: boolean;
+  description?: string | null;
+  logo: number | Media;
+  address?: string | null;
+  socials?:
     | {
-      person: number | Person;
-      id?: string | null;
-    }[]
+        type: 'website' | 'linkedin' | 'facebook' | 'instagram';
+        link: string;
+        id?: string | null;
+      }[]
     | null;
-    id?: string | null;
-  }[]
-  | null;
-  backgroundImage: number | Media;
   updatedAt: string;
   createdAt: string;
 }
@@ -237,57 +272,15 @@ export interface BoardSection {
   members: {
     person: number | Person;
     id?: string | null;
-  }[]
-  | null;
-  emoji?:
-  | (
-    | '⚽️'
-    | '🏀'
-    | '🏈'
-    | '🎾'
-    | '🏐'
-    | '🏉'
-    | '🥏'
-    | '🏓'
-    | '🏸'
-    | '🏒'
-    | '🏑'
-    | '🏏'
-    | '🥍'
-    | '🥅'
-    | '🎱'
-    | '🏹'
-    | '🎿'
-    | '🛷'
-    | '🚴‍♂️'
-    | '🏄‍♂️'
-    | '🏇'
-    | '🏊‍♂️'
-    | '🏋️‍♂️'
-    | '🤼‍♂️'
-    | '🤸‍♂️'
-    | '🤺'
-    | '🤾‍♂️'
-    | '🏌️‍♂️'
-    | '🧗‍♂️'
-    | '🚣‍♂️'
-    | '🚵‍♂️'
-    | '🏎️'
-    | '🏍️'
-  )
-  | null;
-  lineup?:
-  | {
-    lineupRow?:
+  }[];
+  description?: string | null;
+  subgroups?:
     | {
-      person: number | Person;
-      id?: string | null;
-    }[]
+        title?: string | null;
+        description?: string | null;
+        id?: string | null;
+      }[]
     | null;
-    id?: string | null;
-  }[]
-  | null;
-  backgroundImage: number | Media;
   updatedAt: string;
   createdAt: string;
 }
@@ -306,6 +299,16 @@ export interface President {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "spaceData".
+ */
+export interface SpaceDatum {
+  id: number;
+  name: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-preferences".
  */
 export interface PayloadPreference {
@@ -316,14 +319,14 @@ export interface PayloadPreference {
   };
   key?: string | null;
   value?:
-  | {
-    [k: string]: unknown;
-  }
-  | unknown[]
-  | string
-  | number
-  | boolean
-  | null;
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -348,5 +351,5 @@ export interface Auth {
 
 
 declare module 'payload' {
-  export interface GeneratedTypes extends Config { }
+  export interface GeneratedTypes extends Config {}
 }
