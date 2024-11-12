@@ -67,7 +67,7 @@ const menuData: Menu[] = [
         path: "sport/history"
       },
       {
-        title: "Seleções (error)",
+        title: "Seleções",
         path: "sport/teams"
       },
       {

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 const SportsPage = async () => {
 
   const teams = await (await getPayload({ config })).find({
-    collection: 'sports-team',
+    collection: 'sportsTeam',
   });
 
   return (

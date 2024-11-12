@@ -9,6 +9,7 @@ interface Props {
 
 const Avatar = ({ person }: Props) => {
 
+  if (!person) return null;
   const photo = person.photo as Media;
 
   return (
