@@ -24,6 +24,7 @@ export interface Config {
     board_section: BoardSection;
     president: President;
     spaceData: SpaceDatum;
+    event: Event;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -304,6 +305,26 @@ export interface President {
 export interface SpaceDatum {
   id: number;
   name: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "event".
+ */
+export interface Event {
+  id: number;
+  title: string;
+  type: string;
+  description: string;
+  image: number | Media;
+  link?:
+    | {
+        description?: string | null;
+        url?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt: string;
   createdAt: string;
 }
