@@ -10120,7 +10120,11 @@ snapshots:
 
   types-react-dom@19.0.0-rc.0:
     dependencies:
+<<<<<<< HEAD
       '@types/react': types-react@19.0.0-rc.0
+=======
+      '@types/react': /types-react@19.0.0-rc.0
+>>>>>>> c0705e4206f5b51c39b95a5151d5c7ef290ff62e
 
   types-react@19.0.0-rc.0:
     dependencies:

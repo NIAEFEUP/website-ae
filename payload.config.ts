@@ -18,6 +18,8 @@ import { Link } from "./collections/Link";
 import { Position } from "./collections/Position";
 import { BoardSection } from "./collections/BoardSection";
 import { President } from "./collections/President";
+import { DocumentFolder } from "./collections/DocumentFolder";
+import { DocFile } from "./collections/DocFile";
 import { Video } from "./collections/Video";
 import { Faq } from "./collections/Faq";
 
@@ -43,6 +45,8 @@ export default buildConfig({
     BoardSection,
     President,
     SpaceData,
+    DocumentFolder,
+    DocFile,
     Video,
     Faq
   ],
