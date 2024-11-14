@@ -15,7 +15,7 @@ const Header = () => {
   const pathUrl = usePathname();
 
   const handleStickyMenu = () => {
-    if (window.scrollY >= 80) {
+    if (window.scrollY >= 40) {
       setStickyMenu(true);
     } else {
       setStickyMenu(false);
@@ -36,8 +36,8 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed left-0 top-0 z-99999 w-full py-7 ${stickyMenu
-        ? "bg-white !py-4 shadow transition duration-100 dark:bg-black"
+      className={`fixed left-0 top-0 z-99999 w-full py-4 ${stickyMenu
+        ? "bg-white shadow transition duration-100 dark:bg-black"
         : ""
         }`}
     >
@@ -116,14 +116,13 @@ const Header = () => {
                           </svg>
                         </span>
                       </button>
-
                       <ul
                         className={`dropdown ${openSubmenu === key ? "flex" : ""
                           }`}
                       >
                         {menuItem.submenu.map((item, key) => (
                           <li key={key} className="hover:text-primary">
-                            <Link href={item.path || "#"}>{item.title}</Link>
+                            <Link href={"/" + (menuItem.path ? menuItem.path + "/" : "") + item.path || "#"}>{item.title}</Link>
                           </li>
                         ))}
                       </ul>

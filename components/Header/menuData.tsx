@@ -3,6 +3,7 @@ import { Menu } from "@/types/menu";
 const menuData: Menu[] = [
   {
     title: "AEFEUP",
+    path: "",
     submenu: [
       {
         title: "Quem Somos",
@@ -36,43 +37,45 @@ const menuData: Menu[] = [
   },
   {
     title: "Estudante",
+    path: "student",
     submenu: [
       {
-        title: "Bem-vindo à FEUP (wip)",
-        path: "student/welcome"
+        title: "Bem-vindo à FEUP",
+        path: "welcome"
       },
       {
         title: "Guia do Estudante",
-        path: "student/guide"
+        path: "guide"
       },
       {
         title: "Espaços (wip)",
-        path: "student/spaces"
+        path: "spaces"
       },
       {
         title: "Oportunidades (wip)",
-        path: "student/opportunities"
+        path: "opportunities"
       },
       {
         title: "Apoio Social e Bem-Estar",
-        path: "student/support"
+        path: "support"
       },
     ],
   },
   {
     title: "Desporto",
+    path: "sport",
     submenu: [
       {
         title: "História e Troféus (wip)",
-        path: "sport/history"
+        path: "history"
       },
       {
         title: "Seleções",
-        path: "sport/teams"
+        path: "teams"
       },
       {
         title: "Motorsport (wip)",
-        path: "sport/motorsport"
+        path: "motorsport"
       },
     ],
   },
