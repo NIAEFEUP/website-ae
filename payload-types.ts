@@ -372,8 +372,6 @@ export interface Category {
   id: number;
   name: string;
   places?: (number | Place)[] | null;
-  id: number;
-  name: string;
   updatedAt: string;
   createdAt: string;
 }
