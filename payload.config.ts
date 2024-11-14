@@ -19,6 +19,7 @@ import { Position } from "./collections/Position";
 import { BoardSection } from "./collections/BoardSection";
 import { President } from "./collections/President";
 import { Video } from "./collections/Video";
+import { Faq } from "./collections/Faq";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -42,7 +43,8 @@ export default buildConfig({
     BoardSection,
     President,
     SpaceData,
-    Video
+    Video,
+    Faq
   ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",
