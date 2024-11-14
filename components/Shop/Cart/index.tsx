@@ -12,6 +12,7 @@ import { cartProduct } from "@/types/cartProduct";
 import startPaymentProcess from "./payment";
 import PaymentForm from "../PaymentForm";
 import PuffLoader from "react-spinners/PuffLoader";
+import { Separator } from "@/components/ui/separator"
 
 type ShopCartProps = {
    isOpen: boolean,
@@ -32,12 +33,13 @@ const ShopCart = ({ isOpen, onOpenChange, products, removeFromCart }: ShopCartPr
                {products.map((p) => {
                   return <>
                      <CartItem item={p} removeFromCart={removeFromCart}></CartItem>
-                     <hr></hr>
+                     <Separator />
                   </>
                })}
             </SheetDescription>
          </SheetHeader>
-         <SheetFooter>
+         <SheetFooter className="sm:justify-center">
+
             {!processingPayment ? <PaymentForm setNumber={setNumber} products={products} setProcessingPayment={setProcessingPayment}></PaymentForm> :
                <div className="flex gap-2 items-center">
                   <h2>Waiting for confirmation</h2>

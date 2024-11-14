@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export async function requestMBWAY(phoneNumber: string, amount: number) {
-   console.log("Function requestMBWAY called with:", phoneNumber, amount); // Initial log
+   console.log("Function requestMBWAY called with:", phoneNumber, amount);
 
    const options = {
       method: 'POST',
@@ -15,15 +15,15 @@ export async function requestMBWAY(phoneNumber: string, amount: number) {
       }
    };
 
-   console.log("Options prepared:", options); // Log options
+   console.log("Options prepared:", options);
 
    try {
       const { data } = await axios.request(options);
-      console.log("Response data:", data); // Log response data
+      console.log("Response data:", data);
       pollPaymentStatus(data.RequestId);
       return;
    } catch (error) {
-      console.error("Error occurred:", error); // Log error
+      console.error("Error occurred:", error);
    }
 }
 
