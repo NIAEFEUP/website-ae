@@ -4,22 +4,32 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import ScheduleTable from "../Table";
 
-const ScheduleData1 = [
-  { label: 'segunda-feira', value: '10:00–12:00, 14:00–17:00' },
-  { label: 'terça-feira', value: '10:00–12:00, 14:00–17:00' },
-  { label: 'quarta-feira', value: '10:00–12:00, 14:00–17:00' },
-  { label: 'quinta-feira', value: '10:00–12:00, 14:00–17:00' },
-  { label: 'sexta-feira', value: '10:00–12:00, 14:00–17:00' },
+const SecretariaData = [
+  { label: 'segunda-feira', value: '10:00–12:30, 14:00–17:30' },
+  { label: 'terça-feira', value: '10:00–12:30, 14:00–17:30' },
+  { label: 'quarta-feira', value: '10:00–12:30, 14:00–17:30' },
+  { label: 'quinta-feira', value: '10:00–12:30, 14:00–17:30' },
+  { label: 'sexta-feira', value: '10:00–12:30, 14:00–17:30' },
   { label: 'sábado', value: 'Encerrado' },
   { label: 'domingo', value: 'Encerrado' },
 ];
 
-const ScheduleData2 = [
+const ReprografiaData = [
   { label: 'segunda-feira', value: '09:00–19:00' },
   { label: 'terça-feira', value: '09:00–19:00' },
   { label: 'quarta-feira', value: '09:00–19:00' },
   { label: 'quinta-feira', value: '09:00–19:00' },
   { label: 'sexta-feira', value: '09:00–19:00' },
+  { label: 'sábado', value: 'Encerrado' },
+  { label: 'domingo', value: 'Encerrado' },
+];
+
+const CafetariaData = [
+  { label: 'segunda-feira', value: '10:00–19:00' },
+  { label: 'terça-feira', value: '10:00–19:00' },
+  { label: 'quarta-feira', value: '10:00–19:00' },
+  { label: 'quinta-feira', value: '10:00–19:00' },
+  { label: 'sexta-feira', value: '10:00–19:00' },
   { label: 'sábado', value: 'Encerrado' },
   { label: 'domingo', value: 'Encerrado' },
 ];
@@ -87,7 +97,7 @@ const Info = () => {
               </span>
               <h2 className="relative mb-6 text-3xl font-bold text-black dark:text-white xl:text-hero">
                 <span className="relative inline-block before:absolute before:bottom-2.5 before:left-0 before:-z-1 before:h-3 before:w-full before:bg-titlebg  dark:before:bg-titlebgdark">
-                Secretaria                
+                  Secretaria
                 </span>
               </h2>
               <div className="mb-8 space-y-4">
@@ -98,7 +108,7 @@ const Info = () => {
                   <strong>Email:</strong> <span><a href="mailto:aefeup@aefeup.pt">aefeup@aefeup.pt</a></span>
                 </div>
               </div>
-              <ScheduleTable data={ScheduleData1} />
+              <ScheduleTable data={SecretariaData} />
             </motion.div>
           </div>
         </div>
@@ -127,13 +137,13 @@ const Info = () => {
               viewport={{ once: true }}
               className="animate_left md:w-1/2"
             >
-             <span className="font-medium uppercase text-black dark:text-white">
+              <span className="font-medium uppercase text-black dark:text-white">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               </span>
               <h2 className="relative mb-6 text-3xl font-bold text-black dark:text-white xl:text-hero">
-                Reprografia 
+                Reprografia
                 <span className="relative inline-block before:absolute before:bottom-2.5 before:left-0 before:-z-1 before:h-3 before:w-full before:bg-titlebg2 dark:before:bg-titlebgdark">
-                Efeitos Gráficos
+                  Efeitos Gráficos
                 </span>
               </h2>
               <div className="mb-8 space-y-4">
@@ -144,7 +154,7 @@ const Info = () => {
                   <strong>Email:</strong> <span><a href="mailto:editorial@aefeup.pt">editorial@aefeup.pt</a></span>
                 </div>
               </div>
-              <ScheduleTable data={ScheduleData2} />
+              <ScheduleTable data={ReprografiaData} />
             </motion.div>
             <motion.div
               variants={{
@@ -243,10 +253,10 @@ const Info = () => {
               </span>
               <h2 className="relative mb-6 text-3xl font-bold text-black dark:text-white xl:text-hero">
                 <span className="relative inline-block before:absolute before:bottom-2.5 before:left-0 before:-z-1 before:h-3 before:w-full before:bg-pink-300 dark:before:bg-titlebgdark">
-                Cafetaria
+                  Cafetaria
                 </span>
               </h2>
-              <ScheduleTable data={ScheduleData1} />
+              <ScheduleTable data={CafetariaData} />
 
               <div>
                 <a
@@ -273,7 +283,7 @@ const Info = () => {
       {/* <!-- ===== 3 End ===== --> */}
 
     </>
-    
+
   );
 };
 

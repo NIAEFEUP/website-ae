@@ -4,7 +4,7 @@ import servicesFeaturesData from './servicesFeaturesData';
 import Info from "@/components/Info";
 
 export const metadata: Metadata = {
-  title: "Services Page",
+  title: "Services",
   description: "This is Services Page",
 };
 
