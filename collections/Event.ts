@@ -22,7 +22,7 @@ export const Event: CollectionConfig = {
     {
       name: 'description',
       label: 'Descrição',
-      type: 'text',
+      type: 'textarea',
       required: true
     },
     {

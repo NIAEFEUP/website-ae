@@ -1,26 +1,43 @@
-"use client";
-
-import SectionHeader from "@/components/Common/SectionHeader";
+import EventComponent from "@/components/Event";
+import { Media } from "@/payload-types";
 import { getPayload } from "payload";
 import config from "payload.config";
+import HeaderEvents from "@/app/(site)/(aefeup)/events/HeaderEvents";
+import { Metadata } from "next";
 
-export default async function EventsPage(){
-  const payload = await getPayload({config});
+export const metadata: Metadata = {
+  title: "Events Page",
+  description: "This is Events Page",
+};
+
+
+const EventsPage = async () => {
+  const payload = await getPayload({config})
   const events = (await payload.find({
     collection: "event"
   })).docs;
 
   return (
-      <>
-        <div className="overflow-hidden pb-8 pt-36 md:pt-24 xl:pb-24 xl:pt-32">
-            <SectionHeader headerInfo={{
-                title: "Eventos",
-                subtitle: "Conhece os nossos eventos",
-                description: `A AEFEUP organiza diversos eventos ao longo do ano letivo, com o objetivo de promover a integração dos estudantes e proporcionar momentos de convívio e diversão.`
-            }}
-          />
-        </div>
-      </>
+    <>
+      <HeaderEvents/>
+        {
+          events.map((event,key) => (
+              <EventComponent
+                key={key}
+                eventData={{
+                  eventId: event.id,
+                  eventType: event.type,
+                  eventTitle: event.title,
+                  eventContent: event.description,
+                  eventImage: (event.image as Media),
+                  eventLinks: event.link!
+                }} 
+              />
+            )
+          )
+        }
+    </>
   )
-}
+}; 
 
+export default EventsPage;
