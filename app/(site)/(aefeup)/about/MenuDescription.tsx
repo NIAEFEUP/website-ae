@@ -10,32 +10,31 @@ interface Props {
   sections: BoardSection[]
 }
 
-const MenuDescription = ({sections}: Props) => {
+const MenuDescription = ({ sections }: Props) => {
   const [selected, setSelected] = useState<number | null>(null);
   const [menuHeight, setMenuHeight] = useState(0);
   const menuRef = useRef<HTMLDivElement>(null);
-
-  const handleButtonClick = (index: number) => {
-    setSelected(index);
-  };
 
   useEffect(() => {
     if (menuRef.current) {
       setMenuHeight(menuRef.current.clientHeight);
     }
+    if (sections.length > 0) {
+      setSelected(0);
+    }
   }, []);
 
   return (
-    <div className="mx-auto max-w-7xl"> 
+    <div className="mx-auto max-w-7xl">
       <SectionHeader
-          headerInfo={{
-            title: "Quem Somos",
-            subtitle: "Departamentos",
-            description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. In
+        headerInfo={{
+          title: "Departamentos",
+          subtitle: "Departamentos",
+          description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. In
           convallis tortor eros. Donec vitae tortor lacus. Phasellus aliquam
           ante in maximus.`,
-          }}
-        />
+        }}
+      />
 
       <motion.div
         variants={{
@@ -56,19 +55,18 @@ const MenuDescription = ({sections}: Props) => {
         className="flex justify-center items-start h-full"
       >
         <div
-        ref={menuRef}
-        className="w-full flex items-start gap-8 flex-col sm:flex-row"
-      >
+          ref={menuRef}
+          className="w-full flex items-start gap-8 flex-col sm:flex-row"
+        >
           <div className="flex flex-col gap-4 w-full sm:w-1/4">
-            {sections.map((section,index)=> (
+            {sections.map((section, index) => (
               <button
                 key={index}
-                onClick={() => handleButtonClick(index)}
-                className={`py-2 px-4 w-full rounded-lg text-center ${
-                  selected === index
-                    ? "bg-[#97321D] text-white"
-                    : "bg-gray-200 dark:bg-gray-400 dark:text-black hover:shadow-lg"
-                }`}
+                onClick={() => setSelected(index)}
+                className={`py-2 px-4 w-full rounded-lg text-center ${selected === index
+                  ? "bg-[#97321D] text-white"
+                  : "bg-gray-200 dark:bg-gray-400 dark:text-black hover:shadow-lg"
+                  }`}
               >
                 {section.name}
               </button>
@@ -97,7 +95,7 @@ const MenuDescription = ({sections}: Props) => {
                 </p>
 
                 <div className="flex flex-col sm:flex-row justify-center gap-4 mb-6">
-                  {sections[selected].members.map((person) => (<Avatar person={person.person}/>))}
+                  {sections[selected].members.map((person) => (<Avatar person={person.person} />))}
                 </div>
 
                 <div className="space-y-6">

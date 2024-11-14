@@ -2,9 +2,9 @@ import { Metadata } from "next";
 import Feature from "@/components/Features";
 import Info from "@/components/Info";
 import FullScreenImage from "@/components/FullScreenImageProps";
-import landingFeaturesData from "./landing/landingFeaturesData";
+import landingFeaturesData from "./landingFeaturesData";
 import Testimonial from "@/components/Testimonial";
-import { landingInfoData } from "./landing/landingInfoData";
+import { landingInfoData } from "./landingInfoData";
 export const metadata: Metadata = {
   title: "Services Page",
   description: "This is the Services Page",

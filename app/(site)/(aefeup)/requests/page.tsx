@@ -36,7 +36,7 @@ export default async function Request() {
 		const {data,error} = await resend.emails.send({
 			from: process.env.RESEND_EMAIL ? `AEFEUP <${process.env.RESEND_EMAIL}>` :'Acme <onboarding@resend.dev>',
 			to: [requestInfo.email],
-			subject: `${requestInfo.isEvent ? "Marcação de Evento": "Pedido de Material"}`,
+			subject: `${requestInfo.isEvent ? "Reserva de Espaço": "Pedido de Material"}`,
 			html: await render(EmailTemplate({requestEventInfo: requestInfo})),
 		})
 	}
