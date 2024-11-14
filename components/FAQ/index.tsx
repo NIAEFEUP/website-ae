@@ -3,9 +3,9 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { useState } from "react";
 import FAQItem from "./FAQItem";
-import faqData from "./faqData";
+import { Faq } from "@/payload-types";
 
-const FAQ = () => {
+const FAQ = ({faqData} : {faqData : Faq[]}) => {
   const [activeFaq, setActiveFaq] = useState(1);
 
   const handleFaqToggle = (id: number) => {
