@@ -24,6 +24,7 @@ export interface Config {
     board_section: BoardSection;
     president: President;
     spaceData: SpaceDatum;
+    faq: Faq;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -304,6 +305,17 @@ export interface President {
 export interface SpaceDatum {
   id: number;
   name: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "faq".
+ */
+export interface Faq {
+  id: number;
+  quest: string;
+  ans: string;
   updatedAt: string;
   createdAt: string;
 }
