@@ -8,12 +8,14 @@ import { BoardSection, Person } from "@/payload-types";
 
 
 interface Props {
-  presidentSection: BoardSection,
   sections: BoardSection[]
 }
 
-const AvatarLineup = ({ presidentSection, sections }: Props) => {
+const AvatarLineup = ({ sections }: Props) => {
   const [showAll, setShowAll] = useState(false);
+
+  const main_board = sections.find((e) => e.type === 'direcao');
+  const otherSections = sections.filter((e) => e.type === 'mesa_da_assembleia_geral' || e.type === 'conselho_fiscal');
 
   return (
     <motion.div
@@ -27,15 +29,15 @@ const AvatarLineup = ({ presidentSection, sections }: Props) => {
       style={{ marginTop: '2rem', paddingBottom: '2rem' }}
     >
       <div className="flex flex-col items-center mt-5 gap-7 ">
-        <h3 className="text-black dark:text-white text-3xl font-medium  text-center">Presidência</h3>
+        <h3 className="text-black dark:text-white text-3xl font-medium  text-center">Direção</h3>
         <div className="flex justify-center flex-wrap gap-5 ">
-          {presidentSection && presidentSection.members.map((person) => (<Avatar person={person.person} />))}
+          {main_board && main_board.members.map((person) => (<Avatar person={person.person} />))}
         </div>
       </div>
 
       <AnimatePresence>
         {showAll && (
-          sections.map((section, index) => (
+          otherSections.map((section, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, height: 0 }}
@@ -69,9 +71,19 @@ const AvatarLineup = ({ presidentSection, sections }: Props) => {
       >
         <button
           onClick={() => setShowAll(!showAll)}
-          className="px-6 py-3 bg-[#A42810] text-white rounded-full hover:bg-[#a42910] transition-all flex items-center"
+          className="px-6 py-3 bg-[#A42810] text-white rounded-full hover:bg-[#a42910] transition-all flex gap-2 items-center"
         >
-          {showAll ? <ArrowUp size={24} /> : <ArrowDown size={24} />}
+          {showAll ?
+            <>
+              <ArrowUp size={24} />
+              Esconder secções
+            </>
+            :
+            <>
+              <ArrowDown size={24} />
+              Mostrar mais Secções
+            </>
+          }
         </button>
       </motion.div>
     </motion.div>
