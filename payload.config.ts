@@ -14,7 +14,7 @@ import { SpaceData } from "./collections/SpaceData";
 import { Sponsor } from "./collections/Sponsor";
 import { Association } from "./collections/Association";
 import { StudentGuide } from "./collections/StudentGuide";
-import { Link } from "./collections/Link";
+import { UsefulLink } from "./collections/UsefulLink";
 import { Position } from "./collections/Position";
 import { BoardSection } from "./collections/BoardSection";
 import { President } from "./collections/President";
@@ -40,7 +40,7 @@ export default buildConfig({
     Sponsor,
     Association,
     StudentGuide,
-    Link,
+    UsefulLink,
     Position,
     BoardSection,
     President,

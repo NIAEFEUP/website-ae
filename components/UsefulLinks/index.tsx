@@ -1,10 +1,11 @@
 "use client";
 
-import { Link } from "@/payload-types";
+import { UsefulLink } from "@/payload-types";
 import { motion } from "framer-motion";
+import { ExternalLink } from "lucide-react";
 
 interface Props {
-  links: Link[]
+  links: UsefulLink[]
 }
 
 const UsefulLinks = ({ links } : Props) => {
@@ -35,14 +36,13 @@ const UsefulLinks = ({ links } : Props) => {
             <div className="grid grid-cols-2">
               {links.map((link,_index) => (
                 <div className="border solid rounded m-2 hover:shadow">
-                  <a
-                    href={link.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-base  p-1 dark:text-white text-white bg-[#97321D] rounded transition-colors duration-200 block text-center"
-                  >
-                    {link.label}
-                  </a>
+                  <div className="p-2 border rounded text-white bg-primary">
+                    <a href={link.url} className="flex justify-center">
+                      <ExternalLink size={20} className="mx-1"/>
+                      {link.label}
+                    </a>
+
+                  </div>
                   <p >
                     {link.description}
                   </p>

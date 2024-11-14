@@ -19,7 +19,7 @@ export interface Config {
     sponsor: Sponsor;
     association: Association;
     studentGuide: StudentGuide;
-    link: Link;
+    usefulLink: UsefulLink;
     position: Position;
     board_section: BoardSection;
     president: President;
@@ -256,9 +256,9 @@ export interface StudentGuide {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "link".
+ * via the `definition` "usefulLink".
  */
-export interface Link {
+export interface UsefulLink {
   id: number;
   label: string;
   url: string;

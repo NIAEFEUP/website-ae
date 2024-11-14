@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import SectionHeader from "@/components/Common/SectionHeader";
 import PdfViewer from "@/components/Pdf";
-import Links from "@/components/Links";
+import UsefulLinks from "@/components/UsefulLinks";
 import { getPayload } from 'payload';
 import config from 'payload.config';
 
@@ -11,7 +11,7 @@ const studentGuide = (await payload.find({
 })).docs
 
 const linksData = (await payload.find({
-  collection: "link"
+  collection: "usefulLink"
 })).docs
 
 export const metadata: Metadata = {
@@ -34,7 +34,7 @@ Aqui poderás encontrar conteúdo relacionado com os serviços da FEUP, redes de
           />
         </div>
     
-    <Links links={linksData}></Links>
+    <UsefulLinks links={linksData}></UsefulLinks>
     <PdfViewer files={studentGuide}></PdfViewer>
 
     </section>

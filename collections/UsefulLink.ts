@@ -1,10 +1,10 @@
 import { CollectionConfig } from "payload";
 
-export const Link : CollectionConfig = {
-    slug: 'link',
+export const UsefulLink: CollectionConfig = {
+    slug: 'usefulLink',
     labels : {
-        singular: 'Link',
-        plural: 'Links'
+        singular: 'Useful Link',
+        plural: 'Useful Links'
     },
     fields : [
         {
