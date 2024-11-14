@@ -24,6 +24,8 @@ export interface Config {
     board_section: BoardSection;
     president: President;
     spaceData: SpaceDatum;
+    documentFolder: DocumentFolder;
+    docfile: Docfile;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -306,6 +308,40 @@ export interface SpaceDatum {
   name: string;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "documentFolder".
+ */
+export interface DocumentFolder {
+  id: number;
+  folder_name: string;
+  section_name?: ('Direção' | 'Mesa da Assembleia Geral' | 'Núcleos') | null;
+  files: {
+    file?: (number | null) | Docfile;
+    id?: string | null;
+  }[];
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "docfile".
+ */
+export interface Docfile {
+  id: number;
+  name: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

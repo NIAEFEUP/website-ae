@@ -37,7 +37,7 @@ module.exports = {
         alabaster: "#FBFBFB",
         zumthor: "#EDF5FF",
         socialicon: "#D1D8E0",
-
+        documentCard: "#d5d5d5"
         // secondary: "#C4C6B9",
         // accent: #562920
         // background: #FAFAFA
