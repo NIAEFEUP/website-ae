@@ -26,6 +26,8 @@ export interface Config {
     spaceData: SpaceDatum;
     documentFolder: DocumentFolder;
     docfile: Docfile;
+    video: Video;
+    faq: Faq;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -97,7 +99,7 @@ export interface Media {
 export interface Person {
   id: number;
   name: string;
-  position: number | Position;
+  position?: (number | null) | Position;
   photo?: (number | null) | Media;
   description?: string | null;
   birthday?: string | null;
@@ -271,6 +273,7 @@ export interface Link {
 export interface BoardSection {
   id: number;
   name: string;
+  type: 'direcao' | 'departament' | 'mesa_da_assembleia_geral' | 'conselho_fiscal';
   members: {
     person: number | Person;
     id?: string | null;
@@ -342,6 +345,37 @@ export interface Docfile {
   height?: number | null;
   focalX?: number | null;
   focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "video".
+ */
+export interface Video {
+  id: number;
+  título: string;
+  thumbnail?: number | Media | null;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "faq".
+ */
+export interface Faq {
+  id: number;
+  quest: string;
+  ans: string;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

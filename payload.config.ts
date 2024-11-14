@@ -20,6 +20,8 @@ import { BoardSection } from "./collections/BoardSection";
 import { President } from "./collections/President";
 import { DocumentFolder } from "./collections/DocumentFolder";
 import { DocFile } from "./collections/DocFile";
+import { Video } from "./collections/Video";
+import { Faq } from "./collections/Faq";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -44,7 +46,9 @@ export default buildConfig({
     President,
     SpaceData,
     DocumentFolder,
-    DocFile
+    DocFile,
+    Video,
+    Faq
   ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",

@@ -16,8 +16,8 @@ import { getPayload } from 'payload'
 import config from 'payload.config'
 
 export const metadata: Metadata = {
-  title: "Next.js Starter Template for SaaS Startups - Solid SaaS Boilerplate",
-  description: "This is Home for Solid Pro",
+  title: "AEFEUP",
+  description: "Website da Associação de Estudantes da Faculdade de Engenharia da Universidade do Porto.",
   // other metadata
 };
 
