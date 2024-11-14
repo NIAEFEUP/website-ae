@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import LineupsSlider from "./LineupsSlider";
 import { getPayload } from 'payload'
 import config from 'payload.config'
+import SectionHeader from "@/components/Common/SectionHeader";
 
 export const metadata: Metadata = {
   title: "Desporto",
@@ -15,11 +16,19 @@ const SportsPage = async () => {
   });
 
   return (
-    <>
+    <main className="py-20 lg:py-25 xl:py-30">
       <section>
-        <LineupsSlider teams={teams.docs} />
+        {teams.docs.length > 0 ?
+          <LineupsSlider teams={teams.docs} />
+          :
+          <SectionHeader headerInfo={{
+            title: "Desporto",
+            subtitle: "Desporto",
+            description: `Aqui vão aparecer as equipas de desporto da AEFEUP.`,
+          }} />
+        }
       </section>
-    </>
+    </main>
   );
 };
 
