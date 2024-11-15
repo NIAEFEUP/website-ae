@@ -55,30 +55,28 @@ export const Place: CollectionConfig = {
     {
       name: 'category',
       label: 'Category',
-      type: 'relationship',
-      relationTo: 'category',
+      type: 'select',
       hasMany: false,
+      options: [
+        {
+          label: 'Espaços de Estudo',
+          value: 'Espaços de Estudo'
+        },
+        {
+          label: 'Alimentação',
+          value: 'Alimentação'
+        },
+        {
+          label: 'Alojamento',
+          value: 'Alojamento'
+        },
+        {
+          label: 'Mobilidade',
+          value: 'Mobilidade'
+        }
+      ],
       required: true,
       depth: 0,
-    },
-  ],
-};
-
-export const Category: CollectionConfig = {
-  slug: 'category',
-  fields: [
-    {
-      name: 'name',
-      label: 'Category Name',
-      type: 'text',
-      required: true,
-    },
-    {
-      name: 'places',
-      label: 'Places',
-      type: 'relationship',
-      relationTo: 'place',
-      hasMany: true,
     },
   ],
 };
