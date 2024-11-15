@@ -13,10 +13,10 @@ interface Props {
 const PlaceBoard = ({ places, selected, onChange }: Props) => {
   return (
     <>
-      <section id="features" className="flex justify-center gap-5 flex-wrap mx-5">
+      <section className="flex justify-center gap-5 flex-wrap mx-5">
         {places.map((place, key) => (
-            <motion.button
-              key={place.id}
+            <motion.div
+              key={key}
               variants={{
               hidden: {
                 opacity: 0,
@@ -32,20 +32,18 @@ const PlaceBoard = ({ places, selected, onChange }: Props) => {
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
               onClick={() => onChange(place.id)}
-              className={`w-1/4 min-w-90 p-2 animate_top z-40 rounded-lg border border-white dark:border-strokedark shadow-solid-3 transition-all hover:shadow-solid-4 dark:hover:bg-hoverdark dark:bg-blacksection ${place.id === selected ? "bg-primary opacity-40" : "bg-white"}`}
+              className={`hover:cursor-pointer w-1/4 min-w-90 p-5 animate_top z-40 rounded-lg border border-white dark:border-strokedark shadow-solid-3 transition-all hover:shadow-solid-4 dark:hover:bg-hoverdark dark:bg-blacksection ${place.id === selected ? "bg-primary opacity-40 text-white" : "bg-white text-black dark:text-white"}`}
             >
-              <h3 className={`text-base font-semibold ${place.id === selected ? "text-white" : "text-black dark:text-white"}  xl:text-itemtitle`}>
+              <h3 className="text-itemtitle font-semibold">
               {place.name}
               </h3>
               {place.description && (
-              <p className={`${place.id === selected ? "text-white" : "text-black dark:text-white"}`}>
-                {place.description}
-              </p>
-                )}
-                {place.schedule && (
+                <p>{place.description}</p>
+              )}
+              {place.schedule && (
                 <ScheduleTable data={place.schedule.map(slot => ({ label: slot.day, value: slot.hours }))} />
               )}
-            </motion.button>
+            </motion.div>
         ))}
       </section>
     </>

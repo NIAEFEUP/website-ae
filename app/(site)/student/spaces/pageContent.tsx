@@ -56,6 +56,11 @@ const SpacesPageContent = ({places}: Props) => {
         }
       </section>
       <PlaceBoard places={filteredPlaces} selected={selectedPlace} onChange={setSelectedPlace}/>
+      {filteredPlaces.length === 0 && (
+        <div className="text-center text-gray-500">
+          Nenhum lugar encontrado para esta categoria.
+        </div>
+      )}
     </>
   );
 };
