@@ -20,7 +20,7 @@ import { BoardSection } from "./collections/BoardSection";
 import { President } from "./collections/President";
 import { Video } from "./collections/Video";
 import { Faq } from "./collections/Faq";
-import { Place, Category } from "./collections/Place";
+import { Place } from "./collections/Place";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -46,8 +46,7 @@ export default buildConfig({
     SpaceData,
     Video,
     Faq,
-    Place,
-    Category,
+    Place
   ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",

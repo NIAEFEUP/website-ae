@@ -27,7 +27,6 @@ export interface Config {
     video: Video;
     faq: Faq;
     place: Place;
-    category: Category;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -331,7 +330,7 @@ export interface Video {
   focalX?: number | null;
   focalY?: number | null;
 }
- /**
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "faq".
  */
@@ -361,17 +360,7 @@ export interface Place {
         id?: string | null;
       }[]
     | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "category".
- */
-export interface Category {
-  id: number;
-  name: string;
-  places?: (number | Place)[] | null;
+  category: 'Espaços de Estudo' | 'Alimentação' | 'Alojamento' | 'Mobilidade';
   updatedAt: string;
   createdAt: string;
 }
