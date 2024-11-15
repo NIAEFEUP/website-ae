@@ -1,34 +1,25 @@
 import { MapContainer, TileLayer, Marker, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
-import { useEffect } from 'react';
 import { Place } from '@/payload-types';
 
-const customIcon = new L.Icon({
-  iconUrl: '/marker-icon.png',
-  shadowUrl: '/marker-shadow.png',
-  iconSize: [25, 41],
-  iconAnchor: [12, 41],
+import MarkerIcon from 'leaflet/dist/images/marker-icon.png';
+import MarkerIcon2x from 'leaflet/dist/images/marker-icon-2x.png';
+import MarkerShadow from 'leaflet/dist/images/marker-shadow.png';
+
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl: MarkerIcon2x.src,
+  iconUrl: MarkerIcon.src,
+  shadowUrl: MarkerShadow.src,
 });
 
-interface MapProps {
+interface Props {
   places: Place[];
-  hoveredPlaceId?: number;
-  onHoverPlace: (placeId?: number) => void;
+  selected: null | number;
+  onChange: (placeId: number | null) => void;
 }
 
-const Map = ({ places, hoveredPlaceId, onHoverPlace }: MapProps) => {
-  const FitMapBounds = ({ places }: { places: Place[] }) => {
-    const map = useMap();
-    useEffect(() => {
-      if (places.length > 0) {
-        const bounds = new L.LatLngBounds(places.map(place => [place.position.lat, place.position.lng]));
-        map.fitBounds(bounds, { padding: [20, 20] });
-      }
-    }, [places, map]);
-    return null;
-  };
-
+const Map = ({ places = [], selected, onChange } : Props) => {
   return (
     <div className="flex-1 bg-gray-100 dark:bg-black rounded-lg shadow-solid-4">
       <MapContainer center={[41.17821442317816, -8.595717162899934]} zoom={17} className="h-full">
@@ -36,16 +27,13 @@ const Map = ({ places, hoveredPlaceId, onHoverPlace }: MapProps) => {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution="&copy; OpenStreetMap contributors"
         />
-        <FitMapBounds places={places} />
         {places.map(place => (
           <Marker
             key={place.id}
             position={[place.position.lat, place.position.lng]}
-            icon={customIcon}
-            opacity={place.id === hoveredPlaceId ? 1 : 0.5}
+            opacity={place.id === selected ? 1 : 0.8}
             eventHandlers={{
-              mouseover: () => onHoverPlace(place.id),
-              mouseout: () => onHoverPlace(undefined),
+              click: () => onChange(place.id)
             }}
           />
         ))}
