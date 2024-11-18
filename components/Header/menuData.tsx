@@ -74,7 +74,7 @@ const menuData: Menu[] = [
         path: "teams"
       },
       {
-        title: "Motorsport (wip)",
+        title: "Motorsport",
         path: "motorsport"
       },
     ],
