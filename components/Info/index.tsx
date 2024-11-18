@@ -84,7 +84,7 @@ const Info: React.FC<InfoProps> = ({ sections }) => {
                   {section.subtitle}
                 </span>
                 {section.text && (
-                  <p className="mb-4 text-black dark:text-white">
+                  <p className="mb-4">
                     {section.text}
                   </p>
                 )}
