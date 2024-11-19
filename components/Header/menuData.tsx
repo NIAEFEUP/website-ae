@@ -48,7 +48,7 @@ const menuData: Menu[] = [
         path: "guide"
       },
       {
-        title: "Espaços (wip)",
+        title: "Espaços",
         path: "spaces"
       },
       {

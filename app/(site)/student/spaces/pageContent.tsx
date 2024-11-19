@@ -9,14 +9,13 @@ import { Place } from '@/payload-types';
 type Category = {
   name: string;
   icon: ReactElement;
-  marker: string;
 };
 
 const categories: Category[] = [
-  { name: "Espaços de Estudo", icon: <Backpack />, marker: "" },
-  { name: "Alimentação", icon: <Utensils />, marker: "" },
-  { name: "Alojamento", icon: <House />, marker: "" },
-  { name: "Mobilidade", icon: <CarFront />, marker: "" }
+  { name: "Espaços de Estudo", icon: <Backpack />},
+  { name: "Alimentação", icon: <Utensils />},
+  { name: "Alojamento", icon: <House />},
+  { name: "Mobilidade", icon: <CarFront />}
 ];
 
 interface Props {
