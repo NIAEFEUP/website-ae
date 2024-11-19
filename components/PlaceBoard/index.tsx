@@ -19,12 +19,12 @@ const PlaceBoard = ({ places, selected, onChange }: Props) => {
               key={key}
               variants={{
               hidden: {
-                opacity: 0,
-                y: -10,
+              opacity: 0,
+              y: -10,
               },
               visible: {
-                opacity: 1,
-                y: 0,
+              opacity: 1,
+              y: 0,
               },
               }}
               initial="hidden"
@@ -38,9 +38,9 @@ const PlaceBoard = ({ places, selected, onChange }: Props) => {
               {place.name}
               </h3>
               {place.description && (
-                <p>{place.description}</p>
+              <p>{place.description}</p>
               )}
-              {place.schedule && (
+              {place.schedule && place.schedule.length > 0 && (
                 <ScheduleTable data={place.schedule.map(slot => ({ label: slot.day, value: slot.hours }))} />
               )}
             </motion.div>

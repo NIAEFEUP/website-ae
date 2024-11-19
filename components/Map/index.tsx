@@ -43,11 +43,11 @@ const FitMapBounds = ({ places, selected }: { places: Place[], selected: null | 
     if (selected !== null) {
       const selectedPlace = places.find(place => place.id === selected);
       if (selectedPlace) {
-        map.setView([selectedPlace.position.lat, selectedPlace.position.lng], 17);
+        map.setView([selectedPlace.position.lat, selectedPlace.position.lng], Math.max(map.getZoom(), 17));
       }
     } else if (places.length > 0) {
       const bounds = new L.LatLngBounds(places.map(place => [place.position.lat, place.position.lng]));
-      map.fitBounds(bounds, { padding: [20, 20] });
+      map.fitBounds(bounds, { padding: [50, 50] });
     }
   }, [places, selected, map]);
   return null;

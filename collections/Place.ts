@@ -76,7 +76,6 @@ export const Place: CollectionConfig = {
         }
       ],
       required: true,
-      depth: 0,
     },
   ],
 };
