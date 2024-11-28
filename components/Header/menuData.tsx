@@ -87,19 +87,6 @@ const menuData: Menu[] = [
     title: "Contactos",
     path: "contact",
   },
-  {
-    id: 5,
-    title: "Estudante",
-    newTab: false,
-    submenu: [
-      {
-        id: 51,
-        title: "Informações",
-        newTab: false,
-        path: "/info",
-      },
-    ],
-  },
 ];
 
 export default menuData;
