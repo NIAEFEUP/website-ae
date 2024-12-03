@@ -29,6 +29,7 @@ export interface Config {
     docfile: Docfile;
     video: Video;
     faq: Faq;
+    place: Place;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -395,6 +396,29 @@ export interface Faq {
   id: number;
   quest: string;
   ans: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "place".
+ */
+export interface Place {
+  id: number;
+  name: string;
+  description?: string | null;
+  position: {
+    lat: number;
+    lng: number;
+  };
+  schedule?:
+    | {
+        day: string;
+        hours: string;
+        id?: string | null;
+      }[]
+    | null;
+  category: 'Espaços de Estudo' | 'Alimentação' | 'Alojamento' | 'Mobilidade';
   updatedAt: string;
   createdAt: string;
 }

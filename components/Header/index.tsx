@@ -15,7 +15,7 @@ const Header = () => {
   const pathUrl = usePathname();
 
   const handleStickyMenu = () => {
-    if (window.scrollY >= 40) {
+    if (window.scrollY >= 20) {
       setStickyMenu(true);
     } else {
       setStickyMenu(false);
