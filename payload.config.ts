@@ -10,7 +10,7 @@ import { Media } from "./collections/Media";
 import { Person } from "./collections/Person";
 import { Material } from "./collections/Material";
 import { SportsTeam } from "./collections/SportsTeam";
-import { SpaceData } from "./collections/SpaceData";
+import { Space } from "./collections/Space";
 import { Sponsor } from "./collections/Sponsor";
 import { Association } from "./collections/Association";
 import { StudentGuide } from "./collections/StudentGuide";
@@ -37,6 +37,7 @@ export default buildConfig({
     Media,
     Person,
     Material,
+    Space,
     SportsTeam,
     Sponsor,
     Association,
@@ -45,7 +46,6 @@ export default buildConfig({
     Position,
     BoardSection,
     President,
-    SpaceData,
     Event,
     DocumentFolder,
     DocFile,
