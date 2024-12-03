@@ -30,7 +30,7 @@ const menuData: Menu[] = [
         path: "associations"
       },
       {
-        title: "Documentos (wip)",
+        title: "Documentos",
         path: "documents"
       },
     ],
@@ -52,7 +52,7 @@ const menuData: Menu[] = [
         path: "spaces"
       },
       {
-        title: "Oportunidades (wip)",
+        title: "Oportunidades",
         path: "opportunities"
       },
       {
@@ -74,7 +74,7 @@ const menuData: Menu[] = [
         path: "teams"
       },
       {
-        title: "Motorsport (wip)",
+        title: "Motorsport",
         path: "motorsport"
       },
     ],

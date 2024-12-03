@@ -24,6 +24,9 @@ export interface Config {
     board_section: BoardSection;
     president: President;
     spaceData: SpaceDatum;
+    event: Event;
+    documentFolder: DocumentFolder;
+    docfile: Docfile;
     video: Video;
     faq: Faq;
     place: Place;
@@ -98,7 +101,7 @@ export interface Media {
 export interface Person {
   id: number;
   name: string;
-  position: number | Position;
+  position?: (number | null) | Position;
   photo?: (number | null) | Media;
   description?: string | null;
   birthday?: string | null;
@@ -272,6 +275,7 @@ export interface Link {
 export interface BoardSection {
   id: number;
   name: string;
+  type: 'direcao' | 'departament' | 'mesa_da_assembleia_geral' | 'conselho_fiscal';
   members: {
     person: number | Person;
     id?: string | null;
@@ -309,6 +313,60 @@ export interface SpaceDatum {
   name: string;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "event".
+ */
+export interface Event {
+  id: number;
+  title: string;
+  type: string;
+  description: string;
+  image: number | Media;
+  link?:
+    | {
+        description?: string | null;
+        url?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "documentFolder".
+ */
+export interface DocumentFolder {
+  id: number;
+  folder_name: string;
+  section_name?: ('Direção' | 'Mesa da Assembleia Geral' | 'Núcleos') | null;
+  files: {
+    file?: (number | null) | Docfile;
+    id?: string | null;
+  }[];
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "docfile".
+ */
+export interface Docfile {
+  id: number;
+  name: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

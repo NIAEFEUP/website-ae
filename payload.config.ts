@@ -18,6 +18,9 @@ import { Link } from "./collections/Link";
 import { Position } from "./collections/Position";
 import { BoardSection } from "./collections/BoardSection";
 import { President } from "./collections/President";
+import { Event } from "./collections/Event";
+import { DocumentFolder } from "./collections/DocumentFolder";
+import { DocFile } from "./collections/DocFile";
 import { Video } from "./collections/Video";
 import { Faq } from "./collections/Faq";
 import { Place } from "./collections/Place";
@@ -44,6 +47,9 @@ export default buildConfig({
     BoardSection,
     President,
     SpaceData,
+    Event,
+    DocumentFolder,
+    DocFile,
     Video,
     Faq,
     Place
