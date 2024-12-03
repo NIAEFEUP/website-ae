@@ -1,6 +1,7 @@
 import axios from 'axios';
+import { paymentStatus } from '.';
 
-export async function requestMBWAY(phoneNumber: string, amount: number) {
+export async function requestMBWAY(phoneNumber: string, amount: number, setPaymentStatus: (status: paymentStatus) => void) {
    console.log("Function requestMBWAY called with:", phoneNumber, amount);
 
    const options = {
@@ -20,7 +21,7 @@ export async function requestMBWAY(phoneNumber: string, amount: number) {
    try {
       const { data } = await axios.request(options);
       console.log("Response data:", data);
-      pollPaymentStatus(data.RequestId);
+      pollPaymentStatus(data.RequestId, setPaymentStatus);
       return;
    } catch (error) {
       console.error("Error occurred:", error);
@@ -43,17 +44,19 @@ export async function checkPayment(requestID: string) {
    }
 }
 
-const pollPaymentStatus = (requestID: string) => {
-   const paymentStatus = setInterval(async () => {
+const pollPaymentStatus = (requestID: string, setPaymentStatus: (status: paymentStatus) => void) => {
+   const pollStatus = setInterval(async () => {
       const status = await checkPayment(requestID)
 
       if (status.Message == "Success") {
          alert("euerka");
-         clearInterval(paymentStatus)
+         setPaymentStatus(paymentStatus.confirmed)
+         clearInterval(pollStatus)
       }
       if (status.Message == "Declined by user") {
          alert("declined by user");
-         clearInterval(paymentStatus)
+         setPaymentStatus(paymentStatus.declined)
+         clearInterval(pollStatus)
       }
    }, 5000)
 }

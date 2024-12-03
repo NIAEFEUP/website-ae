@@ -17,6 +17,7 @@ import { Position } from "./collections/Position";
 import { BoardSection } from "./collections/BoardSection";
 import { Product } from "./collections/Product";
 import { President } from "./collections/President";
+import { Order } from "./collections/Order";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -39,6 +40,7 @@ export default buildConfig({
     BoardSection,
     Product,
     President,
+    Order
   ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",

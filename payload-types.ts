@@ -23,6 +23,7 @@ export interface Config {
     board_section: BoardSection;
     product: Product;
     president: President;
+    order: Order;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -302,6 +303,21 @@ export interface President {
   photo?: (number | null) | Media;
   start_year: number;
   end_year: number;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "order".
+ */
+export interface Order {
+  id: number;
+  email: string;
+  products: {
+    product: number | Product;
+    id?: string | null;
+  }[];
+  price: number;
   updatedAt: string;
   createdAt: string;
 }
