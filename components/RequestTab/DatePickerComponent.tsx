@@ -1,8 +1,10 @@
 import DatePicker from "react-datepicker";
 
 export default function DatePickerComponent({ currentDate, setDate, minDate = new Date() }) {
+    // TODO(thePeras): Explore this datepicker instead:
+    // https://shadcnui-expansions.typeart.cc/docs/datetime-picker
     return (
-        <DatePicker 
+        <DatePicker
             id="end_date"
             selected={currentDate}
             minDate={minDate}
