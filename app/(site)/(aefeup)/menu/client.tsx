@@ -2,17 +2,22 @@
 
 import SectionHeader from "@/components/Common/SectionHeader"
 import DayMenuCard from "./DayMenuCard"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 interface Props {
-    categories: string[];
-    items: { name: string; price: string }[];
-    dayMenu: { day: string; dishes: { icon: React.ReactNode; type: string; name: string }[] }[];
+    categories: any[];
+    items: any[];
+    dayMenus: any[];
 }
 
-const ClientMenuPage = ({ categories, items, dayMenu }: Props) => {
+const ClientMenuPage = ({ categories, items, dayMenus }: Props) => {
 
-    const [selectedCategory, setSelectedCategory] = useState(categories[0]);
+    const [selectedCategory, setSelectedCategory] = useState(categories[0].id);
+    const [filteredItems, setFilteredItems] = useState(items);
+
+    useEffect(() => {
+        setFilteredItems(items.filter((item) => item.category.id === selectedCategory).sort((a, b) => a.price - b.price));
+    }, [selectedCategory, items]);
 
     return (<>
         <section className="overflow-hidden pb-5 pt-25">
@@ -29,7 +34,19 @@ const ClientMenuPage = ({ categories, items, dayMenu }: Props) => {
                 </div>
                 {/* <!-- Section Title End --> */}
                 <div className="py-5">
-                    <div className="flex flex-wrap justify-center gap-7.5 lg:flex-nowrap xl:gap-12.5">
+                    <div className="flex flex-wrap justify-center gap-7.5 lg:flex-nowrap xl:gap-12.5 overflow-y-scroll">
+                        {dayMenus.map(dayMenu => (
+                            <DayMenuCard
+                                key={dayMenu.id}
+                                day={new Date(dayMenu.day).toLocaleDateString("pt-PT", { weekday: "long" })}
+                                dishes={dayMenu.dishes.map(dish => ({
+                                    icon: null,
+                                    type: dish.dishType.name_pt,
+                                    name: dish.dish.name_pt
+                                }))}
+                            />
+                        ))}
+                        {/*
                         <DayMenuCard
                             day="Segunda-feira"
                             dishes={[
@@ -40,40 +57,37 @@ const ClientMenuPage = ({ categories, items, dayMenu }: Props) => {
                                 { icon: null, type: "Sobremessa", name: "Prato do dia" },
                             ]}
                         />
+                         */}
                     </div>
                 </div>
             </div>
         </section>
 
         <div className="">
-            <section className='flex justify-center gap-5 my-5'>
+            <section className='flex justify-center gap-5 my-5 flex-wrap'>
                 {categories.map((category) => (
                     <button
-                        key={category}
-                        onClick={() => setSelectedCategory(category)}
-                        className={`py-2 px-4 rounded-lg transition-all duration-300 flex justify-center gap-5 ${selectedCategory === category
+                        key={category.id}
+                        onClick={() => setSelectedCategory(category.id)}
+                        className={`py-2 px-4 rounded-lg transition-all duration-300 flex justify-center gap-5 ${selectedCategory === category.id
                             ? "bg-primary text-white"
                             : "bg-gray-200 dark:bg-gray-400 dark:text-black hover:shadow-lg"
                             }`}
                     >
-                        {category}
+                        {category.name}
                     </button>
                 ))}
             </section>
             <ul className="divide-y divide-gray-300 dark:divide-gray-600 max-w-[45%] mx-auto pb-15">
-                {items.map((item, index) => (
-                    <li
-                        key={index}
-                        className="flex justify-between items-center py-3 px-4 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all bg-white"
-                    >
-                        <span className="text-lg font-medium text-gray-800">
-                            {item.name}
-                        </span>
-                        <span className="text-lg">
-                            {item.price}
-                        </span>
+                {filteredItems.filter((item) => item.category.id === selectedCategory).map((item) => (
+                    <li key={item.id} className="py-5">
+                        <div className="flex justify-between items-center">
+                            <p>{item.dish.name_pt}</p>
+                            <p>{item.price.toFixed(2).replace(".", ",")}€</p>
+                        </div>
                     </li>
-                ))}
+                ))
+                }
             </ul>
         </div>
     </>)
