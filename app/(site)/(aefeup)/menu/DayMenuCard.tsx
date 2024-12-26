@@ -7,6 +7,10 @@ interface DayMenuCardProps {
     dishes: { icon: React.ReactNode; type: string; name: string }[];
 }
 
+function capitalizeFirstLetter(val) {
+    return String(val).charAt(0).toUpperCase() + String(val).slice(1);
+}
+
 const DayMenuCard = ({ day, dishes }: DayMenuCardProps) => {
     return (
         <div className="animate_top group relative rounded-lg border border-stroke bg-white p-7.5 shadow-solid-10 dark:border-strokedark dark:bg-blacksection dark:shadow-none min-w-67.5">
@@ -26,7 +30,7 @@ const DayMenuCard = ({ day, dishes }: DayMenuCardProps) => {
                 transition={{ duration: 0.5, delay: 0.1 }}
                 viewport={{ once: true }}
             >
-                <h2 className="text-xl font-bold text-black">{day}</h2>
+                <h2 className="text-xl font-bold text-black">{capitalizeFirstLetter(day)}</h2>
                 <div className="mt-4">
                     <ul>
                         {dishes.map((dish, index) => (

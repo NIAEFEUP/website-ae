@@ -3,6 +3,11 @@
 import SectionHeader from "@/components/Common/SectionHeader"
 import DayMenuCard from "./DayMenuCard"
 import { useEffect, useState } from "react"
+import { Navigation } from "swiper";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 interface Props {
     categories: any[];
@@ -21,21 +26,40 @@ const ClientMenuPage = ({ categories, items, dayMenus }: Props) => {
 
     return (<>
         <section className="overflow-hidden pb-5 pt-25">
-            <div className="mx-auto max-w-c-1315 px-4 md:px-8 xl:px-0">
-                {/* <!-- Section Title Start --> */}
-                <div className="animate_top mx-auto text-center">
-                    <SectionHeader
-                        headerInfo={{
-                            title: `Ementa Bar`,
-                            subtitle: `Bar AEFEUP`,
-                            description: ``,
-                        }}
-                    />
-                </div>
-                {/* <!-- Section Title End --> */}
-                <div className="py-5">
-                    <div className="flex flex-wrap justify-center gap-7.5 lg:flex-nowrap xl:gap-12.5 overflow-y-scroll">
-                        {dayMenus.map(dayMenu => (
+            {/* <!-- Section Title Start --> */}
+            <div className="animate_top mx-auto text-center">
+                <SectionHeader
+                    headerInfo={{
+                        title: `Ementa Bar`,
+                        subtitle: `Bar AEFEUP`,
+                        description: ``,
+                    }}
+                />
+            </div>
+            {/* <!-- Section Title End --> */}
+            <div className="py-5 swiper">
+                <Swiper
+                    spaceBetween={50}
+                    slidesPerView={1}
+                    modules={[Navigation]}
+                    navigation={true}
+                    breakpoints={{
+                        640: {
+                            slidesPerView: 2,
+                            spaceBetween: 20,
+                        },
+                        768: {
+                            slidesPerView: 3,
+                            spaceBetween: 40,
+                        },
+                        1200: {
+                            slidesPerView: 4,
+                            spaceBetween: 50,
+                        },
+                    }}
+                >
+                    {dayMenus.map(dayMenu => (
+                        <SwiperSlide key={dayMenu.id}>
                             <DayMenuCard
                                 key={dayMenu.id}
                                 day={new Date(dayMenu.day).toLocaleDateString("pt-PT", { weekday: "long" })}
@@ -45,23 +69,11 @@ const ClientMenuPage = ({ categories, items, dayMenus }: Props) => {
                                     name: dish.dish.name_pt
                                 }))}
                             />
-                        ))}
-                        {/*
-                        <DayMenuCard
-                            day="Segunda-feira"
-                            dishes={[
-                                { icon: null, type: "Sopa", name: "Prato do dia" },
-                                { icon: null, type: "Carne", name: "Prato do dia" },
-                                { icon: null, type: "Peixe", name: "Prato do dia" },
-                                { icon: null, type: "Dieta", name: "Prato do dia" },
-                                { icon: null, type: "Sobremessa", name: "Prato do dia" },
-                            ]}
-                        />
-                         */}
-                    </div>
-                </div>
+                        </SwiperSlide>
+                    ))}
+                </Swiper>
             </div>
-        </section>
+        </section >
 
         <div className="">
             <section className='flex justify-center gap-5 my-5 flex-wrap'>
@@ -80,7 +92,7 @@ const ClientMenuPage = ({ categories, items, dayMenus }: Props) => {
             </section>
             <ul className="divide-y divide-gray-300 dark:divide-gray-600 max-w-[45%] mx-auto pb-15">
                 {filteredItems.filter((item) => item.category.id === selectedCategory).map((item) => (
-                    <li key={item.id} className="py-5">
+                    <li key={item.id} className="py-5 bg-white">
                         <div className="flex justify-between items-center">
                             <p>{item.dish.name_pt}</p>
                             <p>{item.price.toFixed(2).replace(".", ",")}€</p>
