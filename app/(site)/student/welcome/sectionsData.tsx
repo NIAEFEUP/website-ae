@@ -1,4 +1,3 @@
-import Image from "next/image";
 export const sectionsData = [
     {
       id: 1,
@@ -35,7 +34,7 @@ export const sectionsData = [
       ),
     },
     {
-      id: 2,
+      id: 3,
       title: "Programa de Mentoria",
       subtitle: "",
       text: (
@@ -43,17 +42,6 @@ export const sectionsData = [
           <p>
           A Faculdade de Engenharia da Universidade do Porto (FEUP) tem em funcionamento um programa de MENTORIA INTERPARES, destinado aos estudantes que ingressam pela 1ª vez nesta instituição de Ensino Superior (mentorados), tanto nacionais como internacionais, com o objetivo de os apoiar nesta nova fase do seu percurso académico. A dinamização deste programa de integração social e académica é realizada por estudantes (mentores) que já frequentam os diferentes cursos em anos mais avançados, e coordenado por uma equipa de docentes, sendo adaptado a cada curso de acordo com as suas caraterísticas. Este programa é totalmente voluntário tanto para mentores como para mentorados.
           </p>
-          <br />
-          <br />
-            <Image
-              src="/images/welcome/mentoria.png"
-              alt="404"
-              className="mx-auto mb-7.5"
-              width={1500}
-              height={1500}
-            />          
-          <br />
-          
         </>
       ),
       buttons: [
@@ -68,7 +56,7 @@ export const sectionsData = [
       ],
     },
     {
-      id: 3,
+      id: 2,
       title: "Videos Informativos",
       subtitle: "",
       text: (
