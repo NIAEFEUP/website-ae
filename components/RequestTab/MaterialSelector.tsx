@@ -24,6 +24,7 @@ export default function MaterialSelector({ materialData }: Props) {
 
                         <div className="flex w-full flex-col gap-5">
                             <MultipleSelector
+                                className="text-md"
                                 value={selectedMaterials}
                                 onChange={setSelectedMaterials}
                                 defaultOptions={materialData.map((material: Material) => ({ label: material.name, value: material.name }))}
