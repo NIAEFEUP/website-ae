@@ -16,7 +16,7 @@ const PresidentCard = ({ person, description, className }: Props) => {
   const photo = person.photo as Media;
 
   return (
-    <div className={`animate_top group relative rounded-lg border border-stroke bg-white p-5 shadow-solid-10 dark:border-strokedark dark:bg-blacksection dark:shadow-none flex flex-col justify-center items-center gap-3 ${className}`}>
+    <div className={`animate_top group relative rounded-lg border border-stroke bg-white p-5 shadow-solid-10 dark:border-strokedark dark:bg-blacksection dark:shadow-none flex flex-col justify-center items-center gap-3 select-none ${className}`}>
       {/* Image */}
       {photo && (
         <Image

@@ -56,24 +56,24 @@ const AEFEUPHistoryClientPage = ({ history_text, presidents }: Props) => {
               transition={{ duration: 1, delay: 0.3 }}
               viewport={{ once: true }}
             >
-            <section className="flex justify-center items-center">
+              <section className="flex justify-center items-center">
                 <Carousel
-                className="items-center w-4/6 md:w-3/5 lg:w-2/5"
-                opts={{
-                  align:"end"
-                }}
+                  className="items-center w-4/6 md:w-3/5 lg:w-2/5"
+                  opts={{
+                    align: "end"
+                  }}
                 >
                   <CarouselContent>
-                    {presidents.map((president, index) =>
-                      <CarouselItem key={index} className="lg:basis-1/2">
-                          <PresidentCard key={president.id} person={{ ...president, position: 0 }} description={`${president.start_year} - ${president.end_year}`} />
+                    {presidents.sort((a, b) => b.start_year - a.start_year).map((president, index) =>
+                      <CarouselItem key={index}>
+                        <PresidentCard key={president.id} person={{ ...president, position: 0 }} description={`${president.start_year} - ${president.end_year}`} />
                       </CarouselItem>
                     )}
                   </CarouselContent>
                   <CarouselPrevious />
                   <CarouselNext />
                 </Carousel>
-            </section>
+              </section>
             </motion.div>
           </>
         }
