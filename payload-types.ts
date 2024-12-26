@@ -15,6 +15,7 @@ export interface Config {
     media: Media;
     person: Person;
     material: Material;
+    space: Space;
     sportsTeam: SportsTeam;
     sponsor: Sponsor;
     association: Association;
@@ -23,12 +24,12 @@ export interface Config {
     position: Position;
     board_section: BoardSection;
     president: President;
-    spaceData: SpaceDatum;
     event: Event;
     documentFolder: DocumentFolder;
     docfile: Docfile;
     video: Video;
     faq: Faq;
+    place: Place;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -132,6 +133,16 @@ export interface Material {
   id: number;
   name: string;
   quantity: number;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "space".
+ */
+export interface Space {
+  id: number;
+  name: string;
   updatedAt: string;
   createdAt: string;
 }
@@ -305,16 +316,6 @@ export interface President {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "spaceData".
- */
-export interface SpaceDatum {
-  id: number;
-  name: string;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "event".
  */
 export interface Event {
@@ -395,6 +396,29 @@ export interface Faq {
   id: number;
   quest: string;
   ans: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "place".
+ */
+export interface Place {
+  id: number;
+  name: string;
+  description?: string | null;
+  position: {
+    lat: number;
+    lng: number;
+  };
+  schedule?:
+    | {
+        day: string;
+        hours: string;
+        id?: string | null;
+      }[]
+    | null;
+  category: 'Espaços de Estudo' | 'Alimentação' | 'Alojamento' | 'Mobilidade';
   updatedAt: string;
   createdAt: string;
 }

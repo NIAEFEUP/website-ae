@@ -10,7 +10,7 @@ import { Media } from "./collections/Media";
 import { Person } from "./collections/Person";
 import { Material } from "./collections/Material";
 import { SportsTeam } from "./collections/SportsTeam";
-import { SpaceData } from "./collections/SpaceData";
+import { Space } from "./collections/Space";
 import { Sponsor } from "./collections/Sponsor";
 import { Association } from "./collections/Association";
 import { StudentGuide } from "./collections/StudentGuide";
@@ -23,6 +23,7 @@ import { DocumentFolder } from "./collections/DocumentFolder";
 import { DocFile } from "./collections/DocFile";
 import { Video } from "./collections/Video";
 import { Faq } from "./collections/Faq";
+import { Place } from "./collections/Place";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -37,6 +38,7 @@ export default buildConfig({
     Media,
     Person,
     Material,
+    Space,
     SportsTeam,
     Sponsor,
     Association,
@@ -45,12 +47,12 @@ export default buildConfig({
     Position,
     BoardSection,
     President,
-    SpaceData,
     Event,
     DocumentFolder,
     DocFile,
     Video,
-    Faq
+    Faq,
+    Place
   ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",
