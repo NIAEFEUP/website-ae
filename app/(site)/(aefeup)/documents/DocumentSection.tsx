@@ -32,7 +32,7 @@ const DocumentSection = ({ title, folders, setFile }: DocumentFolderProps) => {
                      }
                      <div>
                         <h1 className="text-base font-bold">{folder.folder_name}</h1>
-                        <h2 className="text-xs">{folder.files.length} ficheiros</h2>
+                        <h2 className="text-xs">{folder.files.length} ficheiro {folder.files.length > 1 ? "s" : ""}</h2>
                      </div>
                   </CardContent>
                </Card>
