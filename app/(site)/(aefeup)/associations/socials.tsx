@@ -1,8 +1,11 @@
 import { Linkedin, Globe, Instagram, Facebook } from "lucide-react";
-import { JSX } from "react";
 
-export const getSociaIcon = (socialName: string): JSX.Element => {
-    switch (socialName) {
+interface Props {
+    type: string
+}
+
+export const SocialIcon = ({ type }: Props) => {
+    switch (type) {
         case "linkedin":
             return <Linkedin className="h-6" />;
         case "facebook":
@@ -14,4 +17,4 @@ export const getSociaIcon = (socialName: string): JSX.Element => {
         default:
             return <></>
     }
-};
+}

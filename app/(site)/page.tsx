@@ -1,38 +1,39 @@
 import { Metadata } from "next";
-import Hero from "@/components/Hero";
-import Sponsors from "@/components/Sponsors";
 import Feature from "@/components/Features";
-import About from "@/components/About";
-import FeaturesTab from "@/components/FeaturesTab";
-import FunFact from "@/components/FunFact";
-import Integration from "@/components/Integration";
-import CTA from "@/components/CTA";
-import FAQ from "@/components/FAQ";
-import Pricing from "@/components/Pricing";
-import Contact from "@/components/Contact";
-import Blog from "@/components/Blog";
+import Info from "@/components/Info";
+import FullScreenImage from "@/components/FullScreenImageProps";
+import landingFeaturesData from "./landing/landingFeaturesData";
 import Testimonial from "@/components/Testimonial";
-import { getPayload } from 'payload'
-import config from 'payload.config'
-
+import { landingInfoData } from "./landing/landingInfoData";
 export const metadata: Metadata = {
-  title: "Next.js Starter Template for SaaS Startups - Solid SaaS Boilerplate",
-  description: "This is Home for Solid Pro",
-  // other metadata
+  title: "Services Page",
+  description: "This is the Services Page",
 };
 
-const Home = async() => {
-
-  const sponsors = await (await getPayload({ config })).find({
-    collection: 'sponsor',
-  });
-
+const ServicesPage = () => {
   return (
     <main>
-      <Hero />
-      <Sponsors sponsors={sponsors.docs.filter(sponsor => sponsor.name)} />
+      <FullScreenImage
+        src="/images/landing/blog-04.png"
+        alt="Landing Page Background"
+        logoSrc="/images/logo/aefeup.png"
+        logoAlt="AEFEUP Logo"
+      />
+
+      <Feature
+        data = {landingFeaturesData}
+        headerInfo={{
+          title: "Welcome to AEFEUP!",
+          subtitle: "Lorem ipsum odor amet, consectetuer adipiscing elit.",
+          description: `Lorem ipsum odor amet, consectetuer adipiscing elit. Ligula mollis nisi justo feugiat facilisis non. [what we offer]`,
+        }}
+      />
+    
+        <Info sections={landingInfoData} />
+
+      <Testimonial></Testimonial>
     </main>
   );
-}
+};
 
-export default Home;
+export default ServicesPage;

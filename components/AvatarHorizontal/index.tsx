@@ -11,6 +11,7 @@ interface Props {
 
 const AvatarHorizontal = ({ person, description, className }: Props) => {
 
+  if (!person) return null;
   const photo = person.photo as Media;
 
   return (

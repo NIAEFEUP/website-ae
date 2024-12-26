@@ -1,279 +1,123 @@
 "use client";
 
+import React from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import ScheduleTable from "../Table";
 
-const ScheduleData1 = [
-  { label: 'segunda-feira', value: '10:00–12:00, 14:00–17:00' },
-  { label: 'terça-feira', value: '10:00–12:00, 14:00–17:00' },
-  { label: 'quarta-feira', value: '10:00–12:00, 14:00–17:00' },
-  { label: 'quinta-feira', value: '10:00–12:00, 14:00–17:00' },
-  { label: 'sexta-feira', value: '10:00–12:00, 14:00–17:00' },
-  { label: 'sábado', value: 'Encerrado' },
-  { label: 'domingo', value: 'Encerrado' },
-];
+interface InfoSection {
+  id: number;
+  title: string;
+  subtitle: string;
+  text?: string;
+  phone?: string;
+  email?: string;
+  schedule?: { label: string; value: string }[];
+  imageSrc: string;
+  link?: {
+    url: string;
+    text: string;
+    showIcon?: boolean;
+    icon?: React.ReactNode;
+  };
+}
 
-const ScheduleData2 = [
-  { label: 'segunda-feira', value: '09:00–19:00' },
-  { label: 'terça-feira', value: '09:00–19:00' },
-  { label: 'quarta-feira', value: '09:00–19:00' },
-  { label: 'quinta-feira', value: '09:00–19:00' },
-  { label: 'sexta-feira', value: '09:00–19:00' },
-  { label: 'sábado', value: 'Encerrado' },
-  { label: 'domingo', value: 'Encerrado' },
-];
+interface InfoProps {
+  sections: InfoSection[];
+}
 
-const Info = () => {
+const Info: React.FC<InfoProps> = ({ sections }) => {
   return (
     <>
-      {/* <!-- ===== 1 ===== --> */}
-      <section className="overflow-hidden pb-20 lg:pb-25 xl:pb-30">
-        <div className="mx-auto max-w-c-1235 px-4 md:px-8 xl:px-0">
-          <div className="flex flex-col-reverse md:flex-row items-center gap-8 lg:gap-32.5">
-            <motion.div
-              variants={{
-                hidden: {
-                  opacity: 0,
-                  x: -20,
-                },
-
-                visible: {
-                  opacity: 1,
-                  x: 0,
-                },
-              }}
-              initial="hidden"
-              whileInView="visible"
-              transition={{ duration: 0.5, delay: 0.1 }}
-              viewport={{ once: true }}
-              className="animate_left relative mx-auto hidden aspect-[588/526.5] md:block md:w-1/2"
+      {sections.map((section, index) => (
+        <section key={section.id} className="overflow-hidden pb-20 lg:pb-25 xl:pb-30">
+          <div className="mx-auto max-w-c-1235 px-4 md:px-8 xl:px-0">
+            <div
+              className={`flex flex-col-reverse md:flex-row items-center gap-8 lg:gap-32.5 ${
+                index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+              }`}
             >
-              <Image
-                src="/images/about/about-light-01.png"
-                alt="About"
-                className="dark:hidden"
-                layout="fill"
-                objectFit="contain"
-              />
-              <Image
-                src="/images/about/about-dark-01.png"
-                alt="About"
-                className="hidden dark:block"
-                layout="fill"
-                objectFit="contain"
-              />
-            </motion.div>
-            <motion.div
-              variants={{
-                hidden: {
-                  opacity: 0,
-                  x: 20,
-                },
+              {/* Image Section */}
+              <motion.div
+                variants={{
+                  hidden: { opacity: 0, x: index % 2 === 0 ? -20 : 20 },
+                  visible: { opacity: 1, x: 0 },
+                }}
+                initial="hidden"
+                whileInView="visible"
+                transition={{ duration: 0.5, delay: 0.1 }}
+                viewport={{ once: true }}
+                className="relative mx-auto hidden aspect-[588/526.5] md:block md:w-1/2"
+              >
+                <Image
+                  src={section.imageSrc}
+                  alt={section.title}
+                  layout="fill"
+                  objectFit="contain"
+                  className="dark:hidden"
+                />
+                <Image
+                  src={section.imageSrc}
+                  alt={section.title}
+                  layout="fill"
+                  objectFit="contain"
+                  className="hidden dark:block"
+                />
+              </motion.div>
 
-                visible: {
-                  opacity: 1,
-                  x: 0,
-                },
-              }}
-              initial="hidden"
-              whileInView="visible"
-              transition={{ duration: 0.5, delay: 0.1 }}
-              viewport={{ once: true }}
-              className="animate_right md:w-1/2"
-            >
-              <span className="font-medium uppercase text-black dark:text-white">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              </span>
-              <h2 className="relative mb-6 text-3xl font-bold text-black dark:text-white xl:text-hero">
-                <span className="relative inline-block before:absolute before:bottom-2.5 before:left-0 before:-z-1 before:h-3 before:w-full before:bg-titlebg  dark:before:bg-titlebgdark">
-                Secretaria                
+              {/* Text Section */}
+              <motion.div
+                variants={{
+                  hidden: { opacity: 0, x: index % 2 === 0 ? 20 : -20 },
+                  visible: { opacity: 1, x: 0 },
+                }}
+                initial="hidden"
+                whileInView="visible"
+                transition={{ duration: 0.5, delay: 0.1 }}
+                viewport={{ once: true }}
+                className="md:w-1/2"
+              >
+                <h2 className="relative mb-6 text-3xl font-bold text-black dark:text-white xl:text-hero">
+                  {section.title}
+                </h2>
+                <span className="font-medium uppercase text-black dark:text-white">
+                  {section.subtitle}
                 </span>
-              </h2>
-              <div className="mb-8 space-y-4">
-                <div>
-                  <strong>Telefone:</strong> <span><a href="tel:+351225081556">22 508 1556</a></span>
-                </div>
-                <div>
-                  <strong>Email:</strong> <span><a href="mailto:aefeup@aefeup.pt">aefeup@aefeup.pt</a></span>
-                </div>
-              </div>
-              <ScheduleTable data={ScheduleData1} />
-            </motion.div>
+                {section.text && (
+                  <p className="mb-4">
+                    {section.text}
+                  </p>
+                )}
+                {section.phone && (
+                  <div>
+                    <strong>Telefone:</strong> <a href={`tel:+351${section.phone}`}>{section.phone}</a>
+                  </div>
+                )}
+                {section.email && (
+                  <div>
+                    <strong>Email:</strong> <a href={`mailto:${section.email}`}>{section.email}</a>
+                  </div>
+                )}
+                {section.schedule && <ScheduleTable data={section.schedule} />}
+                {section.link && (
+                  <div>
+                    <a
+                      href={section.link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group mt-7.5 inline-flex items-center gap-2.5 text-black hover:text-primary dark:text-white dark:hover:text-primary"
+                    >
+                      <span className="duration-300">{section.link.text}</span>
+                      {section.link.showIcon && section.link.icon}
+                    </a>
+                  </div>
+                )}
+              </motion.div>
+            </div>
           </div>
-        </div>
-      </section>
-      {/* <!-- ===== 1 End ===== --> */}
-
-      {/* <!-- ===== 2 ===== --> */}
-      <section className="overflow-hidden pb-20 lg:pb-25 xl:pb-30">
-        <div className="mx-auto max-w-c-1235 overflow-hidden px-4 md:px-8 2xl:px-0">
-          <div className="flex flex-col md:flex-row items-center gap-8 lg:gap-32.5">
-            <motion.div
-              variants={{
-                hidden: {
-                  opacity: 0,
-                  x: -20,
-                },
-
-                visible: {
-                  opacity: 1,
-                  x: 0,
-                },
-              }}
-              initial="hidden"
-              whileInView="visible"
-              transition={{ duration: 1, delay: 0.1 }}
-              viewport={{ once: true }}
-              className="animate_left md:w-1/2"
-            >
-             <span className="font-medium uppercase text-black dark:text-white">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              </span>
-              <h2 className="relative mb-6 text-3xl font-bold text-black dark:text-white xl:text-hero">
-                Reprografia 
-                <span className="relative inline-block before:absolute before:bottom-2.5 before:left-0 before:-z-1 before:h-3 before:w-full before:bg-titlebg2 dark:before:bg-titlebgdark">
-                Efeitos Gráficos
-                </span>
-              </h2>
-              <div className="mb-8 space-y-4">
-                <div>
-                  <strong>Telefone:</strong> <span><a href="tel:+351225081556">22 508 1556</a></span>
-                </div>
-                <div>
-                  <strong>Email:</strong> <span><a href="mailto:editorial@aefeup.pt">editorial@aefeup.pt</a></span>
-                </div>
-              </div>
-              <ScheduleTable data={ScheduleData2} />
-            </motion.div>
-            <motion.div
-              variants={{
-                hidden: {
-                  opacity: 0,
-                  x: 20,
-                },
-
-                visible: {
-                  opacity: 1,
-                  x: 0,
-                },
-              }}
-              initial="hidden"
-              whileInView="visible"
-              transition={{ duration: 1, delay: 0.1 }}
-              viewport={{ once: true }}
-              className="animate_right relative mx-auto hidden aspect-[588/526.5] md:block md:w-1/2"
-            >
-              <Image
-                src="/images/about/about-light-01.png"
-                alt="About"
-                className="dark:hidden"
-                layout="fill"
-                objectFit="contain"
-              />
-              <Image
-                src="/images/about/about-dark-01.png"
-                alt="About"
-                className="hidden dark:block"
-                layout="fill"
-                objectFit="contain"
-              />
-            </motion.div>
-          </div>
-        </div>
-      </section>
-      {/* <!-- ===== 2 End ===== --> */}
-      {/* <!-- ===== 3 ===== --> */}
-      <section className="overflow-hidden pb-20 lg:pb-25 xl:pb-30">
-        <div className="mx-auto max-w-c-1235 px-4 md:px-8 xl:px-0">
-          <div className="flex flex-col-reverse md:flex-row items-center gap-8 lg:gap-32.5">
-            <motion.div
-              variants={{
-                hidden: {
-                  opacity: 0,
-                  x: -20,
-                },
-
-                visible: {
-                  opacity: 1,
-                  x: 0,
-                },
-              }}
-              initial="hidden"
-              whileInView="visible"
-              transition={{ duration: 0.5, delay: 0.1 }}
-              viewport={{ once: true }}
-              className="animate_left relative mx-auto hidden aspect-[588/526.5] md:block md:w-1/2"
-            >
-              <Image
-                src="/images/about/about-light-01.png"
-                alt="About"
-                className="dark:hidden"
-                layout="fill"
-                objectFit="contain"
-              />
-              <Image
-                src="/images/about/about-dark-01.png"
-                alt="About"
-                className="hidden dark:block"
-                layout="fill"
-                objectFit="contain"
-              />
-            </motion.div>
-            <motion.div
-              variants={{
-                hidden: {
-                  opacity: 0,
-                  x: 20,
-                },
-
-                visible: {
-                  opacity: 1,
-                  x: 0,
-                },
-              }}
-              initial="hidden"
-              whileInView="visible"
-              transition={{ duration: 0.5, delay: 0.1 }}
-              viewport={{ once: true }}
-              className="animate_right md:w-1/2"
-            >
-              <span className="font-medium uppercase text-black dark:text-white">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              </span>
-              <h2 className="relative mb-6 text-3xl font-bold text-black dark:text-white xl:text-hero">
-                <span className="relative inline-block before:absolute before:bottom-2.5 before:left-0 before:-z-1 before:h-3 before:w-full before:bg-pink-300 dark:before:bg-titlebgdark">
-                Cafetaria
-                </span>
-              </h2>
-              <ScheduleTable data={ScheduleData1} />
-
-              <div>
-                <a
-                  href="#"
-                  className="group mt-7.5 inline-flex items-center gap-2.5 text-black hover:text-primary dark:text-white dark:hover:text-primary"
-                >
-                  <span className="duration-300 group-hover:pr-2">
-                    Descarregar Ementa
-                  </span>
-                  <svg
-                    width="14"
-                    height="14"
-                    viewBox="0 0 14 14"
-                    fill="currentColor"
-                  >
-                    <path d="M10.4767 6.16701L6.00668 1.69701L7.18501 0.518677L13.6667 7.00034L7.18501 13.482L6.00668 12.3037L10.4767 7.83368H0.333344V6.16701H10.4767Z" />
-                  </svg>
-                </a>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-      {/* <!-- ===== 3 End ===== --> */}
-
+        </section>
+      ))}
     </>
-    
   );
 };
 

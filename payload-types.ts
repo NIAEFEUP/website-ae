@@ -14,8 +14,10 @@ export interface Config {
     users: User;
     media: Media;
     person: Person;
-    sponsor: Sponsor;
+    material: Material;
+    space: Space;
     sportsTeam: SportsTeam;
+    sponsor: Sponsor;
     association: Association;
     studentGuide: StudentGuide;
     link: Link;
@@ -24,6 +26,12 @@ export interface Config {
     product: Product;
     president: President;
     order: Order;
+    event: Event;
+    documentFolder: DocumentFolder;
+    docfile: Docfile;
+    video: Video;
+    faq: Faq;
+    place: Place;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -95,7 +103,7 @@ export interface Media {
 export interface Person {
   id: number;
   name: string;
-  position: number | Position;
+  position?: (number | null) | Position;
   photo?: (number | null) | Media;
   description?: string | null;
   birthday?: string | null;
@@ -121,13 +129,22 @@ export interface Position {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "sponsor".
+ * via the `definition` "material".
  */
-export interface Sponsor {
+export interface Material {
   id: number;
   name: string;
-  url: string;
-  logo: number | Media;
+  quantity: number;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "space".
+ */
+export interface Space {
+  id: number;
+  name: string;
   updatedAt: string;
   createdAt: string;
 }
@@ -201,6 +218,18 @@ export interface SportsTeam {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "sponsor".
+ */
+export interface Sponsor {
+  id: number;
+  name: string;
+  url: string;
+  logo: number | Media;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "association".
  */
 export interface Association {
@@ -258,6 +287,7 @@ export interface Link {
 export interface BoardSection {
   id: number;
   name: string;
+  type: 'direcao' | 'departament' | 'mesa_da_assembleia_geral' | 'conselho_fiscal';
   members: {
     person: number | Person;
     id?: string | null;
@@ -318,6 +348,114 @@ export interface Order {
     id?: string | null;
   }[];
   price: number;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "event".
+ */
+export interface Event {
+  id: number;
+  title: string;
+  type: string;
+  description: string;
+  image: number | Media;
+  link?:
+    | {
+        description?: string | null;
+        url?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "documentFolder".
+ */
+export interface DocumentFolder {
+  id: number;
+  folder_name: string;
+  section_name?: ('Direção' | 'Mesa da Assembleia Geral' | 'Núcleos') | null;
+  files: {
+    file?: (number | null) | Docfile;
+    id?: string | null;
+  }[];
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "docfile".
+ */
+export interface Docfile {
+  id: number;
+  name: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "video".
+ */
+export interface Video {
+  id: number;
+  título: string;
+  thumbnail?: number | Media | null;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "faq".
+ */
+export interface Faq {
+  id: number;
+  quest: string;
+  ans: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "place".
+ */
+export interface Place {
+  id: number;
+  name: string;
+  description?: string | null;
+  position: {
+    lat: number;
+    lng: number;
+  };
+  schedule?:
+    | {
+        day: string;
+        hours: string;
+        id?: string | null;
+      }[]
+    | null;
+  category: 'Espaços de Estudo' | 'Alimentação' | 'Alojamento' | 'Mobilidade';
   updatedAt: string;
   createdAt: string;
 }

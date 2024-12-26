@@ -1,21 +1,21 @@
-services:
-  website-ae:
-    build:
-      context: .
-    ports:
-      - "3000:3000"
-    depends_on:
-      - postgres
-    environment:
-      - PAYLOAD_SECRET=jawliejfilwajefSEANlawefawfewag349jwgo3gj4d
-      - POSTGRES_URL=postgresql://postgres:postgres@postgres:5432/next-payload-3
-    volumes:
-      - .:/app
-      - /app/node_modules
-  postgres:
-    image: postgres
-    ports:
-      - "5432:5432"
-    environment:
-      - POSTGRES_DB=next-payload-3
-      - POSTGRES_PASSWORD=postgres
+  services:
+    website-ae:
+      build:
+        context: .
+      ports:
+        - "3000:3000"
+      depends_on:
+        - postgres
+      environment:
+        - PAYLOAD_SECRET=jawliejfilwajefSEANlawefawfewag349jwgo3gj4d
+        - POSTGRES_URL=postgresql://postgres:postgres@postgres:5432/next-payload-3
+      volumes:
+        - .:/app
+        - /app/node_modules
+    postgres:
+      image: postgres
+      ports:
+        - "5432:5432"
+      environment:
+        - POSTGRES_DB=next-payload-3
+        - POSTGRES_PASSWORD=postgres

@@ -3,86 +3,93 @@ import { Menu } from "@/types/menu";
 const menuData: Menu[] = [
   {
     title: "AEFEUP",
+    path: "",
     submenu: [
       {
         title: "Quem Somos",
-        path: "aefeup/about",
+        path: "about",
       },
       {
         title: "História da AEFEUP",
-        path: "aefeup/history",
+        path: "history",
       },
       {
         title: "Cedências de Espaço",
-        path: "aefeup/requests"
+        path: "requests"
       },
       {
         title: "Serviços",
-        path: "aefeup/services"
+        path: "services"
+      },
+      {
+        title: "Ementa Bar",
+        path: "menu"
       },
       {
         title: "Eventos",
-        path: "aefeup/events"
+        path: "events"
       },
       {
         title: "Núcleos e Associações",
-        path: "aefeup/associations"
+        path: "associations"
       },
       {
         title: "Documentos",
-        path: "aefeup/documents"
+        path: "documents"
       },
     ],
   },
   {
     title: "Estudante",
+    path: "student",
     submenu: [
       {
         title: "Bem-vindo à FEUP",
-        path: "student/welcome"
+        path: "welcome"
       },
       {
         title: "Guia do Estudante",
-        path: "student/guide"
+        path: "guide"
       },
       {
         title: "Espaços",
-        path: "student/spaces"
+        path: "spaces"
       },
       {
         title: "Oportunidades",
-        path: "student/opportunities"
+        path: "opportunities"
       },
       {
         title: "Apoio Social e Bem-Estar",
-        path: "student/support"
+        path: "support"
       },
     ],
   },
   {
     title: "Desporto",
+    path: "sport",
     submenu: [
       {
-        title: "História e Troféus",
-        path: "sports/history"
+        title: "História e Troféus (wip)",
+        path: "history"
       },
       {
         title: "Seleções",
-        path: "sports/teams"
+        path: "teams"
       },
       {
         title: "Motorsport",
-        path: "sports/motorsport"
+        path: "motorsport"
       },
     ],
   },
   {
-    title: "Loja",
+    title: "Loja (wip)",
     path: "store",
   },
   {
     title: "Contactos",
-    path: "contacts",
+    path: "contact",
   },
 ];
 
