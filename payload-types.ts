@@ -15,6 +15,7 @@ export interface Config {
     media: Media;
     person: Person;
     material: Material;
+    space: Space;
     sportsTeam: SportsTeam;
     sponsor: Sponsor;
     association: Association;
@@ -23,7 +24,6 @@ export interface Config {
     position: Position;
     board_section: BoardSection;
     president: President;
-    spaceData: SpaceDatum;
     event: Event;
     documentFolder: DocumentFolder;
     docfile: Docfile;
@@ -133,6 +133,16 @@ export interface Material {
   id: number;
   name: string;
   quantity: number;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "space".
+ */
+export interface Space {
+  id: number;
+  name: string;
   updatedAt: string;
   createdAt: string;
 }
@@ -301,16 +311,6 @@ export interface President {
   photo?: (number | null) | Media;
   start_year: number;
   end_year: number;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "spaceData".
- */
-export interface SpaceDatum {
-  id: number;
-  name: string;
   updatedAt: string;
   createdAt: string;
 }
