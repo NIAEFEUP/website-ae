@@ -34,6 +34,18 @@ export const sectionsData = [
       ),
     },
     {
+      id: 2,
+      title: "Videos Informativos",
+      subtitle: "",
+      text: (
+        <>
+          <p>
+            Dá uma vista de olhos nos vídeos, para conheceres a faculdade!            
+          </p>
+        </>
+      ),
+    },
+    {
       id: 3,
       title: "Programa de Mentoria",
       subtitle: "",
@@ -54,18 +66,6 @@ export const sectionsData = [
           label: "Candidaturas Mentorado",
         },
       ],
-    },
-    {
-      id: 2,
-      title: "Videos Informativos",
-      subtitle: "",
-      text: (
-        <>
-          <p>
-            Dá uma vista de olhos nos vídeos, para conheceres a faculdade!            
-          </p>
-        </>
-      ),
     },
     {
         id: 4,

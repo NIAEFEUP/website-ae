@@ -28,7 +28,22 @@ const WelcomeClientPage = ({ videos }: Props) => {
               />
             </div>
           </div>
-          <Text sections={[section]} />
+          {section.id === 2 && videos.length === 0 && (
+            <Text sections={[section]} />
+          )}
+          {section.id !== 2 && <Text sections={[section]} />}
+          {section.id === 2 && (
+            <div className="flex gap-5 justify-center mt-10">
+              {/* TODO: Add animation to delay in each animation */}
+              {videos.map((video) => (
+                video.url && (
+                  <div key={video.id}>
+                    <video src={video.url} controls width={300} />
+                    <h2 className="text-center mt-5 text-xl">{video.título}</h2> {/* TODO: Change to tittle */}
+                  </div>
+                )))}
+            </div>
+          )}
         </section>
       ))}
     </>
