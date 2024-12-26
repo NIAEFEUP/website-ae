@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --swiper-theme-color: #97321d !important;
+}
+
 /* third-party libraries CSS */
 
 .testimonial-01 .swiper-pagination-bullet {
