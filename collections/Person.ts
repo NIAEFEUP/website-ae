@@ -79,5 +79,6 @@ export const Person: CollectionConfig = {
   ],
   admin: {
     useAsTitle: 'name',
+    group: "Recursos Humanos"
   }
 }

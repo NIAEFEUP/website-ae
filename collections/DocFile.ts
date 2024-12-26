@@ -6,6 +6,10 @@ export const DocFile: CollectionConfig = {
       singular: 'Ficheiro',
       plural: 'Ficheiros'
    },
+   admin: {
+      useAsTitle: 'name',
+      group: 'Documentos',
+   },
    upload: {
       staticDir: 'media',
       mimeTypes: ['application/pdf'],

@@ -6,6 +6,10 @@ export const Video: CollectionConfig = {
     singular: 'Video',
     plural: 'Videos',
   },
+  admin: {
+    useAsTitle: 'título',
+    group: "Estudante",
+  },
   access: {
     read: () => true,
   },

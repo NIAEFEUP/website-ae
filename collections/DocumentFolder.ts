@@ -6,6 +6,10 @@ export const DocumentFolder: CollectionConfig = {
       singular: 'Pasta',
       plural: 'Pastas',
    },
+   admin: {
+      useAsTitle: 'folder_name',
+      group: 'Documentos',
+  },
    fields: [
       {
          name: 'folder_name',

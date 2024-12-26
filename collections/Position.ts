@@ -7,7 +7,7 @@ export const Position: CollectionConfig = {
     plural: 'Cargos',
   },
   fields: [
-    { 
+    {
       name: 'name',
       label: "Nome",
       type: 'text',
@@ -16,5 +16,6 @@ export const Position: CollectionConfig = {
   ],
   admin: {
     useAsTitle: 'name',
+    group: "Recursos Humanos"
   }
 }

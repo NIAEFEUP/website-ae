@@ -1,10 +1,14 @@
 import { CollectionConfig } from "payload";
 
 export const Faq: CollectionConfig = {
-  slug:'faq',
+  slug: 'faq',
   labels: {
     singular: 'Faq',
     plural: 'Faqs'
+  },
+  admin: {
+    useAsTitle: 'quest',
+    group: 'AEFEUP'
   },
   fields: [
     {
