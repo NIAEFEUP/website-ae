@@ -85,7 +85,7 @@ const AEFEUPHistoryClientPage = ({ presidents }: Props) => {
                 >
                   <CarouselContent>
                     {presidents.sort((a, b) => b.start_year - a.start_year).map((president, index) =>
-                      <CarouselItem key={index}>
+                      <CarouselItem key={index} className="flex justify-center items-center">
                         <PresidentCard key={president.id} person={{ ...president, position: 0 }} description={`${president.start_year} - ${president.end_year}`} />
                       </CarouselItem>
                     )}
