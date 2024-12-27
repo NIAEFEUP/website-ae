@@ -4,64 +4,59 @@ import { Inbox } from "lucide-react";
 import { X } from "lucide-react";
 import { useState } from "react";
 
+import MultipleSelector, { Option } from '../ui/multiple-selector';
+
 interface Props {
     materialData: Material[]
 }
 
-export default function MaterialSelector( { materialData } : Props ) {
-    const [selectedMaterials,setSelectedMaterials ] = useState<Array<Material>>([])
+export default function MaterialSelector({ materialData }: Props) {
 
-    const handleAddMaterialButton = (e) => {
-        e.preventDefault()
-        const copySelectedMaterials : Material[] = [...selectedMaterials]
-        const material = materialData.filter((element) => element.name == e.target.value)[0]
-        if(!copySelectedMaterials.includes(material)) copySelectedMaterials.push(material)
-        setSelectedMaterials(copySelectedMaterials)
-    }
-
-    const handleRemoveMaterialButton = (e) => {
-        e.preventDefault()
-        const copySelectedMaterials : Material[] = [...selectedMaterials].filter((element) => element.name != e.target.id)
-        setSelectedMaterials(copySelectedMaterials)
-    }
+    const [selectedMaterials, setSelectedMaterials] = useState<Option[]>([]);
 
     return (
         <div className="flex flex-col">
-            {materialData.length > 0 
-            ?
+            {materialData.length > 0
+                ?
                 <div>
-                    <div className="flex flex-col">
+                    <div className="flex flex-col p-2">
                         <p className="p-2">Material</p>
-                        <select name="space" id="space" className="flex p-3 border bg-white mx-2 rounded" required>
-                            <option value="" selected >Escolha um material</option>
-                            { materialData
-                                .filter((material: Material) => !selectedMaterials.includes(material))
-                                .map((material: Material) => (
-                                    <option value={material.name} onClick={handleAddMaterialButton} >{material.name}</option>
-                                ))
-                            }
-                        </select>
+
+                        <div className="flex w-full flex-col gap-5">
+                            <MultipleSelector
+                                className="text-md"
+                                value={selectedMaterials}
+                                onChange={setSelectedMaterials}
+                                defaultOptions={materialData.map((material: Material) => ({ label: material.name, value: material.name }))}
+                                placeholder="Escolher materiais"
+                                emptyIndicator={
+                                    <p className="text-center">
+                                        Sem resultados
+                                    </p>
+                                }
+                            />
+                        </div>
                     </div>
                     <div className="pb-2">
-                        {selectedMaterials.map((material : Material) => (
-                            <div className="m-2 py-2 flex border rounded items-center place-content-center justify-between">
-                                <div>
-                                    <button onClick={handleRemoveMaterialButton} className="h-full border-r pr-1 m-2 border-gray">
-                                        <X size={15} className="w-full h-full text-primary" id={material.name}/>
-                                    </button>
+                        {selectedMaterials.map((option: Option) => (
+                            <div className="m-2 py-2 flex border rounded bg-white justify-between">
+                                <div className="flex gap-2 items-center justify-center">
+                                    <input type="number" name={option.value} id={option.value} min={1} max={materialData.filter((element) => element.name == option.value)[0].quantity} defaultValue={1} className="pl-5 focus:outline-none w-12" />
+                                    <p className="">{option.label}</p>
                                 </div>
-                                <p className="">{material.name}</p>
-                                <input type="number" name={material.name} id={material.name} min={0} max={material.quantity} defaultValue={0} className="pr-2 focus:outline-none w-12"/>
+                                <button onClick={() => setSelectedMaterials(selectedMaterials.filter((element) => element.value != option.value))} className="h-full m-2 border-gray pr-2">
+                                    <X size={15} className="w-full h-full" id={option.value} />
+                                </button>
                             </div>
                         ))}
-                    </div> 
+                    </div>
                 </div>
-            :
+                :
                 <div className="flex items-center justify-center p-2">
-                    <Inbox size={80}/>
+                    <Inbox size={80} />
                     <p className="text-xl p-2 w-1/2 sm:w-fit">Não há materiais disponíveis</p>
                 </div>
             }
-        </div>
+        </div >
     )
 }

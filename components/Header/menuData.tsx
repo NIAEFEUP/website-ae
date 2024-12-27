@@ -22,6 +22,10 @@ const menuData: Menu[] = [
         path: "services"
       },
       {
+        title: "Ementa Bar",
+        path: "menu"
+      },
+      {
         title: "Eventos",
         path: "events"
       },
@@ -48,7 +52,7 @@ const menuData: Menu[] = [
         path: "guide"
       },
       {
-        title: "Espaços (wip)",
+        title: "Espaços",
         path: "spaces"
       },
       {
