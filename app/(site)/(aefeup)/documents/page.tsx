@@ -5,7 +5,7 @@ import config from "payload.config";
 
 export const metadata: Metadata = {
    title: "Documentos",
-   description: "Nesta página podes visualizar vários documentos relacionados com a AEFEUP e a comunidade FEUP.",
+   description: "Nesta página podes ver vários documentos relacionados com a AEFEUP e a comunidade FEUP.",
  };
 
  

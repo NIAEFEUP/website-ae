@@ -5,7 +5,7 @@ import AssociationsClientPage from "./client";
 
 export const metadata: Metadata = {
   title: "Núcleos e Associações",
-  description: "Conhece o NIAEFEP e os restantes Núcleos e Associações da FEUP.",
+  description: "Conhece o NIAEFEUP e os restantes Núcleos e Associações da FEUP.",
 };
 
 const AssociationsPage = async () => {
