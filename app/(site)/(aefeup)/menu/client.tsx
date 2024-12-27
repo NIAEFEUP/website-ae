@@ -63,6 +63,7 @@ const ClientMenuPage = ({ categories, items, dayMenus }: Props) => {
                             <DayMenuCard
                                 key={dayMenu.id}
                                 day={new Date(dayMenu.day).toLocaleDateString("pt-PT", { weekday: "long" })}
+                                daySubtitle={new Date(dayMenu.day).toLocaleDateString("pt-PT", { day: "numeric", month: "long" })}
                                 dishes={dayMenu.dishes.map(dish => ({
                                     icon: null,
                                     type: dish.dishType.name_pt,

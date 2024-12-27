@@ -27,7 +27,7 @@ const PresidentCard = ({ person, description, className }: Props) => {
           className="w-40 h-40 md:w-52 md:h-52 lg:w-64 lg:h-64 object-cover mx-auto rounded-full"
         />
       )}
-      <div className="flex flex-col justify-center pt-5 items-center">
+      <div className="flex flex-col justify-center items-center">
         <h6 className="text-2xl font-medium text-black dark:text-white">
           {person.name}
         </h6>
