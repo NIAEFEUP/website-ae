@@ -5,8 +5,8 @@ import config from 'payload.config'
 import SectionHeader from "@/components/Common/SectionHeader";
 
 export const metadata: Metadata = {
-  title: "Desporto",
-  description: "",
+  title: "Seleções",
+  description: "Equipas de desporto da AEFEUP.",
 };
 
 const SportsPage = async () => {

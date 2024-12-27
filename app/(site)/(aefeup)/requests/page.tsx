@@ -9,9 +9,9 @@ import { EventRequestInfo } from "@/types/eventRequestInfo"
 import EmailTemplate from "@/emails"
 
 export const metadata: Metadata = {
-	title: "Request Page",
+	title: "Cedências de Espaço",
+	description: "Envia solicitações para reservas de espaço para eventos ou pedidos de material",
 }
-
 
 export default async function Request() {
 	const calendarID = process.env.GOOGLE_CALENDAR_ID

@@ -5,12 +5,13 @@ import FullScreenImage from "@/components/FullScreenImageProps";
 import landingFeaturesData from "./landing/landingFeaturesData";
 import Testimonial from "@/components/Testimonial";
 import { landingInfoData } from "./landing/landingInfoData";
+
 export const metadata: Metadata = {
-  title: "Services Page",
-  description: "This is the Services Page",
+  title: "AEFEUP",
+  description: "Website da Associação de Estudantes da Faculdade de Engenharia da Universidade do Porto.",
 };
 
-const ServicesPage = () => {
+const Homepage = () => {
   return (
     <main>
       <FullScreenImage
@@ -36,4 +37,4 @@ const ServicesPage = () => {
   );
 };
 
-export default ServicesPage;
+export default Homepage;

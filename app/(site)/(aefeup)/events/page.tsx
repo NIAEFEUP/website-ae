@@ -6,38 +6,37 @@ import HeaderEvents from "@/app/(site)/(aefeup)/events/HeaderEvents";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Events Page",
-  description: "This is Events Page",
+  title: "Eventos",
+  description: "A AEFEUP organiza diversos eventos culturais, desportivos e académicos para os estudantes da FEUP.",
 };
 
-
 const EventsPage = async () => {
-  const payload = await getPayload({config})
+  const payload = await getPayload({ config })
   const events = (await payload.find({
     collection: "event"
   })).docs;
 
   return (
     <>
-      <HeaderEvents/>
-        {
-          events.map((event,key) => (
-              <EventComponent
-                key={key}
-                eventData={{
-                  eventId: event.id,
-                  eventType: event.type,
-                  eventTitle: event.title,
-                  eventContent: event.description,
-                  eventImage: (event.image as Media),
-                  eventLinks: event.link!
-                }} 
-              />
-            )
-          )
-        }
+      <HeaderEvents />
+      {
+        events.map((event, key) => (
+          <EventComponent
+            key={key}
+            eventData={{
+              eventId: event.id,
+              eventType: event.type,
+              eventTitle: event.title,
+              eventContent: event.description,
+              eventImage: (event.image as Media),
+              eventLinks: event.link!
+            }}
+          />
+        )
+        )
+      }
     </>
   )
-}; 
+};
 
 export default EventsPage;

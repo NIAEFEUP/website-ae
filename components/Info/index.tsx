@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import React from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
@@ -101,15 +102,14 @@ const Info: React.FC<InfoProps> = ({ sections }) => {
                 {section.schedule && <ScheduleTable data={section.schedule} />}
                 {section.link && (
                   <div>
-                    <a
+                    <Link
                       href={section.link.url}
-                      target="_blank"
                       rel="noopener noreferrer"
-                      className="group mt-7.5 inline-flex items-center gap-2.5 text-black hover:text-primary dark:text-white dark:hover:text-primary"
+                      className="flex items-center w-fit py-2 px-4 rounded-lg transition-all duration-300 gap-5 bg-primary text-white hover:shadow-lg"
                     >
                       <span className="duration-300">{section.link.text}</span>
                       {section.link.showIcon && section.link.icon}
-                    </a>
+                    </Link>
                   </div>
                 )}
               </motion.div>

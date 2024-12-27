@@ -5,8 +5,8 @@ import Info from "@/components/Info";
 import { infoData } from "./servicesInfoData";
 
 export const metadata: Metadata = {
-  title: "Services Page",
-  description: "This is Services Page",
+  title: "Serviços",
+  description: "Informações sobre os serviços oferecidos pela AEFEUP, incluindo a Secretaria e Loja, Cafetaria e Reprografia. Detalhes sobre horários de atendimento e formas de contato.",
 };
 
 const ServicesPage = () => {
@@ -20,8 +20,8 @@ const ServicesPage = () => {
           description: `Lorem ipsum odor amet, consectetuer adipiscing elit. Ligula mollis nisi justo feugiat facilisis non.`,
         }}
       />
-      <Info sections={infoData} />    
-      </main>
+      <Info sections={infoData} />
+    </main>
   );
 }
 export default ServicesPage;
