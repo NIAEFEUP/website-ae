@@ -37,5 +37,6 @@ export const President: CollectionConfig = {
   ],
   admin: {
     useAsTitle: 'name',
+    group: "Recursos Humanos"
   }
 }

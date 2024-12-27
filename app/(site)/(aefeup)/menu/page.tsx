@@ -1,4 +1,10 @@
+import { Metadata } from "next"
 import ClientMenuPage from "./client"
+
+export const metadata: Metadata = {
+	title: "Ementa Bar",
+	description: "Usa a API que o Peras fez na Universidade do Porto Digital para veres a ementa do Bar da AEFEUP!",
+}
 
 const MenuPage = async () => {
 
@@ -14,4 +20,4 @@ const MenuPage = async () => {
    return <ClientMenuPage categories={categories} items={items} dayMenus={dayMenus} />
 }
 
-export default MenuPage
+export default MenuPage;

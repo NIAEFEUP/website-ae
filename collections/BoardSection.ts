@@ -77,5 +77,6 @@ export const BoardSection: CollectionConfig = {
     ],
     admin: {
         useAsTitle: 'name',
+        group: "Recursos Humanos"
     }
 }

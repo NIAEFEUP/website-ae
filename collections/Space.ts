@@ -12,5 +12,9 @@ export const Space: CollectionConfig = {
             type: 'text',
             required: true
         },
-    ]
+    ],
+    admin: {
+        useAsTitle: 'name',
+        group: "Reservas de Espaço e Material"
+    }
 }

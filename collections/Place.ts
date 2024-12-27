@@ -1,7 +1,15 @@
-import type { CollectionConfig } from 'payload/types';
+import type { CollectionConfig } from 'payload';
 
 export const Place: CollectionConfig = {
   slug: 'place',
+  labels: {
+    singular: "Lugar do Mapa",
+    plural: "Lugares do Mapa",
+  },
+  admin: {
+    useAsTitle: 'name',
+    group: 'Estudante',
+  },
   fields: [
     {
       name: 'name',

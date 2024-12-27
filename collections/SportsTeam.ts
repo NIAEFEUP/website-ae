@@ -12,6 +12,7 @@ export const SportsTeam: CollectionConfig = {
     },
     admin: {
         useAsTitle: 'sport_name',
+        group: 'Desporto',
     },
     fields: [
         {

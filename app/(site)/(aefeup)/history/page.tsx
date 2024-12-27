@@ -4,8 +4,8 @@ import { getPayload } from 'payload'
 import config from 'payload.config'
 
 export const metadata: Metadata = {
-  title: "History Page",
-  description: "This is history Page",
+  title: "História da AEFEUP",
+  description: "Conhece a história da AEFEUP. A AEFEUP, fundada em 15 de março de 1984, representa os estudantes da FEUP e promove atividades culturais, desportivas e sociais. ",
 };
 
 //TODO: (thePeras) \n not working
