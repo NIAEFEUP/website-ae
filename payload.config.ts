@@ -17,7 +17,9 @@ import { StudentGuide } from "./collections/StudentGuide";
 import { Link } from "./collections/Link";
 import { Position } from "./collections/Position";
 import { BoardSection } from "./collections/BoardSection";
+import { Product } from "./collections/Product";
 import { President } from "./collections/President";
+import { Order } from "./collections/Order";
 import { Event } from "./collections/Event";
 import { DocumentFolder } from "./collections/DocumentFolder";
 import { DocFile } from "./collections/DocFile";
@@ -46,13 +48,15 @@ export default buildConfig({
     Link,
     Position,
     BoardSection,
+    Product,
     President,
+    Order,
     Event,
     DocumentFolder,
     DocFile,
     Video,
     Faq,
-    Place
+    Place,
   ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",
