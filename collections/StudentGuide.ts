@@ -1,10 +1,13 @@
 import type { CollectionConfig } from 'payload'
 
-export const StudentGuide:CollectionConfig = {
+export const StudentGuide: CollectionConfig = {
     slug: 'studentGuide',
     labels: {
         singular: 'Guia de Estudante',
         plural: 'Guias de Estudante'
+    },
+    admin: {
+        group: 'Estudante',
     },
     upload: {
         staticDir: 'media',

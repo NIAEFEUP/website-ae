@@ -6,6 +6,10 @@ export const Event: CollectionConfig = {
     singular: 'Evento',
     plural: 'Eventos'
   },
+  admin: {
+    useAsTitle: 'title',
+    group: 'AEFEUP'
+  },
   fields: [
     {
       name: 'title',

@@ -5,10 +5,9 @@ import SuggestionBox from "@/components/Sugestion";
 import { getPayload } from "payload";
 import config from "payload.config";
 
-
 export const metadata: Metadata = {
-  title: "Contact Page",
-  description: "This is Contact Us and FAQ's Page",
+  title: "Contacto",
+  description: "Contacta-nos para qualquer dúvida ou sugestão. Estamos aqui para ajudar!", 
 };
 
 

@@ -6,6 +6,9 @@ export const Sponsor: CollectionConfig = {
         singular: 'Patrocinador',
         plural: 'Patrocinadores',
     },
+    admin: {
+        group: "AEFEUP",
+    },
     fields: [
         {
             name: 'name',

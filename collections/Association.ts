@@ -9,6 +9,7 @@ export const Association: CollectionConfig = {
     },
     admin: {
         useAsTitle: 'association',
+        group: "AEFEUP"
     },
     fields: [
         {

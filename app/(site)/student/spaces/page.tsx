@@ -5,7 +5,7 @@ import config from 'payload.config'
 
 export const metadata: Metadata = {
   title: "Espaços",
-  description: "",
+  description: "Mapa Interativo para facilitar a tua experiência universitária: Espaços de Estudo, Alimentação, Alojamento e Transporte.",
 };
 
 const SpacesPage = async () => {
@@ -15,11 +15,9 @@ const SpacesPage = async () => {
   });
 
   return (
-    <>
-      <section className="pb-20 pt-20 lg:pb-25 xl:pb-30">
-        <SpacesPageContent places={places.docs}/>
-      </section>
-    </>
+    <section className="pb-20 pt-20 lg:pb-25 xl:pb-30">
+      <SpacesPageContent places={places.docs} />
+    </section>
   );
 }
 
