@@ -37,9 +37,9 @@ const WelcomeClientPage = ({ videos }: Props) => {
               {/* TODO: Add animation to delay in each animation */}
               {videos.map((video) => (
                 video.url && (
-                  <div key={video.id}>
+                  <div key={video.id} className="flex flex-col justify-center items-center">
+                    <h2 className="text-center mt-5 mb-2 text-xl">{video.título}</h2> {/* TODO: Change to tittle */}
                     <video src={video.url} controls width={300} />
-                    <h2 className="text-center mt-5 text-xl">{video.título}</h2> {/* TODO: Change to tittle */}
                   </div>
                 )))}
             </div>
