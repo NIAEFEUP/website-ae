@@ -2,14 +2,13 @@
 
 import SectionHeader from "@/components/Common/SectionHeader"
 import DocumentSection from "./DocumentSection"
-import FileList from "./FileList"
 import { DocumentFolder } from "@/payload-types"
 import { useState } from "react"
 import { Docfile } from "@/payload-types"
 import { Dialog, DialogContent, DialogDescription } from "@/components/ui/dialog"
 
 
-const sections = ['Direção', 'Mesa da Assembleia Geral', 'Núcleos']
+const sections = ['Direção', 'Mesa da Assembleia Geral']
 
 interface DocumentsPageClientProps {
    documents: DocumentFolder[]

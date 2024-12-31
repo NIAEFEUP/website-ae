@@ -341,7 +341,7 @@ export interface Event {
 export interface DocumentFolder {
   id: number;
   folder_name: string;
-  section_name?: ('Direção' | 'Mesa da Assembleia Geral' | 'Núcleos') | null;
+  section_name?: ('Direção' | 'Mesa da Assembleia Geral') | null;
   files: {
     file?: (number | null) | Docfile;
     id?: string | null;
