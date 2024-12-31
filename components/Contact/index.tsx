@@ -53,8 +53,14 @@ const Contact = () => {
                 viewport={{ once: true }}
               // className="animate_top w-full rounded-lg bg-white p-7.5 shadow-solid-8 dark:border dark:border-strokedark dark:bg-black md:w-3/5 lg:w-3/4 xl:p-15"
               >
-                <div className="mb-7.5 flex flex-col gap-7.5 lg:flex-row lg:justify-between lg:gap-14">
-                  <div className="p-2 flex flex-col lg:w-2/3">
+              <span className="font-medium uppercase text-black dark:text-white">
+                Envie uma mensagem
+              </span>
+              <h2 className="relative mb-6 text-3xl font-bold text-black dark:text-white xl:text-hero">
+                Contactos
+              </h2>
+                <div className="mb-7.5 flex flex-col gap-7.5 lg:flex-row lg:justify-between">
+                  <div className="p-2 flex flex-col lg:w-1/2">
                   <label htmlFor="name">Full name</label>
                     <input
                       type="text"
@@ -63,7 +69,7 @@ const Contact = () => {
                     />
                   </div>
 
-                  <div className="p-2 flex flex-col">
+                  <div className="p-2 flex flex-col lg:w-1/2">
                   <label htmlFor="email">Email address</label>
                     <input
                       type="email"
@@ -73,8 +79,8 @@ const Contact = () => {
                   </div>
                 </div>
 
-                <div className="mb-12.5 flex flex-col gap-7.5 lg:flex-row lg:justify-between lg:gap-14">
-                  <div className="p-2 flex flex-col lg:w-2/3">
+                <div className="mb-12.5 flex flex-col gap-7.5 lg:flex-row lg:justify-between">
+                  <div className="p-2 flex flex-col lg:w-1/2">
                   <label htmlFor="subject">Subject</label>
                     <input
                       type="text"
@@ -83,7 +89,7 @@ const Contact = () => {
                     />
                   </div>
 
-                  <div className="p-2 flex flex-col">
+                  <div className="p-2 flex flex-col lg:w-1/2">
                   <label htmlFor="phone">Phone number</label>
                     <input
                       type="tel"
@@ -137,9 +143,6 @@ const Contact = () => {
               viewport={{ once: true }}
               className="animate_top w-full md:w-2/5 p-7.5 lg:w-[26%]"
             >
-              <h2 className="mb-12.5 text-3xl font-semibold text-black dark:text-white xl:text-sectiontitle2">
-                Contacts
-              </h2>
               <div className="5 mb-11">
                 <div className="flex space-x-12">
                   <a href="https://www.instagram.com/aefeup/" target="_blank" rel="noopener noreferrer">
