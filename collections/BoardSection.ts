@@ -20,8 +20,8 @@ export const BoardSection: CollectionConfig = {
             required: true,
             options: [
                 {
-                    label: 'Direção',
-                    value: 'direcao',
+                    label: 'Presidência',
+                    value: 'presidencia',
                 },
                 {
                     label: 'Departamento',

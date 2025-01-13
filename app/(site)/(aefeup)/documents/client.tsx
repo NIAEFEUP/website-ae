@@ -8,7 +8,7 @@ import { Docfile } from "@/payload-types"
 import { Dialog, DialogContent, DialogDescription } from "@/components/ui/dialog"
 
 
-const sections = ['Direção', 'Mesa da Assembleia Geral']
+const sections = ['Direção', 'Assembleia Geral']
 
 interface DocumentsPageClientProps {
    documents: DocumentFolder[]

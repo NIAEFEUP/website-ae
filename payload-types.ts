@@ -285,7 +285,7 @@ export interface Link {
 export interface BoardSection {
   id: number;
   name: string;
-  type: 'direcao' | 'departament' | 'mesa_da_assembleia_geral' | 'conselho_fiscal';
+  type: 'presidencia' | 'departament' | 'mesa_da_assembleia_geral' | 'conselho_fiscal';
   members: {
     person: number | Person;
     id?: string | null;
@@ -341,7 +341,7 @@ export interface Event {
 export interface DocumentFolder {
   id: number;
   folder_name: string;
-  section_name?: ('Direção' | 'Mesa da Assembleia Geral') | null;
+  section_name?: ('Direção' | 'Assembleia Geral') | null;
   files: {
     file?: (number | null) | Docfile;
     id?: string | null;

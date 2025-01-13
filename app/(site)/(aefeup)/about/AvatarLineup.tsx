@@ -14,7 +14,7 @@ interface Props {
 const AvatarLineup = ({ sections }: Props) => {
   const [showAll, setShowAll] = useState(false);
 
-  const main_board = sections.find((e) => e.type === 'direcao');
+  const main_board = sections.find((e) => e.type === 'presidencia');
   const otherSections = sections.filter((e) => e.type === 'mesa_da_assembleia_geral' || e.type === 'conselho_fiscal');
 
   return (
@@ -29,7 +29,7 @@ const AvatarLineup = ({ sections }: Props) => {
       style={{ marginTop: '2rem', paddingBottom: '2rem' }}
     >
       <div className="flex flex-col items-center mt-5 gap-7 ">
-        <h3 className="text-black dark:text-white text-3xl font-medium  text-center">Direção</h3>
+        <h3 className="text-black dark:text-white text-3xl font-medium  text-center">Presidência</h3>
         <div className="flex justify-center flex-wrap gap-5 ">
           {main_board && main_board.members.map((person) => (<Avatar person={person.person} />))}
         </div>

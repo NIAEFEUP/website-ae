@@ -9,7 +9,7 @@ export const DocumentFolder: CollectionConfig = {
    admin: {
       useAsTitle: 'folder_name',
       group: 'Documentos',
-  },
+   },
    fields: [
       {
          name: 'folder_name',
@@ -28,8 +28,8 @@ export const DocumentFolder: CollectionConfig = {
                value: 'Direção'
             },
             {
-               label: 'Mesa da Assembleia Geral',
-               value: 'Mesa da Assembleia Geral'
+               label: 'Assembleia Geral',
+               value: 'Assembleia Geral'
             }
          ]
       },
