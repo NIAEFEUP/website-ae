@@ -30,11 +30,7 @@ export const DocumentFolder: CollectionConfig = {
             {
                label: 'Mesa da Assembleia Geral',
                value: 'Mesa da Assembleia Geral'
-            },
-            {
-               label: 'Núcleos',
-               value: 'Núcleos'
-            },
+            }
          ]
       },
       {
