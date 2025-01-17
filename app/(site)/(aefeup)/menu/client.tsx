@@ -14,6 +14,7 @@ interface Props {
     items: any[];
     dayMenus: any[];
 }
+const dishTypesOrder = [4, 1, 10, 2, 11]
 
 const ClientMenuPage = ({ categories, items, dayMenus }: Props) => {
 
@@ -43,18 +44,26 @@ const ClientMenuPage = ({ categories, items, dayMenus }: Props) => {
                     slidesPerView={1}
                     modules={[Navigation]}
                     navigation={true}
+                    slidesOffsetAfter={0}
+                    slidesOffsetBefore={0}
                     breakpoints={{
                         640: {
                             slidesPerView: 2,
                             spaceBetween: 20,
+                            slidesOffsetAfter: 50,
+                            slidesOffsetBefore: 50
                         },
                         768: {
                             slidesPerView: 3,
                             spaceBetween: 40,
+                            slidesOffsetAfter: 100,
+                            slidesOffsetBefore: 100
                         },
                         1200: {
                             slidesPerView: 4,
                             spaceBetween: 50,
+                            slidesOffsetAfter: 100,
+                            slidesOffsetBefore: 100
                         },
                     }}
                 >
@@ -67,8 +76,10 @@ const ClientMenuPage = ({ categories, items, dayMenus }: Props) => {
                                 dishes={dayMenu.dishes.map(dish => ({
                                     icon: null,
                                     type: dish.dishType.name_pt,
+                                    typeId: dish.dishType.id,
                                     name: dish.dish.name_pt
-                                }))}
+                                })).sort((a, b) => dishTypesOrder.indexOf(a.typeId) - dishTypesOrder.indexOf(b.typeId))
+                                }
                             />
                         </SwiperSlide>
                     ))}
@@ -76,8 +87,8 @@ const ClientMenuPage = ({ categories, items, dayMenus }: Props) => {
             </div>
         </section >
 
-        <div className="">
-            <section className='flex justify-center gap-5 my-5 flex-wrap'>
+        <div>
+            <section className='flex justify-center gap-5 my-5 flex-wrap mx-5'>
                 {categories.map((category) => (
                     <button
                         key={category.id}
@@ -91,7 +102,7 @@ const ClientMenuPage = ({ categories, items, dayMenus }: Props) => {
                     </button>
                 ))}
             </section>
-            <ul className="divide-y divide-gray-300 dark:divide-gray-600 max-w-[45%] mx-auto pb-15">
+            <ul className="divide-y divide-gray-300 dark:divide-gray-600 w-[90%] sm:max-w-[45%] mx-auto pb-15">
                 {filteredItems.filter((item) => item.category.id === selectedCategory).map((item) => (
                     <li key={item.id} className="py-5 bg-white">
                         <div className="flex justify-between items-center">
@@ -99,8 +110,7 @@ const ClientMenuPage = ({ categories, items, dayMenus }: Props) => {
                             <p>{item.price.toFixed(2).replace(".", ",")}€</p>
                         </div>
                     </li>
-                ))
-                }
+                ))}
             </ul>
         </div>
     </>)

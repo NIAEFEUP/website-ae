@@ -14,7 +14,7 @@ const MenuPage = async () => {
 
    const items = await (await fetch(`${URL}/permanent-menus`)).json()
    const categories = await (await fetch(`${URL}/permanent-menus/categories`)).json()
-   const dayMenusLink = URL + "/day-menus?period=LUNCH&" //year=2024&weekNumber=50" // to test
+   const dayMenusLink = URL + "/day-menus?period=LUNCH&" //year=2024&weekNumber=50" // to test and remove filter
    const dayMenus = await (await fetch(dayMenusLink)).json()
    const filteredDayMenus = dayMenus.filter(dayMenu => new Date(dayMenu.day) >= new Date()).sort((a, b) => a.day - b.day)
 
