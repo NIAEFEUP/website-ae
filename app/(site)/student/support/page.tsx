@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import SocialAidPageContent from './pageContent';
+import SocialAidClientPage from './client';
 
 export const metadata: Metadata = {
   title: "Apoio Social",
@@ -7,9 +7,7 @@ export const metadata: Metadata = {
 };
 
 const SocialAidPage = async () => {
-  return (
-    <SocialAidPageContent/>
-  );
+  return <SocialAidClientPage/>
 }
 
 export default SocialAidPage;

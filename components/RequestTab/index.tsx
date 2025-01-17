@@ -7,12 +7,12 @@ import { SingleMaterialRequest } from "@/types/singleMaterialRequest";
 import { Material } from "@/types/material";
 import DatePickerComponent from "./DatePickerComponent";
 import MaterialSelector from "./MaterialSelector";
-import { SpaceDatum } from "@/payload-types";
+import { Space } from "@/payload-types";
 
 interface Props {
   materialData: Material[],
   sendEmail: (eventRequest: EventRequestInfo) => void,
-  availableSpaces: SpaceDatum[]
+  availableSpaces: Space[]
 }
 
 export default function RequestTab({ materialData, sendEmail, availableSpaces }: Props) {

@@ -4,8 +4,8 @@ export const motorsportInfoData = [
   {
     id: 1,
     title: "Formula Student",
-    subtitle: "IN JULY 2021 THE FS FEUP STORY BEGAN",
-    text: "FS FEUP is a team, based at the University of Porto, of around 60 students. The team’s Mission Statement is: “To foster students’ self-development, by providing them with the chance to be part of something bigger together, by developing Formula Student-spec prototypes – resulting in career-ready people.“The team comprises students from various engineering branches such as mechanical, electronic, informatics, and other courses.",
+    subtitle: "Em 2021 a história da FSFEUP começou",
+    text: "A FS FEUP é uma equipa sediada na Universidade do Porto, composta por cerca de 60 estudantes. A missão da equipa é: Promover o desenvolvimento pessoal dos estudantes, dando-lhes a oportunidade de fazerem parte de algo maior, através do desenvolvimento de protótipos ao estilo Formula Student – formando pessoas preparadas para o mercado de trabalho. A equipa inclui estudantes de várias áreas de engenharia, como mecânica, eletrónica, informática, entre outros cursos.",
     email: "formulastudentfeup@gmail.com",
     imageSrc: "/images/motorsport/fsfeup_logo.jpeg",
     avatar: <Globe size={48} className="text-primary" />,
@@ -19,8 +19,8 @@ export const motorsportInfoData = [
   {
     id: 2,
     title: "Moto Student",
-    subtitle: "IN NOVEMBER 2023 THE MS FEUP STORY BEGAN",
-    text: "Moto Student is a dedicated group of FEUP students committed to advancing the field of motorsports engineering through precision design and innovation.",
+    subtitle: "Em novembro de 2023 a história da MSFEUP começou",
+    text: "A Moto Student é um grupo dedicado de estudantes da FEUP, comprometido em impulsionar a área da engenharia de desportos motorizados através de design de precisão e inovação.",
     email: "motostudentfeup@fe.up.pt",
     imageSrc: "/images/motorsport/moto_student_feup_logo.jpeg",
     avatar: <Instagram size={48} className="text-primary" />,

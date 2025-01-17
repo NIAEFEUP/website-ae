@@ -4,7 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Avatar from "@/components/Avatar";
 import { ArrowUp, ArrowDown } from "lucide-react";
-import { BoardSection, Person } from "@/payload-types";
+import { BoardSection } from "@/payload-types";
 
 
 interface Props {

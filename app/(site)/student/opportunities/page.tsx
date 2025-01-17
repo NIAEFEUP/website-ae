@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import OpportunitiesPageContent from './pageContent';
+import OpportunitiesClientPage from './client';
 
 export const metadata: Metadata = {
     title: "Oportunidades",
@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 const OpportunitiesPage = async () => {
     return (
-        <OpportunitiesPageContent />
+        <OpportunitiesClientPage />
     );
 }
 
