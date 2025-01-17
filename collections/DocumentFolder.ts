@@ -36,17 +36,10 @@ export const DocumentFolder: CollectionConfig = {
       {
          name: 'files',
          label: 'Ficheiros',
-         type: 'array',
+         type: 'relationship',
+         relationTo: 'docfile',
+         hasMany: true,
          required: true,
-         fields: [
-            {
-               name: 'file',
-               label: 'Ficheiro',
-               type: 'relationship',
-               relationTo: 'docfile',
-            }
-         ]
       }
-
    ]
 }
