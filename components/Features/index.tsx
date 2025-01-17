@@ -1,16 +1,16 @@
 "use client";
 import React from "react";
-import featuresData from "./featuresData";
 import SingleFeature from "./SingleFeature";
 import SectionHeader from "../Common/SectionHeader";
+import { Feature } from "@/types/feature";
+import { HeaderInfo } from "@/types/headerInfo";
 
-const Features = ({ data = featuresData, headerInfo = {
-    title: "SOLID FEATURES",
-    subtitle: "Core Features of Solid",
-    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. In
-                 convallis tortor eros. Donec vitae tortor lacus. Phasellus aliquam
-                 ante in maximus.`,
-} }) => {
+interface Props {
+  data: Feature[],
+  headerInfo: HeaderInfo
+}
+
+const Features = ({ data , headerInfo } : Props) => {
   return (
     <>
       {/* <!-- ===== Features Start ===== --> */}

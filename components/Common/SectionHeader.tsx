@@ -1,11 +1,7 @@
 "use client";
+import { HeaderInfo } from "@/types/headerInfo";
 import { motion } from "framer-motion";
 
-type HeaderInfo = {
-  title: string;
-  subtitle: string;
-  description:React.ReactNode;
-  };
 
 const SectionHeader = ({ headerInfo }: { headerInfo: HeaderInfo }) => {
   const { title, description } = headerInfo;
