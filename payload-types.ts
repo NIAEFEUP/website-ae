@@ -30,6 +30,7 @@ export interface Config {
     video: Video;
     faq: Faq;
     place: Place;
+    testimonial: Testimonial;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -419,6 +420,19 @@ export interface Place {
       }[]
     | null;
   category: 'Espaços de Estudo' | 'Alimentação' | 'Alojamento' | 'Mobilidade';
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "testimonial".
+ */
+export interface Testimonial {
+  id: number;
+  name: string;
+  photo?: (number | null) | Media;
+  position: string;
+  content: string;
   updatedAt: string;
   createdAt: string;
 }

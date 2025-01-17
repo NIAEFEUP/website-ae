@@ -9,9 +9,13 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 import { motion } from "framer-motion";
 import SingleTestimonial from "./SingleTestimonial";
-import { testimonialData } from "./testimonialData";
+import {Testimonial} from "@/payload-types"
 
-const Testimonial = () => {
+interface Props {
+  testimonialData: Testimonial[]
+}
+
+const TestimonialSection = ({ testimonialData } : Props) => {
   return (
     <>
       <section>
@@ -87,4 +91,4 @@ const Testimonial = () => {
   );
 };
 
-export default Testimonial;
+export default TestimonialSection;
