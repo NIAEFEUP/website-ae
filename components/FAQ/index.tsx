@@ -17,20 +17,6 @@ const FAQ = ({faqData} : {faqData : Faq[]}) => {
       {/* <!-- ===== FAQ Start ===== --> */}
       <section className="overflow-hidden">
         <div className="relative mx-auto max-w-c-1235 px-4 md:px-8 xl:px-0">
-          <div className="absolute -bottom-16 -z-1 h-full w-full">
-            <Image
-              fill
-              src="/images/shape/shape-dotted-light.svg"
-              alt="Dotted"
-              className="dark:hidden"
-            />
-            <Image
-              fill
-              src="/images/shape/shape-dotted-light.svg"
-              alt="Dotted"
-              className="hidden dark:block"
-            />
-          </div>
           <div className="flex justify-center gap-8 md:flex-nowrap md:items-center">
             <div className="animate_left w-full">
               <motion.div
@@ -52,10 +38,10 @@ const FAQ = ({faqData} : {faqData : Faq[]}) => {
               // className="animate_left md:w-2/5 lg:w-1/2"
             >
               <span className="font-medium uppercase text-black dark:text-white">
-                OUR FAQS
+                FAQS
               </span>
               <h2 className="relative mb-6 text-3xl font-bold text-black dark:text-white xl:text-hero">
-                Frequently Asked Questions
+                Perguntas Frequentes
               </h2>
             </motion.div>
 

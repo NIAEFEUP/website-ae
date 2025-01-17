@@ -31,7 +31,7 @@ const UsefulLinks = ({ links }: Props) => {
         >
           <section className="mt-12 p-6 rounded-lg flex flex-col w-1/2">
             <h2 className="text-2xl font-bold mb-6 text-center text-black">
-              Useful Links
+              Links Úteis
             </h2>
             <div className="grid grid-cols-3 gap-4">
               {links.map((link, index) => (
