@@ -3,12 +3,11 @@ import { motion } from "framer-motion";
 
 type HeaderInfo = {
   title: string;
-  subtitle: string;
-  description:React.ReactNode;
-  };
+  subtitle?: string;
+  description?: string;
+};
 
-const SectionHeader = ({ headerInfo }: { headerInfo: HeaderInfo }) => {
-  const { title, description } = headerInfo;
+const SectionHeader = ({ title, subtitle, description }: HeaderInfo ) => {
 
   return (
     <>
@@ -33,15 +32,22 @@ const SectionHeader = ({ headerInfo }: { headerInfo: HeaderInfo }) => {
           <h1 className="mb-4 text-3xl font-bold text-black dark:text-white mx-auto">
             {title}
           </h1>
-          <p
-            className="mx-auto text-gray-600 text-center justify-start break-words"
-            style={{
-              textAlign: "justify",
-              textAlignLast: "center", 
-            }}
-          >
-  {description}
-</p>
+          {subtitle && (
+            <h2 className="mb-2 text-xl font-medium text-gray-700 dark:text-gray-300">
+              {subtitle}
+            </h2>
+          )}
+          {description && (
+            <p
+              className="mx-auto text-gray-600 text-center justify-start break-words"
+              style={{
+                textAlign: "justify",
+                textAlignLast: "center",
+              }}
+            >
+              {description}
+            </p>
+          )}
         </motion.div>
       </div>
       {/* <!-- Section Title End --> */}
