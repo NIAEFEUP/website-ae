@@ -4,6 +4,7 @@ import { FaDrumstickBite } from "react-icons/fa";
 
 interface DayMenuCardProps {
     day: string;
+    daySubtitle: string;
     dishes: { icon: React.ReactNode; type: string; name: string }[];
 }
 
@@ -11,7 +12,7 @@ function capitalizeFirstLetter(val) {
     return String(val).charAt(0).toUpperCase() + String(val).slice(1);
 }
 
-const DayMenuCard = ({ day, dishes }: DayMenuCardProps) => {
+const DayMenuCard = ({ day, daySubtitle, dishes }: DayMenuCardProps) => {
     return (
         <div className="animate_top group relative rounded-lg border border-stroke bg-white p-7.5 shadow-solid-10 dark:border-strokedark dark:bg-blacksection dark:shadow-none min-w-67.5">
             <motion.div
@@ -31,6 +32,7 @@ const DayMenuCard = ({ day, dishes }: DayMenuCardProps) => {
                 viewport={{ once: true }}
             >
                 <h2 className="text-xl font-bold text-black">{capitalizeFirstLetter(day)}</h2>
+                <p className="text-gray-500 dark:text-gray-400">{daySubtitle}</p>
                 <div className="mt-4">
                     <ul>
                         {dishes.map((dish, index) => (
