@@ -1,20 +1,33 @@
 import { motion } from "framer-motion";
 import React from "react";
-import { FaDrumstickBite } from "react-icons/fa";
+import { Beef, Soup, Fish, CakeSlice, Salad } from "lucide-react";
 
 interface DayMenuCardProps {
     day: string;
     daySubtitle: string;
-    dishes: { icon: React.ReactNode; type: string; name: string }[];
+    dishes: { icon: React.ReactNode; type: string; typeId: number, name: string }[];
 }
 
 function capitalizeFirstLetter(val) {
     return String(val).charAt(0).toUpperCase() + String(val).slice(1);
 }
 
+const dishTypeIcon = {
+    //sopa
+    4: <Soup />,
+    //carne
+    1: <Beef />,
+    //peixe
+    10: <Fish />,
+    //vegetariano
+    2: <Salad />,
+    //sobremessa
+    11: <CakeSlice />,
+};
+
 const DayMenuCard = ({ day, daySubtitle, dishes }: DayMenuCardProps) => {
     return (
-        <div className="animate_top group relative rounded-lg border border-stroke bg-white p-7.5 shadow-solid-10 dark:border-strokedark dark:bg-blacksection dark:shadow-none min-w-67.5">
+        <div className="animate_top group relative rounded-lg border border-stroke bg-white p-7.5 shadow-solid-10 dark:border-strokedark dark:bg-blacksection dark:shadow-none min-w-67.5 m-5">
             <motion.div
                 variants={{
                     hidden: {
@@ -42,7 +55,7 @@ const DayMenuCard = ({ day, daySubtitle, dishes }: DayMenuCardProps) => {
                             >
                                 <div className="flex items-center">
                                     <span className="mr-3 text-primary dark:text-white">
-                                        {dish.icon || <FaDrumstickBite />}
+                                        {dishTypeIcon[dish.typeId]}
                                     </span>
                                     <div>
                                         <div className="text-sm text-gray-500 dark:text-gray-400">

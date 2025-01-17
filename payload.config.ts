@@ -24,6 +24,7 @@ import { DocFile } from "./collections/DocFile";
 import { Video } from "./collections/Video";
 import { Faq } from "./collections/Faq";
 import { Place } from "./collections/Place";
+import { Testimonal } from "./collections/Testimonial";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -52,7 +53,8 @@ export default buildConfig({
     DocFile,
     Video,
     Faq,
-    Place
+    Place,
+    Testimonal
   ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",

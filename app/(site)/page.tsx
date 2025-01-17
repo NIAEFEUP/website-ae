@@ -1,15 +1,22 @@
 import { Metadata } from "next";
-import Feature from "@/components/Features";
+import Features from "@/components/Features";
 import Info from "@/components/Info";
 import FullScreenImage from "@/components/FullScreenImageProps";
 import landingFeaturesData from "./landing/landingFeaturesData";
-import Testimonial from "@/components/Testimonial";
 import { landingInfoData } from "./landing/landingInfoData";
+import config from "payload.config"
+import { getPayload } from "payload"
+import TestimonialSection from "@/components/TestimonialSection";
 
 export const metadata: Metadata = {
   title: "AEFEUP",
   description: "Website da Associação de Estudantes da Faculdade de Engenharia da Universidade do Porto.",
 };
+
+const payload = await getPayload({ config });
+const testimonials = (await payload.find({
+  collection: "testimonial",
+})).docs
 
 const Homepage = () => {
   return (
@@ -21,7 +28,7 @@ const Homepage = () => {
         logoAlt="AEFEUP Logo"
       />
 
-      <Feature
+      <Features
         data = {landingFeaturesData}
         headerInfo={{
           title: "Welcome to AEFEUP!",
@@ -32,7 +39,7 @@ const Homepage = () => {
     
         <Info sections={landingInfoData} />
 
-      <Testimonial></Testimonial>
+      <TestimonialSection testimonialData={testimonials} />
     </main>
   );
 };
