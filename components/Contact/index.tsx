@@ -47,7 +47,7 @@ const Contact = () => {
                 </h2>
                 <div className="mb-7.5 flex flex-col gap-7.5 lg:flex-row lg:justify-between">
                   <div className="p-2 flex flex-col lg:w-1/2">
-                    <label htmlFor="name">Full name</label>
+                    <label htmlFor="name">Nome</label>
                     <input
                       type="text"
                       id="name"

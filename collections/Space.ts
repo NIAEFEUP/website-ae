@@ -1,3 +1,4 @@
+import { isStaff } from "@/lib/utils";
 import { CollectionConfig } from "payload";
 
 export const Space: CollectionConfig = {
@@ -5,6 +6,12 @@ export const Space: CollectionConfig = {
     labels: {
         singular: "Espaço",
         plural: "Espaços",
+    },
+    access: {
+        read: isStaff,
+        create: isStaff,
+        update: isStaff,
+        delete: isStaff,
     },
     fields: [
         {

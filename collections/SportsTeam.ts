@@ -1,3 +1,4 @@
+import { isStaff } from '@/lib/utils';
 import type { CollectionConfig } from 'payload'
 
 const emojies = [
@@ -13,6 +14,12 @@ export const SportsTeam: CollectionConfig = {
     admin: {
         useAsTitle: 'sport_name',
         group: 'Desporto',
+    },
+    access: {
+        read: isStaff,
+        create: isStaff,
+        update: isStaff,
+        delete: isStaff,
     },
     fields: [
         {

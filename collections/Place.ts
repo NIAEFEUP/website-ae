@@ -1,3 +1,4 @@
+import { isStaff } from '@/lib/utils';
 import type { CollectionConfig } from 'payload';
 
 export const Place: CollectionConfig = {
@@ -9,6 +10,12 @@ export const Place: CollectionConfig = {
   admin: {
     useAsTitle: 'name',
     group: 'Estudante',
+  },
+  access: {
+    read: isStaff,
+    create: isStaff,
+    update: isStaff,
+    delete: isStaff,
   },
   fields: [
     {

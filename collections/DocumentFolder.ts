@@ -1,3 +1,4 @@
+import { isStaff } from "@/lib/utils";
 import { CollectionConfig } from "payload";
 
 export const DocumentFolder: CollectionConfig = {
@@ -9,6 +10,12 @@ export const DocumentFolder: CollectionConfig = {
    admin: {
       useAsTitle: 'folder_name',
       group: 'Documentos',
+   },
+   access: {
+      read: isStaff,
+      create: isStaff,
+      update: isStaff,
+      delete: isStaff
    },
    fields: [
       {

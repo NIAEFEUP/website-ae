@@ -1,3 +1,4 @@
+import { isStaff } from '@/lib/utils'
 import type { CollectionConfig } from 'payload'
 
 export const Sponsor: CollectionConfig = {
@@ -8,6 +9,12 @@ export const Sponsor: CollectionConfig = {
     },
     admin: {
         group: "AEFEUP",
+    },
+    access: {
+        read: isStaff,
+        create: isStaff,
+        update: isStaff,
+        delete: isStaff,
     },
     fields: [
         {
