@@ -1,21 +1,66 @@
-  services:
-    website-ae:
-      build:
-        context: .
-      ports:
-        - "3000:3000"
-      depends_on:
-        - postgres
-      environment:
-        - PAYLOAD_SECRET=jawliejfilwajefSEANlawefawfewag349jwgo3gj4d
-        - POSTGRES_URL=postgresql://postgres:postgres@postgres:5432/next-payload-3
-      volumes:
-        - .:/app
-        - /app/node_modules
-    postgres:
-      image: postgres
-      ports:
-        - "5432:5432"
-      environment:
-        - POSTGRES_DB=next-payload-3
-        - POSTGRES_PASSWORD=postgres
+#services:
+#  payload:
+#    image: node:18-alpine
+#    ports:
+#      - '3000:3000'
+#    volumes:
+#      - .:/home/node/app
+#      - node_modules:/home/node/app/node_modules
+#    working_dir: /home/node/app/
+#    command: sh -c "corepack enable && corepack prepare pnpm@latest --activate && pnpm install && pnpm dev"
+#    depends_on:
+#      # - mongo
+#      - postgres
+#    env_file:
+#      - .env
+#
+#  # Ensure your DATABASE_URI uses 'mongo' as the hostname ie. mongodb://mongo/my-db-name
+#  mongo:
+#    image: mongo:latest
+#    ports:
+#      - '27017:27017'
+#    command:
+#      - --storageEngine=wiredTiger
+#    volumes:
+#      - data:/data/db
+#    logging:
+#      driver: none
+#
+#  postgres:
+#    restart: always
+#    image: postgres:latest
+#    volumes:
+#      - pgdata:/var/lib/postgresql/data
+#    ports:
+#      - "5432:5432"
+services:
+  web:
+    build: .
+    ports:
+      - '3000:3000'
+    environment:
+      - NODE_ENV=production
+    env_file:
+      - .env
+    depends_on:
+      - db
+    networks:
+      - my_network
+
+  db:
+    image: postgres:latest
+    environment:
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - my_network
+
+volumes:
+  postgres_data:
+
+networks:
+  my_network:
+    name: my_network
+    driver: bridge
