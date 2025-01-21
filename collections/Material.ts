@@ -1,3 +1,4 @@
+import { isStaff } from "@/lib/utils";
 import { CollectionConfig } from "payload";
 
 export const Material: CollectionConfig = {
@@ -21,5 +22,11 @@ export const Material: CollectionConfig = {
   admin: {
     useAsTitle: 'name',
     group: "Reservas de Espaço e Material"
+  },
+  access: {
+    read: isStaff,
+    create: isStaff,
+    update: isStaff,
+    delete: isStaff,
   }
 }

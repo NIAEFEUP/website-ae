@@ -1,3 +1,4 @@
+import { isStaff } from "@/lib/utils";
 import { CollectionConfig } from "payload";
 
 export const Faq: CollectionConfig = {
@@ -9,6 +10,12 @@ export const Faq: CollectionConfig = {
   admin: {
     useAsTitle: 'quest',
     group: 'AEFEUP'
+  },
+  access: {
+    read: isStaff,
+    create: isStaff,
+    update: isStaff,
+    delete: isStaff
   },
   fields: [
     {

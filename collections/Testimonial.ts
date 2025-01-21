@@ -1,3 +1,4 @@
+import { isStaff } from "@/lib/utils";
 import type { CollectionConfig } from "payload";
 
 export const Testimonal: CollectionConfig = {
@@ -10,6 +11,12 @@ export const Testimonal: CollectionConfig = {
     useAsTitle: 'name',
     group: 'Recursos Humanos'
   },
+  access: {
+    read: isStaff,
+    create: isStaff,
+    update: isStaff,
+    delete: isStaff
+  },
   fields: [
     {
       name: 'name',
@@ -18,10 +25,10 @@ export const Testimonal: CollectionConfig = {
       required: true,
     },
     {
-      name:'photo',
-      label:'Foto',
-      type:'relationship',
-      relationTo:'media'
+      name: 'photo',
+      label: 'Foto',
+      type: 'relationship',
+      relationTo: 'media'
     },
     {
       name: 'position',
