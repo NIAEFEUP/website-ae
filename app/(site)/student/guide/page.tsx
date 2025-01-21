@@ -5,6 +5,8 @@ import Links from "@/components/Links";
 import { getPayload } from 'payload';
 import config from 'payload.config';
 
+export const dynamic = 'force-dynamic'
+
 const payload = await getPayload({ config });
 const studentGuide = (await payload.find({
   collection: "studentGuide",

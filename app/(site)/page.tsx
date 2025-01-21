@@ -8,6 +8,8 @@ import config from "payload.config"
 import { getPayload } from "payload"
 import TestimonialSection from "@/components/TestimonialSection";
 
+export const dynamic = 'force-dynamic'
+
 export const metadata: Metadata = {
   title: "AEFEUP",
   description: "Website da Associação de Estudantes da Faculdade de Engenharia da Universidade do Porto.",

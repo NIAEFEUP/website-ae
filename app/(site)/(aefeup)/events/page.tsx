@@ -5,6 +5,8 @@ import config from "payload.config";
 import HeaderEvents from "@/app/(site)/(aefeup)/events/HeaderEvents";
 import { Metadata } from "next";
 
+export const dynamic = 'force-dynamic'
+
 export const metadata: Metadata = {
   title: "Eventos",
   description: "A AEFEUP organiza diversos eventos culturais, desportivos e académicos para os estudantes da FEUP.",

@@ -5,6 +5,8 @@ import MenuDescription from "./MenuDescription";
 import { getPayload } from "payload";
 import config from "payload.config";
 
+export const dynamic = 'force-dynamic'
+
 export const metadata: Metadata = {
   title: "Quem Somos",
   description: "Fundada em 15 de março de 1984, a AEFEUP tem como missão defender os interesses dos estudantes, promovendo atividades culturais, desportivas, pedagógicas e sociais.",

@@ -8,6 +8,8 @@ import { render } from "@react-email/render"
 import { EventRequestInfo } from "@/types/eventRequestInfo"
 import EmailTemplate from "@/emails"
 
+export const dynamic = 'force-dynamic'
+
 export const metadata: Metadata = {
 	title: "Cedências de Espaço",
 	description: "Envia solicitações para reservas de espaço para eventos ou pedidos de material",
