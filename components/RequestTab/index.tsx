@@ -47,8 +47,8 @@ export default function RequestTab({ materialData, sendEmail, availableSpaces }:
       requestedMaterial: requestedMaterial
     }
 
-    await sendEmail(requestInfo)
-    document.getElementById("material-request-form")?.reset() // TODO: Change this
+    sendEmail(requestInfo);
+    (document.getElementById("material-request-form") as HTMLFormElement).reset() // TODO: Change this
   }
 
 
@@ -70,8 +70,8 @@ export default function RequestTab({ materialData, sendEmail, availableSpaces }:
       requestedMaterial: requestedMaterial
     }
 
-    await sendEmail(requestInfo)
-    document.getElementById("event-request-form")?.reset() // TODO: Change this
+    sendEmail(requestInfo);
+    (document.getElementById("event-request-form") as HTMLFormElement).reset() // TODO: Change this
     //TODO: Remove the selected materials
     //TODO: Show snack bar
   }
@@ -134,7 +134,7 @@ export default function RequestTab({ materialData, sendEmail, availableSpaces }:
                     <label htmlFor="space">Espaço*</label>
                     <select name="space" id="space" className="p-3 border bg-white rounded" required>
                       <option value="" selected hidden>Escolha um lugar</option>
-                      {availableSpaces.map((space: SpaceDatum) => (
+                      {availableSpaces.map((space: Space) => (
                         <option value={space.name}>{space.name}</option>
                       ))}
                     </select>

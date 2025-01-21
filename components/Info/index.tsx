@@ -5,23 +5,9 @@ import React from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import ScheduleTable from "../Table";
+import { InfoSection } from "@/types/infoSection";
 
-interface InfoSection {
-  id: number;
-  title: string;
-  subtitle: string;
-  text?: string;
-  phone?: string;
-  email?: string;
-  schedule?: { label: string; value: string }[];
-  imageSrc: string;
-  link?: {
-    path: string;
-    text: string;
-    showIcon?: boolean;
-    icon?: React.ReactNode;
-  };
-}
+
 
 interface InfoProps {
   sections: InfoSection[];

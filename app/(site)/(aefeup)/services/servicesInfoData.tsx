@@ -1,6 +1,7 @@
+import { InfoSection } from "@/types/infoSection";
 import { Utensils } from "lucide-react";
 
-export const infoData = [
+export const infoData : InfoSection[] = [
   {
     id: 1,
     title: "Secretaria",
@@ -52,7 +53,7 @@ export const infoData = [
     ],
     imageSrc: "/images/about/about-light-01.png",
     link: {
-      url: "/menu",
+      path: "/menu",
       text: "Ver menu",
       showIcon: true,
       icon: <Utensils size={16} className="text-current" />,
