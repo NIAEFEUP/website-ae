@@ -8,11 +8,22 @@ export const metadata: Metadata = {
   description: "Bem-vindo à FEUP!",
 };
 
-const WelcomePage = async () => {
+async function getVideos() {
+  if(process.env.IS_BUILD) {
+     console.log('skipping getVideos DB call during build')
+     return []
+  }
+
   const payload = await getPayload({ config });
   const videos = (await payload.find({
     collection: "video",
   })).docs
+
+  return videos
+}
+
+const WelcomePage = async () => {
+  const videos = await getVideos()
 
   return <WelcomeClientPage videos={videos} />
 };

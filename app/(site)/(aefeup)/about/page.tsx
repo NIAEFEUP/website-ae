@@ -12,14 +12,23 @@ export const metadata: Metadata = {
   description: "Fundada em 15 de março de 1984, a AEFEUP tem como missão defender os interesses dos estudantes, promovendo atividades culturais, desportivas, pedagógicas e sociais.",
 };
 
-const AboutPage = async () => {
+async function getBoardSection() {
+  if(process.env.IS_BUILD) {
+    console.log('skipping getBoardSection DB call during build')
+    return []
+  }
 
   const payload = await getPayload({ config });
   const result = await payload.find({
     collection: "board_section",
   })
 
-  const boards = result.docs;
+  return result.docs;
+}
+
+
+const AboutPage = async () => {
+  const boards = await getBoardSection()
   const departments = boards.filter((e) => e.type === 'departament');
 
   return (

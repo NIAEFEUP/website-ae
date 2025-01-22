@@ -15,12 +15,23 @@ export const metadata: Metadata = {
   description: "Website da Associação de Estudantes da Faculdade de Engenharia da Universidade do Porto.",
 };
 
-const payload = await getPayload({ config });
-const testimonials = (await payload.find({
-  collection: "testimonial",
-})).docs
+async function getTestimonials() {
+  if(process.env.IS_BUILD) {
+    console.log('skipping getTestimonials DB call during build')
+    return []
+  }
 
-const Homepage = () => {
+  const payload = await getPayload({ config });
+  const testimonials = (await payload.find({
+    collection: "testimonial",
+  })).docs
+
+  return testimonials
+}
+
+
+const Homepage = async () => {
+  const testimonials = await getTestimonials()
   return (
     <main>
       <FullScreenImage
