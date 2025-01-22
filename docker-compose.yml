@@ -1,6 +1,21 @@
 services:
-  web:
-    build: .
+  website-ae:
+    build: 
+      context: .
+      target: dev
+    ports:
+      - '3000:3000'
+    env_file:
+      - .env
+    depends_on:
+      - postgres
+    networks:
+      - my_network
+
+  website-ae-prod:
+    build: 
+      context: .
+      target: prod
     ports:
       - '3000:3000'
     env_file:
