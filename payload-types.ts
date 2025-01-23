@@ -201,12 +201,7 @@ export interface SportsTeam {
     | null;
   lineup?:
     | {
-        lineupRow?:
-          | {
-              person: number | Person;
-              id?: string | null;
-            }[]
-          | null;
+        lineupRow: (number | Person)[];
         id?: string | null;
       }[]
     | null;

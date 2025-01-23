@@ -80,23 +80,12 @@ export const SportsTeam: CollectionConfig = {
             type: 'array',
             fields: [
                 {
-                    // TODO: Should we storage a description? Like "guarda-redes", "defesa", "medio", "avançado"?
                     name: 'lineupRow',
                     label: 'Linha',
-                    labels: {
-                        singular: 'Jogador',
-                        plural: 'Jogadores',
-                    },
-                    type: 'array',
-                    fields: [
-                        {
-                            name: 'person',
-                            label: 'Jogador',
-                            type: 'relationship',
-                            relationTo: 'person',
-                            required: true,
-                        },
-                    ],
+                    type: 'relationship',
+                    relationTo: 'person',
+                    hasMany: true,
+                    required: true,
                 },
             ],
         },
