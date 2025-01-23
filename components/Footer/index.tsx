@@ -80,7 +80,7 @@ const Footer = () => {
           </div>
 
           <div className="flex items-center justify-center gap-5">
-            <p>Developed and Powered by <a href="https://niafeup.pt" className="hover:text-primary">NIAEFEUP</a></p>
+            <p>Developed and Powered by <a href="https://niaefeup.pt" className="hover:text-primary">NIAEFEUP</a></p>
             <a href="https://niaefeup.pt">
               <Image
                 width={70}
