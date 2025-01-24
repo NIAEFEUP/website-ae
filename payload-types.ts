@@ -313,9 +313,9 @@ export interface Product {
   price: number;
   description: string;
   color: string;
-  instances?:
+  sizes?:
     | {
-        Size: 'XS' | 'S' | 'M' | 'L' | 'XL';
+        size: 'XS' | 'S' | 'M' | 'L' | 'XL' | 'XXL';
         quantity: number;
         id?: string | null;
       }[]
@@ -343,11 +343,18 @@ export interface President {
 export interface Order {
   id: number;
   email: string;
-  products: {
-    product: number | Product;
-    id?: string | null;
-  }[];
-  price: number;
+  mobile: string;
+  products?:
+    | {
+        product: number | Product;
+        size: 'XS' | 'S' | 'M' | 'L' | 'XL' | 'XXL';
+        quantity: number;
+        id?: string | null;
+      }[]
+    | null;
+  totalPrice: number;
+  status: 'pending' | 'paid' | 'canceled';
+  withdrawal?: boolean | null;
   updatedAt: string;
   createdAt: string;
 }

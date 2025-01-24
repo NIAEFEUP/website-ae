@@ -3,7 +3,6 @@ import Image from "next/image";
 import SizePicker from "../SizePicker";
 import { cartProduct } from "@/types/cartProduct";
 import React from "react";
-import { ProductInstance } from "@/types/productInstance";
 
 type ProductPreviewProps = {
   product: Product,
@@ -12,13 +11,8 @@ type ProductPreviewProps = {
 };
 
 const ProductPreview = ({ product, setCartState, addToCart }: ProductPreviewProps) => {
-  const [instance, setInstance] = React.useState<ProductInstance>();
 
-  const buildCartProduct = (instance: ProductInstance): cartProduct => ({
-    product: product,
-    quantity: 1,
-    size: instance.size,
-  });
+  
 
   return (
     <>
@@ -41,12 +35,12 @@ const ProductPreview = ({ product, setCartState, addToCart }: ProductPreviewProp
         {product.description}
       </h1>
       <div className="flex items-center mt-6 gap-2.5">
-        <button className="bg-engenharia max-w-36 items-center text-sm text-primary transition-all p-3 rounded-full duration-300 dark:text-white dark:hover:text-primary" onClick={() => { setCartState(true); addToCart(buildCartProduct(instance!)) }}>
+        <button className="bg-engenharia max-w-36 items-center text-sm text-primary transition-all p-3 rounded-full duration-300 dark:text-white dark:hover:text-primary" >
           <span className="duration-300 text-white font-extralight tracking-tight">
             {product.price}$ · Compra já
           </span>
         </button>
-        <SizePicker product={product} setInstance={setInstance}></SizePicker>
+        
       </div >
     </>
   );

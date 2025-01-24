@@ -1,4 +1,5 @@
-import type { CollectionConfig } from "payload";
+ import type { CollectionConfig } from "payload";
+import { ProductSize } from "./ProductSizeField";
 
 export const Product: CollectionConfig = {
   slug: "product",
@@ -20,41 +21,14 @@ export const Product: CollectionConfig = {
     },
     {
       name: "color",
-      type: "text",
+      type: "text", //TODO: Change to a fancy color picker
       required: true,
     },
     {
-      name: "instances",
+      name: "sizes",
       type: "array",
       fields: [
-        {
-          name: "Size",
-          type: "select",
-          hasMany: false,
-          options: [
-            {
-              label: "XS",
-              value: "XS"
-            },
-            {
-              label: "S",
-              value: "S"
-            },
-            {
-              label: "M",
-              value: "M"
-            },
-            {
-              label: "L",
-              value: "L"
-            },
-            {
-              label: "XL",
-              value: "XL"
-            },
-          ],
-          required: true,
-        },
+        ProductSize,
         {
           name: "quantity",
           type: "number",

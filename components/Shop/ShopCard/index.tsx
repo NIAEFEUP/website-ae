@@ -1,37 +1,58 @@
 import { Product } from "@/payload-types";
 import Image from "next/image";
+import SizePicker from "../SizePicker";
+import React from "react";
+import { CirclePlus } from "lucide-react";
+import { cartProduct } from "@/types/cartProduct";
 
 type ShopCardProps = {
   product: Product;
-  customClick?: () => void;
+  setCartState: (bool: boolean) => void;
+  addToCart: (product: cartProduct) => void;
 };
 
-const ShopCard = ({ product, customClick }: ShopCardProps) => {
+const ShopCard = ({ product, setCartState, addToCart }: ShopCardProps) => {
+  const [instance, setInstance] = React.useState<cartProduct>();
+
+  const buildCartProduct = (instance: cartProduct) => {
+    console.log(product);
+    return {
+      product: product,
+      quantity: 1,
+      size: instance.size,
+    };
+  };
+
   return (
-    <div
-      className="relative border border-stroke bg-white min-w-52 max-w-52 shadow-solid-10 dark:border-strokedark dark:bg-blacksection dark:shadow-none md:w-[45%]"
-      onClick={customClick}
-    >
+    <div className="rounded-lg bg-white min-w-80 max-w-80 border dark:shadow-none">
       <Image
         src="/images/cactus.jpg"
-        width={300}
-        height={0}
+        width={700}
+        height={900}
         alt="Product image"
-        className="w-full max-h-60 object-cover"
+        className="w-full max-h-96 min-h-96 min-w-80 max-w-80 object-cover rounded-xl rounded-b-none"
       />
-      <div className="px-4 py-4">
-        <h4 className="mb-2.5 text-para2 text-black dark:text-white font-serif tracking-tight">
+      <div className="p-4">
+        <p className="mb-2.5 text-black dark:text-white tracking-tight font-semibold text-xl">
           {product.name}
-        </h4>
-
-        <button
-          aria-label="Get the Plan button"
-          className="bg-green-50 group/btn inline-flex items-center gap-2.5 text-xs text-primary transition-all px-3 py-2 rounded-full duration-300 dark:text-white dark:hover:text-primary"
-        >
-          <span className="duration-300 text-green-800 tracking-tight font-extralight">
-            {product.price}$ · Compra já
-          </span>
-        </button>
+        </p>
+        <div className="flex justify-between">
+          <p className="text-gray dark:text-white text-xl">{product.price}€</p>
+          <div className="items-center flex gap-2">
+            <button
+              onClick={() => {
+                setCartState(true);
+                addToCart(buildCartProduct(instance!));
+              }}
+            >
+              <CirclePlus />
+            </button>
+            <SizePicker
+              product={product}
+              setInstance={setInstance}
+            ></SizePicker>
+          </div>
+        </div>
       </div>
     </div>
   );

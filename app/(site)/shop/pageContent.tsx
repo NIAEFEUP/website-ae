@@ -2,59 +2,70 @@
 
 import SectionHeader from "@/components/Common/SectionHeader";
 import ShopCart from "@/components/Shop/Cart";
-import CartItem from "@/components/Shop/CartItem";
-import ProductPreview from "@/components/Shop/ProductPreview";
 import ShopCard from "@/components/Shop/ShopCard";
 import { Product } from "@/payload-types";
 import { cartProduct } from "@/types/cartProduct";
 import React from "react";
 
 export default function ShopPageContent({ products }) {
-  const [previewProduct, setPreviewProduct] = React.useState(products[0]);
   const [openCart, setOpenCart] = React.useState(false);
   const [cartProducts, setCardProducts] = React.useState<cartProduct[]>([]);
 
   const addToCart = (item: cartProduct) => {
     setCardProducts((prevCardProducts) => {
-      if (prevCardProducts.some((p) => p.product.id === item.product.id && p.size === item.size)) {
+      if (
+        prevCardProducts.some(
+          (p) => p.product.id === item.product.id && p.size === item.size
+        )
+      ) {
         return prevCardProducts;
       }
       return [...prevCardProducts, item];
     });
-  }
+  };
 
   const removeFromCart = (itemCart: cartProduct) => {
-    setCardProducts((prevCardProducts) => prevCardProducts.filter((item) => item.product.id !== itemCart.product.id || (item.product.id === itemCart.product.id && item.size !== itemCart.size)));
-  }
+    setCardProducts((prevCardProducts) =>
+      prevCardProducts.filter(
+        (item) =>
+          item.product.id !== itemCart.product.id ||
+          (item.product.id === itemCart.product.id &&
+            item.size !== itemCart.size)
+      )
+    );
+  };
 
   return (
     <>
-      <div className="flex flex-row my-5 mx-20 mt-40">
-        <section className="flex flex-col max-w-[300px]">
-          <ProductPreview product={previewProduct} setCartState={setOpenCart} addToCart={addToCart}></ProductPreview>
+      <ShopCart
+        isOpen={openCart}
+        onOpenChange={setOpenCart}
+        products={cartProducts}
+        removeFromCart={removeFromCart}
+      ></ShopCart>
+
+      <main className="py-20 lg:py-25 xl:py-30">
+        <SectionHeader
+          headerInfo={{
+            title: "Loja",
+            subtitle: "",
+            description: "Aqui podes comprar cenas e ser mesmo cool",
+          }}
+        />
+
+        <section className="flex flex-wrap px-24 mt-5 gap-8 justify-center">
+          {products.map((product: Product) => (
+            <>
+              <ShopCard
+                product={product}
+                key={product.id}
+                setCartState={setOpenCart}
+                addToCart={addToCart}
+              ></ShopCard>
+            </>
+          ))}
         </section>
-        <ShopCart isOpen={openCart} onOpenChange={setOpenCart} products={cartProducts} removeFromCart={removeFromCart}></ShopCart>
-        <section className="flex flex-col ml-30">
-          <h1 className="text-7xl font-serif tracking-tight text-black">
-            Student Essentials
-          </h1>
-          <h1 className="text-2xl font-serif text-black mt-5 tracking-tight max-w-96">
-            Os <span className="text-engenharia italic">merch-essentials</span>{" "}
-            deste ano para viveres a tua vida académica ao máximo, com estilo.
-          </h1>
-          <div>
-            <div className="mt-10 flex gap-2">
-              {products.map((product: Product) => (
-                <ShopCard
-                  product={product}
-                  key={product.id}
-                  customClick={() => setPreviewProduct(product)}
-                ></ShopCard>
-              ))}
-            </div>
-          </div>
-        </section>
-      </div>
+      </main>
     </>
   );
 }

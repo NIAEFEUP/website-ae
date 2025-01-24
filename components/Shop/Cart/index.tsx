@@ -32,6 +32,7 @@ const ShopCart = ({
   products,
   removeFromCart,
 }: ShopCartProps) => {
+  //TODO: to review
   const [processingPayment, setProcessingPayment] = React.useState(false);
   const [paymentStatusState, setPaymentStatus] = React.useState<paymentStatus>(
     paymentStatus.waiting

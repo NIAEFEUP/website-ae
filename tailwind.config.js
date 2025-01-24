@@ -1,10 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 
 module.exports = {
-	content: [
-		"./app/**/*.{js,ts,jsx,tsx,mdx}",
-		"./pages/**/*.{js,ts,jsx,tsx,mdx}",
-		"./components/**/*.{js,ts,jsx,tsx,mdx}",
+  content: [
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
 
     // Or if using `src` directory:
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
@@ -37,7 +37,7 @@ module.exports = {
         alabaster: "#FBFBFB",
         zumthor: "#EDF5FF",
         socialicon: "#D1D8E0",
-        documentCard: "#d5d5d5"
+        documentCard: "#d5d5d5",
         // secondary: "#C4C6B9",
         // accent: #562920
         // background: #FAFAFA
@@ -115,6 +115,7 @@ module.exports = {
         "c-1016": "63.5rem",
       },
       zIndex: {
+        100000: "100000",
         99999: "99999",
         999: "999",
         1: "1",

@@ -1,4 +1,5 @@
 import { CollectionConfig } from "payload";
+import { ProductSize } from "./ProductSizeField";
 
 export const Order: CollectionConfig = {
    slug: 'order',
@@ -14,24 +15,51 @@ export const Order: CollectionConfig = {
          required: true,
       },
       {
+         name: "mobile",
+         label: "Mobile",  
+         type: "text",
+         required: true,
+      },
+      {
          name: "products",
          label: "Produtos",
          type: "array",
          fields: [
             {
                name: "product",
-               label: "Product",
                type: "relationship",
                relationTo: "product",
                required: true,
             },
-         ],
-         required: true
+            ProductSize,
+            {
+               name: "quantity",
+               type: "number",
+               required: true,
+            },
+         ]
       },
       {
-         name: "price",
+         name: "totalPrice",
          type: "number",
          required: true,
+      },
+      {
+         name: "status",
+         type: "select",
+         options: [
+            { label: "Pendente", value: "pending" },
+            { label: "Pago", value: "paid" },
+            { label: "Cancelado", value: "canceled" },
+         ],
+         defaultValue: "pending",
+         required: true,
+      },
+      {
+         name: "withdrawal",
+         label: "Levantado",
+         type: "checkbox",
+         defaultValue: false,
       },
    ]
 }

@@ -1,11 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { cartProduct } from "@/types/cartProduct";
 import React from "react";
 import Image from "next/image";
 import { Card, CardHeader } from "@/components/ui/card";
-import startPaymentProcess from "../Cart/payment";
 import { paymentStatus } from "../Cart";
+import createPayment from "@/actions/payment";
+import { cartProduct } from "@/types/cartProduct";
+import { checkPaymentStatus } from "@/actions/apiCall";
 
 type PaymentFormProps = {
   setProcessingPayment: (status: boolean) => void;
@@ -15,10 +16,47 @@ type PaymentFormProps = {
 
 const PaymentForm = ({
   products,
-  setProcessingPayment,
   setPaymentStatus,
+  setProcessingPayment,
 }: PaymentFormProps) => {
   const [number, setNumber] = React.useState("");
+
+  const handlePayment = async () => {
+    setProcessingPayment(true);
+    const response = await createPayment(number, products);
+    console.log(response);
+    if (response) {
+      pollPaymentStatus(response.requestId);
+    } else {
+      setProcessingPayment(false);
+      console.error("Failed to create MBWAY request");
+    }
+  };
+
+  const pollPaymentStatus = (requestID: string) => {
+    const pollStatus = setInterval(async () => {
+      const teste = await checkPaymentStatus(requestID);
+
+      if (teste.Message == "Success") {
+        alert("euerka");
+        setPaymentStatus(paymentStatus.confirmed);
+        clearInterval(pollStatus);
+
+        setTimeout(() => {
+          setProcessingPayment(false);
+        }, 3000);
+      }
+      if (teste.Message == "Declined by user") {
+        alert("declined by user");
+        setPaymentStatus(paymentStatus.declined);
+        clearInterval(pollStatus);
+
+        setTimeout(() => {
+          setProcessingPayment(false);
+        }, 3000);
+      }
+    }, 5000);
+  };
 
   return (
     <>
@@ -52,19 +90,7 @@ const PaymentForm = ({
                 onChange={(e) => setNumber(e.target.value)}
               />
             </div>
-            <Button
-              type="submit"
-              className="self-end"
-              onClick={() => {
-                setProcessingPayment(true);
-                startPaymentProcess(
-                  number,
-                  products,
-                  setPaymentStatus,
-                  setProcessingPayment
-                );
-              }}
-            >
+            <Button type="submit" className="self-end" onClick={handlePayment}>
               {" "}
               Pay{" "}
             </Button>

@@ -1,10 +1,9 @@
-import { useEffect, useState } from "react";
 import { Product } from "@/payload-types";
-import { ProductInstance } from "@/types/productInstance";
+import { cartProduct } from "@/types/cartProduct";
 
 type SizePickerProps = {
    product: Product,
-   setInstance: (instance: ProductInstance) => void,
+   setInstance: (instance: cartProduct) => void,
 };
 
 const SizePicker = ({ product, setInstance }: SizePickerProps) => {
@@ -18,11 +17,13 @@ const SizePicker = ({ product, setInstance }: SizePickerProps) => {
    return (
       <select className="rounded-md py-2 px-3" defaultValue="-" onChange={handleSizeChange}>
          <option disabled>-</option>
-         {product.instances!.map((option) => (
-            <option key={option.id} value={option.Size}>
-               {option.Size}
-            </option>
-         ))}
+         {product.sizes ? (
+            product.sizes.map((option) => (
+               <option key={option.id} value={option.size}>
+                  {option.size}
+               </option>
+            ))
+         ) : null}
       </select>
    );
 };
