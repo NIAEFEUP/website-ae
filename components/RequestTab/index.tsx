@@ -7,15 +7,17 @@ import { SingleMaterialRequest } from "@/types/singleMaterialRequest";
 import { Material } from "@/types/material";
 import DatePickerComponent from "./DatePickerComponent";
 import MaterialSelector from "./MaterialSelector";
-import { SpaceDatum } from "@/payload-types";
+import { Docfile, Space } from "@/payload-types";
+import { DialogTrigger } from "../ui/dialog";
 
 interface Props {
   materialData: Material[],
   sendEmail: (eventRequest: EventRequestInfo) => void,
-  availableSpaces: SpaceDatum[]
+  availableSpaces: Space[],
+  regulation?: Docfile,
 }
 
-export default function RequestTab({ materialData, sendEmail, availableSpaces }: Props) {
+export default function RequestTab({ materialData, sendEmail, availableSpaces, regulation }: Props) {
   const [currentTab, setCurrentTab] = useState("tabOne");
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
@@ -133,7 +135,7 @@ export default function RequestTab({ materialData, sendEmail, availableSpaces }:
                     <label htmlFor="space">Espaço <span className="text-primary">*</span></label>
                     <select name="space" id="space" className="p-3 border bg-white rounded" required>
                       <option value="" selected hidden>Escolha um lugar</option>
-                      {availableSpaces.map((space: SpaceDatum) => (
+                      {availableSpaces.map((space: Space) => (
                         <option value={space.name}>{space.name}</option>
                       ))}
                     </select>
@@ -162,10 +164,35 @@ export default function RequestTab({ materialData, sendEmail, availableSpaces }:
                     <label htmlFor="">Descrição do Evento <span className="text-primary">*</span></label>
                     <textarea name="event_description" id="event_description" className="flex-grow p-2 border rounded" required />
                   </div>
-                  <MaterialSelector materialData={materialData} />
+                  {materialData.length > 0 && <MaterialSelector materialData={materialData} />}
                   <div className="flex flex-col p-2">
                     <label htmlFor="">Observações</label>
-                    <textarea name="observations" id="observations" className="flex-grow p-2 border rounded"/>
+                    <textarea name="observations" id="observations" className="flex-grow p-2 border rounded" />
+                  </div>
+                  <div className="flex items-start p-2">
+                    <input
+                      type="checkbox"
+                      id="terms_conditions"
+                      name="terms_conditions"
+                      className="mr-2"
+                      required
+                    />
+                    <label htmlFor="terms_conditions" className="text-sm">
+                      Li e aceito o
+                      {regulation ?
+                        <DialogTrigger>
+                          <span className="text-primary underline ml-1">
+                            Regulamento
+                          </span>
+                          <span className="text-primary"> *</span>
+                        </DialogTrigger>
+                        :
+                        <>
+                          <span> Regulamento</span>
+                          <span className="text-primary"> *</span>
+                        </>
+                      }
+                    </label>
                   </div>
                   <p className="text-gray-400 p-2"> <span className="text-primary">*</span>: Obrigatório</p>
                   <button type="submit" className="w-full p-2 bg-primary text-white rounded hover:bg-gray-500 hover:text-white">Submeter</button>
@@ -194,8 +221,32 @@ export default function RequestTab({ materialData, sendEmail, availableSpaces }:
                     <label htmlFor="">Observações</label>
                     <textarea name="observations" id="observations" className="flex-grow p-2 border rounded" />
                   </div>
+                  <div className="flex items-start p-2">
+                    <input
+                      type="checkbox"
+                      id="terms_conditions"
+                      name="terms_conditions"
+                      className="mr-2"
+                      required
+                    />
+                    <label htmlFor="terms_conditions" className="text-sm">
+                      Li e aceito o
+                      {regulation ?
+                        <DialogTrigger>
+                          <span className="text-primary underline ml-1">
+                            Regulamento
+                          </span>
+                          <span className="text-primary"> *</span>
+                        </DialogTrigger>
+                        :
+                        <>
+                          <span> Regulamento</span>
+                          <span className="text-primary"> *</span>
+                        </>
+                      }
+                    </label>
+                  </div>
                   <p className="text-gray-400 p-2"> <span className="text-primary">*</span>: Obrigatório</p>
-
                   <button type="submit" className="w-full p-2 bg-primary text-white rounded hover:bg-gray-500 hover:text-white">Submeter</button>
                 </form>
               </div>
