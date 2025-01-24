@@ -20,11 +20,8 @@ const WelcomeClientPage = ({ videos }: Props) => {
           <div className="mx-auto max-w-c-1315 px-4 md:px-8 xl:px-0">
             <div className="animate_top mx-auto text-center">
               <SectionHeader
-                headerInfo={{
-                  title: section.title,
-                  subtitle: section.subtitle,
-                  description: "",
-                }}
+                  title={section.title}
+                  subtitle={section.subtitle}
               />
             </div>
           </div>

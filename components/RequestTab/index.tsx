@@ -7,15 +7,17 @@ import { SingleMaterialRequest } from "@/types/singleMaterialRequest";
 import { Material } from "@/types/material";
 import DatePickerComponent from "./DatePickerComponent";
 import MaterialSelector from "./MaterialSelector";
-import { Space } from "@/payload-types";
+import { Docfile, Space } from "@/payload-types";
+import { DialogTrigger } from "../ui/dialog";
 
 interface Props {
   materialData: Material[],
   sendEmail: (eventRequest: EventRequestInfo) => void,
-  availableSpaces: Space[]
+  availableSpaces: Space[],
+  regulation?: Docfile,
 }
 
-export default function RequestTab({ materialData, sendEmail, availableSpaces }: Props) {
+export default function RequestTab({ materialData, sendEmail, availableSpaces, regulation }: Props) {
   const [currentTab, setCurrentTab] = useState("tabOne");
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
@@ -81,13 +83,7 @@ export default function RequestTab({ materialData, sendEmail, availableSpaces }:
       <section className="relative pb-20 pt-18.5 lg:pb-22.5">
         <div className="relative mx-auto max-w-c-1390 px-4 md:px-8 2xl:px-0">
           <SectionHeader
-            headerInfo={{
-              title: "Request",
-              subtitle: "Request Material or Space",
-              description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. In
-          convallis tortor eros. Donec vitae tortor lacus. Phasellus aliquam
-          ante in maximus.`,
-            }}
+            title="Request"
           />
           <div className="flex justify-center pt-18.5">
             <div
@@ -116,22 +112,21 @@ export default function RequestTab({ materialData, sendEmail, availableSpaces }:
                 </button>
               </div>
             </div>
-
           </div>
           <div>
             <div className="lg:flex lg:justify-center lg:items-center">
               <div className={`lg:border lg:w-1/2 lg:p-10 mt-10 rounded ${currentTab == "tabOne" ? "block" : "hidden"}`}>
                 <form onSubmit={handleEventRequestSubmit} id="event-request-form">
                   <div className="p-2 flex flex-col">
-                    <label htmlFor="name">Nome do núcleo/associação</label>
+                    <label htmlFor="name">Nome do Núcleo/Associação</label>
                     <input type="text" name="name" id="name" className="p-2 border rounded" />
                   </div>
                   <div className="p-2 flex flex-col">
-                    <label htmlFor="responsible_name">Nome do responsável*</label>
+                    <label htmlFor="responsible_name">Nome do responsável <span className="text-primary">*</span></label>
                     <input type="text" name="responsible_name" id="responsible_name" className="p-2 border rounded" required />
                   </div>
                   <div className="p-2 flex flex-col">
-                    <label htmlFor="space">Espaço*</label>
+                    <label htmlFor="space">Espaço <span className="text-primary">*</span></label>
                     <select name="space" id="space" className="p-3 border bg-white rounded" required>
                       <option value="" selected hidden>Escolha um lugar</option>
                       {availableSpaces.map((space: Space) => (
@@ -140,56 +135,112 @@ export default function RequestTab({ materialData, sendEmail, availableSpaces }:
                     </select>
                   </div>
                   <div className="p-2 flex flex-col">
-                    <label htmlFor="num_people">Número de pesssoas*</label>
+                    <label htmlFor="num_people">Número de pesssoas <span className="text-primary">*</span></label>
                     <input type="number" min={0} max={250} name="num_people" id="num_people" className="p-2 border rounded" required />
                   </div>
                   <div className="p-2 flex flex-col">
-                    <label htmlFor="start_date">Data de Início*</label>
+                    <label htmlFor="start_date">Data de Início <span className="text-primary">*</span></label>
                     <DatePickerComponent currentDate={startDate} setDate={setStartDate} />
                   </div>
                   <div className="p-2 flex flex-col">
-                    <label htmlFor="end_date">Data de Fim*</label>
+                    <label htmlFor="end_date">Data de Fim <span className="text-primary">*</span></label>
                     <DatePickerComponent currentDate={endDate} setDate={setEndDate} minDate={startDate} />
                   </div>
                   <div className="flex flex-col p-2">
-                    <label htmlFor="contact_number">Contacto telefónico*</label>
+                    <label htmlFor="contact_number">Contacto telefónico <span className="text-primary">*</span></label>
                     <input type="text" name="contact_number" id="contact_number" className="p-2 border rounded" required />
                   </div>
                   <div className="flex flex-col p-2">
-                    <label htmlFor="email">Email de Contacto*</label>
+                    <label htmlFor="email">Email de Contacto <span className="text-primary">*</span></label>
                     <input type="text" name="email" id="email" className="p-2 border rounded" required />
                   </div>
                   <div className="flex flex-col p-2">
-                    <label htmlFor="">Descrição do Evento*</label>
+                    <label htmlFor="">Descrição do Evento <span className="text-primary">*</span></label>
                     <textarea name="event_description" id="event_description" className="flex-grow p-2 border rounded" required />
                   </div>
-                  <MaterialSelector materialData={materialData} />
-                  <p className="text-gray-400 p-2">*: Obrigatório</p>
+                  {materialData.length > 0 && <MaterialSelector materialData={materialData} />}
+                  <div className="flex flex-col p-2">
+                    <label htmlFor="">Observações</label>
+                    <textarea name="observations" id="observations" className="flex-grow p-2 border rounded" />
+                  </div>
+                  <div className="flex items-start p-2">
+                    <input
+                      type="checkbox"
+                      id="terms_conditions"
+                      name="terms_conditions"
+                      className="mr-2"
+                      required
+                    />
+                    <label htmlFor="terms_conditions" className="text-sm">
+                      Li e aceito o
+                      {regulation ?
+                        <DialogTrigger>
+                          <span className="text-primary underline ml-1">
+                            Regulamento
+                          </span>
+                          <span className="text-primary"> *</span>
+                        </DialogTrigger>
+                        :
+                        <>
+                          <span> Regulamento</span>
+                          <span className="text-primary"> *</span>
+                        </>
+                      }
+                    </label>
+                  </div>
+                  <p className="text-gray-400 p-2"> <span className="text-primary">*</span>: Obrigatório</p>
                   <button type="submit" className="w-full p-2 bg-primary text-white rounded hover:bg-gray-500 hover:text-white">Submeter</button>
                 </form>
               </div>
               <div className={`lg:border lg:w-1/2 lg:p-10 mt-10 rounded ${currentTab == "tabTwo" ? "block" : "hidden"}`}>
                 <form onSubmit={handleMaterialRequestSubmit} id="material-request-form">
                   <div className="p-2 flex flex-col">
-                    <label htmlFor="name">Nome do núcleo/associação</label>
+                    <label htmlFor="name">Nome do Núcleo/Associação</label>
                     <input type="text" name="name" id="name" className="p-2 border rounded" />
                   </div>
                   <div className="flex flex-col p-2">
-                    <label htmlFor="responsible_name">Nome do responsável*</label>
+                    <label htmlFor="responsible_name">Nome do responsável <span className="text-primary">*</span></label>
                     <input type="text" name="responsible_name" id="responsible_name" className="p-2 border rounded" required />
                   </div>
                   <div className="flex flex-col p-2">
-                    <label htmlFor="contact_number">Contacto telefónico*</label>
+                    <label htmlFor="contact_number">Contacto telefónico <span className="text-primary">*</span></label>
                     <input type="text" name="contact_number" id="contact_number" className="p-2 border rounded" required />
                   </div>
                   <div className="flex flex-col p-2">
-                    <label htmlFor="email">Email de Contacto*</label>
+                    <label htmlFor="email">Email de Contacto <span className="text-primary">*</span></label>
                     <input type="text" name="email" id="email" className="p-2 border rounded" required />
                   </div>
-
                   <MaterialSelector materialData={materialData} />
-                  <p className="text-gray-400 p-2">*: Obrigatório</p>
-
+                  <div className="flex flex-col p-2">
+                    <label htmlFor="">Observações</label>
+                    <textarea name="observations" id="observations" className="flex-grow p-2 border rounded" />
+                  </div>
+                  <div className="flex items-start p-2">
+                    <input
+                      type="checkbox"
+                      id="terms_conditions"
+                      name="terms_conditions"
+                      className="mr-2"
+                      required
+                    />
+                    <label htmlFor="terms_conditions" className="text-sm">
+                      Li e aceito o
+                      {regulation ?
+                        <DialogTrigger>
+                          <span className="text-primary underline ml-1">
+                            Regulamento
+                          </span>
+                          <span className="text-primary"> *</span>
+                        </DialogTrigger>
+                        :
+                        <>
+                          <span> Regulamento</span>
+                          <span className="text-primary"> *</span>
+                        </>
+                      }
+                    </label>
+                  </div>
+                  <p className="text-gray-400 p-2"> <span className="text-primary">*</span>: Obrigatório</p>
                   <button type="submit" className="w-full p-2 bg-primary text-white rounded hover:bg-gray-500 hover:text-white">Submeter</button>
                 </form>
               </div>

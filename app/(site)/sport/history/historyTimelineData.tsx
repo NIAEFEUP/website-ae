@@ -17,7 +17,7 @@ export const historyTimelineData = [
   {
     title: "2023: Lorem",
     content: (
-      <p>
+      <p> 
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vel
         velit tincidunt, commodo nisl id, rutrum nulla. Sed at consequat est.
         Donec ullamcorper blandit viverra. Vivamus eu lobortis purus. Sed

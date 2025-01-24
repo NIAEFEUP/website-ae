@@ -1,12 +1,8 @@
 import CalendarComponent from "@/components/Calendar"
 import { Metadata } from "next"
-import RequestTab from "@/components/RequestTab"
 import config from "payload.config"
 import { getPayload } from "payload"
-import { Resend } from "resend";
-import { render } from "@react-email/render"
-import { EventRequestInfo } from "@/types/eventRequestInfo"
-import EmailTemplate from "@/emails"
+import RequestPageContent from "./client"
 
 export const dynamic = 'force-dynamic'
 
@@ -22,11 +18,29 @@ async function getMaterialData() {
 	}
 
 	const payload = await getPayload({ config });
+
 	const materialData = (await payload.find({
 		collection: "material",
 	})).docs
 
 	return materialData
+}
+
+async function getRegulation() {
+  if(process.env.IS_BUILD) {
+		 console.log('skipping getProjects DB call during build')
+		 return []
+	}
+  
+	const regulation = (await payload.find({
+		collection: "docfile",
+		limit: 1,
+		where: {
+			type: { equals: "regulation" },
+		},
+	})).docs;
+  
+  return regulation;
 }
 
 async function getAvailableSpaces() {
@@ -49,6 +63,7 @@ export default async function Request() {
 
 	const materialData = await getMaterialData()
 	const availableSpaces = await getAvailableSpaces()
+  const regulation = await getRegulation()
 
 	const sendEmail = async (requestInfo: EventRequestInfo) => {
 		'use server'
@@ -66,9 +81,12 @@ export default async function Request() {
 	}
 
 	return (
-		<>
-			<CalendarComponent calendarID={calendarID} calendarApiKey={calendarApiKey} />
-			<RequestTab materialData={materialData} sendEmail={sendEmail} availableSpaces={availableSpaces} />
-		</>
-	)
+		<RequestPageContent
+			calendarID={calendarID}
+			calendarApiKey={calendarApiKey}
+			materialData={materialData}
+			availableSpaces={availableSpaces}
+			regulation={regulation.length > 0 ? regulation[0] : undefined}
+		/>
+	);
 }

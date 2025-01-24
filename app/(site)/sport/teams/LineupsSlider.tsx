@@ -81,7 +81,7 @@ const LineupsSlider = ({ teams }: Props) => (
                     {line.lineupRow?.map((player, index) => {
                       if (player) {
                         return (
-                          <Avatar key={index} person={player.person as Person} />
+                          <Avatar key={index} person={player as Person} />
                         );
                       }
                     })}

@@ -39,18 +39,20 @@ const DocumentSection = ({ title, folders, setFile }: DocumentFolderProps) => {
             ))}
          </section>
          {selectedFolder &&
+            
             <section className="flex mt-3 gap-2">
                {selectedFolder.files.map((file) => {
-
+                  const docFile = file as Docfile;
                   return (
-                     <DialogTrigger>
+                     <DialogTrigger key={docFile.id}>
                         <Card>
-                           <CardContent className="cursor-pointer p-3 hover:bg-gray-100" onClick={() => setFile(file.file as Docfile)}>
-                              {(file.file as Docfile).name}
+                           <CardContent className="cursor-pointer p-3 hover:bg-gray-100" onClick={() => setFile(docFile)}>
+                              {docFile.name}
                            </CardContent>
                         </Card>
                      </DialogTrigger>
-                  )
+                  );
+
                })}
             </section>}
       </section >

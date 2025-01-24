@@ -49,13 +49,8 @@ const StudentPage = async () => {
     <section className="pt-20 pb-12 lg:pt-25 xl:pt-30">
       <div className="mx-auto max-w-c-1315 px-4 md:px-8 xl:px-0">
         <SectionHeader
-          headerInfo={{
-            title: "Informações",
-            subtitle: "Estudantes",
-            description: `O Guia do Estudante é um projeto da AEFEUP em que poderás ter acesso a toda a informação necessária durante o teu percurso académico.
-Aqui poderás encontrar conteúdo relacionado com os serviços da FEUP, redes de transporte, alimentação, contactos úteis, entre outros.
-`,
-          }}
+          title="Informações"
+          description="O Guia do Estudante é um projeto da AEFEUP em que poderás ter acesso a toda a informação necessária durante o teu percurso académico. Aqui poderás encontrar conteúdo relacionado com os serviços da FEUP, redes de transporte, alimentação, contactos úteis, entre outros."
         />
       </div>
 

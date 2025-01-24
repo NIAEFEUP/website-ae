@@ -24,9 +24,9 @@ const Avatar = ({ person }: Props) => {
       <h6 className="text-para2 font-medium text-black dark:text-white text-center">
         {person.name}
       </h6>
-      <p className="text-sm text-gray-500 dark:text-gray-400 text-center mt-1">
+      {person.position && <p className="text-sm text-gray-500 dark:text-gray-400 text-center mt-1">
         {(person.position as Position).name}
-      </p>
+      </p>}
       <div className="flex justify-center gap-2.5">
         {person.socials?.map((social) => (
           <a

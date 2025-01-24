@@ -27,13 +27,8 @@ const MenuDescription = ({ sections }: Props) => {
   return (
     <div className="mx-auto max-w-7xl">
       <SectionHeader
-        headerInfo={{
-          title: "Departamentos",
-          subtitle: "Departamentos",
-          description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. In
-          convallis tortor eros. Donec vitae tortor lacus. Phasellus aliquam
-          ante in maximus.`,
-        }}
+          title="Departamentos"
+          subtitle="Departamentos"
       />
 
       <motion.div

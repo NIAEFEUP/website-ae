@@ -27,6 +27,16 @@ export const DocFile: CollectionConfig = {
          label: 'Nome do ficheiro',
          type: 'text',
          required: true,
+      },
+      {
+         name: 'type',
+         label: 'Tipo de ficheiro',
+         type: 'select',
+         options: [
+            { label: 'Regulamento', value: 'regulation' },
+            { label: 'Outro', value: 'other' },
+         ],
+         required: true,
       }
    ]
 }
