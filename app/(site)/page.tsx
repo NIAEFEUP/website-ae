@@ -7,6 +7,7 @@ import { landingInfoData } from "./landing/landingInfoData";
 import config from "payload.config"
 import { getPayload } from "payload"
 import TestimonialSection from "@/components/TestimonialSection";
+import Sponsors from "@/components/Sponsors";
 
 export const dynamic = 'force-dynamic'
 
@@ -29,9 +30,24 @@ async function getTestimonials() {
   return testimonials
 }
 
+async function getSponsors() {
+  if(process.env.IS_BUILD) {
+    console.log('skipping getSponsors DB call during build')
+    return []
+  }
+
+  const sponsors = await (await getPayload({ config })).find({
+    collection: 'sponsor',
+  });
+
+  return sponsors.docs
+}
+
 
 const Homepage = async () => {
   const testimonials = await getTestimonials()
+  const sponsors = await getSponsors()
+
   return (
     <main>
       <FullScreenImage
@@ -42,17 +58,19 @@ const Homepage = async () => {
       />
 
       <Features
-        data = {landingFeaturesData}
+        data={landingFeaturesData}
         headerInfo={{
           title: "Welcome to AEFEUP!",
           subtitle: "Lorem ipsum odor amet, consectetuer adipiscing elit.",
           description: `Lorem ipsum odor amet, consectetuer adipiscing elit. Ligula mollis nisi justo feugiat facilisis non. [what we offer]`,
         }}
       />
-    
-        <Info sections={landingInfoData} />
+
+      <Info sections={landingInfoData} />
 
       <TestimonialSection testimonialData={testimonials} />
+
+      <Sponsors sponsors={sponsors.filter(sponsor => sponsor.name)} />
     </main>
   );
 };

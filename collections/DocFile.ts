@@ -1,3 +1,4 @@
+import { isStaff } from "@/lib/utils";
 import { CollectionConfig } from "payload";
 
 export const DocFile: CollectionConfig = {
@@ -9,6 +10,12 @@ export const DocFile: CollectionConfig = {
    admin: {
       useAsTitle: 'name',
       group: 'Documentos',
+   },
+   access: {
+      read: isStaff,
+      create: isStaff,
+      update: isStaff,
+      delete: isStaff
    },
    upload: {
       staticDir: 'media',

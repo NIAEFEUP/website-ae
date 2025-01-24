@@ -1,3 +1,4 @@
+import { isStaff } from "@/lib/utils";
 import { CollectionConfig } from "payload";
 
 export const BoardSection: CollectionConfig = {
@@ -78,5 +79,11 @@ export const BoardSection: CollectionConfig = {
     admin: {
         useAsTitle: 'name',
         group: "Recursos Humanos"
-    }
+    },
+    access: {
+        read: isStaff,
+        create: isStaff,
+        update: isStaff,
+        delete: isStaff
+    },
 }
