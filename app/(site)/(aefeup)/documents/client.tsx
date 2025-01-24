@@ -21,11 +21,10 @@ const DocumentsPageClient = ({ documents }: DocumentsPageClientProps) => {
    return (
       <Dialog >
          <main className="py-20 lg:py-25 xl:py-30">
-            <SectionHeader headerInfo={{
-               title: "Documentos",
-               subtitle: "",
-               description: "Aqui podes visualizar os vários documentos que permitem acompanhar o trabalho da tua Associação de Estudantes, permitindo uma maior transparência relativa aos assuntos abordados."
-            }} />
+            <SectionHeader
+               title="Documentos"
+               description="Aqui podes visualizar os vários documentos que permitem acompanhar o trabalho da tua Associação de Estudantes, permitindo uma maior transparência relativa aos assuntos abordados."
+            />
             {
                sections.map((section) => (
                   <DocumentSection title={section} setFile={setFile} folders={documents.filter((folder => folder.section_name == section))}></DocumentSection>

@@ -21,11 +21,9 @@ const SportsPage = async () => {
         {teams.docs.length > 0 ?
           <LineupsSlider teams={teams.docs} />
           :
-          <SectionHeader headerInfo={{
-            title: "Desporto",
-            subtitle: "Desporto",
-            description: 'Todas as equipas de desporto da AEFEUP',
-          }} />
+          <SectionHeader
+            title="Desporto"
+          />
         }
       </section>
     </main>

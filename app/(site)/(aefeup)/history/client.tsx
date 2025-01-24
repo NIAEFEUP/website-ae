@@ -21,11 +21,7 @@ const AEFEUPHistoryClientPage = ({ presidents }: Props) => {
   return (
     <main className="py-20 lg:py-25 xl:py-30">
       <SectionHeader
-        headerInfo={{
-          title: "História",
-          subtitle: "",
-          description: ""
-        }}
+          title="História"
       />
 
       <Text sections={[
@@ -53,11 +49,7 @@ const AEFEUPHistoryClientPage = ({ presidents }: Props) => {
         {presidents.length > 0 &&
           <>
             <SectionHeader
-              headerInfo={{
-                title: "Presidentes",
-                subtitle: "",
-                description: ""
-              }}
+                title="Presidentes"
             />
             <motion.div
               variants={{

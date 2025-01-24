@@ -4,7 +4,6 @@ import Contact from "@/components/Contact";
 import SuggestionBox from "@/components/Sugestion";
 import { getPayload } from "payload";
 import config from "payload.config";
-import SectionHeader from "@/components/Common/SectionHeader";
 
 export const metadata: Metadata = {
   title: "Contacto",
