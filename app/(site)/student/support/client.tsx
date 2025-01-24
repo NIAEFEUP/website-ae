@@ -15,8 +15,8 @@ const SocialAidClientPage = async () => {
           {/* <!-- Section Title Start --> */}
           <div className="animate_top mx-auto text-center">
             <SectionHeader
-                title="Canais de Apoio",
-                description="Explore os nossos programas de suporte para garantir o seu bem-estar e sucesso académico.",
+                title="Canais de Apoio"
+                description="Explore os nossos programas de suporte para garantir o seu bem-estar e sucesso académico."
             />
           </div>
           {/* <!-- Section Title End --> */}
@@ -43,8 +43,8 @@ const SocialAidClientPage = async () => {
           {/* <!-- Section Title Start --> */}
           <div className="animate_top mx-auto text-center">
             <SectionHeader
-                title="Saúde Mental",
-                description="Apoio psicológico para o bem-estar e sucesso dos estudantes.",
+                title="Saúde Mental"
+                description="Apoio psicológico para o bem-estar e sucesso dos estudantes."
             />
           </div>
           {/* <!-- Section Title End --> */}

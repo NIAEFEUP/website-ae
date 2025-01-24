@@ -2,11 +2,6 @@
 import { HeaderInfo } from "@/types/headerInfo";
 import { motion } from "framer-motion";
 
-type HeaderInfo = {
-  title: string;
-  subtitle?: string;
-  description?: string;
-};
 
 const SectionHeader = ({ title, subtitle, description }: HeaderInfo ) => {
 

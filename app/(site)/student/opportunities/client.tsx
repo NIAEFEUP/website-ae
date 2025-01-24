@@ -14,7 +14,7 @@ const OpportunitiesClientPage = () => {
             <div className="animate_top mx-auto text-center">
                <SectionHeader
                   title="Voluntariado"
-                  description="Ações de interesse social e comunitário realizadas de forma desinteressada que desenvolvem competências pessoais e sociais e promovem a responsabilidade, ética e compromisso social.",
+                  description="Ações de interesse social e comunitário realizadas de forma desinteressada que desenvolvem competências pessoais e sociais e promovem a responsabilidade, ética e compromisso social."
                />
             </div>
             {/* <!-- Section Title End --> */}
