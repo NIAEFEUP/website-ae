@@ -4,7 +4,7 @@ import { Inbox } from "lucide-react";
 import { X } from "lucide-react";
 import { useState } from "react";
 
-import MultipleSelector, { Option } from '../ui/multiple-selector';
+import MultipleSelector, { Option } from '../../../../components/ui/multiple-selector';
 
 interface Props {
     materialData: Material[]

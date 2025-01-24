@@ -1,21 +1,44 @@
 'use client'
 
-import { useEffect, useRef, useState } from "react"
-import SectionHeader from "../Common/SectionHeader";
+import { useEffect, useState } from "react"
+import SectionHeader from "../../../../components/Common/SectionHeader";
 import { EventRequestInfo } from "@/types/eventRequestInfo";
 import { SingleMaterialRequest } from "@/types/singleMaterialRequest";
 import { Material } from "@/types/material";
 import DatePickerComponent from "./DatePickerComponent";
 import MaterialSelector from "./MaterialSelector";
 import { Space } from "@/payload-types";
+import EmailTemplate from "@/emails";
+import { sendEmail } from "@/lib/sendEmail";
+import toast, { Toaster } from "react-hot-toast";
+import { render } from "@react-email/render";
 
 interface Props {
   materialData: Material[],
-  sendEmail: (eventRequest: EventRequestInfo) => void,
   availableSpaces: Space[]
 }
 
-export default function RequestTab({ materialData, sendEmail, availableSpaces }: Props) {
+const sendEmailRequest = async (requestInfo: EventRequestInfo) => {
+  const emailString = await render(EmailTemplate({ requestEventInfo: requestInfo }));
+  const { data, error } = await sendEmail(
+    requestInfo.email,
+    'gta@aefeup.pt',
+    `${requestInfo.isEvent ? "Reserva de Espaço" : "Pedido de Material"}`,
+    emailString,
+  )
+
+  if (error) {
+    console.error(error)
+    return { error: "Erro ao enviar email" }
+  }
+
+  if (data) {
+    return { success: "Email enviado com sucesso" }
+  }
+}
+
+export default function RequestTab({ materialData, availableSpaces }: Props) {
+
   const [currentTab, setCurrentTab] = useState("tabOne");
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
@@ -47,7 +70,11 @@ export default function RequestTab({ materialData, sendEmail, availableSpaces }:
       requestedMaterial: requestedMaterial
     }
 
-    await sendEmail(requestInfo)
+    if (materialData.length === 0) {
+      return toast.error("Não há material disponível")
+    }
+
+    await sendEmailRequest(requestInfo)
     document.getElementById("material-request-form")?.reset() // TODO: Change this
   }
 
@@ -70,10 +97,9 @@ export default function RequestTab({ materialData, sendEmail, availableSpaces }:
       requestedMaterial: requestedMaterial
     }
 
-    await sendEmail(requestInfo)
+    await sendEmailRequest(requestInfo)
     document.getElementById("event-request-form")?.reset() // TODO: Change this
     //TODO: Remove the selected materials
-    //TODO: Show snack bar
   }
 
   return (
@@ -134,7 +160,7 @@ export default function RequestTab({ materialData, sendEmail, availableSpaces }:
                     <label htmlFor="space">Espaço*</label>
                     <select name="space" id="space" className="p-3 border bg-white rounded" required>
                       <option value="" selected hidden>Escolha um lugar</option>
-                      {availableSpaces.map((space: SpaceDatum) => (
+                      {availableSpaces.map((space) => (
                         <option value={space.name}>{space.name}</option>
                       ))}
                     </select>
@@ -197,6 +223,9 @@ export default function RequestTab({ materialData, sendEmail, availableSpaces }:
           </div>
         </div>
       </section>
+      <Toaster
+        position="bottom-right"
+      />
     </>
   )
 }

@@ -5,6 +5,7 @@ import SuggestionBox from "@/components/Sugestion";
 import { getPayload } from "payload";
 import config from "payload.config";
 import SectionHeader from "@/components/Common/SectionHeader";
+import { Toaster } from "react-hot-toast";
 
 export const metadata: Metadata = {
   title: "Contacto",
@@ -29,6 +30,10 @@ const ContactsPage = () => {
       <div className=" pt-20 lg:pt-25 xl:pt-30 pb-20 lg:pb-25 xl:pb-30"> 
       <SuggestionBox />
       </div>
+
+      <Toaster
+        position="bottom-right"
+      />
     </main>
   );
 }
