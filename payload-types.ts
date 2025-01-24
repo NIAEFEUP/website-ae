@@ -348,7 +348,7 @@ export interface DocumentFolder {
 export interface Docfile {
   id: number;
   name: string;
-  type: 'termos' | 'outro';
+  type: 'regulation' | 'other';
   updatedAt: string;
   createdAt: string;
   url?: string | null;

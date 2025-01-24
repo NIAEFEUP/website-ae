@@ -26,8 +26,8 @@ export const DocFile: CollectionConfig = {
          label: 'Tipo de ficheiro',
          type: 'select',
          options: [
-            { label: 'Termos e Condições', value: 'termos' },
-            { label: 'Outro', value: 'outro' },
+            { label: 'Regulamento', value: 'regulation' },
+            { label: 'Outro', value: 'other' },
          ],
          required: true,
       }
