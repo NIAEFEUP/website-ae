@@ -1,12 +1,8 @@
 import CalendarComponent from "@/components/Calendar"
 import { Metadata } from "next"
-import RequestTab from "@/components/RequestTab"
 import config from "payload.config"
 import { getPayload } from "payload"
-import { Resend } from "resend";
-import { render } from "@react-email/render"
-import { EventRequestInfo } from "@/types/eventRequestInfo"
-import EmailTemplate from "@/emails"
+import RequestPageContent from "./client"
 
 export const metadata: Metadata = {
 	title: "Cedências de Espaço",
@@ -18,6 +14,7 @@ export default async function Request() {
 	const calendarApiKey = process.env.GOOGLE_CALENDAR_API_KEY
 
 	const payload = await getPayload({ config });
+
 	const materialData = (await payload.find({
 		collection: "material",
 	})).docs
@@ -26,25 +23,21 @@ export default async function Request() {
 		collection: "space",
 	})).docs
 
-	const sendEmail = async (requestInfo: EventRequestInfo) => {
-		'use server'
-		const resend = new Resend(process.env.RESEND_API_KEY)
-
-		if (!requestInfo.isEvent && materialData.length === 0) {
-			return
-		}
-		const { data, error } = await resend.emails.send({
-			from: process.env.RESEND_EMAIL ? `AEFEUP <${process.env.RESEND_EMAIL}>` : 'Acme <onboarding@resend.dev>',
-			to: [requestInfo.email],
-			subject: `${requestInfo.isEvent ? "Reserva de Espaço" : "Pedido de Material"}`,
-			html: await render(EmailTemplate({ requestEventInfo: requestInfo })),
-		})
-	}
+	const regulation = (await payload.find({
+		collection: "docfile",
+		limit: 1,
+		where: {
+			type: { equals: "regulation" },
+		},
+	})).docs;
 
 	return (
-		<>
-			<CalendarComponent calendarID={calendarID} calendarApiKey={calendarApiKey} />
-			<RequestTab materialData={materialData} sendEmail={sendEmail} availableSpaces={availableSpaces} />
-		</>
-	)
+		<RequestPageContent
+			calendarID={calendarID}
+			calendarApiKey={calendarApiKey}
+			materialData={materialData}
+			availableSpaces={availableSpaces}
+			regulation={regulation.length > 0 ? regulation[0] : undefined}
+		/>
+	);
 }
