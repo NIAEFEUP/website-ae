@@ -16,10 +16,11 @@ services:
     build: 
       context: .
       target: prod
+      args:
+        - AE_VARS_METHOD=dotenv
+        - AE_DOTENV_FILE=.env
     ports:
       - '3000:3000'
-    env_file:
-      - .env
     depends_on:
       - postgres
     networks:

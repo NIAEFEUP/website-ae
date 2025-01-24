@@ -1,3 +1,5 @@
+ARG AE_VARS_METHOD=dotenv
+
 FROM node:22.12.0-alpine AS base
 
 # Install dependencies only when needed
@@ -7,14 +9,7 @@ WORKDIR /app
 COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
 RUN corepack enable pnpm && pnpm i --frozen-lockfile
 
-# Rebuild the source code only when needed
-FROM base AS builder
-WORKDIR /app
-COPY --from=deps /app/node_modules ./node_modules
-COPY . .
-RUN corepack enable pnpm && pnpm run build
-
-# Development environment
+# Development environment run
 FROM base AS dev
 WORKDIR /app
 
@@ -23,6 +18,25 @@ COPY . .
 
 EXPOSE 3000
 CMD corepack enable pnpm && pnpm run dev
+
+# Build from .env
+FROM base AS prod-build-with-dotenv
+
+ARG AE_DOTENV_FILE=.env
+COPY .env .env
+
+# Build using GH secrets (for registry)
+FROM base AS prod-build-with-content-vars
+
+ARG AE_DOTENV_CONTENT
+RUN echo "${AE_VARS_CONTENT}" | base64 -d > .env
+
+# Build source code for production
+FROM prod-build-with-${AE_VARS_METHOD} AS builder
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
+COPY . .
+RUN corepack enable pnpm && pnpm run build
 
 # Production image, copy all the files and run next
 FROM base AS prod 
