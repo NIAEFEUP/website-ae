@@ -11,12 +11,23 @@ export const metadata: Metadata = {
 };
 
 
-const payload = await getPayload({config});
-const faqData = (await payload.find({
-  collection: 'faq'
-})).docs;
 
-const ContactsPage = () => {  
+async function getFaqData() {
+  if(process.env.IS_BUILD) {
+     console.log('skipping getProjects DB call during build')
+     return []
+  }
+
+  const payload = await getPayload({config});
+  const faqData = (await payload.find({
+    collection: 'faq'
+  })).docs;
+
+  return faqData
+}
+
+const ContactsPage = async () => {  
+  const faqData = await getFaqData()
   return (
     <main>
       <div className="pt-20 lg:pt-25 xl:pt-30"> 

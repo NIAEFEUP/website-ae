@@ -9,21 +9,44 @@ import { getPayload } from "payload"
 import TestimonialSection from "@/components/TestimonialSection";
 import Sponsors from "@/components/Sponsors";
 
+export const dynamic = 'force-dynamic'
+
 export const metadata: Metadata = {
   title: "AEFEUP",
   description: "Website da Associação de Estudantes da Faculdade de Engenharia da Universidade do Porto.",
 };
 
-
-const Homepage = async () => {
+async function getTestimonials() {
+  if(process.env.IS_BUILD) {
+    console.log('skipping getTestimonials DB call during build')
+    return []
+  }
 
   const payload = await getPayload({ config });
   const testimonials = (await payload.find({
     collection: "testimonial",
   })).docs
+
+  return testimonials
+}
+
+async function getSponsors() {
+  if(process.env.IS_BUILD) {
+    console.log('skipping getSponsors DB call during build')
+    return []
+  }
+
   const sponsors = await (await getPayload({ config })).find({
     collection: 'sponsor',
   });
+
+  return sponsors.docs
+}
+
+
+const Homepage = async () => {
+  const testimonials = await getTestimonials()
+  const sponsors = await getSponsors()
 
   return (
     <main>
@@ -47,7 +70,7 @@ const Homepage = async () => {
 
       <TestimonialSection testimonialData={testimonials} />
 
-      <Sponsors sponsors={sponsors.docs.filter(sponsor => sponsor.name)} />
+      <Sponsors sponsors={sponsors.filter(sponsor => sponsor.name)} />
     </main>
   );
 };

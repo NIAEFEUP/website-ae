@@ -49,8 +49,8 @@ export default function RequestTab({ materialData, sendEmail, availableSpaces, r
       requestedMaterial: requestedMaterial
     }
 
-    await sendEmail(requestInfo)
-    document.getElementById("material-request-form")?.reset() // TODO: Change this
+    sendEmail(requestInfo);
+    (document.getElementById("material-request-form") as HTMLFormElement).reset() // TODO: Change this
   }
 
 
@@ -72,8 +72,8 @@ export default function RequestTab({ materialData, sendEmail, availableSpaces, r
       requestedMaterial: requestedMaterial
     }
 
-    await sendEmail(requestInfo)
-    document.getElementById("event-request-form")?.reset() // TODO: Change this
+    sendEmail(requestInfo);
+    (document.getElementById("event-request-form") as HTMLFormElement).reset() // TODO: Change this
     //TODO: Remove the selected materials
     //TODO: Show snack bar
   }
