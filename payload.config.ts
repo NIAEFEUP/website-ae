@@ -24,6 +24,10 @@ import { DocFile } from "./collections/DocFile";
 import { Video } from "./collections/Video";
 import { Faq } from "./collections/Faq";
 import { Place } from "./collections/Place";
+import { Testimonal } from "./collections/Testimonial";
+
+import { en } from '@payloadcms/translations/languages/en'
+import { pt } from '@payloadcms/translations/languages/pt'
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -52,7 +56,8 @@ export default buildConfig({
     DocFile,
     Video,
     Faq,
-    Place
+    Place,
+    Testimonal
   ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",
@@ -68,5 +73,11 @@ export default buildConfig({
   plugins: [
     // storage-adapter-placeholder
   ],
+  i18n: {
+    fallbackLanguage: 'pt',
+    translations: { pt, en },
+    //@ts-ignore
+    supportedLanguages: { pt, en },
+  }
   //livePreview: false, // Lets set it to true if we use pages collection (Globals)
 });

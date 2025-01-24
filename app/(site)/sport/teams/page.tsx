@@ -24,7 +24,7 @@ const SportsPage = async () => {
           <SectionHeader headerInfo={{
             title: "Desporto",
             subtitle: "Desporto",
-            description: `Aqui vão aparecer as equipas de desporto da AEFEUP.`,
+            description: 'Todas as equipas de desporto da AEFEUP',
           }} />
         }
       </section>

@@ -1,4 +1,5 @@
 "use client";
+import { HeaderInfo } from "@/types/headerInfo";
 import { motion } from "framer-motion";
 
 type HeaderInfo = {

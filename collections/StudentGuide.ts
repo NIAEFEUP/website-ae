@@ -1,3 +1,4 @@
+import { isStaff } from '@/lib/utils'
 import type { CollectionConfig } from 'payload'
 
 export const StudentGuide: CollectionConfig = {
@@ -8,6 +9,12 @@ export const StudentGuide: CollectionConfig = {
     },
     admin: {
         group: 'Estudante',
+    },
+    access: {
+        read: isStaff,
+        create: isStaff,
+        update: isStaff,
+        delete: isStaff
     },
     upload: {
         staticDir: 'media',

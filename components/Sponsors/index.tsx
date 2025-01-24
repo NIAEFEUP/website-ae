@@ -4,6 +4,7 @@ import React from "react";
 import { Media, Sponsor } from "@/payload-types";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 interface Props {
   sponsors: Sponsor[];
@@ -34,14 +35,14 @@ const Sponsors = ({ sponsors }: Props) => {
                   transition={{ duration: 1, delay: index * 0.5 }}
                   viewport={{ once: true }}
                 >
-                  <a href={sponsor.url}>
+                  <Link href={sponsor.url}>
                     <Image
                       className="opacity-65 transition-all duration-300 hover:opacity-100 dark:hidden"
                       src={logo?.url ?? ""}
                       alt={logo?.alt ?? ""}
                       fill
                     />
-                  </a>
+                  </Link>
                 </motion.div>
               </div>
             )

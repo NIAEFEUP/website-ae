@@ -1,3 +1,4 @@
+import { isStaff } from "@/lib/utils";
 import { CollectionConfig } from "payload";
 
 export const Link: CollectionConfig = {
@@ -9,6 +10,12 @@ export const Link: CollectionConfig = {
     admin: {
         useAsTitle: 'label',
         group: 'Estudante',
+    },
+    access: {
+        read: isStaff,
+        create: isStaff,
+        update: isStaff,
+        delete: isStaff
     },
     fields: [
         {

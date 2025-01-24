@@ -85,11 +85,11 @@ const menuData: Menu[] = [
   },
   {
     title: "Loja (wip)",
-    path: "store",
+    path: "/store",
   },
   {
     title: "Contactos",
-    path: "contact",
+    path: "/contact",
   },
 ];
 

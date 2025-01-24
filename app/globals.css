@@ -6,6 +6,20 @@
   --swiper-theme-color: #97321d !important;
 }
 
+.swiper-button-prev{
+  left: 30px !important;
+}
+.swiper-button-next{
+  right: 30px !important;
+}
+
+@media (max-width: 640px) {
+  .swiper-button-next,
+  .swiper-button-prev {
+    visibility: hidden !important;
+  }
+}
+
 /* third-party libraries CSS */
 
 .testimonial-01 .swiper-pagination-bullet {

@@ -16,7 +16,7 @@ interface InfoSection {
   schedule?: { label: string; value: string }[];
   imageSrc: string;
   link?: {
-    url: string;
+    path: string;
     text: string;
     showIcon?: boolean;
     icon?: React.ReactNode;
@@ -103,7 +103,7 @@ const Info: React.FC<InfoProps> = ({ sections }) => {
                 {section.link && (
                   <div>
                     <Link
-                      href={section.link.url}
+                      href={`/${section.link.path ? section.link.path + "/" : "" }`}
                       rel="noopener noreferrer"
                       className="flex items-center w-fit py-2 px-4 rounded-lg transition-all duration-300 gap-5 bg-primary text-white hover:shadow-lg"
                     >

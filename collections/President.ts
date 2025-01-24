@@ -1,3 +1,4 @@
+import { isStaff } from '@/lib/utils'
 import type { CollectionConfig } from 'payload'
 
 export const President: CollectionConfig = {
@@ -5,6 +6,16 @@ export const President: CollectionConfig = {
   labels: {
     singular: 'Presidente',
     plural: 'Presidentes',
+  },
+  admin: {
+    useAsTitle: 'name',
+    group: "Recursos Humanos"
+  },
+  access: {
+    read: isStaff,
+    create: isStaff,
+    update: isStaff,
+    delete: isStaff,
   },
   fields: [
     {
@@ -34,9 +45,5 @@ export const President: CollectionConfig = {
       required: true,
     },
 
-  ],
-  admin: {
-    useAsTitle: 'name',
-    group: "Recursos Humanos"
-  }
+  ]
 }

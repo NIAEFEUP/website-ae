@@ -8,6 +8,7 @@ const landingFeaturesData: Feature[] = [
     title: "Bem-Vindo",
     description:
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In convallis tortor.",
+    href:"#"
 },
   {
     id: 2,
@@ -15,6 +16,7 @@ const landingFeaturesData: Feature[] = [
     title: "Objetivo",
     description:
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In convallis tortor.",
+    href:"#"
 },
   {
     id: 3,

@@ -1,3 +1,4 @@
+import { isStaff } from '@/lib/utils';
 import type { CollectionConfig } from 'payload'
 
 
@@ -10,6 +11,12 @@ export const Association: CollectionConfig = {
     admin: {
         useAsTitle: 'association',
         group: "AEFEUP"
+    },
+    access: {
+        read: isStaff,
+        create: isStaff,
+        update: isStaff,
+        delete: isStaff
     },
     fields: [
         {

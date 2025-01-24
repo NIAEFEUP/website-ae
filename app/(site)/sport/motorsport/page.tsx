@@ -16,8 +16,8 @@ const MotorsportPage = () => {
         data={motorsportFeaturesData}
         headerInfo={{
           title: "Motorsport",
-          subtitle: "Discover Our Motorsport Services",
-          description: `Dive into our exciting motorsport offerings, featuring top-notch experiences for motorsport enthusiasts.`,
+          subtitle: "As nossas equipas",
+          description: 'Explora as nossas equipas do mundo do desporto motorizado, projetos para verdadeiros entusiastas.',
         }}
       />
       <Info sections={motorsportInfoData} />

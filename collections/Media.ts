@@ -1,3 +1,4 @@
+import { isMerchant, isStaff } from '@/lib/utils'
 import type { CollectionConfig } from 'payload'
 
 export const Media: CollectionConfig = {
@@ -8,9 +9,13 @@ export const Media: CollectionConfig = {
   },
   admin: {
     group: "Administração Website",
+    hidden: ({ user }) => user && user.role === 'merchant',
   },
   access: {
     read: () => true,
+    create: isStaff,
+    update: isStaff,
+    delete: isStaff,
   },
   fields: [
     {

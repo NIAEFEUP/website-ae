@@ -4,7 +4,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
-import ThemeToggler from "./ThemeToggler";
 import menuData from "./menuData";
 
 const Header = () => {
@@ -36,10 +35,14 @@ const Header = () => {
 
   return (
     <header
-      className={`z-99999 fixed left-0 top-0 w-full py-4 ${stickyMenu
-        ? "bg-white shadow transition duration-100 dark:bg-black"
-        : ""
-        }`}
+      className={`z-99999 fixed left-0 top-0 w-full py-4 ${(navigationOpen)
+          ? "bg-white"
+          : ""
+        }
+        ${stickyMenu
+          ? "bg-white shadow transition duration-100 dark:bg-black"
+          : ""
+        }}`}
     >
       <div className="relative mx-auto max-w-c-1390 items-center justify-between px-4 md:px-8 lg:flex">
         <div className="flex w-full items-center justify-between lg:w-1/4">
@@ -91,19 +94,19 @@ const Header = () => {
 
         {/* Nav Menu Start   */}
         <div
-          className={`invisible h-0 w-full items-center justify-end lg:visible lg:flex lg:h-auto lg:w-full ${navigationOpen &&
-            "navbar !visible mt-4 h-auto max-h-[400px] rounded-md bg-white p-7.5 shadow-solid-5 dark:bg-blacksection lg:h-auto lg:p-0 lg:shadow-none lg:dark:bg-transparen"
+          className={`fixed left-0 invisible h-0 w-full items-center justify-end lg:static lg:visible lg:flex lg:h-auto lg:w-full ${navigationOpen &&
+            "h-screen !visible rounded-md bg-white p-7.5 dark:bg-blacksection lg:max-h-[400px] lg:h-auto lg:p-0 lg:shadow-none lg:dark:bg-transparent"
             }`}
         >
           <nav>
-            <ul className="flex flex-col gap-5 lg:flex-row lg:items-center lg:gap-10">
+            <ul className="flex flex-col gap-5 text-xl lg:flex-row lg:text-lg items-center lg:gap-10">
               {menuData.map((menuItem, key) => (
                 <li key={key} className={menuItem.submenu && "group relative"}>
                   {menuItem.submenu ? (
                     <>
                       <button
                         onClick={() => handleToggleSubmenu(key)}
-                        className="flex cursor-pointer items-center justify-between gap-3 hover:text-primary"
+                        className="flex cursor-pointer items-center mx-auto justify-between gap-3 hover:text-primary"
                       >
                         {menuItem.title}
                         <span>
@@ -122,13 +125,17 @@ const Header = () => {
                       >
                         {menuItem.submenu.map((item, key) => (
                           <li key={key} className="hover:text-primary">
-                            <Link href={"/" + (menuItem.path ? menuItem.path + "/" : "") + item.path || "#"}>{item.title}</Link>
+                            <Link 
+                              href={"/" + (menuItem.path ? menuItem.path + "/" : "") + item.path || "#"}
+                              onClick={() => { setOpenSubmenu(null); setNavigationOpen(!navigationOpen) }}
+                            >{item.title}</Link>
                           </li>
                         ))}
                       </ul>
                     </>
                   ) : (
                     <Link
+                      onClick={() => { setOpenSubmenu(null); setNavigationOpen(!navigationOpen) }}
                       href={`${menuItem.path}`}
                       className={
                         pathUrl === menuItem.path
@@ -154,8 +161,6 @@ const Header = () => {
     </header>
   );
 };
-
-// w-full delay-300
 
 export default Header;
 
