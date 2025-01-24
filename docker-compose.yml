@@ -11,6 +11,9 @@ services:
       - postgres
     networks:
       - my_network
+    volumes:
+      - .:/app
+      - /app/node_modules
 
   website-ae-prod:
     build: 
