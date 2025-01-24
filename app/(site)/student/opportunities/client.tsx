@@ -13,11 +13,8 @@ const OpportunitiesClientPage = () => {
             {/* <!-- Section Title Start --> */}
             <div className="animate_top mx-auto text-center">
                <SectionHeader
-                  headerInfo={{
-                     title: `Voluntariado`,
-                     subtitle: `Voluntariado Estudantil`,
-                     description: `Ações de interesse social e comunitário realizadas de forma desinteressada que desenvolvem competências pessoais e sociais e promovem a responsabilidade, ética e compromisso social.`,
-                  }}
+                  title="Voluntariado"
+                  description="Ações de interesse social e comunitário realizadas de forma desinteressada que desenvolvem competências pessoais e sociais e promovem a responsabilidade, ética e compromisso social.",
                />
             </div>
             {/* <!-- Section Title End --> */}
@@ -47,11 +44,7 @@ const OpportunitiesClientPage = () => {
             {/* <!-- Section Title Start --> */}
             <div className="animate_top mx-auto text-center">
                <SectionHeader
-                  headerInfo={{
-                     title: `Formações`,
-                     subtitle: `Formações Estudantis`,
-                     description: ""
-                  }}
+                     title="Formações"
                />
             </div>
             {/* <!-- Section Title End --> */}

@@ -203,12 +203,7 @@ export interface SportsTeam {
     | null;
   lineup?:
     | {
-        lineupRow?:
-          | {
-              person: number | Person;
-              id?: string | null;
-            }[]
-          | null;
+        lineupRow: (number | Person)[];
         id?: string | null;
       }[]
     | null;
@@ -344,10 +339,7 @@ export interface DocumentFolder {
   id: number;
   folder_name: string;
   section_name?: ('Direção' | 'Assembleia Geral') | null;
-  files: {
-    file?: (number | null) | Docfile;
-    id?: string | null;
-  }[];
+  files: (number | Docfile)[];
   updatedAt: string;
   createdAt: string;
 }
@@ -358,6 +350,7 @@ export interface DocumentFolder {
 export interface Docfile {
   id: number;
   name: string;
+  type: 'regulation' | 'other';
   updatedAt: string;
   createdAt: string;
   url?: string | null;

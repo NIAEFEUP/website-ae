@@ -9,7 +9,6 @@ export const Association: CollectionConfig = {
         plural: 'Associações',
     },
     admin: {
-        useAsTitle: 'association',
         group: "AEFEUP"
     },
     access: {

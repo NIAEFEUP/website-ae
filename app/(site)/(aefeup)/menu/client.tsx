@@ -30,11 +30,7 @@ const ClientMenuPage = ({ categories, items, dayMenus }: Props) => {
             {/* <!-- Section Title Start --> */}
             <div className="animate_top mx-auto text-center">
                 <SectionHeader
-                    headerInfo={{
-                        title: `Ementa Bar`,
-                        subtitle: `Bar AEFEUP`,
-                        description: ``,
-                    }}
+                    title="Ementa Bar AEFEUP"
                 />
             </div>
             {/* <!-- Section Title End --> */}
