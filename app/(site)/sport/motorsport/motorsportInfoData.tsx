@@ -1,6 +1,7 @@
+import { InfoSection } from "@/types/infoSection";
 import { Globe, Instagram } from "lucide-react";
 
-export const motorsportInfoData = [
+export const motorsportInfoData : InfoSection[] = [
   {
     id: 1,
     title: "Formula Student",
@@ -10,7 +11,7 @@ export const motorsportInfoData = [
     imageSrc: "/images/motorsport/fsfeup_logo.jpeg",
     avatar: <Globe size={48} className="text-primary" />,
     link: {
-      url: "https://formulastudent.fe.up.pt/",
+      path: "https://formulastudent.fe.up.pt/",
       text: "Learn More",
       showIcon: true,
       icon: <Globe size={16} className="text-current" />,
@@ -25,7 +26,7 @@ export const motorsportInfoData = [
     imageSrc: "/images/motorsport/moto_student_feup_logo.jpeg",
     avatar: <Instagram size={48} className="text-primary" />,
     link: {
-      url: "https://www.instagram.com/msfeup/",
+      path: "https://www.instagram.com/msfeup/",
       text: "Learn More",
       showIcon: true,
       icon: <Instagram size={16} className="text-current" />,

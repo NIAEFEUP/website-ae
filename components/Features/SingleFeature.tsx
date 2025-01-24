@@ -31,10 +31,7 @@ const SingleFeature = ({ feature }: { feature: Feature }) => {
             {typeof icon === "string" ? (
               <Image src={icon} width={36} height={36} alt={title} />
             ) : (
-              React.cloneElement(icon, {
-                color: "white", 
-                strokeWidth: 2, 
-              })
+              React.cloneElement(icon, {})
             )}
           </div>
           <h3 className="mb-5 mt-7.5 text-xl font-semibold text-black dark:text-white xl:text-itemtitle">

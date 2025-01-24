@@ -1,9 +1,11 @@
-export const sectionsData = [
+import { TextSection } from "@/types/textSection";
+
+export const sectionsData : TextSection[] = [
     {
       id: 1,
       title: "Bem Vindo à FEUP",
       subtitle: "",
-      text: (
+      text: [(
         <>
           <p>
             Bem-vindo à Comunidade FEUP!
@@ -31,31 +33,31 @@ export const sectionsData = [
             Nesta página poderás encontrar toda a informação necessária para dares os teus primeiros passos na FEUP, tais como informações sobre alojamento, alimentação e diversos outros serviços disponíveis na FEUP.
           </p>
         </>
-      ),
+      )],
     },
     {
       id: 2,
       title: "Videos Informativos",
       subtitle: "",
-      text: (
+      text: [(
         <>
           <p>
             Dá uma vista de olhos nos vídeos, para conheceres a faculdade!            
           </p>
         </>
-      ),
+      )],
     },
     {
       id: 3,
       title: "Programa de Mentoria",
       subtitle: "",
-      text: (
+      text: [(
         <>
           <p>
           A Faculdade de Engenharia da Universidade do Porto (FEUP) tem em funcionamento um programa de MENTORIA INTERPARES, destinado aos estudantes que ingressam pela 1ª vez nesta instituição de Ensino Superior (mentorados), tanto nacionais como internacionais, com o objetivo de os apoiar nesta nova fase do seu percurso académico. A dinamização deste programa de integração social e académica é realizada por estudantes (mentores) que já frequentam os diferentes cursos em anos mais avançados, e coordenado por uma equipa de docentes, sendo adaptado a cada curso de acordo com as suas caraterísticas. Este programa é totalmente voluntário tanto para mentores como para mentorados.
           </p>
         </>
-      ),
+      )],
       buttons: [
         {
           url: "https://www.up.pt/mentoriaup/inscricoes-para-mentores-as-u-porto-2022-2023/",
@@ -71,7 +73,7 @@ export const sectionsData = [
         id: 4,
         title: "Estudantes Internacionais",
         subtitle: "",
-        text: (
+        text: [(
           <>
             <p>
               Os <strong>Orientation Days</strong> têm como objetivo acolher os estudantes estrangeiros na sua chegada à Faculdade de Engenharia da Universidade do Porto (FEUP). Este evento é organizado pela Unidade de Cooperação da FEUP e a AEFEUP no início de cada semestre letivo.
@@ -108,7 +110,7 @@ export const sectionsData = [
               </a>
             </address>
           </>
-        ),
+        )],
       },
   ];
   
