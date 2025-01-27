@@ -30,7 +30,5 @@ export const Video: CollectionConfig = {
       relationTo: 'media',
     },
   ],
-  upload: {
-    mimeTypes: ['video/mp4'],
-  }
+  upload: true
 }

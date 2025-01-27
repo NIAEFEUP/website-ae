@@ -17,9 +17,7 @@ export const DocFile: CollectionConfig = {
       update: isStaff,
       delete: isStaff
    },
-   upload: {
-      mimeTypes: ['application/pdf'],
-   },
+   upload: true,
    fields: [
       {
          name: 'name',

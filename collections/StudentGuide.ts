@@ -16,9 +16,7 @@ export const StudentGuide: CollectionConfig = {
         update: isStaff,
         delete: isStaff
     },
-    upload: {
-        mimeTypes: ['application/pdf'],
-    },
+    upload: true, 
     fields: [
         {
             name: "language",
