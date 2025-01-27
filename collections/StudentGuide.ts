@@ -17,7 +17,6 @@ export const StudentGuide: CollectionConfig = {
         delete: isStaff
     },
     upload: {
-        staticDir: 'media',
         mimeTypes: ['application/pdf'],
     },
     fields: [

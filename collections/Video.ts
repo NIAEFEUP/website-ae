@@ -31,7 +31,6 @@ export const Video: CollectionConfig = {
     },
   ],
   upload: {
-    staticDir: 'media',
     mimeTypes: ['video/mp4'],
   }
 }

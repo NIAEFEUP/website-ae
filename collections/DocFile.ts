@@ -18,7 +18,6 @@ export const DocFile: CollectionConfig = {
       delete: isStaff
    },
    upload: {
-      staticDir: 'media',
       mimeTypes: ['application/pdf'],
    },
    fields: [
