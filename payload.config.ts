@@ -1,3 +1,4 @@
+import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 import { postgresAdapter } from "@payloadcms/db-postgres";
 import { lexicalEditor } from "@payloadcms/richtext-lexical";
 import path from "path";
@@ -93,13 +94,3 @@ export default buildConfig({
   }
   //livePreview: false, // Lets set it to true if we use pages collection (Globals)
 });
-function vercelBlobStorage(arg0: {
-  enabled: boolean; // Optional, defaults to true
-  // Specify which collections should use Vercel Blob
-  collections: { media: boolean; 'media-with-prefix': { prefix: string; }; };
-  // Token provided by Vercel once Blob storage is added to your Vercel project
-  token: string | undefined;
-}): import("payload").Plugin {
-  throw new Error("Function not implemented.");
-}
-
