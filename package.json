@@ -20,6 +20,7 @@
     "@payloadcms/next": "3.0.0-beta.71",
     "@payloadcms/richtext-lexical": "3.0.0-beta.71",
     "@payloadcms/richtext-slate": "3.0.0-beta.71",
+    "@payloadcms/storage-vercel-blob": "^3.19.0",
     "@payloadcms/translations": "^3.17.1",
     "@payloadcms/ui": "3.0.0-beta.71",
     "@radix-ui/react-dialog": "^1.1.2",

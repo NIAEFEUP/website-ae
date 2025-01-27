@@ -72,6 +72,18 @@ export default buildConfig({
   sharp,
   plugins: [
     // storage-adapter-placeholder
+    vercelBlobStorage({
+      enabled: true, // Optional, defaults to true
+      // Specify which collections should use Vercel Blob
+      collections: {
+        media: true,
+        'media-with-prefix': {
+          prefix: 'my-prefix',
+        },
+      },
+      // Token provided by Vercel once Blob storage is added to your Vercel project
+      token: process.env.BLOB_READ_WRITE_TOKEN,
+    }),
   ],
   i18n: {
     fallbackLanguage: 'pt',
@@ -81,3 +93,13 @@ export default buildConfig({
   }
   //livePreview: false, // Lets set it to true if we use pages collection (Globals)
 });
+function vercelBlobStorage(arg0: {
+  enabled: boolean; // Optional, defaults to true
+  // Specify which collections should use Vercel Blob
+  collections: { media: boolean; 'media-with-prefix': { prefix: string; }; };
+  // Token provided by Vercel once Blob storage is added to your Vercel project
+  token: string | undefined;
+}): import("payload").Plugin {
+  throw new Error("Function not implemented.");
+}
+
