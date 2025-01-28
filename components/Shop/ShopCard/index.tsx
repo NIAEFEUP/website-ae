@@ -39,10 +39,15 @@ const ShopCard = ({ product, addToCart, isProductInCart }: ShopCardProps) => {
         <div className="flex justify-between">
           <p className="text-gray dark:text-white text-xl">{product.price}€</p>
           <div className="items-center flex gap-2">
-            <SizePicker
-              product={product}
-              setInstance={setInstance}
-            ></SizePicker>
+            {product.sizes?.every((size) => size.quantity > 0) ? (
+              <SizePicker
+                product={product}
+                setInstance={setInstance}
+              ></SizePicker>
+            ) : (
+              "Sold out"
+            )}
+
             {instance && (
               <button
                 className="hover:shadow-lg flex gap-2 items-center rounded-lg bg-black py-2 px-2 text-white text-sm"

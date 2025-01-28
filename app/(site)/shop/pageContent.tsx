@@ -9,7 +9,14 @@ import React from "react";
 
 export default function ShopPageContent({ products }) {
   const [openCart, setOpenCart] = React.useState(false);
-  const [cartProducts, setCardProducts] = React.useState<cartProduct[]>([]);
+  const [cartProducts, setCartProducts] = React.useState<cartProduct[]>([]);
+
+  React.useEffect(() => {
+    const savedOrder = localStorage.getItem("currentOrder");
+    if (savedOrder) {
+      setCartProducts(JSON.parse(savedOrder).orderProducts);
+    }
+  }, []);
 
   const isProductInCart = (product: cartProduct) => {
     return cartProducts.some(
@@ -20,7 +27,7 @@ export default function ShopPageContent({ products }) {
   };
 
   const addToCart = (item: cartProduct) => {
-    setCardProducts((prevCardProducts) => {
+    setCartProducts((prevCardProducts) => {
       if (
         prevCardProducts.some(
           (p) => p.product.id === item.product.id && p.size === item.size
@@ -33,7 +40,7 @@ export default function ShopPageContent({ products }) {
   };
 
   const removeFromCart = (itemCart: cartProduct) => {
-    setCardProducts((prevCardProducts) =>
+    setCartProducts((prevCardProducts) =>
       prevCardProducts.filter(
         (item) =>
           item.product.id !== itemCart.product.id ||
@@ -49,7 +56,7 @@ export default function ShopPageContent({ products }) {
         isOpen={openCart}
         onOpenChange={setOpenCart}
         cartProducts={cartProducts}
-        setCardProducts={setCardProducts}
+        setCartProducts={setCartProducts}
         removeFromCart={removeFromCart}
       ></ShopCart>
 

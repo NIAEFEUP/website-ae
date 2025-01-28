@@ -53,7 +53,8 @@ const CartItem = ({ item, removeFromCart, updateItem }: CartItemProps) => {
             <div className="flex items-center gap-1">
               Color:
               <span
-                className={`rounded-full p-2 bg-${item.product.color.toLowerCase()}-700`}
+                className={`rounded-full p-2 ${item.product.color.toLowerCase() === "white" ? "border" : ""}`}
+                style={{ backgroundColor: item.product.color.toLowerCase() }}
               ></span>
             </div>
             <div className="flex items-center gap-1">

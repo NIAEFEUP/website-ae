@@ -20,7 +20,7 @@ type ShopCartProps = {
   onOpenChange: (bool: boolean) => void;
   cartProducts: cartProduct[];
   removeFromCart: (item: cartProduct) => void;
-  setCardProducts: (cartProdcuts: cartProduct[]) => void;
+  setCartProducts: (cartProdcuts: cartProduct[]) => void;
 };
 
 export enum paymentStatus {
@@ -36,7 +36,7 @@ const ShopCart = ({
   onOpenChange,
   cartProducts,
   removeFromCart,
-  setCardProducts,
+  setCartProducts,
 }: ShopCartProps) => {
   //TODO: to review
   const [processingPayment, setProcessingPayment] = React.useState(false);
@@ -57,19 +57,22 @@ const ShopCart = ({
 
     if (paymentStatusState === paymentStatus.confirmed) {
       // client was not refreshed and order was confirmed
-      confirmOrder(JSON.parse(savedOrder!));
-      localStorage.removeItem("currentOrder"); // TODO: format order
+      const parsedOrder = JSON.parse(localStorage.getItem("currentOrder")!);
+      confirmOrder({
+        orderProducts: parsedOrder.orderProducts,
+        id: parsedOrder.orderID,
+      } as Order);
+      localStorage.removeItem("currentOrder");
     } else if (
       paymentStatusState === paymentStatus.declined ||
       paymentStatusState === paymentStatus.expired
     ) {
       // client was not refreshed and order was denied
       console.log("Rejecting order: " + JSON.parse(savedOrder!).orderID);
-      const testeteste = JSON.parse(localStorage.getItem("currentOrder")!);
-      confirmOrder({
-        // reject order
-        orderProducts: testeteste.orderProducts,
-        id: testeteste.orderID,
+      const parsedOrder = JSON.parse(localStorage.getItem("currentOrder")!);
+      cancelOrder({
+        orderProducts: parsedOrder.orderProducts,
+        id: parsedOrder.orderID,
       } as Order);
       localStorage.removeItem("currentOrder");
     } else if (paymentStatusState === paymentStatus.waiting) {
@@ -89,6 +92,8 @@ const ShopCart = ({
           } else if (teste.Message == "Expired") {
             setPaymentStatus(paymentStatus.expired);
             clearInterval(pollStatus);
+          } else {
+            return;
           }
 
           setTimeout(() => {
@@ -104,7 +109,7 @@ const ShopCart = ({
     cartProducts.forEach((item, i) =>
       item === item ? (cartProducts[i].quantity = newQuantity) : {}
     );
-    setCardProducts(cartProducts);
+    setCartProducts(cartProducts);
   }
 
   return (
@@ -112,7 +117,7 @@ const ShopCart = ({
       <SheetContent className="z-100000 flex flex-col justify-between">
         <SheetHeader>
           <SheetTitle className="mb-5">Cart</SheetTitle>
-          <SheetDescription className="flex flex-col gap-5 max-h-[600 px] overflow-y-auto">
+          <SheetDescription className="flex flex-col gap-5 max-h-[600px] overflow-y-auto">
             {cartProducts.map((p) => {
               return (
                 <>
