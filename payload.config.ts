@@ -73,7 +73,7 @@ export default buildConfig({
   sharp,
   plugins: [
     s3Storage({
-      enabled: process.env.LOCAL === 'true',
+      enabled: process.env.LOCAL !== 'true',
       collections: {
         media: true,
         docfile: true,
