@@ -43,36 +43,28 @@ const Footer = () => {
                 AEFEUP
               </h4>
               <p>Associação de Estudantes da Faculdade de Engenharia da Universidade do Porto</p>
-              <p>Rua Doutor Júlio de Matos, 882</p>
-              <p>4200–356 Paranhos, Porto</p>
+              <p>Rua Dr. Júlio de Matos 882, 4200-365 Porto</p>
             </div>
             <div className="w-fit">
               <h4 className="mb-3 text-itemtitle2 font-medium text-black dark:text-white">
-                Links úteis
+                Contactos
               </h4>
               <ul>
+
                 <li>
                   <a
-                    href="#"
+                    href="mailto:geral@aefeup.pt"
                     className="mb-3 inline-block hover:text-primary"
                   >
-                    Quem somos
+                    geral@aefeup.pt
                   </a>
                 </li>
                 <li>
                   <a
-                    href="#"
+                    href="tel:+351 225 081 556"
                     className="mb-3 inline-block hover:text-primary"
                   >
-                    Cedências de Espaço
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="mb-3 inline-block hover:text-primary"
-                  >
-                    Serviços
+                    +351 225 081 556
                   </a>
                 </li>
               </ul>

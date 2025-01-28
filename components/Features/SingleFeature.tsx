@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 
 const SingleFeature = ({ feature }: { feature: Feature }) => {
-  const { icon, title, description,href } = feature;
+  const { icon, title, description, href } = feature;
 
   return (
     <>
@@ -31,13 +31,14 @@ const SingleFeature = ({ feature }: { feature: Feature }) => {
             {typeof icon === "string" ? (
               <Image src={icon} width={36} height={36} alt={title} />
             ) : (
-              React.cloneElement(icon, {})
+              //@ts-ignore
+              React.cloneElement(icon, { className: "text-white" })
             )}
           </div>
           <h3 className="mb-5 mt-7.5 text-xl font-semibold text-black dark:text-white xl:text-itemtitle">
             {title}
           </h3>
-          <p>{description}</p>
+          {/*<p>{description}</p>*/}
         </motion.div>
       </Link>
     </>

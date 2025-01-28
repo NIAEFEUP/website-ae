@@ -4,6 +4,8 @@
 
 :root {
   --swiper-theme-color: #97321d !important;
+  --fc-event-bg-color: #97321d !important;
+  --fc-event-border-color: #97321d !important;
 }
 
 .swiper-button-prev{
