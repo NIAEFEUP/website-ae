@@ -40,7 +40,8 @@ export default function ShopPageContent({ products }) {
       <ShopCart
         isOpen={openCart}
         onOpenChange={setOpenCart}
-        products={cartProducts}
+        cartProducts={cartProducts}
+        setCardProducts={setCardProducts}
         removeFromCart={removeFromCart}
       ></ShopCart>
 
@@ -52,6 +53,8 @@ export default function ShopPageContent({ products }) {
             description: "Aqui podes comprar cenas e ser mesmo cool",
           }}
         />
+
+        <button onClick={() => setOpenCart(true)}>Open Cart</button>
 
         <section className="flex flex-wrap px-24 mt-5 gap-8 justify-center">
           {products.map((product: Product) => (

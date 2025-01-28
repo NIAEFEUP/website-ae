@@ -2,16 +2,16 @@
 
 import { cartProduct } from "@/types/cartProduct";
 import { getProducts } from "./getShopProducts";
-import { createMBWAYRequest } from "./apiCall";
+import { checkPaymentStatus, createMBWAYRequest } from "./apiCall";
+import { createOrder } from "./processOrders";
 
 export default async function createPayment(
-  number: string,
+  mobile: string,
+  email: string,
   products: cartProduct[]
 ) {
   const serverProducts = await getProducts();
   console.log("server Products", products);
-
-  // decrement products from pending orders
 
   products.forEach((product) => {
     const validatedProduct = serverProducts.find(
@@ -28,20 +28,18 @@ export default async function createPayment(
     }
   });
 
+  console.log("Validated products: ", products);
+
   const totalCost = products.reduce(
     (prev, curr) => prev + curr.product.price * curr.quantity,
     0
   );
 
-  // create order status = pending
-  // create_at = new Date()
-  // 5minutes
+  console.log("amount: ", totalCost);
 
-  const response = await createMBWAYRequest(
-    number,
-    totalCost
-    //orderId
-  );
+  const order = await createOrder(products, mobile, email, totalCost);
 
-  return response.RequestId;
+  const response = await createMBWAYRequest(mobile, totalCost, order.id);
+
+  return { paymentID: response.RequestId, orderID: order.id };
 }

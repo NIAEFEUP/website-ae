@@ -1,4 +1,4 @@
- import type { CollectionConfig } from "payload";
+import type { CollectionConfig } from "payload";
 import { ProductSize } from "./ProductSizeField";
 
 export const Product: CollectionConfig = {
@@ -33,8 +33,8 @@ export const Product: CollectionConfig = {
           name: "quantity",
           type: "number",
           required: true,
-        }
-      ]
-    }
+        },
+      ],
+    },
   ],
 };

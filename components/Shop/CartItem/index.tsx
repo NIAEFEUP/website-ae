@@ -6,9 +6,10 @@ import React from "react";
 type CartItemProps = {
   item: cartProduct;
   removeFromCart: (item: cartProduct) => void;
+  updateItem: (item: cartProduct, newQuantity: number) => void;
 };
 
-const CartItem = ({ item, removeFromCart }: CartItemProps) => {
+const CartItem = ({ item, removeFromCart, updateItem }: CartItemProps) => {
   const [quantity, setQuantity] = React.useState(item.quantity);
 
   const increaseQuantity = () => {
@@ -16,14 +17,14 @@ const CartItem = ({ item, removeFromCart }: CartItemProps) => {
 
     if (instance && quantity + 1 <= instance.quantity) {
       setQuantity(quantity + 1);
-      item.quantity = quantity + 1;
+      updateItem(item, quantity + 1);
     }
   };
 
   const decreaseQuantity = () => {
     if (quantity - 1 > 0) {
       setQuantity(quantity - 1);
-      item.quantity = quantity - 1;
+      updateItem(item, quantity - 1);
     }
   };
 

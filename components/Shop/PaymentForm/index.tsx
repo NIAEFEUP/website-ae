@@ -6,7 +6,7 @@ import { Card, CardHeader } from "@/components/ui/card";
 import { paymentStatus } from "../Cart";
 import createPayment from "@/actions/payment";
 import { cartProduct } from "@/types/cartProduct";
-import { checkPaymentStatus } from "@/actions/apiCall";
+import { pollPaymentStatus } from "@/actions/apiCall";
 
 type PaymentFormProps = {
   setProcessingPayment: (status: boolean) => void;
@@ -19,43 +19,41 @@ const PaymentForm = ({
   setPaymentStatus,
   setProcessingPayment,
 }: PaymentFormProps) => {
-  const [number, setNumber] = React.useState("");
+  const [mobile, setNumber] = React.useState("");
+  const [email, setEmail] = React.useState("");
 
   const handlePayment = async () => {
     setProcessingPayment(true);
-    const response = await createPayment(number, products);
-    console.log(response);
-    if (response) {
-      pollPaymentStatus(response.requestId);
+    setPaymentStatus(paymentStatus.waiting);
+    const response = await createPayment(mobile, email, products);
+    localStorage.setItem(
+      "currentOrder",
+      JSON.stringify({
+        orderID: response.orderID,
+        orderProducts: products,
+        requestID: response.paymentID,
+      })
+    );
+
+    if (response.paymentID) {
+      console.log("Polling");
+      const status = await pollPaymentStatus(response.paymentID);
+
+      if (status === "confirmed") {
+        setPaymentStatus(paymentStatus.confirmed);
+      } else if (status === "declined") {
+        setPaymentStatus(paymentStatus.declined);
+      } else if (status === "expired") {
+        setPaymentStatus(paymentStatus.expired);
+      }
+      setTimeout(() => {
+        setProcessingPayment(false);
+        setPaymentStatus(paymentStatus.idle);
+      }, 3000);
     } else {
       setProcessingPayment(false);
       console.error("Failed to create MBWAY request");
     }
-  };
-
-  const pollPaymentStatus = (requestID: string) => {
-    const pollStatus = setInterval(async () => {
-      const teste = await checkPaymentStatus(requestID);
-
-      if (teste.Message == "Success") {
-        alert("euerka");
-        setPaymentStatus(paymentStatus.confirmed);
-        clearInterval(pollStatus);
-
-        setTimeout(() => {
-          setProcessingPayment(false);
-        }, 3000);
-      }
-      if (teste.Message == "Declined by user") {
-        alert("declined by user");
-        setPaymentStatus(paymentStatus.declined);
-        clearInterval(pollStatus);
-
-        setTimeout(() => {
-          setProcessingPayment(false);
-        }, 3000);
-      }
-    }, 5000);
   };
 
   return (
@@ -82,7 +80,7 @@ const PaymentForm = ({
               <Input
                 type="email"
                 placeholder="Email"
-                onChange={(e) => setNumber(e.target.value)}
+                onChange={(e) => setEmail(e.target.value)}
               />
               <Input
                 type="email"

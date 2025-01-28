@@ -39,18 +39,15 @@ const ShopCard = ({ product, setCartState, addToCart }: ShopCardProps) => {
         <div className="flex justify-between">
           <p className="text-gray dark:text-white text-xl">{product.price}€</p>
           <div className="items-center flex gap-2">
-            <button
-              onClick={() => {
-                setCartState(true);
-                addToCart(buildCartProduct(instance!));
-              }}
-            >
-              <CirclePlus />
-            </button>
             <SizePicker
               product={product}
               setInstance={setInstance}
             ></SizePicker>
+            <button
+              onClick={() => {
+                addToCart(buildCartProduct(instance!));
+              }}
+            ></button>
           </div>
         </div>
       </div>
