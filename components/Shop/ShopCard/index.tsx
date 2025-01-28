@@ -2,16 +2,16 @@ import { Product } from "@/payload-types";
 import Image from "next/image";
 import SizePicker from "../SizePicker";
 import React from "react";
-import { CirclePlus } from "lucide-react";
+import { ShoppingCart } from "lucide-react";
 import { cartProduct } from "@/types/cartProduct";
 
 type ShopCardProps = {
   product: Product;
-  setCartState: (bool: boolean) => void;
   addToCart: (product: cartProduct) => void;
+  isProductInCart: (product: cartProduct) => boolean;
 };
 
-const ShopCard = ({ product, setCartState, addToCart }: ShopCardProps) => {
+const ShopCard = ({ product, addToCart, isProductInCart }: ShopCardProps) => {
   const [instance, setInstance] = React.useState<cartProduct>();
 
   const buildCartProduct = (instance: cartProduct) => {
@@ -43,11 +43,18 @@ const ShopCard = ({ product, setCartState, addToCart }: ShopCardProps) => {
               product={product}
               setInstance={setInstance}
             ></SizePicker>
-            <button
-              onClick={() => {
-                addToCart(buildCartProduct(instance!));
-              }}
-            ></button>
+            {instance && (
+              <button
+                className="hover:shadow-lg flex gap-2 items-center rounded-lg bg-black py-2 px-2 text-white text-sm"
+                onClick={() => {
+                  addToCart(buildCartProduct(instance!));
+                }}
+                disabled={isProductInCart(instance)}
+              >
+                <ShoppingCart size={18} />
+                {isProductInCart(instance) ? "Added" : "Add to Cart"}
+              </button>
+            )}
           </div>
         </div>
       </div>

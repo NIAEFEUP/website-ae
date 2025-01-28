@@ -39,16 +39,27 @@ const CartItem = ({ item, removeFromCart, updateItem }: CartItemProps) => {
       />
       <div className="flex flex-col text-black justify-between flex-grow">
         <div>
-          <h1 className="text-base">{item.product.name}</h1>
-          <h1 className="font-bold">{item.product.price} €</h1>
-          <div className="mt-1 text-xs text-gray-500 flex">
-            <div className="pr-5 border-r">
+          <div className="flex gap-1 items-center">
+            <h1>
+              {item.product.name} · {item.product.price}$
+            </h1>
+          </div>
+          <div className="mt-1 text-xs text-gray-500 flex flex-col items-start gap-2">
+            <div className="flex">
               <button onClick={() => decreaseQuantity()}>-</button>
-              <span className="px-4">{item.quantity} un</span>
+              <span className="px-3">{item.quantity} un</span>
               <button onClick={() => increaseQuantity()}>+</button>
             </div>
-            <span className="px-5 border-r">{item.size}</span>
-            <span className="ml-5">{item.product.color}</span>
+            <div className="flex items-center gap-1">
+              Color:
+              <span
+                className={`rounded-full p-2 bg-${item.product.color.toLowerCase()}-700`}
+              ></span>
+            </div>
+            <div className="flex items-center gap-1">
+              Size:
+              <span>{item.size}</span>
+            </div>
           </div>
         </div>
         <div className="flex gap-1 self-end">

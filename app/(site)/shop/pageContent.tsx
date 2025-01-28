@@ -11,6 +11,14 @@ export default function ShopPageContent({ products }) {
   const [openCart, setOpenCart] = React.useState(false);
   const [cartProducts, setCardProducts] = React.useState<cartProduct[]>([]);
 
+  const isProductInCart = (product: cartProduct) => {
+    return cartProducts.some(
+      (cartProduct) =>
+        product.product.id == cartProduct.product.id &&
+        product.size == cartProduct.size
+    );
+  };
+
   const addToCart = (item: cartProduct) => {
     setCardProducts((prevCardProducts) => {
       if (
@@ -54,20 +62,25 @@ export default function ShopPageContent({ products }) {
           }}
         />
 
-        <button onClick={() => setOpenCart(true)}>Open Cart</button>
-
         <section className="flex flex-wrap px-24 mt-5 gap-8 justify-center">
           {products.map((product: Product) => (
             <>
               <ShopCard
                 product={product}
                 key={product.id}
-                setCartState={setOpenCart}
+                isProductInCart={isProductInCart}
                 addToCart={addToCart}
               ></ShopCard>
             </>
           ))}
         </section>
+
+        <button
+          className="mx-auto flex mt-5 bg-black rounded-lg text-sm p-2 text-white"
+          onClick={() => setOpenCart(true)}
+        >
+          Open Cart
+        </button>
       </main>
     </>
   );

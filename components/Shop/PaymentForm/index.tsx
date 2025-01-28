@@ -56,6 +56,14 @@ const PaymentForm = ({
     }
   };
 
+  const validateMobile = () => {
+    return /^(\+351)?9\d{8}$/.test(mobile);
+  };
+
+  const validateEmail = () => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  };
+
   return (
     <>
       <div className="flex flex-col w-full gap-5">
@@ -83,14 +91,18 @@ const PaymentForm = ({
                 onChange={(e) => setEmail(e.target.value)}
               />
               <Input
-                type="email"
+                type="mobile"
                 placeholder="Phone Number"
                 onChange={(e) => setNumber(e.target.value)}
               />
             </div>
-            <Button type="submit" className="self-end" onClick={handlePayment}>
-              {" "}
-              Pay{" "}
+            <Button
+              type="submit"
+              className="self-end text-white"
+              onClick={handlePayment}
+              disabled={!validateEmail() || !validateMobile()}
+            >
+              Pay
             </Button>
           </div>
         </div>

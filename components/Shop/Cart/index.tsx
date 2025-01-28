@@ -112,7 +112,7 @@ const ShopCart = ({
       <SheetContent className="z-100000 flex flex-col justify-between">
         <SheetHeader>
           <SheetTitle className="mb-5">Cart</SheetTitle>
-          <SheetDescription className="flex flex-col gap-5">
+          <SheetDescription className="flex flex-col gap-5 max-h-[600 px] overflow-y-auto">
             {cartProducts.map((p) => {
               return (
                 <>
@@ -126,50 +126,54 @@ const ShopCart = ({
             })}
           </SheetDescription>
         </SheetHeader>
-        <SheetFooter className="!flex !flex-col">
-          <SheetTitle className="mb-5">Payment</SheetTitle>
-          {!processingPayment ? (
-            <PaymentForm
-              products={cartProducts}
-              setProcessingPayment={setProcessingPayment}
-              setPaymentStatus={setPaymentStatus}
-            ></PaymentForm>
-          ) : (
-            <div className="flex gap-2 justify-center bg-gray-100 p-5 rounded">
-              {(() => {
-                if (paymentStatusState === paymentStatus.waiting) {
-                  return (
-                    <>
-                      <h2>Waiting for confirmation</h2>
-                      <PuffLoader size={25} color="#90ee90" />
-                    </>
-                  );
-                } else if (paymentStatusState === paymentStatus.declined) {
-                  return (
-                    <>
-                      <h2>Payment declined</h2>
-                      <CircleAlert color="red" />
-                    </>
-                  );
-                } else if (paymentStatusState === paymentStatus.confirmed) {
-                  return (
-                    <>
-                      <h2>Payment processed</h2>
-                      <Check color="#90ee90" />
-                    </>
-                  );
-                } else if (paymentStatusState === paymentStatus.expired) {
-                  return (
-                    <>
-                      <h2>Payment expired</h2>
-                      <ClockAlert />
-                    </>
-                  );
-                }
-              })()}
-            </div>
-          )}
-        </SheetFooter>
+        {cartProducts.length > 0 ? (
+          <SheetFooter className="!flex !flex-col">
+            <SheetTitle className="mb-5">Payment</SheetTitle>
+            {!processingPayment ? (
+              <PaymentForm
+                products={cartProducts}
+                setProcessingPayment={setProcessingPayment}
+                setPaymentStatus={setPaymentStatus}
+              ></PaymentForm>
+            ) : (
+              <div className="flex gap-2 justify-center bg-gray-100 p-5 rounded">
+                {(() => {
+                  if (paymentStatusState === paymentStatus.waiting) {
+                    return (
+                      <>
+                        <h2>Waiting for confirmation</h2>
+                        <PuffLoader size={25} color="#90ee90" />
+                      </>
+                    );
+                  } else if (paymentStatusState === paymentStatus.declined) {
+                    return (
+                      <>
+                        <h2>Payment declined</h2>
+                        <CircleAlert color="red" />
+                      </>
+                    );
+                  } else if (paymentStatusState === paymentStatus.confirmed) {
+                    return (
+                      <>
+                        <h2>Payment processed</h2>
+                        <Check color="#90ee90" />
+                      </>
+                    );
+                  } else if (paymentStatusState === paymentStatus.expired) {
+                    return (
+                      <>
+                        <h2>Payment expired</h2>
+                        <ClockAlert />
+                      </>
+                    );
+                  }
+                })()}
+              </div>
+            )}
+          </SheetFooter>
+        ) : (
+          <p>Your cart is empty</p>
+        )}
       </SheetContent>
     </Sheet>
   );

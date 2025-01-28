@@ -15,7 +15,7 @@ const sendConfirmationEmail = async (order: Order) => {
     from: process.env.RESEND_EMAIL
       ? `AEFEUP <${process.env.RESEND_EMAIL}>`
       : "Acme <onboarding@resend.dev>",
-    to: "", // TODO: send to user email
+    to: "nutsmurf@gmail.com", // TODO: send to right email.
     subject: "Confirmação de Encomenda",
     html: await render(OrderConfirmationEmailTemplate(order)),
   });
@@ -67,11 +67,11 @@ export async function confirmOrder(currentOrder: Order) {
   console.log("Current Order: " + currentOrder);
   const payload = await getPayload({ config });
 
-  console.log("Sending confirmation email...");
+  console.log("Sending confirmation email");
 
   sendConfirmationEmail(currentOrder);
 
-  console.log("Confirmation email sent!");
+  console.log("Confirmation email sent");
 
   payload.update({
     collection: "order",
