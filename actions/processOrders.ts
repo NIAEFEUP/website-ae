@@ -8,14 +8,14 @@ import { getPayload } from "payload";
 import config from "payload.config";
 import { Resend } from "resend";
 
-const sendConfirmationEmail = async (order: Order) => {
+const sendConfirmationEmail = async (order: Order, email: string) => {
   const resend = new Resend(process.env.RESEND_API_KEY);
 
   const { data, error } = await resend.emails.send({
     from: process.env.RESEND_EMAIL
       ? `AEFEUP <${process.env.RESEND_EMAIL}>`
       : "Acme <onboarding@resend.dev>",
-    to: "nutsmurf@gmail.com", // TODO: send to right email.
+    to: [email],
     subject: "Confirmação de Encomenda",
     html: await render(OrderConfirmationEmailTemplate(order)),
   });
@@ -63,13 +63,13 @@ export async function cancelOrder(currentOrder: Order) {
   });
 }
 
-export async function confirmOrder(currentOrder: Order) {
+export async function confirmOrder(currentOrder: Order, email: string) {
   console.log("Current Order: " + currentOrder);
   const payload = await getPayload({ config });
 
-  console.log("Sending confirmation email");
+  console.log("Sending confirmation email to ", email);
 
-  sendConfirmationEmail(currentOrder);
+  sendConfirmationEmail(currentOrder, email);
 
   console.log("Confirmation email sent");
 

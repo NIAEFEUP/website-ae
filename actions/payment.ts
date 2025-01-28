@@ -2,7 +2,7 @@
 
 import { cartProduct } from "@/types/cartProduct";
 import { getProducts } from "./getShopProducts";
-import { checkPaymentStatus, createMBWAYRequest } from "./apiCall";
+import { createMBWAYRequest } from "./apiCall";
 import { createOrder } from "./processOrders";
 
 export default async function createPayment(
@@ -11,7 +11,6 @@ export default async function createPayment(
   products: cartProduct[]
 ) {
   const serverProducts = await getProducts();
-  console.log("server Products", products);
 
   products.forEach((product) => {
     const validatedProduct = serverProducts.find(
@@ -28,18 +27,14 @@ export default async function createPayment(
     }
   });
 
-  console.log("Validated products: ", products);
-
   const totalCost = products.reduce(
     (prev, curr) => prev + curr.product.price * curr.quantity,
     0
   );
 
-  console.log("amount: ", totalCost);
-
   const order = await createOrder(products, mobile, email, totalCost);
 
   const response = await createMBWAYRequest(mobile, totalCost, order.id);
 
-  return { paymentID: response.RequestId, orderID: order.id };
+  return { paymentID: response.RequestId, order: order };
 }

@@ -29,8 +29,7 @@ const PaymentForm = ({
     localStorage.setItem(
       "currentOrder",
       JSON.stringify({
-        orderID: response.orderID,
-        orderProducts: products,
+        order: response.order,
         requestID: response.paymentID,
       })
     );

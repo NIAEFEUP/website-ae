@@ -14,7 +14,7 @@ export default function ShopPageContent({ products }) {
   React.useEffect(() => {
     const savedOrder = localStorage.getItem("currentOrder");
     if (savedOrder) {
-      setCartProducts(JSON.parse(savedOrder).orderProducts);
+      setCartProducts(JSON.parse(savedOrder).order.products);
     }
   }, []);
 

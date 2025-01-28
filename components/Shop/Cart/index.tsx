@@ -58,22 +58,21 @@ const ShopCart = ({
     if (paymentStatusState === paymentStatus.confirmed) {
       // client was not refreshed and order was confirmed
       const parsedOrder = JSON.parse(localStorage.getItem("currentOrder")!);
-      confirmOrder({
-        orderProducts: parsedOrder.orderProducts,
-        id: parsedOrder.orderID,
-      } as Order);
+      confirmOrder(
+        {
+          orderProducts: parsedOrder.order.products,
+          id: parsedOrder.order.id,
+        } as Order,
+        parsedOrder.order.email
+      );
       localStorage.removeItem("currentOrder");
     } else if (
       paymentStatusState === paymentStatus.declined ||
       paymentStatusState === paymentStatus.expired
     ) {
       // client was not refreshed and order was denied
-      console.log("Rejecting order: " + JSON.parse(savedOrder!).orderID);
       const parsedOrder = JSON.parse(localStorage.getItem("currentOrder")!);
-      cancelOrder({
-        orderProducts: parsedOrder.orderProducts,
-        id: parsedOrder.orderID,
-      } as Order);
+      cancelOrder(parsedOrder.order);
       localStorage.removeItem("currentOrder");
     } else if (paymentStatusState === paymentStatus.waiting) {
       // client was maybe refreshed, status became idle again, so we poll the API if an order is processed
