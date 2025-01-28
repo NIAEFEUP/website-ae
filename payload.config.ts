@@ -4,7 +4,7 @@ import { lexicalEditor } from "@payloadcms/richtext-lexical";
 import path from "path";
 import { buildConfig } from "payload";
 import { fileURLToPath } from "url";
-import sharp from "sharp";
+//import sharp from "sharp";
 
 import { Users } from "./collections/Users";
 import { Media } from "./collections/Media";
@@ -23,7 +23,7 @@ import { Event } from "./collections/Event";
 import { DocumentFolder } from "./collections/DocumentFolder";
 import { DocFile } from "./collections/DocFile";
 import { Video } from "./collections/Video";
-import { Faq } from "./collections/Faq";
+//import { Faq } from "./collections/Faq";
 import { Place } from "./collections/Place";
 import { Testimonal } from "./collections/Testimonial";
 
@@ -56,7 +56,7 @@ export default buildConfig({
     DocumentFolder,
     DocFile,
     Video,
-    Faq,
+    //Faq,
     Place,
     Testimonal
   ],
@@ -70,7 +70,7 @@ export default buildConfig({
       connectionString: process.env.DATABASE_URL || "",
     },
   }),
-  sharp,
+  //sharp,
   plugins: [
     s3Storage({
       enabled: process.env.LOCAL !== 'true',

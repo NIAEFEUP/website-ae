@@ -13,7 +13,7 @@ const mentalHealthData: Feature[] = [
       "Telefone: 220 413 578",
       "Horário: 2ª a 6ª feira das 9:30 às 15:30 ",
     ],
-    href: "https://sigarra.up.pt/feup/pt/uni_geral.unidade_view?pv_unidade=892",
+    href: "https://fe.up.pt/goi",
   },
   {
     id: 2,

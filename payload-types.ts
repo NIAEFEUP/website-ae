@@ -28,7 +28,6 @@ export interface Config {
     documentFolder: DocumentFolder;
     docfile: Docfile;
     video: Video;
-    faq: Faq;
     place: Place;
     testimonial: Testimonial;
     'payload-preferences': PayloadPreference;
@@ -382,17 +381,6 @@ export interface Video {
   height?: number | null;
   focalX?: number | null;
   focalY?: number | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "faq".
- */
-export interface Faq {
-  id: number;
-  quest: string;
-  ans: string;
-  updatedAt: string;
-  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
