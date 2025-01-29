@@ -4,7 +4,7 @@ export const sectionsData : TextSection[] = [
     {
       id: 1,
       title: "Bem Vindo à FEUP",
-      subtitle: "",
+
       text: [(
         <>
           <p>
@@ -38,7 +38,6 @@ export const sectionsData : TextSection[] = [
     {
       id: 2,
       title: "Videos Informativos",
-      subtitle: "",
       text: [(
         <>
           <p>
@@ -50,7 +49,6 @@ export const sectionsData : TextSection[] = [
     {
       id: 3,
       title: "Programa de Mentoria",
-      subtitle: "",
       text: [(
         <>
           <p>
