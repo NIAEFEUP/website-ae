@@ -10,11 +10,13 @@ export const Material: CollectionConfig = {
   fields: [
     {
       name: 'name',
+      label: 'Nome',
       type: 'text',
       required: true,
     },
     {
       name: 'quantity',
+      label: 'Quantidade',
       type: 'number',
       required: true,
     },

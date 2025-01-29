@@ -31,7 +31,7 @@ export const Place: CollectionConfig = {
     },
     {
       name: 'position',
-      label: 'Position',
+      label: 'Posição',
       type: 'group',
       fields: [
         {
@@ -58,7 +58,7 @@ export const Place: CollectionConfig = {
     },
     {
       name: 'schedule',
-      label: 'Schedule',
+      label: 'Horário',
       type: 'array',
       fields: [
         {

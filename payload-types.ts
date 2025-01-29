@@ -282,10 +282,7 @@ export interface BoardSection {
   id: number;
   name: string;
   type: 'presidencia' | 'departament' | 'mesa_da_assembleia_geral' | 'conselho_fiscal';
-  members: {
-    person: number | Person;
-    id?: string | null;
-  }[];
+  members: (number | Person)[];
   description?: string | null;
   subgroups?:
     | {
@@ -368,7 +365,7 @@ export interface Docfile {
  */
 export interface Video {
   id: number;
-  título: string;
+  title: string;
   thumbnail?: number | Media | null;
   updatedAt: string;
   createdAt: string;

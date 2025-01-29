@@ -20,6 +20,7 @@ export const StudentGuide: CollectionConfig = {
     fields: [
         {
             name: "language",
+            label: "Idioma",
             type: "select",
             hasMany: false,
             options: [

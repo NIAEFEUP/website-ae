@@ -16,6 +16,7 @@ export const Space: CollectionConfig = {
     fields: [
         {
             name: 'name',
+            label: 'Nome',
             type: 'text',
             required: true
         },
