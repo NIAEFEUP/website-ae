@@ -1,28 +1,42 @@
 import { Feature } from "@/types/feature";
-import { Home, Globe, Users } from "lucide-react";
+import { HandPlatter, Map, HeartPulse, Building } from "lucide-react";
 
 const landingFeaturesData: Feature[] = [
   {
     id: 1,
-    icon: <Home />,
-    title: "Bem-Vindo",
-    description:
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In convallis tortor.",
-},
+    icon: <Building />,
+    title: "Cedências de Espaço",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In convallis tortor.",
+    href: "requests"
+  },
+/*   {
+    id: 2,
+    icon: <HandPlatter />,
+    title: "Serviços",
+    description: "",
+    href: "services"
+  }, */
   {
     id: 2,
-    icon: <Globe />,
-    title: "Objetivo",
-    description:
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In convallis tortor.",
-},
+    icon: <HandPlatter />,
+    title: "Ementas",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In convallis tortor.",
+    href: "menu"
+  },
   {
     id: 3,
-    icon: <Users />,
-    title: "Comunidade",
-    description:
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In convallis tortor.",
-},
+    icon: <Map />,
+    title: "Espaços",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In convallis tortor.",
+    href: "student/spaces"
+  },
+/*   {
+    id: 4,
+    icon: <HeartPulse />,
+    title: "Apoio Social e Bem-Estar",
+    description: "",
+    href: "student/support"
+  }, */
 ];
 
 export default landingFeaturesData;

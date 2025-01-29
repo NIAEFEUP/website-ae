@@ -70,7 +70,7 @@ const menuData: Menu[] = [
     path: "sport",
     submenu: [
       {
-        title: "História e Troféus (wip)",
+        title: "História e Troféus",
         path: "history"
       },
       {
@@ -85,12 +85,12 @@ const menuData: Menu[] = [
   },
   {
     title: "Loja",
-    path: "shop",
+    path: "/shop",
   },
-  {
-    title: "Contactos",
-    path: "contact",
-  },
+  //{
+  //  title: "Contactos",
+  //  path: "/contact",
+  //},
 ];
 
 export default menuData;

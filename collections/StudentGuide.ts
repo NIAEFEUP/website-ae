@@ -1,18 +1,26 @@
+import { isStaff } from '@/lib/utils'
 import type { CollectionConfig } from 'payload'
 
-export const StudentGuide:CollectionConfig = {
+export const StudentGuide: CollectionConfig = {
     slug: 'studentGuide',
     labels: {
         singular: 'Guia de Estudante',
         plural: 'Guias de Estudante'
     },
-    upload: {
-        staticDir: 'media',
-        mimeTypes: ['application/pdf'],
+    admin: {
+        group: 'Estudante',
     },
+    access: {
+        read: isStaff,
+        create: isStaff,
+        update: isStaff,
+        delete: isStaff
+    },
+    upload: true, 
     fields: [
         {
             name: "language",
+            label: "Idioma",
             type: "select",
             hasMany: false,
             options: [

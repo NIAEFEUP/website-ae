@@ -1,3 +1,4 @@
+import { isStaff } from "@/lib/utils";
 import { CollectionConfig } from "payload";
 
 export const Event: CollectionConfig = {
@@ -5,6 +6,16 @@ export const Event: CollectionConfig = {
   labels: {
     singular: 'Evento',
     plural: 'Eventos'
+  },
+  admin: {
+    useAsTitle: 'title',
+    group: 'AEFEUP'
+  },
+  access: {
+    read: isStaff,
+    create: isStaff,
+    update: isStaff,
+    delete: isStaff
   },
   fields: [
     {

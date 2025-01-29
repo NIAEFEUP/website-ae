@@ -4,6 +4,22 @@
 
 :root {
   --swiper-theme-color: #97321d !important;
+  --fc-event-bg-color: #97321d !important;
+  --fc-event-border-color: #97321d !important;
+}
+
+.swiper-button-prev{
+  left: 30px !important;
+}
+.swiper-button-next{
+  right: 30px !important;
+}
+
+@media (max-width: 640px) {
+  .swiper-button-next,
+  .swiper-button-prev {
+    visibility: hidden !important;
+  }
 }
 
 /* third-party libraries CSS */
@@ -24,6 +40,9 @@
 }
 
 @layer base {
+  html {
+    color-scheme: light !important;
+  }
   body {
     @apply relative z-1 font-inter text-regular font-normal text-waterloo dark:text-manatee;
   }

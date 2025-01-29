@@ -1,3 +1,4 @@
+import { isStaff } from "@/lib/utils";
 import { CollectionConfig } from "payload";
 
 export const BoardSection: CollectionConfig = {
@@ -20,8 +21,8 @@ export const BoardSection: CollectionConfig = {
             required: true,
             options: [
                 {
-                    label: 'Direção',
-                    value: 'direcao',
+                    label: 'Presidência',
+                    value: 'presidencia',
                 },
                 {
                     label: 'Departamento',
@@ -40,16 +41,9 @@ export const BoardSection: CollectionConfig = {
         {
             name: 'members',
             label: 'Membros',
-            type: 'array',
-            fields: [
-                {
-                    name: 'person',
-                    label: 'Pessoa',
-                    type: 'relationship',
-                    relationTo: 'person',
-                    required: true,
-                },
-            ],
+            type: 'relationship',
+            relationTo: 'person',
+            hasMany: true,
             required: true
         },
         {
@@ -77,5 +71,12 @@ export const BoardSection: CollectionConfig = {
     ],
     admin: {
         useAsTitle: 'name',
-    }
+        group: "Recursos Humanos"
+    },
+    access: {
+        read: isStaff,
+        create: isStaff,
+        update: isStaff,
+        delete: isStaff
+    },
 }

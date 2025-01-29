@@ -1,10 +1,21 @@
+import { isStaff } from "@/lib/utils";
 import { CollectionConfig } from "payload";
 
 export const Faq: CollectionConfig = {
-  slug:'faq',
+  slug: 'faq',
   labels: {
     singular: 'Faq',
     plural: 'Faqs'
+  },
+  admin: {
+    useAsTitle: 'quest',
+    group: 'AEFEUP'
+  },
+  access: {
+    read: isStaff,
+    create: isStaff,
+    update: isStaff,
+    delete: isStaff
   },
   fields: [
     {

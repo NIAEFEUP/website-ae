@@ -5,8 +5,8 @@ import config from 'payload.config'
 import SectionHeader from "@/components/Common/SectionHeader";
 
 export const metadata: Metadata = {
-  title: "Desporto",
-  description: "",
+  title: "Seleções",
+  description: "Equipas de desporto da AEFEUP.",
 };
 
 const SportsPage = async () => {
@@ -21,11 +21,9 @@ const SportsPage = async () => {
         {teams.docs.length > 0 ?
           <LineupsSlider teams={teams.docs} />
           :
-          <SectionHeader headerInfo={{
-            title: "Desporto",
-            subtitle: "Desporto",
-            description: `Aqui vão aparecer as equipas de desporto da AEFEUP.`,
-          }} />
+          <SectionHeader
+            title="Desporto"
+          />
         }
       </section>
     </main>

@@ -1,3 +1,4 @@
+import { isStaff } from '@/lib/utils'
 import type { CollectionConfig } from 'payload'
 
 export const Video: CollectionConfig = {
@@ -6,23 +7,30 @@ export const Video: CollectionConfig = {
     singular: 'Video',
     plural: 'Videos',
   },
+  admin: {
+    useAsTitle: 'title',
+    group: "Estudante",
+    hidden: ({ user }) => user && user.role === 'merchant',
+  },
   access: {
     read: () => true,
+    create: isStaff,
+    update: isStaff,
+    delete: isStaff,
   },
   fields: [
     {
-      name: 'título',
+      name: 'title',
+      label: 'Título',
       type: 'text',
       required: true,
     },
     {
       name: 'thumbnail',
+      label: 'Thumbnail',
       type: 'upload',
       relationTo: 'media',
     },
   ],
-  upload: {
-    staticDir: 'media',
-    mimeTypes: ['video/mp4'],
-  }
+  upload: true
 }

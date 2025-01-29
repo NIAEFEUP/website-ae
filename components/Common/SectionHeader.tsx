@@ -1,27 +1,20 @@
 "use client";
+import { HeaderInfo } from "@/types/headerInfo";
 import { motion } from "framer-motion";
 
-type HeaderInfo = {
-  title: string;
-  subtitle: string;
-  description: string;
-};
 
-//TODO (thePeras): Why not passing it as title and description and not headerInfo?
-const SectionHeader = ({ headerInfo }: { headerInfo: HeaderInfo }) => {
-  const { title, description } = headerInfo;
+const SectionHeader = ({ title, subtitle, description }: HeaderInfo ) => {
 
   return (
     <>
       {/* <!-- Section Title Start --> */}
-      <div className="animate_top mx-auto text-center">
+      <div className="animate_top w-full px-4 md:px-8 xl:px-16 text-center">
         <motion.div
           variants={{
             hidden: {
               opacity: 0,
               y: -20,
             },
-
             visible: {
               opacity: 1,
               y: 0,
@@ -31,12 +24,26 @@ const SectionHeader = ({ headerInfo }: { headerInfo: HeaderInfo }) => {
           whileInView="visible"
           transition={{ duration: 1, delay: 0.1 }}
           viewport={{ once: true }}
-        // className="animate_top mx-auto text-center"
         >
-          <h1 className="mx-auto mb-4 text-3xl font-bold text-black dark:text-white md:w-4/5 xl:w-1/2 xl:text-sectiontitle3">
+          <h1 className="mb-4 text-3xl font-bold text-black dark:text-white mx-auto">
             {title}
           </h1>
-          <p className="mx-auto md:w-4/5 lg:w-3/5 xl:w-[46%]">{description}</p>
+          {subtitle && (
+            <h2 className="mb-2 text-xl font-medium text-gray-700 dark:text-gray-300">
+              {subtitle}
+            </h2>
+          )}
+          {description && (
+            <p
+              className="mx-auto text-gray-600 text-center justify-start break-words"
+              style={{
+                textAlign: "justify",
+                textAlignLast: "center",
+              }}
+            >
+              {description}
+            </p>
+          )}
         </motion.div>
       </div>
       {/* <!-- Section Title End --> */}

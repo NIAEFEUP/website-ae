@@ -5,8 +5,8 @@ import Info from "@/components/Info";
 import { motorsportInfoData } from "./motorsportInfoData";
 
 export const metadata: Metadata = {
-  title: "Motorsport Page",
-  description: "Explore our Motorsport Offerings",
+  title: "Motorsport",
+  description: "Na AEFEUP, os nossos engenheiros não só pensam em velocidade, como a fazem acontecer! Com a Moto Student FEUP e a Formula Student FEUP, estamos a projetar motos elétricas e carros de competição que vão mais longe, mais rápido e com mais inovação.",
 };
 
 const MotorsportPage = () => {
@@ -16,8 +16,8 @@ const MotorsportPage = () => {
         data={motorsportFeaturesData}
         headerInfo={{
           title: "Motorsport",
-          subtitle: "Discover Our Motorsport Services",
-          description: `Dive into our exciting motorsport offerings, featuring top-notch experiences for motorsport enthusiasts.`,
+          subtitle: "As nossas equipas",
+          description: 'Explora as nossas equipas do mundo do desporto motorizado, projetos para verdadeiros entusiastas.',
         }}
       />
       <Info sections={motorsportInfoData} />

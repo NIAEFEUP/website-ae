@@ -1,3 +1,4 @@
+import { isStaff } from "@/lib/utils";
 import { CollectionConfig } from "payload";
 
 export const DocFile: CollectionConfig = {
@@ -6,15 +7,32 @@ export const DocFile: CollectionConfig = {
       singular: 'Ficheiro',
       plural: 'Ficheiros'
    },
-   upload: {
-      staticDir: 'media',
-      mimeTypes: ['application/pdf'],
+   admin: {
+      useAsTitle: 'name',
+      group: 'Documentos',
    },
+   access: {
+      read: isStaff,
+      create: isStaff,
+      update: isStaff,
+      delete: isStaff
+   },
+   upload: true,
    fields: [
       {
          name: 'name',
          label: 'Nome do ficheiro',
          type: 'text',
+         required: true,
+      },
+      {
+         name: 'type',
+         label: 'Tipo de ficheiro',
+         type: 'select',
+         options: [
+            { label: 'Regulamento', value: 'regulation' },
+            { label: 'Outro', value: 'other' },
+         ],
          required: true,
       }
    ]

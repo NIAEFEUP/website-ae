@@ -4,14 +4,14 @@ import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import Avatar from "@/components/Avatar";
 import SectionHeader from "@/components/Common/SectionHeader";
-import { BoardSection } from "@/payload-types";
+import { BoardSection, Person } from "@/payload-types";
 
 interface Props {
   sections: BoardSection[]
 }
 
 const MenuDescription = ({ sections }: Props) => {
-  const [selected, setSelected] = useState<number | null>(null);
+  const [selected, setSelected] = useState<number>(0);
   const [menuHeight, setMenuHeight] = useState(0);
   const menuRef = useRef<HTMLDivElement>(null);
 
@@ -24,16 +24,11 @@ const MenuDescription = ({ sections }: Props) => {
     }
   }, []);
 
-  return (
+  return (sections.length > 0 &&
     <div className="mx-auto max-w-7xl">
       <SectionHeader
-        headerInfo={{
-          title: "Departamentos",
-          subtitle: "Departamentos",
-          description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. In
-          convallis tortor eros. Donec vitae tortor lacus. Phasellus aliquam
-          ante in maximus.`,
-        }}
+        title="Departamentos"
+        subtitle="Departamentos"
       />
 
       <motion.div
@@ -77,39 +72,30 @@ const MenuDescription = ({ sections }: Props) => {
             className="flex flex-col md:w-3/4 items-center"
             style={{ minHeight: menuHeight }}
           >
-            {selected === null ? (
-              <div className="w-full max-w-lg h-full bg-gray-300 rounded-lg flex justify-center items-center">
-                <img
-                  src="/images/about/placeholder.png"
-                  alt="Image"
-                  className="w-full h-auto rounded-lg"
-                />
-              </div>
-            ) : (
-              <div className="p-5 rounded-lg shadow-lg bg-gray-200 w-full min-h-80">
-                <h3 className="text-2xl font-semibold mb-4 text-center">
-                  {sections[selected]?.name}
-                </h3>
-                <p className="mb-4 text-center">
-                  {sections[selected]?.description}
-                </p>
+            <div className="p-5 rounded-lg shadow-lg bg-gray-200 w-full min-h-80">
+              <h3 className="text-2xl font-semibold mb-4 text-center">
+                {sections[selected]?.name}
+              </h3>
+              <p className="mb-4 text-center">
+                {sections[selected]?.description}
+              </p>
 
-                <div className="flex flex-col sm:flex-row justify-center gap-4 mb-6">
-                  {sections[selected].members.map((person) => (<Avatar person={person.person} />))}
-                </div>
-
-                <div className="space-y-6">
-                  {sections[selected]?.subgroups?.map((subgroup, idx) => (
-                    <div key={idx}>
-                      <h4 className="text-xl font-semibold mb-2">
-                        {subgroup.title}
-                      </h4>
-                      <p className="text-gray-700">{subgroup.description}</p>
-                    </div>
-                  ))}
-                </div>
+              <div className="flex flex-col sm:flex-row justify-center gap-4 mb-6">
+                {sections[selected].members.map((person) => (<Avatar person={person as Person} />))}
               </div>
-            )}
+
+              <div className="space-y-6">
+                {sections[selected].subgroups?.map((subgroup, idx) => (
+                  <div key={idx}>
+                    <h4 className="text-xl font-semibold mb-2">
+                      {subgroup.title}
+                    </h4>
+                    <p className="text-gray-700">{subgroup.description}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
           </div>
         </div>
       </motion.div>

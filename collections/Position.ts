@@ -1,3 +1,4 @@
+import { isStaff } from "@/lib/utils";
 import { CollectionConfig } from "payload";
 
 export const Position: CollectionConfig = {
@@ -7,7 +8,7 @@ export const Position: CollectionConfig = {
     plural: 'Cargos',
   },
   fields: [
-    { 
+    {
       name: 'name',
       label: "Nome",
       type: 'text',
@@ -16,5 +17,12 @@ export const Position: CollectionConfig = {
   ],
   admin: {
     useAsTitle: 'name',
-  }
+    group: "Recursos Humanos"
+  },
+  access: {
+    read: isStaff,
+    create: isStaff,
+    update: isStaff,
+    delete: isStaff,
+  },
 }

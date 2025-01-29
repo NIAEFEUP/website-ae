@@ -10,6 +10,7 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   darkMode: "class",
+  //darkMode: 'false',
   theme: {
     fontFamily: {
       inter: ["Inter", "sans-serif"],

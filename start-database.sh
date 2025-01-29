@@ -25,3 +25,6 @@ fi
 docker run --name $DB_CONTAINER_NAME -e POSTGRES_PASSWORD=$DB_PASSWORD -e POSTGRES_HOST_AUTH_METHOD=trust -e POSTGRES_DB=$DATABASE_NAME -d -p 5432:5432 docker.io/postgres
 
 echo "Database container was successfully created"
+echo $DB_CONTAINER_NAME
+echo $DB_PASSWORD
+echo $DATABASE_NAME

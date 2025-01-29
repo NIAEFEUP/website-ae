@@ -1,12 +1,23 @@
+import { isStaff } from "@/lib/utils";
 import { CollectionConfig } from "payload";
 
-export const Link : CollectionConfig = {
+export const Link: CollectionConfig = {
     slug: 'link',
-    labels : {
-        singular: 'Link',
-        plural: 'Links'
+    labels: {
+        singular: 'Link util',
+        plural: 'Links úteis',
     },
-    fields : [
+    admin: {
+        useAsTitle: 'label',
+        group: 'Estudante',
+    },
+    access: {
+        read: isStaff,
+        create: isStaff,
+        update: isStaff,
+        delete: isStaff
+    },
+    fields: [
         {
             name: "label",
             label: "Label",

@@ -30,8 +30,8 @@ export interface Config {
     documentFolder: DocumentFolder;
     docfile: Docfile;
     video: Video;
-    faq: Faq;
     place: Place;
+    testimonial: Testimonial;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -66,6 +66,7 @@ export interface UserAuthOperations {
  */
 export interface User {
   id: number;
+  role: 'admin' | 'merchant' | 'staff';
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -203,12 +204,7 @@ export interface SportsTeam {
     | null;
   lineup?:
     | {
-        lineupRow?:
-          | {
-              person: number | Person;
-              id?: string | null;
-            }[]
-          | null;
+        lineupRow: (number | Person)[];
         id?: string | null;
       }[]
     | null;
@@ -287,11 +283,8 @@ export interface Link {
 export interface BoardSection {
   id: number;
   name: string;
-  type: 'direcao' | 'departament' | 'mesa_da_assembleia_geral' | 'conselho_fiscal';
-  members: {
-    person: number | Person;
-    id?: string | null;
-  }[];
+  type: 'presidencia' | 'departament' | 'mesa_da_assembleia_geral' | 'conselho_fiscal';
+  members: (number | Person)[];
   description?: string | null;
   subgroups?:
     | {
@@ -386,11 +379,8 @@ export interface Event {
 export interface DocumentFolder {
   id: number;
   folder_name: string;
-  section_name?: ('Direção' | 'Mesa da Assembleia Geral' | 'Núcleos') | null;
-  files: {
-    file?: (number | null) | Docfile;
-    id?: string | null;
-  }[];
+  section_name?: ('Direção' | 'Assembleia Geral') | null;
+  files: (number | Docfile)[];
   updatedAt: string;
   createdAt: string;
 }
@@ -401,6 +391,7 @@ export interface DocumentFolder {
 export interface Docfile {
   id: number;
   name: string;
+  type: 'regulation' | 'other';
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -419,7 +410,7 @@ export interface Docfile {
  */
 export interface Video {
   id: number;
-  título: string;
+  title: string;
   thumbnail?: number | Media | null;
   updatedAt: string;
   createdAt: string;
@@ -432,17 +423,6 @@ export interface Video {
   height?: number | null;
   focalX?: number | null;
   focalY?: number | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "faq".
- */
-export interface Faq {
-  id: number;
-  quest: string;
-  ans: string;
-  updatedAt: string;
-  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -464,6 +444,19 @@ export interface Place {
       }[]
     | null;
   category: 'Espaços de Estudo' | 'Alimentação' | 'Alojamento' | 'Mobilidade';
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "testimonial".
+ */
+export interface Testimonial {
+  id: number;
+  name: string;
+  photo?: (number | null) | Media;
+  position: string;
+  content: string;
   updatedAt: string;
   createdAt: string;
 }

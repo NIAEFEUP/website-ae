@@ -1,3 +1,4 @@
+import { isStaff } from "@/lib/utils";
 import { CollectionConfig } from "payload";
 
 export const DocumentFolder: CollectionConfig = {
@@ -5,6 +6,16 @@ export const DocumentFolder: CollectionConfig = {
    labels: {
       singular: 'Pasta',
       plural: 'Pastas',
+   },
+   admin: {
+      useAsTitle: 'folder_name',
+      group: 'Documentos',
+   },
+   access: {
+      read: isStaff,
+      create: isStaff,
+      update: isStaff,
+      delete: isStaff
    },
    fields: [
       {
@@ -24,29 +35,18 @@ export const DocumentFolder: CollectionConfig = {
                value: 'Direção'
             },
             {
-               label: 'Mesa da Assembleia Geral',
-               value: 'Mesa da Assembleia Geral'
-            },
-            {
-               label: 'Núcleos',
-               value: 'Núcleos'
-            },
+               label: 'Assembleia Geral',
+               value: 'Assembleia Geral'
+            }
          ]
       },
       {
          name: 'files',
          label: 'Ficheiros',
-         type: 'array',
+         type: 'relationship',
+         relationTo: 'docfile',
+         hasMany: true,
          required: true,
-         fields: [
-            {
-               name: 'file',
-               label: 'Ficheiro',
-               type: 'relationship',
-               relationTo: 'docfile',
-            }
-         ]
       }
-
    ]
 }

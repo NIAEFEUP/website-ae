@@ -1,6 +1,7 @@
+import { InfoSection } from "@/types/infoSection";
 import { Utensils } from "lucide-react";
 
-export const infoData = [
+export const infoData : InfoSection[] = [
   {
     id: 1,
     title: "Secretaria",
@@ -8,11 +9,11 @@ export const infoData = [
     phone: "22 508 1556",
     email: "aefeup@aefeup.pt",
     schedule: [
-      { label: 'segunda-feira', value: '10:00–12:00, 14:00–17:00' },
-      { label: 'terça-feira', value: '10:00–12:00, 14:00–17:00' },
-      { label: 'quarta-feira', value: '10:00–12:00, 14:00–17:00' },
-      { label: 'quinta-feira', value: '10:00–12:00, 14:00–17:00' },
-      { label: 'sexta-feira', value: '10:00–12:00, 14:00–17:00' },
+      { label: 'segunda-feira', value: '10:00–12:30, 14:00–17:30' },
+      { label: 'terça-feira', value: '10:00–12:30, 14:00–17:30' },
+      { label: 'quarta-feira', value: '10:00–12:30, 14:00–17:30' },
+      { label: 'quinta-feira', value: '10:00–12:30, 14:00–17:30' },
+      { label: 'sexta-feira', value: '10:00–12:30, 14:00–17:30' },
       { label: 'sábado', value: 'Encerrado' },
       { label: 'domingo', value: 'Encerrado' },
     ],
@@ -42,18 +43,18 @@ export const infoData = [
     phone: "22 508 1556",
     email: "cafetaria@aefeup.pt",
     schedule: [
-      { label: 'segunda-feira', value: '10:00–12:00, 14:00–17:00' },
-      { label: 'terça-feira', value: '10:00–12:00, 14:00–17:00' },
-      { label: 'quarta-feira', value: '10:00–12:00, 14:00–17:00' },
-      { label: 'quinta-feira', value: '10:00–12:00, 14:00–17:00' },
-      { label: 'sexta-feira', value: '10:00–12:00, 14:00–17:00' },
+      { label: 'segunda-feira', value: '10:00–19:00' },
+      { label: 'terça-feira', value: '10:00–19:00' },
+      { label: 'quarta-feira', value: '10:00–19:00' },
+      { label: 'quinta-feira', value: '10:00–19:00' },
+      { label: 'sexta-feira', value: '10:00–19:00' },
       { label: 'sábado', value: 'Encerrado' },
       { label: 'domingo', value: 'Encerrado' },
     ],
     imageSrc: "/images/about/about-light-01.png",
     link: {
-      url: "/menu",
-      text: "> Ver menu",
+      path: "/menu",
+      text: "Ver menu",
       showIcon: true,
       icon: <Utensils size={16} className="text-current" />,
     },
