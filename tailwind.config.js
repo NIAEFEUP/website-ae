@@ -9,8 +9,8 @@ module.exports = {
     // Or if using `src` directory:
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-  //darkMode: "class",
-  darkMode: 'false',
+  darkMode: "class",
+  //darkMode: 'false',
   theme: {
     fontFamily: {
       inter: ["Inter", "sans-serif"],
