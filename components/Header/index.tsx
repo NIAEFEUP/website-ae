@@ -103,7 +103,7 @@ const Header = () => {
                     <>
                       <button
                         onClick={() => handleToggleSubmenu(key)}
-                        className="flex cursor-pointer items-center mx-auto justify-between gap-3 text-base hover:text-primary"
+                        className="flex cursor-pointer items-center mx-auto justify-between gap-3 hover:text-primary"
                       >
                         {menuItem.title}
                         <span>
