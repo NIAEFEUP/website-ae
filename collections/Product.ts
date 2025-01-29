@@ -1,5 +1,6 @@
 import type { CollectionConfig } from "payload";
 import { ProductSize } from "./ProductSizeField";
+import { isMerchant, isStaff } from '@/lib/utils'
 
 export const Product: CollectionConfig = {
   slug: "product",
@@ -10,6 +11,12 @@ export const Product: CollectionConfig = {
   admin: {
     useAsTitle: 'name',
     group: 'Loja',
+  },
+  access: {
+    read: isMerchant,
+    create: isStaff,
+    update: isMerchant,
+    delete: isStaff,
   },
   fields: [
     {

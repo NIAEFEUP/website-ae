@@ -1,5 +1,6 @@
 import { CollectionConfig } from "payload";
 import { ProductSize } from "./ProductSizeField";
+import { isMerchant, isStaff } from '@/lib/utils'
 
 export const Order: CollectionConfig = {
    slug: 'order',
@@ -10,7 +11,13 @@ export const Order: CollectionConfig = {
    admin: {
       useAsTitle: 'email',
       group: 'Loja',
-  },
+   },
+   access: {
+      read: isMerchant,
+      create: isStaff,
+      update: isMerchant,
+      delete: isStaff,
+   },
    fields: [
       {
          name: "email",
@@ -20,7 +27,7 @@ export const Order: CollectionConfig = {
       },
       {
          name: "mobile",
-         label: "Telemóvel",  
+         label: "Telemóvel",
          type: "text",
          required: true,
       },
