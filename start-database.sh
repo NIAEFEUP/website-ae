@@ -15,8 +15,8 @@ fi
 set -a
 source .env
 
-DB_PASSWORD=$(echo $POSTGRES_URL | awk -F':' '{print $3}' | awk -F'@' '{print $1}')
-DATABASE_NAME=$(echo $POSTGRES_URL | awk -F'/' '{print $4}')
+DB_PASSWORD=$(echo $DATABASE_URL | awk -F':' '{print $3}' | awk -F'@' '{print $1}')
+DATABASE_NAME=$(echo $DATABASE_URL | awk -F'/' '{print $4}')
 
 if [ "$DB_PASSWORD" = "password" ]; then
   echo "You are using the default database password"

@@ -1,5 +1,5 @@
-import { s3Storage } from '@payloadcms/storage-s3'
-import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
+import { s3Storage } from "@payloadcms/storage-s3";
+import { vercelBlobStorage } from "@payloadcms/storage-vercel-blob";
 import { postgresAdapter } from "@payloadcms/db-postgres";
 import { lexicalEditor } from "@payloadcms/richtext-lexical";
 import path from "path";
@@ -20,7 +20,9 @@ import { StudentGuide } from "./collections/StudentGuide";
 import { Link } from "./collections/Link";
 import { Position } from "./collections/Position";
 import { BoardSection } from "./collections/BoardSection";
+import { Product } from "./collections/Product";
 import { President } from "./collections/President";
+import { Order } from "./collections/Order";
 import { Event } from "./collections/Event";
 import { DocumentFolder } from "./collections/DocumentFolder";
 import { DocFile } from "./collections/DocFile";
@@ -29,8 +31,8 @@ import { Video } from "./collections/Video";
 import { Place } from "./collections/Place";
 import { Testimonal } from "./collections/Testimonial";
 
-import { en } from '@payloadcms/translations/languages/en'
-import { pt } from '@payloadcms/translations/languages/pt'
+import { en } from "@payloadcms/translations/languages/en";
+import { pt } from "@payloadcms/translations/languages/pt";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -53,14 +55,16 @@ export default buildConfig({
     Link,
     Position,
     BoardSection,
+    Product,
     President,
+    Order,
     Event,
     DocumentFolder,
     DocFile,
     Video,
     //Faq,
     Place,
-    Testimonal
+    Testimonal,
   ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",
@@ -80,7 +84,7 @@ export default buildConfig({
   }),
   plugins: [
     s3Storage({
-      enabled: process.env.STORAGE_METHOD === 'r2',
+      enabled: process.env.STORAGE_METHOD === "r2",
       collections: {
         media: true,
         docfile: true,
@@ -99,7 +103,7 @@ export default buildConfig({
     }),
     // storage-adapter-placeholder
     vercelBlobStorage({
-      enabled: process.env.STORAGE_METHOD === 'blob', // Optional, defaults to true
+      enabled: process.env.STORAGE_METHOD === "blob", // Optional, defaults to true
       // Specify which collections should use Vercel Blob
       collections: {
         media: true,
@@ -110,10 +114,9 @@ export default buildConfig({
       // Token provided by Vercel once Blob storage is added to your Vercel project
       token: process.env.BLOB_READ_WRITE_TOKEN || "",
     }),
-
   ],
   i18n: {
-    fallbackLanguage: 'pt',
+    fallbackLanguage: "pt",
     translations: { pt, en },
     //@ts-ignore
     supportedLanguages: { pt, en },
