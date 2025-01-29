@@ -1,4 +1,5 @@
 import { s3Storage } from '@payloadcms/storage-s3'
+import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 import { postgresAdapter } from "@payloadcms/db-postgres";
 import { lexicalEditor } from "@payloadcms/richtext-lexical";
 import path from "path";
@@ -73,7 +74,7 @@ export default buildConfig({
   //sharp,
   plugins: [
     s3Storage({
-      enabled: process.env.LOCAL !== 'true',
+      enabled: process.env.STORAGE_METHOD === 'r2',
       collections: {
         media: true,
         docfile: true,
@@ -89,6 +90,22 @@ export default buildConfig({
         region: process.env.R2_REGION || "",
       },
     }),
+    // storage-adapter-placeholder
+    vercelBlobStorage({
+      enabled: process.env.STORAGE_METHOD === 'blob', // Optional, defaults to true
+      // Specify which collections should use Vercel Blob
+      collections: {
+        media: true,
+        docfile: true,
+        studentGuide: true,
+        'media-with-prefix': {
+          prefix: 'my-prefix',
+        },
+      },
+      // Token provided by Vercel once Blob storage is added to your Vercel project
+      token: process.env.BLOB_READ_WRITE_TOKEN || "",
+    }),
+
   ],
   i18n: {
     fallbackLanguage: 'pt',
