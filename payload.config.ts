@@ -74,7 +74,7 @@ export default buildConfig({
   //sharp,
   plugins: [
     s3Storage({
-      enabled: process.env.STORAGE === 'r2',
+      enabled: process.env.STORAGE_METHOD === 'r2',
       collections: {
         media: true,
         docfile: true,
@@ -92,7 +92,7 @@ export default buildConfig({
     }),
     // storage-adapter-placeholder
     vercelBlobStorage({
-      enabled: process.env.STORAGE === 'blob', // Optional, defaults to true
+      enabled: process.env.STORAGE_METHOD === 'blob', // Optional, defaults to true
       // Specify which collections should use Vercel Blob
       collections: {
         media: true,
