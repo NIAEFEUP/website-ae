@@ -7,7 +7,9 @@ import "../globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 import ToasterContext from "../context/ToastContext";
-export const dynamic = 'force-dynamic';
+
+export const revalidate = 10
+export const dynamicParams = true
 
 export default function RootLayout({
   children,
