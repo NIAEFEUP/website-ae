@@ -11,7 +11,7 @@ export const motorsportInfoData : InfoSection[] = [
     imageSrc: "/images/motorsport/fsfeup_logo.jpeg",
     avatar: <Globe size={48} className="text-primary" />,
     link: {
-      path: "https://formulastudent.fe.up.pt/",
+      path: "/formulastudent.fe.up.pt",
       text: "Learn More",
       showIcon: true,
       icon: <Globe size={16} className="text-current" />,
@@ -26,7 +26,7 @@ export const motorsportInfoData : InfoSection[] = [
     imageSrc: "/images/motorsport/moto_student_feup_logo.jpeg",
     avatar: <Instagram size={48} className="text-primary" />,
     link: {
-      path: "https://www.instagram.com/msfeup/",
+      path: "/www.instagram.com/msfeup/",
       text: "Learn More",
       showIcon: true,
       icon: <Instagram size={16} className="text-current" />,
