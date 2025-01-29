@@ -4,7 +4,7 @@ import config from 'payload.config';
 import WelcomeClientPage from "./client";
 
 export const metadata: Metadata = {
-  title: "Welcome",
+  title: "Bem-vindo à FEUP",
   description: "Bem-vindo à FEUP!",
 };
 
