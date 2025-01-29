@@ -35,10 +35,7 @@ const Header = () => {
 
   return (
     <header
-      className={`z-99999 fixed left-0 top-0 w-full py-4 ${(navigationOpen)
-          ? "bg-white"
-          : ""
-        }
+      className={`z-99999 fixed left-0 top-0 w-full py-4 bg-white
         ${stickyMenu
           ? "bg-white shadow transition duration-100 dark:bg-black"
           : ""
@@ -106,7 +103,7 @@ const Header = () => {
                     <>
                       <button
                         onClick={() => handleToggleSubmenu(key)}
-                        className="flex cursor-pointer items-center mx-auto justify-between gap-3 hover:text-primary"
+                        className="flex cursor-pointer items-center mx-auto justify-between gap-3 text-base hover:text-primary"
                       >
                         {menuItem.title}
                         <span>

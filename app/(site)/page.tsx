@@ -51,7 +51,7 @@ const Homepage = async () => {
   return (
     <main>
       <FullScreenImage
-        src="/images/landing/blog-04.png"
+        src="/images/landing/aefeup.jpg"
         alt="Landing Page Background"
         logoSrc="/images/logo/aefeup.png"
         logoAlt="AEFEUP Logo"

@@ -38,7 +38,11 @@ const SingleFeature = ({ feature }: { feature: Feature }) => {
           <h3 className="mb-5 mt-7.5 text-xl font-semibold text-black dark:text-white xl:text-itemtitle">
             {title}
           </h3>
-          {/*<p>{description}</p>*/}
+          { description && 
+            (
+            <p>{description}</p>
+            )
+          }
         </motion.div>
       </Link>
     </>
