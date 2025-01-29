@@ -83,6 +83,7 @@ export default buildConfig({
         media: true,
         docfile: true,
         studentGuide: true,
+        video: true
       },
       bucket: process.env.R2_BUCKET || "",
       config: {
@@ -91,7 +92,7 @@ export default buildConfig({
           accessKeyId: process.env.R2_ACCESS_KEY_ID || "",
           secretAccessKey: process.env.R2_SECRET_ACCESS_KEY || "",
         },
-        region: process.env.R2_REGION || "",
+        region: "auto",
       },
     }),
     // storage-adapter-placeholder
@@ -102,9 +103,7 @@ export default buildConfig({
         media: true,
         docfile: true,
         studentGuide: true,
-        "media-with-prefix": {
-          prefix: "my-prefix",
-        },
+        video: true
       },
       // Token provided by Vercel once Blob storage is added to your Vercel project
       token: process.env.BLOB_READ_WRITE_TOKEN || "",

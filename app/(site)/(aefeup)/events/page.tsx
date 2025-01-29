@@ -5,7 +5,8 @@ import config from "payload.config";
 import HeaderEvents from "@/app/(site)/(aefeup)/events/HeaderEvents";
 import { Metadata } from "next";
 
-export const dynamic = 'force-dynamic'
+export const revalidate = 10
+export const dynamicParams = true
 
 export const metadata: Metadata = {
   title: "Eventos",

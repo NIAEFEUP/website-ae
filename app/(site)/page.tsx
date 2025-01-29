@@ -9,7 +9,8 @@ import { getPayload } from "payload"
 import TestimonialSection from "@/components/TestimonialSection";
 import Sponsors from "@/components/Sponsors";
 
-export const dynamic = 'force-dynamic'
+export const revalidate = 10
+export const dynamicParams = true
 
 export const metadata: Metadata = {
   title: "AEFEUP",
@@ -60,9 +61,8 @@ const Homepage = async () => {
       <Features
         data={landingFeaturesData}
         headerInfo={{
-          title: "Welcome to AEFEUP!",
-          subtitle: "Lorem ipsum odor amet, consectetuer adipiscing elit.",
-          description: `Lorem ipsum odor amet, consectetuer adipiscing elit. Ligula mollis nisi justo feugiat facilisis non. [what we offer]`,
+          title: "Bem Vindo ao site da AEFEUP!",
+          description: `A AEFEUP é mais do que uma Associação de Estudantes – é um símbolo de inovação, união e defesa dos interesses estudantis, representando com orgulho a maior comunidade académica do Porto. Inspirada pelos valores da Engenharia, promove a formação integral dos estudantes, desafiando o presente e moldando o futuro.`,
         }}
       />
 

@@ -1,5 +1,5 @@
 {
-  "id": "5771bc75-5212-4b2b-b1c7-b96bdcf97583",
+  "id": "b48e1783-eff6-46b5-9e31-c89012e366ff",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "5",
   "dialect": "pg",
@@ -1196,82 +1196,6 @@
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
-    "board_section_members": {
-      "name": "board_section_members",
-      "schema": "",
-      "columns": {
-        "_order": {
-          "name": "_order",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "_parent_id": {
-          "name": "_parent_id",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "id": {
-          "name": "id",
-          "type": "varchar",
-          "primaryKey": true,
-          "notNull": true
-        },
-        "person_id": {
-          "name": "person_id",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true
-        }
-      },
-      "indexes": {
-        "board_section_members_order_idx": {
-          "name": "board_section_members_order_idx",
-          "columns": [
-            "_order"
-          ],
-          "isUnique": false
-        },
-        "board_section_members_parent_id_idx": {
-          "name": "board_section_members_parent_id_idx",
-          "columns": [
-            "_parent_id"
-          ],
-          "isUnique": false
-        }
-      },
-      "foreignKeys": {
-        "board_section_members_person_id_person_id_fk": {
-          "name": "board_section_members_person_id_person_id_fk",
-          "tableFrom": "board_section_members",
-          "tableTo": "person",
-          "columnsFrom": [
-            "person_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
-          "onDelete": "set null",
-          "onUpdate": "no action"
-        },
-        "board_section_members_parent_id_fk": {
-          "name": "board_section_members_parent_id_fk",
-          "tableFrom": "board_section_members",
-          "tableTo": "board_section",
-          "columnsFrom": [
-            "_parent_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
-        }
-      },
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
-    },
     "board_section_subgroups": {
       "name": "board_section_subgroups",
       "schema": "",
@@ -1394,6 +1318,95 @@
         }
       },
       "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "board_section_rels": {
+      "name": "board_section_rels",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "order": {
+          "name": "order",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "parent_id": {
+          "name": "parent_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "path": {
+          "name": "path",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "person_id": {
+          "name": "person_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {
+        "board_section_rels_order_idx": {
+          "name": "board_section_rels_order_idx",
+          "columns": [
+            "order"
+          ],
+          "isUnique": false
+        },
+        "board_section_rels_parent_idx": {
+          "name": "board_section_rels_parent_idx",
+          "columns": [
+            "parent_id"
+          ],
+          "isUnique": false
+        },
+        "board_section_rels_path_idx": {
+          "name": "board_section_rels_path_idx",
+          "columns": [
+            "path"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "board_section_rels_parent_fk": {
+          "name": "board_section_rels_parent_fk",
+          "tableFrom": "board_section_rels",
+          "tableTo": "board_section",
+          "columnsFrom": [
+            "parent_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "board_section_rels_person_fk": {
+          "name": "board_section_rels_person_fk",
+          "tableFrom": "board_section_rels",
+          "tableTo": "person",
+          "columnsFrom": [
+            "person_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
@@ -1878,8 +1891,8 @@
           "primaryKey": true,
           "notNull": true
         },
-        "t_tulo": {
-          "name": "t_tulo",
+        "title": {
+          "name": "title",
           "type": "varchar",
           "primaryKey": false,
           "notNull": true

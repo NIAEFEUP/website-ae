@@ -5,7 +5,7 @@ import React from "react";
 interface LearnMoreProps {
   icon: React.ReactNode;
   title: string;
-  description: string;
+  description?: string;
   details?: string[]; // can be optional
   href?: string; // can be optional
   buttonLabel?: string; // can be optional

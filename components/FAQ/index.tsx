@@ -1,11 +1,10 @@
 "use client";
 import { motion } from "framer-motion";
-import Image from "next/image";
 import { useState } from "react";
 import FAQItem from "./FAQItem";
-import { Faq } from "@/payload-types";
+// import { Faq } from "@/payload-types";
 
-const FAQ = ({faqData} : {faqData : Faq[]}) => {
+const FAQ = ({faqData} : {faqData}) => {
   const [activeFaq, setActiveFaq] = useState(1);
 
   const handleFaqToggle = (id: number) => {
