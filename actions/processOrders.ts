@@ -109,6 +109,6 @@ export async function confirmOrder(currentOrder: Order) {
     currentOrder.email
   );
 
-  //const content = await render(OrderConfirmationEmailTemplate(currentOrder));
-  //sendEmailWithoutFrom(currentOrder.email, "Encomenda AEFEUP", content)
+  const content = await render(OrderConfirmationEmailTemplate(currentOrder));
+  sendEmailWithoutFrom(currentOrder.email, "Encomenda AEFEUP", content);
 }
