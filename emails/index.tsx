@@ -1,5 +1,5 @@
+import { Order, Product } from "@/payload-types";
 import { EventRequestInfo } from "@/types/eventRequestInfo";
-import { Order } from "@/types/order";
 import {
   Body,
   Container,
@@ -203,18 +203,18 @@ export const OrderConfirmationEmailTemplate = (order: Order) => (
             </Column>
           </Row>
         </Section>
-        {order.orderProducts.length !== 0 && (
+        {order.products!.length !== 0 && (
           <div>
             <Section>
               <Text style={cupomText}>Produtos Pedidos:</Text>
             </Section>
             <Section style={informationTable}>
               <Row style={informationTableRow}>
-                {order.orderProducts.map((product) => (
-                  <Row key={product.product.id}>
+                {order.products!.map((product) => (
+                  <Row key={product.id}>
                     <Hr />
                     <Column style={centeredElement}>
-                      <Text>{product.product.name}</Text>
+                      <Text>{(product.product as Product).name}</Text>
                     </Column>
                     <Column style={centeredElement}>
                       <Text>{product.quantity}</Text>

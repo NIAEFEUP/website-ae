@@ -1,13 +1,12 @@
 "use server";
 
 import { OrderConfirmationEmailTemplate } from "@/emails";
-import { sendEmail, sendEmailWithoutFrom } from "@/lib/sendEmail";
+import { sendEmailWithoutFrom } from "@/lib/sendEmail";
+import { Order, Product } from "@/payload-types";
 import { cartProduct } from "@/types/cartProduct";
-import { Order } from "@/types/order";
 import { render } from "@react-email/render";
 import { getPayload } from "payload";
 import config from "payload.config";
-import { Resend } from "resend";
 
 export async function createOrder(
   items: cartProduct[],
@@ -57,7 +56,7 @@ export async function confirmOrder(currentOrder: Order, email: string) {
   console.log("Sending confirmation email to ", email);
 
   const content = await render(OrderConfirmationEmailTemplate(currentOrder));
-  sendEmailWithoutFrom(email, "Encomenda AEFEUP", content)
+  sendEmailWithoutFrom(email, "Encomenda AEFEUP", content);
 
   console.log("Confirmation email sent");
 
@@ -71,20 +70,22 @@ export async function confirmOrder(currentOrder: Order, email: string) {
 
   console.log("Order Paid. Updating quantities...");
 
-  currentOrder.orderProducts.forEach((orderProduct) => {
+  currentOrder.products!.forEach((orderProduct) => {
     payload.update({
       collection: "product",
-      id: orderProduct.product.id,
+      id: orderProduct.id!,
       data: {
-        sizes: orderProduct.product.sizes?.map((productInstance) => {
-          if (productInstance.size === orderProduct.size) {
-            return {
-              size: productInstance.size,
-              quantity: productInstance.quantity - orderProduct.quantity,
-            };
+        sizes: (orderProduct.product as Product).sizes!.map(
+          (productInstance) => {
+            if (productInstance.size === orderProduct.size) {
+              return {
+                size: productInstance.size,
+                quantity: productInstance.quantity - orderProduct.quantity,
+              };
+            }
+            return productInstance;
           }
-          return productInstance;
-        }),
+        ),
       },
     });
   });

@@ -12,8 +12,6 @@ import { cartProduct } from "@/types/cartProduct";
 import PaymentForm from "../PaymentForm";
 import PuffLoader from "react-spinners/PuffLoader";
 import { Check, CircleAlert, ClockAlert } from "lucide-react";
-import { cancelOrder, confirmOrder } from "@/actions/processOrders";
-import { Order } from "@/types/order";
 import { checkPaymentStatus } from "@/actions/apiCall";
 type ShopCartProps = {
   isOpen: boolean;
