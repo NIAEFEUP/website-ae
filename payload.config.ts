@@ -74,7 +74,7 @@ export default buildConfig({
   }),
   //sharp,
   email: resendAdapter({
-    defaultFromAddress: 'dev@payloadcms.com',
+    defaultFromAddress: process.env.RESEND_EMAIL || '',
     defaultFromName: 'Payload CMS',
     apiKey: process.env.RESEND_API_KEY || '',
   }),
