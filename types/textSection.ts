@@ -1,7 +1,7 @@
 export type TextSection = {
   id: number;
   title: string;
-  subtitle: string;
+  subtitle?: string;
   text?: React.ReactNode [];
   phone?: string;
   email?: string;

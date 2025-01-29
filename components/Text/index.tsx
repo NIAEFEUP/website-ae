@@ -7,8 +7,8 @@ import Button from "../Button";
 
 interface TextSection {
   id: number;
-  title: string;
-  subtitle: string;
+  title?: string;
+  subtitle?: string;
   text?: React.ReactNode [];
   phone?: string;
   email?: string;
@@ -37,12 +37,12 @@ const Text: React.FC<TextProps> = ({ sections }) => {
                 transition={{ duration: 0.5, delay: 0.1 }}
                 viewport={{ once: true }}
               >
-                <h2 className="relative mb-4 text-2xl font-bold text-black dark:text-white">
+                {section.title && <h2 className="relative mb-4 text-2xl font-bold text-black dark:text-white">
                   {section.title}
-                </h2>
-                <span className="font-medium uppercase text-black dark:text-white">
+                </h2>}
+                {section.subtitle && <span className="font-medium uppercase text-black dark:text-white">
                   {section.subtitle}
-                </span>
+                </span>}
                 {section.text && <div className="text-justify">{section.text}</div>}
                 {section.schedule && <ScheduleTable data={section.schedule} />}
                 {section.phone && (
