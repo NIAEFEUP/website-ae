@@ -1,3 +1,4 @@
+import { Media } from "@/payload-types";
 import { cartProduct } from "@/types/cartProduct";
 import { Trash2 } from "lucide-react";
 import Image from "next/image";
@@ -28,11 +29,13 @@ const CartItem = ({ item, removeFromCart, updateItem }: CartItemProps) => {
     }
   };
 
+  const productImage = item.product.photo as Media;
+
   return (
     <div className="flex gap-5 border p-2 rounded">
       <Image
-        src="/images/cactus.jpg"
-        alt="hero"
+        src={productImage.url ?? ""}
+        alt={productImage.alt ?? ""}
         width={100}
         height={90}
         className="rounded"
@@ -41,24 +44,17 @@ const CartItem = ({ item, removeFromCart, updateItem }: CartItemProps) => {
         <div>
           <div className="flex gap-1 items-center">
             <h1>
-              {item.product.name} · {item.product.price}$
+              {item.product.name} · {item.product.price}€
             </h1>
           </div>
           <div className="mt-1 text-xs text-gray-500 flex flex-col items-start gap-2">
             <div className="flex">
-              <button onClick={() => decreaseQuantity()}>-</button>
+              <button onClick={decreaseQuantity}>-</button>
               <span className="px-3">{item.quantity} un</span>
-              <button onClick={() => increaseQuantity()}>+</button>
+              <button onClick={increaseQuantity}>+</button>
             </div>
             <div className="flex items-center gap-1">
-              Color:
-              <span
-                className={`rounded-full p-2 ${item.product.color.toLowerCase() === "white" ? "border" : ""}`}
-                style={{ backgroundColor: item.product.color.toLowerCase() }}
-              ></span>
-            </div>
-            <div className="flex items-center gap-1">
-              Size:
+              Tamanho:
               <span>{item.size}</span>
             </div>
           </div>

@@ -52,7 +52,6 @@ const ShopCart = ({
       console.log("changing to waiting");
       setPaymentStatus(paymentStatus.waiting);
       setProcessingPayment(true);
-    } else {
     }
 
     if (paymentStatusState === paymentStatus.confirmed) {
@@ -130,20 +129,20 @@ const ShopCart = ({
         </SheetHeader>
         {cartProducts.length > 0 && (
           <SheetFooter className="!flex !flex-col">
-            <SheetTitle className="mb-5">Payment</SheetTitle>
+            <SheetTitle className="mb-5">Pagamento</SheetTitle>
             {!processingPayment ? (
               <PaymentForm
                 products={cartProducts}
                 setProcessingPayment={setProcessingPayment}
                 setPaymentStatus={setPaymentStatus}
-              ></PaymentForm>
+              />
             ) : (
               <div className="flex gap-2 justify-center bg-gray-100 p-5 rounded">
                 {(() => {
                   if (paymentStatusState === paymentStatus.waiting) {
                     return (
                       <>
-                        <h2>Estamos à espera da confirmação</h2>
+                        <h2>A aguardar confirmação</h2>
                         <PuffLoader size={25} color="#90ee90" />
                       </>
                     );

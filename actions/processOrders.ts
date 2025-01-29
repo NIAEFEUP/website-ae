@@ -1,25 +1,13 @@
 "use server";
 
 import { OrderConfirmationEmailTemplate } from "@/emails";
+import { sendEmail, sendEmailWithoutFrom } from "@/lib/sendEmail";
 import { cartProduct } from "@/types/cartProduct";
 import { Order } from "@/types/order";
 import { render } from "@react-email/render";
 import { getPayload } from "payload";
 import config from "payload.config";
 import { Resend } from "resend";
-
-const sendConfirmationEmail = async (order: Order, email: string) => {
-  const resend = new Resend(process.env.RESEND_API_KEY);
-
-  const { data, error } = await resend.emails.send({
-    from: process.env.RESEND_EMAIL
-      ? `AEFEUP <${process.env.RESEND_EMAIL}>`
-      : "Acme <onboarding@resend.dev>",
-    to: [email],
-    subject: "Confirmação de Encomenda",
-    html: await render(OrderConfirmationEmailTemplate(order)),
-  });
-};
 
 export async function createOrder(
   items: cartProduct[],
@@ -45,7 +33,6 @@ export async function createOrder(
       products: orderProducts,
       totalPrice: totalCost,
       status: "pending",
-      // createdAt: Date.now().toString(),
     },
   });
 
@@ -69,7 +56,8 @@ export async function confirmOrder(currentOrder: Order, email: string) {
 
   console.log("Sending confirmation email to ", email);
 
-  sendConfirmationEmail(currentOrder, email);
+  const content = await render(OrderConfirmationEmailTemplate(currentOrder));
+  sendEmailWithoutFrom(email, "Encomenda AEFEUP", content)
 
   console.log("Confirmation email sent");
 

@@ -7,6 +7,10 @@ export const Product: CollectionConfig = {
     singular: 'Produto',
     plural: 'Produtos',
   },
+  admin: {
+    useAsTitle: 'name',
+    group: 'Loja',
+  },
   fields: [
     {
       name: "name",
@@ -25,6 +29,7 @@ export const Product: CollectionConfig = {
       label: 'Foto',
       type: 'relationship',
       relationTo: 'media',
+      required: true,
     },
     {
       name: "description",

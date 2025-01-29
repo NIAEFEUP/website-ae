@@ -61,13 +61,8 @@ export default function ShopPageContent({ products }) {
       />
 
       <main className="py-20 lg:py-25 xl:py-30">
-        <SectionHeader
-          headerInfo={{
-            title: "Loja",
-            subtitle: "",
-            description: "Vê os items disponíveis para te vestires a rigor",
-          }}
-        />
+
+        <SectionHeader title="Loja" description="Vê os items disponíveis para te vestires a rigor" />
 
         <section className="flex flex-wrap px-24 mt-5 gap-8 justify-center">
           {products.map((product: Product) => (

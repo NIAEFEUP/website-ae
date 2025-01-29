@@ -304,7 +304,7 @@ export interface Product {
   id: number;
   name: string;
   price: number;
-  photo?: (number | null) | Media;
+  photo: number | Media;
   description: string;
   color: string;
   sizes?:

@@ -1,4 +1,4 @@
-import { Product } from "@/payload-types";
+import { Media, Product } from "@/payload-types";
 import Image from "next/image";
 import SizePicker from "../SizePicker";
 import { cartProduct } from "@/types/cartProduct";
@@ -12,17 +12,17 @@ type ProductPreviewProps = {
 
 const ProductPreview = ({ product, setCartState, addToCart }: ProductPreviewProps) => {
 
-  
+  const productImage = product.photo as Media;
 
   return (
     <>
       <Image
-        src="/images/cactus.jpg"
-        alt="hero"
+        src={productImage.url ?? ""}
+        alt={productImage.alt ?? ""}
         width={300}
         height={300}
         className="rounded-t-full"
-      ></Image>
+      />
       <div className="flex items-center mt-4">
         <h1 className="text-5xl text-black tracking-tight font-thin font-serif">
           {product.name}

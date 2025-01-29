@@ -1,4 +1,4 @@
-import { Product } from "@/payload-types";
+import { Media, Product } from "@/payload-types";
 import Image from "next/image";
 import SizePicker from "../SizePicker";
 import { useState } from "react";
@@ -22,13 +22,15 @@ const ShopCard = ({ product, addToCart, isProductInCart }: ShopCardProps) => {
     };
   };
 
+  const productImage = product.photo as Media;
+
   return (
     <div className="rounded-lg bg-white min-w-80 max-w-80 border dark:shadow-none">
       <Image
-        src="/images/cactus.jpg"
+        src={productImage.url ?? ""}
+        alt={productImage.alt ?? ""}
         width={700}
         height={900}
-        alt="Product image"
         className="w-full max-h-96 min-h-96 min-w-80 max-w-80 object-cover rounded-xl rounded-b-none"
       />
       <div className="p-4">
@@ -42,7 +44,7 @@ const ShopCard = ({ product, addToCart, isProductInCart }: ShopCardProps) => {
               <SizePicker
                 product={product}
                 setInstance={setInstance}
-              ></SizePicker>
+              />
             ) : (
               "Fora de Stock"
             )}

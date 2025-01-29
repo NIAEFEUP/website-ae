@@ -7,6 +7,10 @@ export const Order: CollectionConfig = {
       singular: 'Encomenda',
       plural: 'Encomendas'
    },
+   admin: {
+      useAsTitle: 'email',
+      group: 'Loja',
+  },
    fields: [
       {
          name: "email",
