@@ -2,6 +2,7 @@ import type { Field } from 'payload'
 
 export const ProductSize: Field = {
     name: 'size',
+    label: "Tamanho",
     type: 'select',
     hasMany: false,
     options: [
@@ -10,24 +11,24 @@ export const ProductSize: Field = {
             value: 'XS'
         },
         {
-        label: "S",
-        value: "S"
+            label: "S",
+            value: "S"
         },
         {
-        label: "M",
-        value: "M"
+            label: "M",
+            value: "M"
         },
         {
-        label: "L",
-        value: "L"
+            label: "L",
+            value: "L"
         },
         {
-        label: "XL",
-        value: "XL"
+            label: "XL",
+            value: "XL"
         },
         {
-        label: "XXL",
-        value: "XXL"
+            label: "XXL",
+            value: "XXL"
         },
     ],
     required: true,

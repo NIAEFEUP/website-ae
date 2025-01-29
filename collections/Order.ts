@@ -4,8 +4,8 @@ import { ProductSize } from "./ProductSizeField";
 export const Order: CollectionConfig = {
    slug: 'order',
    labels: {
-      singular: 'Order',
-      plural: 'Orders'
+      singular: 'Encomenda',
+      plural: 'Encomendas'
    },
    fields: [
       {
@@ -16,7 +16,7 @@ export const Order: CollectionConfig = {
       },
       {
          name: "mobile",
-         label: "Mobile",  
+         label: "Telemóvel",  
          type: "text",
          required: true,
       },
@@ -27,6 +27,7 @@ export const Order: CollectionConfig = {
          fields: [
             {
                name: "product",
+               label: "Produto",
                type: "relationship",
                relationTo: "product",
                required: true,
@@ -34,6 +35,7 @@ export const Order: CollectionConfig = {
             ProductSize,
             {
                name: "quantity",
+               label: "Quantidade",
                type: "number",
                required: true,
             },
@@ -41,11 +43,13 @@ export const Order: CollectionConfig = {
       },
       {
          name: "totalPrice",
+         label: "Preço total",
          type: "number",
          required: true,
       },
       {
          name: "status",
+         label: "Estado",
          type: "select",
          options: [
             { label: "Pendente", value: "pending" },

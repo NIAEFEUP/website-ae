@@ -5,13 +5,13 @@ import ShopCart from "@/components/Shop/Cart";
 import ShopCard from "@/components/Shop/ShopCard";
 import { Product } from "@/payload-types";
 import { cartProduct } from "@/types/cartProduct";
-import React from "react";
+import { useState, useEffect } from "react";
 
 export default function ShopPageContent({ products }) {
-  const [openCart, setOpenCart] = React.useState(false);
-  const [cartProducts, setCartProducts] = React.useState<cartProduct[]>([]);
+  const [openCart, setOpenCart] = useState(false);
+  const [cartProducts, setCartProducts] = useState<cartProduct[]>([]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const savedOrder = localStorage.getItem("currentOrder");
     if (savedOrder) {
       setCartProducts(JSON.parse(savedOrder).order.products);
@@ -58,27 +58,25 @@ export default function ShopPageContent({ products }) {
         cartProducts={cartProducts}
         setCartProducts={setCartProducts}
         removeFromCart={removeFromCart}
-      ></ShopCart>
+      />
 
       <main className="py-20 lg:py-25 xl:py-30">
         <SectionHeader
           headerInfo={{
             title: "Loja",
             subtitle: "",
-            description: "Aqui podes comprar cenas e ser mesmo cool",
+            description: "Vê os items disponíveis para te vestires a rigor",
           }}
         />
 
         <section className="flex flex-wrap px-24 mt-5 gap-8 justify-center">
           {products.map((product: Product) => (
-            <>
-              <ShopCard
-                product={product}
-                key={product.id}
-                isProductInCart={isProductInCart}
-                addToCart={addToCart}
-              ></ShopCard>
-            </>
+            <ShopCard
+              product={product}
+              key={product.id}
+              isProductInCart={isProductInCart}
+              addToCart={addToCart}
+            />
           ))}
         </section>
 
@@ -86,7 +84,7 @@ export default function ShopPageContent({ products }) {
           className="mx-auto flex mt-5 bg-black rounded-lg text-sm p-2 text-white"
           onClick={() => setOpenCart(true)}
         >
-          Open Cart
+          Abrir Carrinho
         </button>
       </main>
     </>

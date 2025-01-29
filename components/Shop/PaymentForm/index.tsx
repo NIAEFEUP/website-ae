@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import React from "react";
+import { useState } from "react";
 import Image from "next/image";
 import { Card, CardHeader } from "@/components/ui/card";
 import { paymentStatus } from "../Cart";
@@ -19,8 +19,8 @@ const PaymentForm = ({
   setPaymentStatus,
   setProcessingPayment,
 }: PaymentFormProps) => {
-  const [mobile, setNumber] = React.useState("");
-  const [email, setEmail] = React.useState("");
+  const [mobile, setNumber] = useState("");
+  const [email, setEmail] = useState("");
 
   const handlePayment = async () => {
     setProcessingPayment(true);

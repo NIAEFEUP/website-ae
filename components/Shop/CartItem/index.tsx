@@ -1,7 +1,7 @@
 import { cartProduct } from "@/types/cartProduct";
 import { Trash2 } from "lucide-react";
 import Image from "next/image";
-import React from "react";
+import { useState } from "react";
 
 type CartItemProps = {
   item: cartProduct;
@@ -10,7 +10,7 @@ type CartItemProps = {
 };
 
 const CartItem = ({ item, removeFromCart, updateItem }: CartItemProps) => {
-  const [quantity, setQuantity] = React.useState(item.quantity);
+  const [quantity, setQuantity] = useState(item.quantity);
 
   const increaseQuantity = () => {
     const instance = item.product.sizes?.find((s) => s.size === item.size);

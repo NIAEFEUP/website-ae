@@ -1,7 +1,7 @@
 import { Product } from "@/payload-types";
 import Image from "next/image";
 import SizePicker from "../SizePicker";
-import React from "react";
+import { useState } from "react";
 import { ShoppingCart } from "lucide-react";
 import { cartProduct } from "@/types/cartProduct";
 
@@ -12,10 +12,9 @@ type ShopCardProps = {
 };
 
 const ShopCard = ({ product, addToCart, isProductInCart }: ShopCardProps) => {
-  const [instance, setInstance] = React.useState<cartProduct>();
+  const [instance, setInstance] = useState<cartProduct>();
 
   const buildCartProduct = (instance: cartProduct) => {
-    console.log(product);
     return {
       product: product,
       quantity: 1,
@@ -45,7 +44,7 @@ const ShopCard = ({ product, addToCart, isProductInCart }: ShopCardProps) => {
                 setInstance={setInstance}
               ></SizePicker>
             ) : (
-              "Sold out"
+              "Fora de Stock"
             )}
 
             {instance && (
@@ -57,7 +56,7 @@ const ShopCard = ({ product, addToCart, isProductInCart }: ShopCardProps) => {
                 disabled={isProductInCart(instance)}
               >
                 <ShoppingCart size={18} />
-                {isProductInCart(instance) ? "Added" : "Add to Cart"}
+                {isProductInCart(instance) ? "Adicionado" : "Adicionar"}
               </button>
             )}
           </div>

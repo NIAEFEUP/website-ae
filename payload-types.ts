@@ -311,6 +311,7 @@ export interface Product {
   id: number;
   name: string;
   price: number;
+  photo?: (number | null) | Media;
   description: string;
   color: string;
   sizes?:

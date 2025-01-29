@@ -6,7 +6,7 @@ import {
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet";
-import React from "react";
+import { useEffect, useState } from "react";
 import CartItem from "../CartItem";
 import { cartProduct } from "@/types/cartProduct";
 import PaymentForm from "../PaymentForm";
@@ -39,12 +39,12 @@ const ShopCart = ({
   setCartProducts,
 }: ShopCartProps) => {
   //TODO: to review
-  const [processingPayment, setProcessingPayment] = React.useState(false);
-  const [paymentStatusState, setPaymentStatus] = React.useState<paymentStatus>(
+  const [processingPayment, setProcessingPayment] = useState(false);
+  const [paymentStatusState, setPaymentStatus] = useState<paymentStatus>(
     paymentStatus.idle
   );
 
-  React.useEffect(() => {
+  useEffect(() => {
     const savedOrder = localStorage.getItem("currentOrder");
 
     if (paymentStatusState === paymentStatus.idle && savedOrder) {
@@ -115,22 +115,20 @@ const ShopCart = ({
     <Sheet open={isOpen} onOpenChange={onOpenChange}>
       <SheetContent className="z-100000 flex flex-col justify-between">
         <SheetHeader>
-          <SheetTitle className="mb-5">Cart</SheetTitle>
+          <SheetTitle className="mb-5">Carrinho</SheetTitle>
           <SheetDescription className="flex flex-col gap-5 max-h-[600px] overflow-y-auto">
             {cartProducts.map((p) => {
               return (
-                <>
-                  <CartItem
-                    item={p}
-                    removeFromCart={removeFromCart}
-                    updateItem={updateItem}
-                  ></CartItem>
-                </>
+                <CartItem
+                  item={p}
+                  removeFromCart={removeFromCart}
+                  updateItem={updateItem}
+                />
               );
             })}
           </SheetDescription>
         </SheetHeader>
-        {cartProducts.length > 0 ? (
+        {cartProducts.length > 0 && (
           <SheetFooter className="!flex !flex-col">
             <SheetTitle className="mb-5">Payment</SheetTitle>
             {!processingPayment ? (
@@ -145,28 +143,28 @@ const ShopCart = ({
                   if (paymentStatusState === paymentStatus.waiting) {
                     return (
                       <>
-                        <h2>Waiting for confirmation</h2>
+                        <h2>Estamos à espera da confirmação</h2>
                         <PuffLoader size={25} color="#90ee90" />
                       </>
                     );
                   } else if (paymentStatusState === paymentStatus.declined) {
                     return (
                       <>
-                        <h2>Payment declined</h2>
+                        <h2>Pagamento Anulado</h2>
                         <CircleAlert color="red" />
                       </>
                     );
                   } else if (paymentStatusState === paymentStatus.confirmed) {
                     return (
                       <>
-                        <h2>Payment processed</h2>
+                        <h2>Pagamento com sucesso</h2>
                         <Check color="#90ee90" />
                       </>
                     );
                   } else if (paymentStatusState === paymentStatus.expired) {
                     return (
                       <>
-                        <h2>Payment expired</h2>
+                        <h2>Pagamento expirou</h2>
                         <ClockAlert />
                       </>
                     );
@@ -175,8 +173,6 @@ const ShopCart = ({
               </div>
             )}
           </SheetFooter>
-        ) : (
-          <p>Your cart is empty</p>
         )}
       </SheetContent>
     </Sheet>
