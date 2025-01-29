@@ -24,7 +24,7 @@ export async function createOrder(
     };
   });
 
-  const order = payload.create({
+  const order = await payload.create({
     collection: "order",
     data: {
       email: email,
@@ -40,7 +40,7 @@ export async function createOrder(
 
 export async function cancelOrder(currentOrder: Order) {
   const payload = await getPayload({ config });
-  payload.update({
+  await payload.update({
     collection: "order",
     id: currentOrder.id,
     data: {
@@ -54,7 +54,7 @@ export async function confirmOrder(currentOrder: Order) {
 
   console.log("Order Paid. Updating quantities...");
 
-  payload.update({
+  await payload.update({
     collection: "order",
     id: currentOrder.id,
     data: {
@@ -85,7 +85,7 @@ export async function confirmOrder(currentOrder: Order) {
   currentOrder.products!.forEach(async (orderProduct) => {
     const product = orderProduct.product as Product;
 
-    payload.update({
+    await payload.update({
       collection: "product",
       id: product.id!,
       data: {
