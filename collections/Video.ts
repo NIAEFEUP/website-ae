@@ -8,7 +8,7 @@ export const Video: CollectionConfig = {
     plural: 'Videos',
   },
   admin: {
-    useAsTitle: 'título',
+    useAsTitle: 'title',
     group: "Estudante",
     hidden: ({ user }) => user && user.role === 'merchant',
   },
@@ -20,12 +20,14 @@ export const Video: CollectionConfig = {
   },
   fields: [
     {
-      name: 'título',
+      name: 'title',
+      label: 'Título',
       type: 'text',
       required: true,
     },
     {
       name: 'thumbnail',
+      label: 'Thumbnail',
       type: 'upload',
       relationTo: 'media',
     },

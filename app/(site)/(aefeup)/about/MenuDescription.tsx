@@ -81,7 +81,7 @@ const MenuDescription = ({ sections }: Props) => {
               </p>
 
               <div className="flex flex-col sm:flex-row justify-center gap-4 mb-6">
-                {sections[selected].members.map((person) => (<Avatar person={person.person as Person} />))}
+                {sections[selected].members.map((person) => (<Avatar person={person as Person} />))}
               </div>
 
               <div className="space-y-6">

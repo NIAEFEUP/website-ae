@@ -34,7 +34,7 @@ const WelcomeClientPage = ({ videos }: Props) => {
               {videos.map((video) => (
                 video.url && (
                   <div key={video.id} className="flex flex-col justify-center items-center">
-                    <h2 className="text-center mt-5 mb-2 text-xl">{video.título}</h2> {/* TODO: Change to tittle */}
+                    <h2 className="text-center mt-5 mb-2 text-xl">{video.title}</h2> {/* TODO: Change to tittle */}
                     <video src={video.url} controls width={300} />
                   </div>
                 )))}
