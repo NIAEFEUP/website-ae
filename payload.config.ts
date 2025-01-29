@@ -78,7 +78,8 @@ export default buildConfig({
       collections: {
         media: true,
         docfile: true,
-        studentGuide: true
+        studentGuide: true,
+        video: true
       },
       bucket: process.env.R2_BUCKET || "",
       config: {
@@ -98,9 +99,7 @@ export default buildConfig({
         media: true,
         docfile: true,
         studentGuide: true,
-        'media-with-prefix': {
-          prefix: 'my-prefix',
-        },
+        video: true
       },
       // Token provided by Vercel once Blob storage is added to your Vercel project
       token: process.env.BLOB_READ_WRITE_TOKEN || "",
