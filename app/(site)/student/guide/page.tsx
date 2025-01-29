@@ -5,7 +5,8 @@ import Links from "@/components/Links";
 import { getPayload } from 'payload';
 import config from 'payload.config';
 
-export const dynamic = 'force-dynamic'
+export const revalidate = 10
+export const dynamicParams = true
 
 async function getStudentGuide() {
   if(process.env.IS_BUILD) {

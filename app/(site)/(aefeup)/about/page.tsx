@@ -4,9 +4,9 @@ import SectionHeader from "@/components/Common/SectionHeader";
 import MenuDescription from "./MenuDescription";
 import { getPayload } from "payload";
 import config from "payload.config";
-import { sectionsData } from "../../student/welcome/sectionsData";
 
-export const dynamic = 'force-dynamic'
+export const revalidate = 10
+export const dynamicParams = true
 
 export const metadata: Metadata = {
   title: "Quem Somos",
