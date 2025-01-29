@@ -30,6 +30,9 @@ importers:
       '@payloadcms/db-postgres':
         specifier: 3.0.0-beta.71
         version: 3.0.0-beta.71(@neondatabase/serverless@0.9.5)(@types/pg@8.11.6)(@vercel/postgres@0.10.0)(payload@3.0.0-beta.71(@swc/core@1.10.11(@swc/helpers@0.5.12))(@swc/types@0.1.17)(graphql@16.10.0)(typescript@5.5.3))(react@19.0.0-rc-6230622a1a-20240610)(types-react@19.0.0-rc.0)
+      '@payloadcms/email-resend':
+        specifier: 3.0.0-beta.71
+        version: 3.0.0-beta.71(payload@3.0.0-beta.71(@swc/core@1.10.11(@swc/helpers@0.5.12))(@swc/types@0.1.17)(graphql@16.10.0)(typescript@5.5.3))
       '@payloadcms/next':
         specifier: 3.0.0-beta.71
         version: 3.0.0-beta.71(bufferutil@4.0.9)(graphql@16.10.0)(monaco-editor@0.38.0)(next@15.0.0-canary.77(@babel/core@7.24.5)(babel-plugin-react-compiler@0.0.0)(react-dom@19.0.0-rc-6230622a1a-20240610(react@19.0.0-rc-6230622a1a-20240610))(react@19.0.0-rc-6230622a1a-20240610)(sass@1.77.4))(payload@3.0.0-beta.71(@swc/core@1.10.11(@swc/helpers@0.5.12))(@swc/types@0.1.17)(graphql@16.10.0)(typescript@5.5.3))(react-dom@19.0.0-rc-6230622a1a-20240610(react@19.0.0-rc-6230622a1a-20240610))(react@19.0.0-rc-6230622a1a-20240610)(types-react@19.0.0-rc.0)(typescript@5.5.3)
@@ -1406,6 +1409,12 @@ packages:
 
   '@payloadcms/drizzle@3.0.0-beta.71':
     resolution: {integrity: sha512-NtVyfuanfwTgXBONM0p1bgqvomCKejrMbaD3eL2sQsgSVm+5VtwnBXx8CVsdmN0lF0bKoNsKhOSW2quOWGfXEQ==}
+    peerDependencies:
+      payload: 3.0.0-beta.71
+
+  '@payloadcms/email-resend@3.0.0-beta.71':
+    resolution: {integrity: sha512-kk06qeAqRzBrDeYEPAsntkyfG+UFn0yJsoYfIlAU5fh1bOpt/ZpfTDfWSbsS43eOUtbRJL3U74jvgr7Td8FdLg==}
+    engines: {node: ^18.20.2 || >=20.9.0}
     peerDependencies:
       payload: 3.0.0-beta.71
 
@@ -6942,6 +6951,10 @@ snapshots:
       - react
       - sql.js
       - sqlite3
+
+  '@payloadcms/email-resend@3.0.0-beta.71(payload@3.0.0-beta.71(@swc/core@1.10.11(@swc/helpers@0.5.12))(@swc/types@0.1.17)(graphql@16.10.0)(typescript@5.5.3))':
+    dependencies:
+      payload: 3.0.0-beta.71(@swc/core@1.10.11(@swc/helpers@0.5.12))(@swc/types@0.1.17)(graphql@16.10.0)(typescript@5.5.3)
 
   '@payloadcms/graphql@3.0.0-beta.71(graphql@16.10.0)(payload@3.0.0-beta.71(@swc/core@1.10.11(@swc/helpers@0.5.12))(@swc/types@0.1.17)(graphql@16.10.0)(typescript@5.5.3))(typescript@5.5.3)':
     dependencies:

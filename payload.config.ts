@@ -5,6 +5,7 @@ import { lexicalEditor } from "@payloadcms/richtext-lexical";
 import path from "path";
 import { buildConfig } from "payload";
 import { fileURLToPath } from "url";
+import { resendAdapter } from '@payloadcms/email-resend';
 //import sharp from "sharp";
 
 import { Users } from "./collections/Users";
@@ -72,6 +73,11 @@ export default buildConfig({
     },
   }),
   //sharp,
+  email: resendAdapter({
+    defaultFromAddress: 'dev@payloadcms.com',
+    defaultFromName: 'Payload CMS',
+    apiKey: process.env.RESEND_API_KEY || '',
+  }),
   plugins: [
     s3Storage({
       enabled: process.env.STORAGE_METHOD === 'r2',
@@ -111,6 +117,6 @@ export default buildConfig({
     translations: { pt, en },
     //@ts-ignore
     supportedLanguages: { pt, en },
-  }
+  },
   //livePreview: false, // Lets set it to true if we use pages collection (Globals)
 });
