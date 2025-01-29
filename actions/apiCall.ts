@@ -1,5 +1,6 @@
 "use server";
 
+import { paymentStatus } from "@/components/Shop/Cart";
 import axios from "axios";
 
 export async function createMBWAYRequest(
@@ -42,21 +43,24 @@ export async function checkPaymentStatus(requestID: string) {
   }
 }
 
-export async function pollPaymentStatus(requestID: string) {
-  return new Promise((resolve, reject) => {
-    const pollStatus = setInterval(async () => {
-      const teste = await checkPaymentStatus(requestID);
+export async function pollPaymentStatus(
+  requestID: string
+): Promise<paymentStatus> {
+  const pollStatus = setInterval(async () => {
+    const teste = await checkPaymentStatus(requestID);
 
-      if (teste.Message == "Success") {
-        clearInterval(pollStatus);
-        resolve("confirmed");
-      } else if (teste.Message == "Declined by user") {
-        clearInterval(pollStatus);
-        resolve("declined");
-      } else if (teste.Message == "Expired") {
-        clearInterval(pollStatus);
-        resolve("expired");
-      }
-    }, 5000);
-  });
+    if (teste.Message == "Success") {
+      clearInterval(pollStatus);
+      return paymentStatus.confirmed;
+    } else if (teste.Message == "Declined by user") {
+      clearInterval(pollStatus);
+      return paymentStatus.declined;
+    } else if (teste.Message == "Expired") {
+      clearInterval(pollStatus);
+      return paymentStatus.expired;
+    }
+    return paymentStatus.waiting;
+  }, 5000);
+
+  return paymentStatus.waiting;
 }

@@ -24,8 +24,8 @@ const PaymentForm = ({
   const [disabled, setDisable] = useState(true);
 
   useEffect(() => {
-    setDisable(!(emailIsValid() && mobileIsValid()))
-  }, [mobile, email])
+    setDisable(!(emailIsValid() && mobileIsValid()));
+  }, [mobile, email]);
 
   const handlePayment = async () => {
     setProcessingPayment(true);
@@ -42,14 +42,7 @@ const PaymentForm = ({
     if (response.paymentID) {
       console.log("Polling");
       const status = await pollPaymentStatus(response.paymentID);
-
-      if (status === "confirmed") {
-        setPaymentStatus(paymentStatus.confirmed);
-      } else if (status === "declined") {
-        setPaymentStatus(paymentStatus.declined);
-      } else if (status === "expired") {
-        setPaymentStatus(paymentStatus.expired);
-      }
+      setPaymentStatus(status);
       setTimeout(() => {
         setProcessingPayment(false);
         setPaymentStatus(paymentStatus.idle);
@@ -70,7 +63,7 @@ const PaymentForm = ({
         <div className="flex gap-2">
           <Card
             className="cursor-pointer w-25 h-20 border-blue-500"
-            onClick={() => { }}
+            onClick={() => {}}
           >
             <CardHeader>
               <Image
@@ -103,7 +96,6 @@ const PaymentForm = ({
               Pagar e Encomendar
             </Button>
           </div>
-
         </div>
       </div>
     </>
