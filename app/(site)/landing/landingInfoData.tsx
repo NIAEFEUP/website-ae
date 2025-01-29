@@ -6,7 +6,7 @@ export const landingInfoData = [
     title: "Temos Novidades!",
     subtitle: "In convallis tortor.",
     text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In convallis tortor.",
-    imageSrc: "/images/landing/blog-04.png",
+    imageSrc: "/images/landing/merch.png",
     link: {
       path: "store", //link to page
       text: "Ver Novidades!",
