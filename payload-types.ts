@@ -23,7 +23,9 @@ export interface Config {
     link: Link;
     position: Position;
     board_section: BoardSection;
+    product: Product;
     president: President;
+    order: Order;
     event: Event;
     documentFolder: DocumentFolder;
     docfile: Docfile;
@@ -296,6 +298,27 @@ export interface BoardSection {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "product".
+ */
+export interface Product {
+  id: number;
+  name: string;
+  price: number;
+  photo: number | Media;
+  description: string;
+  color: string;
+  sizes?:
+    | {
+        size: 'XS' | 'S' | 'M' | 'L' | 'XL' | 'XXL';
+        quantity: number;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "president".
  */
 export interface President {
@@ -304,6 +327,28 @@ export interface President {
   photo?: (number | null) | Media;
   start_year: number;
   end_year: number;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "order".
+ */
+export interface Order {
+  id: number;
+  email: string;
+  mobile: string;
+  products?:
+    | {
+        product: number | Product;
+        size: 'XS' | 'S' | 'M' | 'L' | 'XL' | 'XXL';
+        quantity: number;
+        id?: string | null;
+      }[]
+    | null;
+  totalPrice: number;
+  status: 'pending' | 'paid' | 'canceled';
+  withdrawal?: boolean | null;
   updatedAt: string;
   createdAt: string;
 }
