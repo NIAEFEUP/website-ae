@@ -3,14 +3,14 @@ import { Input } from "@/components/ui/input";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Card, CardHeader } from "@/components/ui/card";
-import { paymentStatus } from "../Cart";
 import createPayment from "@/actions/payment";
 import { cartProduct } from "@/types/cartProduct";
 import { pollPaymentStatus } from "@/actions/apiCall";
+import { PaymentStatus } from "@/types/paymentStatus";
 
 type PaymentFormProps = {
   setProcessingPayment: (status: boolean) => void;
-  setPaymentStatus: (status: paymentStatus) => void;
+  setPaymentStatus: (status: PaymentStatus) => void;
   products: cartProduct[];
 };
 
@@ -29,7 +29,7 @@ const PaymentForm = ({
 
   const handlePayment = async () => {
     setProcessingPayment(true);
-    setPaymentStatus(paymentStatus.waiting);
+    setPaymentStatus(PaymentStatus.waiting);
     const response = await createPayment(mobile, email, products);
     localStorage.setItem(
       "currentOrder",
@@ -41,11 +41,11 @@ const PaymentForm = ({
 
     if (response.paymentID) {
       console.log("Polling");
-      const status = await pollPaymentStatus(response.paymentID);
+      const status = await pollPaymentStatus(response.paymentID, response.order);
       setPaymentStatus(status);
       setTimeout(() => {
         setProcessingPayment(false);
-        setPaymentStatus(paymentStatus.idle);
+        setPaymentStatus(PaymentStatus.idle);
       }, 3000);
     } else {
       setProcessingPayment(false);

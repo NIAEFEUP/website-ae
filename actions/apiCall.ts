@@ -1,7 +1,9 @@
 "use server";
 
-import { paymentStatus } from "@/components/Shop/Cart";
 import axios from "axios";
+import { cancelOrder, confirmOrder } from "./processOrders";
+import { Order } from "@/payload-types";
+import { PaymentStatus } from "@/types/paymentStatus";
 
 export async function createMBWAYRequest(
   phoneNumber: string,
@@ -43,24 +45,31 @@ export async function checkPaymentStatus(requestID: string) {
   }
 }
 
+// CHANGE HERE TO TEST
 export async function pollPaymentStatus(
-  requestID: string
-): Promise<paymentStatus> {
+  requestID: string, order: Order
+): Promise<PaymentStatus> {
   const pollStatus = setInterval(async () => {
-    const teste = await checkPaymentStatus(requestID);
+    const newStatus = await checkPaymentStatus(requestID);
 
-    if (teste.Message == "Success") {
+    if (newStatus.Message == "Success") {
       clearInterval(pollStatus);
-      return paymentStatus.confirmed;
-    } else if (teste.Message == "Declined by user") {
+      confirmOrder(order);
+      return PaymentStatus.confirmed;
+
+    } else if (newStatus.Message == "Declined by user") {
       clearInterval(pollStatus);
-      return paymentStatus.declined;
-    } else if (teste.Message == "Expired") {
+      confirmOrder(order);
+      //cancelOrder(order);
+      return PaymentStatus.declined;
+    } else if (newStatus.Message == "Expired") {
       clearInterval(pollStatus);
-      return paymentStatus.expired;
+      cancelOrder(order);
+      return PaymentStatus.expired;
     }
-    return paymentStatus.waiting;
+
+    return PaymentStatus.waiting;
   }, 5000);
 
-  return paymentStatus.waiting;
+  return PaymentStatus.idle;
 }

@@ -13,7 +13,7 @@ export async function createOrder(
   mobile: string,
   email: string,
   totalCost: number
-) {
+): Promise<Order> {
   const payload = await getPayload({ config });
 
   const orderProducts = items.map((item) => {
@@ -49,16 +49,11 @@ export async function cancelOrder(currentOrder: Order) {
   });
 }
 
-export async function confirmOrder(currentOrder: Order, email: string) {
-  console.log("Current Order: " + currentOrder);
+export async function confirmOrder(currentOrder: Order) {
   const payload = await getPayload({ config });
 
-  console.log("Sending confirmation email to ", email);
 
-  const content = await render(OrderConfirmationEmailTemplate(currentOrder));
-  sendEmailWithoutFrom(email, "Encomenda AEFEUP", content);
-
-  console.log("Confirmation email sent");
+  console.log("Order Paid. Updating quantities...");
 
   payload.update({
     collection: "order",
@@ -68,15 +63,36 @@ export async function confirmOrder(currentOrder: Order, email: string) {
     },
   });
 
-  console.log("Order Paid. Updating quantities...");
+  console.log("The products aree..", currentOrder.products)
+  console.log("The products aree2..", currentOrder.products[0]!)
 
-  currentOrder.products!.forEach((orderProduct) => {
+  /**
+   *   {
+    id: '679a2f814fbd844764795f8a',
+    product: {
+      id: 2,
+      name: 'Sweat Vermelha',
+      price: 10.4,
+      photo: [Object],
+      description: 'asdasdasdasd',
+      color: 'asdasdasd',
+      sizes: [Array],
+      updatedAt: '2025-01-29T12:09:36.931Z',
+      createdAt: '2025-01-29T11:21:50.487Z'
+    },
+    size: 'S',
+    quantity: 1
+  }
+   */
+  currentOrder.products!.forEach(async (orderProduct) => {
+
+    const product = orderProduct.product as Product;
+
     payload.update({
       collection: "product",
       id: orderProduct.id!,
       data: {
-        sizes: (orderProduct.product as Product).sizes!.map(
-          (productInstance) => {
+        sizes: product.sizes!.map( productInstance => {
             if (productInstance.size === orderProduct.size) {
               return {
                 size: productInstance.size,
@@ -89,4 +105,9 @@ export async function confirmOrder(currentOrder: Order, email: string) {
       },
     });
   });
+
+  console.log("Order", currentOrder, "sending confirmation email to ", currentOrder.email);
+
+  //const content = await render(OrderConfirmationEmailTemplate(currentOrder));
+  //sendEmailWithoutFrom(currentOrder.email, "Encomenda AEFEUP", content)
 }

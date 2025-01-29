@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Sheet,
   SheetContent,
@@ -13,6 +15,7 @@ import PaymentForm from "../PaymentForm";
 import PuffLoader from "react-spinners/PuffLoader";
 import { Check, CircleAlert, ClockAlert } from "lucide-react";
 import { checkPaymentStatus } from "@/actions/apiCall";
+import { PaymentStatus } from "@/types/paymentStatus";
 type ShopCartProps = {
   isOpen: boolean;
   onOpenChange: (bool: boolean) => void;
@@ -20,14 +23,6 @@ type ShopCartProps = {
   removeFromCart: (item: cartProduct) => void;
   setCartProducts: (cartProdcuts: cartProduct[]) => void;
 };
-
-export enum paymentStatus {
-  confirmed,
-  declined,
-  waiting,
-  idle,
-  expired,
-}
 
 const ShopCart = ({
   isOpen,
@@ -38,30 +33,30 @@ const ShopCart = ({
 }: ShopCartProps) => {
   //TODO: to review
   const [processingPayment, setProcessingPayment] = useState(false);
-  const [paymentStatusState, setPaymentStatus] = useState<paymentStatus>(
-    paymentStatus.idle
+  const [paymentStatusState, setPaymentStatus] = useState<PaymentStatus>(
+    PaymentStatus.idle
   );
 
   useEffect(() => {
     const savedOrder = localStorage.getItem("currentOrder");
 
-    if (paymentStatusState === paymentStatus.idle && savedOrder) {
+    if (paymentStatusState === PaymentStatus.idle && savedOrder) {
       // TODO: this is printing multiple times, not supposed to
       console.log("changing to waiting");
-      setPaymentStatus(paymentStatus.waiting);
+      setPaymentStatus(PaymentStatus.waiting);
       setProcessingPayment(true);
     }
 
-    if (paymentStatusState === paymentStatus.confirmed) {
+    if (paymentStatusState === PaymentStatus.confirmed) {
       // client was not refreshed and order was confirmed
       localStorage.removeItem("currentOrder");
     } else if (
-      paymentStatusState === paymentStatus.declined ||
-      paymentStatusState === paymentStatus.expired
+      paymentStatusState === PaymentStatus.declined ||
+      paymentStatusState === PaymentStatus.expired
     ) {
       // client was not refreshed and order was denied
       localStorage.removeItem("currentOrder");
-    } else if (paymentStatusState === paymentStatus.waiting) {
+    } else if (paymentStatusState === PaymentStatus.waiting) {
       // client was maybe refreshed, status became idle again, so we poll the API if an order is processed
       if (savedOrder) {
         const pollStatus = setInterval(async () => {
@@ -70,13 +65,13 @@ const ShopCart = ({
           );
 
           if (teste.Message == "Success") {
-            setPaymentStatus(paymentStatus.confirmed);
+            setPaymentStatus(PaymentStatus.confirmed);
             clearInterval(pollStatus);
           } else if (teste.Message == "Declined by user") {
-            setPaymentStatus(paymentStatus.declined);
+            setPaymentStatus(PaymentStatus.declined);
             clearInterval(pollStatus);
           } else if (teste.Message == "Expired") {
-            setPaymentStatus(paymentStatus.expired);
+            setPaymentStatus(PaymentStatus.expired);
             clearInterval(pollStatus);
           } else {
             return;
@@ -84,7 +79,7 @@ const ShopCart = ({
 
           setTimeout(() => {
             setProcessingPayment(false);
-            setPaymentStatus(paymentStatus.idle);
+            setPaymentStatus(PaymentStatus.idle);
           }, 3000);
         }, 5000);
       }
@@ -127,28 +122,28 @@ const ShopCart = ({
             ) : (
               <div className="flex gap-2 justify-center bg-gray-100 p-5 rounded">
                 {(() => {
-                  if (paymentStatusState === paymentStatus.waiting) {
+                  if (paymentStatusState === PaymentStatus.waiting) {
                     return (
                       <>
                         <h2>A aguardar confirmação</h2>
                         <PuffLoader size={25} color="#90ee90" />
                       </>
                     );
-                  } else if (paymentStatusState === paymentStatus.declined) {
+                  } else if (paymentStatusState === PaymentStatus.declined) {
                     return (
                       <>
                         <h2>Pagamento Anulado</h2>
                         <CircleAlert color="red" />
                       </>
                     );
-                  } else if (paymentStatusState === paymentStatus.confirmed) {
+                  } else if (paymentStatusState === PaymentStatus.confirmed) {
                     return (
                       <>
                         <h2>Pagamento com sucesso</h2>
                         <Check color="#90ee90" />
                       </>
                     );
-                  } else if (paymentStatusState === paymentStatus.expired) {
+                  } else if (paymentStatusState === PaymentStatus.expired) {
                     return (
                       <>
                         <h2>Pagamento expirou</h2>
