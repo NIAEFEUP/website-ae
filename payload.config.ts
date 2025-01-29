@@ -87,7 +87,7 @@ export default buildConfig({
           accessKeyId: process.env.R2_ACCESS_KEY_ID || "",
           secretAccessKey: process.env.R2_SECRET_ACCESS_KEY || "",
         },
-        region: process.env.R2_REGION || "",
+        region: "auto",
       },
     }),
     // storage-adapter-placeholder
