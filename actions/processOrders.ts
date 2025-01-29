@@ -52,7 +52,6 @@ export async function cancelOrder(currentOrder: Order) {
 export async function confirmOrder(currentOrder: Order) {
   const payload = await getPayload({ config });
 
-
   console.log("Order Paid. Updating quantities...");
 
   payload.update({
@@ -63,8 +62,7 @@ export async function confirmOrder(currentOrder: Order) {
     },
   });
 
-  console.log("The products aree..", currentOrder.products)
-  console.log("The products aree2..", currentOrder.products[0]!)
+  console.log("The products aree..", currentOrder.products);
 
   /**
    *   {
@@ -85,28 +83,31 @@ export async function confirmOrder(currentOrder: Order) {
   }
    */
   currentOrder.products!.forEach(async (orderProduct) => {
-
     const product = orderProduct.product as Product;
 
     payload.update({
       collection: "product",
-      id: orderProduct.id!,
+      id: product.id!,
       data: {
-        sizes: product.sizes!.map( productInstance => {
-            if (productInstance.size === orderProduct.size) {
-              return {
-                size: productInstance.size,
-                quantity: productInstance.quantity - orderProduct.quantity,
-              };
-            }
-            return productInstance;
+        sizes: product.sizes!.map((productInstance) => {
+          if (productInstance.size === orderProduct.size) {
+            return {
+              size: productInstance.size,
+              quantity: productInstance.quantity - orderProduct.quantity,
+            };
           }
-        ),
+          return productInstance;
+        }),
       },
     });
   });
 
-  console.log("Order", currentOrder, "sending confirmation email to ", currentOrder.email);
+  console.log(
+    "Order",
+    currentOrder,
+    "sending confirmation email to ",
+    currentOrder.email
+  );
 
   //const content = await render(OrderConfirmationEmailTemplate(currentOrder));
   //sendEmailWithoutFrom(currentOrder.email, "Encomenda AEFEUP", content)

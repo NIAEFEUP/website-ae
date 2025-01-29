@@ -40,11 +40,9 @@ const ShopCard = ({ product, addToCart, isProductInCart }: ShopCardProps) => {
         <div className="flex justify-between">
           <p className="text-gray dark:text-white text-xl">{product.price}€</p>
           <div className="items-center flex gap-2">
-            {product.sizes?.every((size) => size.quantity > 0) ? (
-              <SizePicker
-                product={product}
-                setInstance={setInstance}
-              />
+            {product.sizes?.every((size) => size.quantity > 0) &&
+            product.sizes.length ? (
+              <SizePicker product={product} setInstance={setInstance} />
             ) : (
               "Fora de Stock"
             )}

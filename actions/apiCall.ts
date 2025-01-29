@@ -47,7 +47,8 @@ export async function checkPaymentStatus(requestID: string) {
 
 // CHANGE HERE TO TEST
 export async function pollPaymentStatus(
-  requestID: string, order: Order
+  requestID: string,
+  order: Order
 ): Promise<PaymentStatus> {
   const pollStatus = setInterval(async () => {
     const newStatus = await checkPaymentStatus(requestID);
@@ -56,7 +57,6 @@ export async function pollPaymentStatus(
       clearInterval(pollStatus);
       confirmOrder(order);
       return PaymentStatus.confirmed;
-
     } else if (newStatus.Message == "Declined by user") {
       clearInterval(pollStatus);
       confirmOrder(order);
