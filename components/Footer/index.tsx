@@ -11,7 +11,7 @@ const Footer = () => {
       <div className="mx-auto max-w-[1390px] px-12">
         {/* <!-- Footer Top --> */}
         <div className="flex items-center justify-around flex-wrap m-3 py-10 gap-5">
-          <div className="flex flex-col items-center gap-2">
+          <div className="flex flex-col sm:flex-row xl:flex-col items-center gap-2">
             <a href="https://sigarra.up.pt/feup/pt/web_page.inicial">
               <Image
                 width={150}
