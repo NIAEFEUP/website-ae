@@ -41,16 +41,9 @@ export const BoardSection: CollectionConfig = {
         {
             name: 'members',
             label: 'Membros',
-            type: 'array',
-            fields: [
-                {
-                    name: 'person',
-                    label: 'Pessoa',
-                    type: 'relationship',
-                    relationTo: 'person',
-                    required: true,
-                },
-            ],
+            type: 'relationship',
+            relationTo: 'person',
+            hasMany: true,
             required: true
         },
         {
