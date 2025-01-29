@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   description: "Contacta-nos para qualquer dúvida ou sugestão. Estamos aqui para ajudar!",
 };
 
-async function getFaqData() {
+/* async function getFaqData() {
   if (process.env.IS_BUILD) {
     console.log('skipping getProjects DB call during build')
     return []
@@ -23,10 +23,10 @@ async function getFaqData() {
   })).docs;
 
   return faqData
-}
+} */
 
 const ContactsPage = async () => {
-  const faqData = await getFaqData()
+  const faqData = [] //await getFaqData()
   return (
     <main>
       <div className="pt-20 lg:pt-25 xl:pt-30">
