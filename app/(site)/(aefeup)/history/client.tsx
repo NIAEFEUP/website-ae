@@ -27,8 +27,6 @@ const AEFEUPHistoryClientPage = ({ presidents }: Props) => {
       <Text sections={[
         {
           id: 1,
-          title: "",
-          subtitle: "",
           text: [
             <p key={1}>
               A Associação de Estudantes da Faculdade de Engenharia da Universidade do Porto (AEFEUP) foi fundada em <b>15 de Março de 1984</b> e é a entidade que legalmente representa todos os estudantes da Faculdade de Engenharia da Universidade do Porto.</p>,

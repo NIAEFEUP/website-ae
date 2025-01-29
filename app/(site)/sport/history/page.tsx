@@ -5,8 +5,8 @@ import { historyTimelineData } from "./historyTimelineData";
 
 
 export const metadata: Metadata = {
-  title: "History Page",
-  description: "Explore a nossa História e Campeonatos",
+  title: "História e Troféus",
+  description: "Descobre a história e os troféus da AEFEUP",
 };
 
 const HistoryPage = () => {
@@ -17,7 +17,7 @@ const HistoryPage = () => {
           title="História e Troféus"
         />
 
-        <p>Desde o início da AEFEUP, que esta tem grande relevância naquilo que é o
+        <p className="text-justify">Desde o início da AEFEUP, que esta tem grande relevância naquilo que é o
           Desporto Universitário, tanto a nível local no Porto, como a nível
           nacional. Todos os resultados obtidos ao longo da época são divulgados
           na <a

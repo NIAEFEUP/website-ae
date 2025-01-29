@@ -4,6 +4,7 @@ import SectionHeader from "@/components/Common/SectionHeader";
 import MenuDescription from "./MenuDescription";
 import { getPayload } from "payload";
 import config from "payload.config";
+import { sectionsData } from "../../student/welcome/sectionsData";
 
 export const dynamic = 'force-dynamic'
 
@@ -36,7 +37,6 @@ const AboutPage = async () => {
       <div className="mx-auto max-w-c-1315 px-4 md:px-8 xl:px-0">
         <SectionHeader
             title="Quem Somos"
-            subtitle="Quem Somos"
         />
       </div>
       <AvatarLineup sections={boards}></AvatarLineup>
