@@ -121,5 +121,10 @@ export default buildConfig({
     //@ts-ignore
     supportedLanguages: { pt, en },
   },
+  upload: {
+    limits : {
+      fileSize: 50000000 // 50 mb
+    }
+  }
   //livePreview: false, // Lets set it to true if we use pages collection (Globals)
 });
