@@ -110,7 +110,7 @@ export interface Person {
   birthday?: string | null;
   socials?:
     | {
-        type: 'linkedin' | 'facebook' | 'website' | 'instagram';
+        type: 'linkedin' | 'facebook' | 'website' | 'instagram' | 'email';
         link: string;
         id?: string | null;
       }[]

@@ -64,6 +64,10 @@ export const Person: CollectionConfig = {
               label: 'Instagram',
               value: 'instagram',
             },
+            {
+              label: 'Email',
+              value: 'email',
+            },
           ],
           required: true,
         },
