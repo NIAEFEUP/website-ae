@@ -9,17 +9,8 @@ import menuData from "./menuData";
 const Header = () => {
   const [navigationOpen, setNavigationOpen] = useState(false);
   const [openSubmenu, setOpenSubmenu] = useState<number | null>(null);
-  const [stickyMenu, setStickyMenu] = useState(false);
 
   const pathUrl = usePathname();
-
-  const handleStickyMenu = () => {
-    if (window.scrollY >= 20) {
-      setStickyMenu(true);
-    } else {
-      setStickyMenu(false);
-    }
-  };
 
   const handleToggleSubmenu = (index: number) => {
     if (openSubmenu === index) {
@@ -29,27 +20,18 @@ const Header = () => {
     }
   };
 
-  useEffect(() => {
-    window.addEventListener("scroll", handleStickyMenu);
-  });
-
   return (
     <header
-      className={`z-99999 fixed left-0 top-0 w-full py-4 bg-white
-        ${stickyMenu
-          ? "bg-white shadow transition duration-100 dark:bg-black"
-          : ""
-        }}`}
+      className="z-99999 fixed left-0 top-0 w-full py-4 bg-primary shadow dark:bg-black"
     >
       <div className="relative mx-auto max-w-c-1390 items-center justify-between px-4 md:px-8 lg:flex">
         <div className="flex w-full items-center justify-between lg:w-1/4">
           <a href="/">
             <Image
-              src="/images/logo/aefeup.png"
+              src="/images/logo/aefeup.svg"
               alt="logo"
               width={119.03}
               height={30}
-              className="w-full"
             />
           </a>
 
@@ -62,25 +44,25 @@ const Header = () => {
             <span className="relative block h-5.5 w-5.5 cursor-pointer">
               <span className="absolute right-0 block h-full w-full">
                 <span
-                  className={`relative left-0 top-0 my-1 block h-0.5 rounded-sm bg-black delay-[0] duration-200 ease-in-out dark:bg-white ${!navigationOpen ? "!w-full delay-300" : "w-0"
+                  className={`relative left-0 top-0 my-1 block h-0.5 rounded-sm bg-white delay-[0] duration-200 ease-in-out dark:bg-white ${!navigationOpen ? "!w-full delay-300" : "w-0"
                     }`}
                 ></span>
                 <span
-                  className={`relative left-0 top-0 my-1 block h-0.5 rounded-sm bg-black delay-150 duration-200 ease-in-out dark:bg-white ${!navigationOpen ? "delay-400 !w-full" : "w-0"
+                  className={`relative left-0 top-0 my-1 block h-0.5 rounded-sm bg-white delay-150 duration-200 ease-in-out dark:bg-white ${!navigationOpen ? "delay-400 !w-full" : "w-0"
                     }`}
                 ></span>
                 <span
-                  className={`relative left-0 top-0 my-1 block h-0.5 rounded-sm bg-black delay-200 duration-200 ease-in-out dark:bg-white ${!navigationOpen ? "!w-full delay-500" : "w-0"
+                  className={`relative left-0 top-0 my-1 block h-0.5 rounded-sm bg-white delay-200 duration-200 ease-in-out dark:bg-white ${!navigationOpen ? "!w-full delay-500" : "w-0"
                     }`}
                 ></span>
               </span>
               <span className="du-block absolute right-0 h-full w-full rotate-45">
                 <span
-                  className={`absolute left-2.5 top-0 block h-full w-0.5 rounded-sm bg-black delay-300 duration-200 ease-in-out dark:bg-white ${!navigationOpen ? "!h-0 delay-[0]" : "h-full"
+                  className={`absolute left-2.5 top-0 block h-full w-0.5 rounded-sm bg-white delay-300 duration-200 ease-in-out dark:bg-white ${!navigationOpen ? "!h-0 delay-[0]" : "h-full"
                     }`}
                 ></span>
                 <span
-                  className={`delay-400 absolute left-0 top-2.5 block h-0.5 w-full rounded-sm bg-black duration-200 ease-in-out dark:bg-white ${!navigationOpen ? "!h-0 delay-200" : "h-0.5"
+                  className={`delay-400 absolute left-0 top-2.5 block h-0.5 w-full rounded-sm bg-white duration-200 ease-in-out dark:bg-white ${!navigationOpen ? "!h-0 delay-200" : "h-0.5"
                     }`}
                 ></span>
               </span>
@@ -92,7 +74,7 @@ const Header = () => {
         {/* Nav Menu Start   */}
         <div
           className={`fixed left-0 invisible h-0 w-full items-center justify-end lg:static lg:visible lg:flex lg:h-auto lg:w-full ${navigationOpen &&
-            "h-screen !visible rounded-md bg-white p-7.5 dark:bg-blacksection lg:max-h-[400px] lg:h-auto lg:p-0 lg:shadow-none lg:dark:bg-transparent"
+            "h-screen !visible rounded-md bg-primary p-7.5 dark:bg-blacksection lg:max-h-[400px] lg:h-auto lg:p-0 lg:shadow-none lg:dark:bg-transparent"
             }`}
         >
           <nav>
@@ -103,12 +85,12 @@ const Header = () => {
                     <>
                       <button
                         onClick={() => handleToggleSubmenu(key)}
-                        className="flex cursor-pointer items-center mx-auto justify-between gap-3 hover:text-primary"
+                        className="flex cursor-pointer items-center mx-auto justify-between gap-3 text-white hover:text-gray-300"
                       >
                         {menuItem.title}
                         <span>
                           <svg
-                            className="h-3 w-3 cursor-pointer fill-waterloo group-hover:fill-primary"
+                            className="h-3 w-3 cursor-pointer fill-white group-hover:text-gray-300"
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 512 512"
                           >
@@ -137,7 +119,7 @@ const Header = () => {
                       className={
                         pathUrl === menuItem.path
                           ? "text-primary hover:text-primary"
-                          : "hover:text-primary"
+                          : "text-white hover:text-primary"
                       }
                     >
                       {menuItem.title}
