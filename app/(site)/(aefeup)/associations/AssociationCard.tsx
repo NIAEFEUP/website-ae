@@ -1,7 +1,6 @@
 import { Association, Media } from "@/payload-types";
 import Image from "next/image";
-import { SocialIcon } from "./socials";
-import Link from "next/link";
+import SocialLink from "@/components/SocialLink";
 
 interface Props {
   association: Association;
@@ -20,12 +19,10 @@ export const AssociationCard = ({ association } : Props) => {
             />
 
             <h2 className="text-center text-lg font-semibold mt-1">{association.name}</h2>
-            <h3 className="text-md mt-1">{association.description}</h3>
+            <h3 className="text-center text-md mt-1 w-50">{association.description}</h3>
             <ul className="flex gap-1 mt-1 justify-center">
                 {association.socials?.map((social) => {
-                    return <Link key={social.type} href={social.link}>
-                        <SocialIcon type={social.type} />
-                    </Link>
+                    return <SocialLink social={social} />
                 })}
             </ul>
         </div>

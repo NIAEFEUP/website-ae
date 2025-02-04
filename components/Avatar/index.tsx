@@ -1,18 +1,10 @@
 import Image from "next/image";
-import { ExternalLink, Facebook, Instagram, Linkedin, Mail } from "lucide-react";
 import { Media, Person, Position } from "@/payload-types";
 import DefaultAvatarImage from "@/public/images/default_avatar.jpg";
+import SocialLink from "../SocialLink";
 
 interface Props {
   person: Person;
-}
-
-const symbols = {
-  "linkedin": <Linkedin className="h-5" />,
-  "instagram": <Instagram className="h-5" />,
-  "email": <Mail className="h-5" />,
-  "facebook": <Facebook className="h-5" />,
-  "website": <ExternalLink className="h-5" />
 }
 
 const Avatar = ({ person }: Props) => {
@@ -21,7 +13,7 @@ const Avatar = ({ person }: Props) => {
   const photo = person.photo as Media;
 
   return (
-    <div className="animate_top group max-w-50 flex flex-col justify-between rounded-lg border border-stroke bg-white p-5 shadow-solid-10 dark:border-strokedark dark:bg-blacksection dark:shadow-none hover:shadow-solid-4 dark:hover:bg-hoverdark">
+    <div className="animate_top group w-50 flex flex-col justify-between rounded-lg border border-stroke bg-white p-5 shadow-solid-10 dark:border-strokedark dark:bg-blacksection dark:shadow-none hover:shadow-solid-4 dark:hover:bg-hoverdark">
       <div>
         <Image
           src={photo?.url ?? DefaultAvatarImage.src}
@@ -39,15 +31,7 @@ const Avatar = ({ person }: Props) => {
       </div>
       <div className="flex justify-center gap-2.5 mt-2">
         {person.socials?.map((social) => (
-          <a
-            key={social.type}
-            href={social.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group/btn inline-flex items-center gap-2.5 font-medium text-gray-400 dark:text-manatee transition-all duration-300 hover:text-primary dark:hover:text-primary"
-          >
-            {symbols[social.type]}
-          </a>
+          <SocialLink key={social.type} social={social} />  
         ))}
       </div>
     </div>

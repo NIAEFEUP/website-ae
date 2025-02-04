@@ -1,10 +1,10 @@
 import { Linkedin, Globe, Instagram, Facebook } from "lucide-react";
 
 interface Props {
-    type: string
+  type: string; 
 }
 
-export const SocialIcon = ({ type }: Props) => {
+export const SocialIcon = ({type} : Props) => {
     switch (type) {
         case "linkedin":
             return <Linkedin className="h-6" />;
