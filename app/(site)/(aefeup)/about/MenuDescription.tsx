@@ -27,8 +27,7 @@ const MenuDescription = ({ sections }: Props) => {
   return (sections.length > 0 &&
     <div className="mx-auto max-w-7xl">
       <SectionHeader
-        title="Departamentos"
-        subtitle="Departamentos"
+        title="Pelouros"
       />
 
       <motion.div
@@ -51,9 +50,9 @@ const MenuDescription = ({ sections }: Props) => {
       >
         <div
           ref={menuRef}
-          className="w-full flex items-start gap-8 flex-col sm:flex-row"
+          className="w-full flex items-start gap-8 flex-col md:flex-row"
         >
-          <div className="flex flex-col gap-4 w-full sm:w-1/4">
+          <div className="flex flex-col gap-4 w-full md:w-1/4">
             {sections.map((section, index) => (
               <button
                 key={index}
@@ -80,8 +79,10 @@ const MenuDescription = ({ sections }: Props) => {
                 {sections[selected]?.description}
               </p>
 
-              <div className="flex flex-col sm:flex-row justify-center gap-4 mb-6">
-                {sections[selected].members.map((person) => (<Avatar person={person as Person} />))}
+              <div className="flex flex-col items-center">
+                <div className="flex flex-col items-center sm:grid sm:grid-cols-2 lg:flex lg:flex-row justify-center gap-4 mb-6">
+                  {sections[selected].members.map((person) => (<Avatar person={person as Person} />))}
+                </div>
               </div>
 
               <div className="space-y-6">
