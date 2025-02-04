@@ -14,7 +14,7 @@ const AssociationsPage = async () => {
     collection: 'association',
   });
 
-  return <AssociationsClientPage associations={associations} />;
+  return <AssociationsClientPage associations={associations.docs} />;
 };
 
 export default AssociationsPage;
