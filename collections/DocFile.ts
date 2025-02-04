@@ -12,7 +12,7 @@ export const DocFile: CollectionConfig = {
       group: 'Documentos',
    },
    access: {
-      read: isStaff,
+      read: () => true,
       create: isStaff,
       update: isStaff,
       delete: isStaff
