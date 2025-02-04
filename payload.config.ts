@@ -6,7 +6,7 @@ import path from "path";
 import { buildConfig } from "payload";
 import { fileURLToPath } from "url";
 import { resendAdapter } from '@payloadcms/email-resend';
-//import sharp from "sharp";
+import sharp from "sharp";
 
 import { Users } from "./collections/Users";
 import { Media } from "./collections/Media";
@@ -76,7 +76,7 @@ export default buildConfig({
       connectionString: process.env.DATABASE_URL || "",
     },
   }),
-  //sharp,
+  sharp,
   email: resendAdapter({
     defaultFromAddress: process.env.RESEND_EMAIL || '',
     defaultFromName: 'Payload CMS',
