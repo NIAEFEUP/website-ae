@@ -28,6 +28,7 @@ const MenuDescription = ({ sections }: Props) => {
     <div className="mx-auto max-w-7xl">
       <SectionHeader
         title="Pelouros"
+        subtitle="Conhece os departamentos que compõem a tua AEFEUP e quais as suas áreas de atuação!"
       />
 
       <motion.div
