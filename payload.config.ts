@@ -27,9 +27,10 @@ import { Event } from "./collections/Event";
 import { DocumentFolder } from "./collections/DocumentFolder";
 import { DocFile } from "./collections/DocFile";
 import { Video } from "./collections/Video";
-//import { Faq } from "./collections/Faq";
+import { Faq } from "./collections/Faq";
 import { Place } from "./collections/Place";
 import { Testimonal } from "./collections/Testimonial";
+import { FeedbackLinks } from "./collections/FeedbackLinks";
 
 import { en } from "@payloadcms/translations/languages/en";
 import { pt } from "@payloadcms/translations/languages/pt";
@@ -62,9 +63,10 @@ export default buildConfig({
     DocumentFolder,
     DocFile,
     Video,
-    //Faq,
+    Faq,
     Place,
     Testimonal,
+    FeedbackLinks,
   ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",

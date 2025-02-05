@@ -30,8 +30,10 @@ export interface Config {
     documentFolder: DocumentFolder;
     docfile: Docfile;
     video: Video;
+    faq: Faq;
     place: Place;
     testimonial: Testimonial;
+    feedbacklinks: Feedbacklink;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -426,6 +428,17 @@ export interface Video {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "faq".
+ */
+export interface Faq {
+  id: number;
+  quest: string;
+  ans: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "place".
  */
 export interface Place {
@@ -457,6 +470,17 @@ export interface Testimonial {
   photo?: (number | null) | Media;
   position: string;
   content: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "feedbacklinks".
+ */
+export interface Feedbacklink {
+  id: number;
+  name: string;
+  link: string;
   updatedAt: string;
   createdAt: string;
 }
