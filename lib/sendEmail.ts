@@ -1,7 +1,5 @@
 'use server'
 
-import { render } from "@react-email/render"
-import { JSX } from "react"
 import { Resend } from "resend"
 
 export const sendEmail = async (from: string, to: string, subject: string, content: string) => {
