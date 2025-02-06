@@ -11,6 +11,8 @@ interface InfoProps {
   sections: InfoSection[];
 }
 
+//FIXME: CORRECT IMAGE PLACEMENT
+
 const Info: React.FC<InfoProps> = ({ sections }) => {
   return (
     <>
@@ -53,8 +55,6 @@ const Info: React.FC<InfoProps> = ({ sections }) => {
                   />
                 </div>
               </motion.div>
-
-
 
               {/* Text Section */}
               <motion.div
