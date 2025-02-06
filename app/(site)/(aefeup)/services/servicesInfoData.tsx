@@ -17,7 +17,7 @@ export const infoData : InfoSection[] = [
       { label: 'sábado', value: 'Encerrado' },
       { label: 'domingo', value: 'Encerrado' },
     ],
-    imageSrc: "/images/services/image.png",
+    imageSrc: "/images/services/Secretaria e Loja.JPG",
   },
   {
     id: 2,
@@ -34,7 +34,7 @@ export const infoData : InfoSection[] = [
       { label: 'sábado', value: 'Encerrado' },
       { label: 'domingo', value: 'Encerrado' },
     ],
-    imageSrc: "/images/services/image.png",
+    imageSrc: "/images/services/Reprografia Efeitos Gráficos.JPG",
   },
   {
     id: 3,
@@ -50,7 +50,7 @@ export const infoData : InfoSection[] = [
       { label: 'sábado', value: 'Encerrado' },
       { label: 'domingo', value: 'Encerrado' },
     ],
-    imageSrc: "/images/services/image.png",
+    imageSrc: "/images/services/Cafetaria.JPG",
     link: {
       path: "menu",
       text: "Ver menu",
