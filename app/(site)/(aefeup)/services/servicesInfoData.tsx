@@ -5,8 +5,8 @@ export const infoData : InfoSection[] = [
   {
     id: 1,
     title: "Secretaria",
-    subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    phone: "22 508 1556",
+    subtitle: "Secretariado de apoio às necessidades dos estudantes e da direção da AEFEUP.",
+    phone: "(+351) 225 081 556",
     email: "aefeup@aefeup.pt",
     schedule: [
       { label: 'segunda-feira', value: '10:00–12:30, 14:00–17:30' },
@@ -22,8 +22,8 @@ export const infoData : InfoSection[] = [
   {
     id: 2,
     title: "Reprografia Efeitos Gráficos",
-    subtitle: "Serviços de impressão e design gráfico para atender suas necessidades.",
-    phone: "22 508 1556",
+    subtitle: "Serviços de impressão e design gráfico para atender à comunidade académica.",
+    phone: "(+351) 934 513 739",
     email: "editorial@aefeup.pt",
     schedule: [
       { label: 'segunda-feira', value: '09:00–19:00' },
@@ -39,9 +39,8 @@ export const infoData : InfoSection[] = [
   {
     id: 3,
     title: "Cafetaria",
-    subtitle: "Desfrute de um ambiente acolhedor com diversas opções de bebidas e snacks.",
-    phone: "22 508 1556",
-    email: "cafetaria@aefeup.pt",
+    subtitle: "Desfruta de um ambiente acolhedor com diversas opções de refeições, bebidas e snacks.",
+    phone: "(+351) 22 508 1556",
     schedule: [
       { label: 'segunda-feira', value: '10:00–19:00' },
       { label: 'terça-feira', value: '10:00–19:00' },
