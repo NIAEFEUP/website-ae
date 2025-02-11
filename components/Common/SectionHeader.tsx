@@ -25,9 +25,9 @@ const SectionHeader = ({ title, subtitle, description }: HeaderInfo ) => {
           transition={{ duration: 1, delay: 0.1 }}
           viewport={{ once: true }}
         >
-          <h1 className="mb-4 text-3xl font-bold text-black dark:text-white mx-auto">
+          <h2 className="relative mb-4 text-3xl font-bold text-black dark:text-white xl:text-hero">
             {title}
-          </h1>
+          </h2>
           {subtitle && (
             <h2 className="mb-2 text-xl font-medium text-gray-700 dark:text-gray-300">
               {subtitle}
