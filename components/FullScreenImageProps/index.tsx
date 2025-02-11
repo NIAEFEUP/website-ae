@@ -34,8 +34,8 @@ const FullScreenImage: React.FC<FullScreenImageProps> = ({ src, alt, logoSrc, lo
           backgroundImage: `url(${src})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          maskImage: 'linear-gradient(to bottom, black 50%, transparent %)',
-          WebkitMaskImage: 'linear-gradient(to bottom, black 50%, transparent 100%)',
+          maskImage: 'linear-gradient(to bottom, black 70%, transparent %)',
+          WebkitMaskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)',
         }}
       />
 
