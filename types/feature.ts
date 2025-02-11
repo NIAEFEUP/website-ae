@@ -7,4 +7,5 @@ export type Feature = {
   description?: string;
   details?: string[]; 
   href?: string;
+  category?: string;
 };
