@@ -99,8 +99,9 @@ export const historyTimelineData = [
           { label: "Supertaça", value: "Futsal Masculino", classification: "Vencedor" },
           { label: "Taça CAP", value: "Basquetebol Masculino", classification: "Vencedor" },
           { label: "CAP", value: "Futsal Masculino", classification: "Vencedor" },
-          { label: "CNU", value: "Voleibol Masculino", classification: "2º Lugar" },
-          { label: "CNU", value: "Counter-Strike: Global Offensive", classification: "Vencedor" },
+           { label: "CNU", value: "Counter-Strike: Global Offensive", classification: "Vencedor" },
+           { label: "CNU", value: "Voleibol Masculino", classification: "2º Lugar" },
+         
         ]}
       />
     ),
