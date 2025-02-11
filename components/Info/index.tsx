@@ -11,8 +11,6 @@ interface InfoProps {
   sections: InfoSection[];
 }
 
-//FIXME: CORRECT IMAGE PLACEMENT
-
 const Info: React.FC<InfoProps> = ({ sections }) => {
   return (
     <>
@@ -34,9 +32,9 @@ const Info: React.FC<InfoProps> = ({ sections }) => {
                 whileInView="visible"
                 transition={{ duration: 0.5, delay: 0.1 }}
                 viewport={{ once: true }}
-                className={`relative md:block md:w-1/2 flex items-center ${
-                  index % 2 === 0 ? "pr-4 lg:pr-8" : "pl-4 lg:pl-8"
-                }`} // Removed justify-center
+                className={`relative md:w-1/2 flex items-center ${
+                  index % 2 === 0 ? "ustify-start" : "justify-end"
+                }`}
               >
                 <div className="w-full max-w-md aspect-[588/526.5] relative">
                   <Image

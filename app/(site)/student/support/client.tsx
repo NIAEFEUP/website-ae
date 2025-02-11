@@ -31,7 +31,7 @@ const SocialAidClientPage = () => {
         <div className="mx-auto max-w-c-1315 px-4 md:px-8 xl:px-0">
           <div className="animate_top mx-auto text-center">
             <SectionHeader
-              title="Bolsas d e Estudo"
+              title="Bolsas de Estudo"
               description="Descobre as diversas oportunidades de bolsas de estudo disponíveis para apoiar o teu percurso académico."
             />
           </div>
