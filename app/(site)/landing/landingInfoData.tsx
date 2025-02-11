@@ -8,7 +8,7 @@ export const landingInfoData = [
     text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In convallis tortor.",
     imageSrc: "/images/landing/merch.png",
     link: {
-      path: "store", //link to page
+      path: "/www.instagram.com/aefeup/", //link to page
       text: "Ver Novidades!",
       showIcon: true,
       icon: <ArrowRight size={16} className="text-current" />,
