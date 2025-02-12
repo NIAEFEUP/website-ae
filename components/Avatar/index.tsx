@@ -1,18 +1,10 @@
 import Image from "next/image";
-import { ExternalLink, Facebook, Instagram, Linkedin, Mail } from "lucide-react";
 import { Media, Person, Position } from "@/payload-types";
 import DefaultAvatarImage from "@/public/images/default_avatar.jpg";
+import SocialLink from "../SocialLink";
 
 interface Props {
   person: Person;
-}
-
-const symbols = {
-  "linkedin": <Linkedin className="h-5" />,
-  "instagram": <Instagram className="h-5" />,
-  "email": <Mail className="h-5" />,
-  "facebook": <Facebook className="h-5" />,
-  "website": <ExternalLink className="h-5" />
 }
 
 const Avatar = ({ person }: Props) => {
@@ -40,19 +32,11 @@ const Avatar = ({ person }: Props) => {
         {person.position && <p className="text-sm text-gray-300 dark:text-gray-400 text-center mt-1">
           {(person.position as Position).name}
         </p>}
-        <div className="flex justify-center gap-2.5 mt-2">
-          {person.socials?.map((social) => (
-            <a
-              key={social.type}
-              href={social.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group/btn inline-flex items-center gap-2.5 font-medium text-gray-300 dark:text-manatee transition-all duration-300 hover:text-white dark:hover:text-primary"
-            >
-              {symbols[social.type]}
-            </a>
-          ))}
-        </div>
+      </div>
+      <div className="flex justify-center gap-2.5 mt-2">
+        {person.socials?.map((social) => (
+          <SocialLink key={social.type} social={social} />  
+        ))}
       </div>
     </div>
   );
