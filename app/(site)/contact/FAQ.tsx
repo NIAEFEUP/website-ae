@@ -2,9 +2,13 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import FAQItem from "./FAQItem";
-// import { Faq } from "@/payload-types";
+import { Faq } from "@/payload-types";
 
-const FAQ = ({faqData} : {faqData}) => {
+interface Props {
+  faqData: Faq[];
+}
+
+const FAQ = ({faqData} : Props) => {
   const [activeFaq, setActiveFaq] = useState(1);
 
   const handleFaqToggle = (id: number) => {
