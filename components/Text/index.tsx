@@ -2,14 +2,14 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import ScheduleTable from "../Table";
+import Table from "../ScheduleTable";
 import Button from "../Button";
 
 interface TextSection {
   id: number;
   title?: string;
   subtitle?: string;
-  text?: React.ReactNode [];
+  text?: React.ReactNode[];
   phone?: string;
   email?: string;
   schedule?: { label: string; value: string }[];
@@ -44,7 +44,7 @@ const Text: React.FC<TextProps> = ({ sections }) => {
                   {section.subtitle}
                 </span>}
                 {section.text && <div className="text-justify">{section.text}</div>}
-                {section.schedule && <ScheduleTable data={section.schedule} />}
+                {section.schedule && <Table data={section.schedule} />}
                 {section.phone && (
                   <div>
                     <strong>Phone:</strong>{" "}

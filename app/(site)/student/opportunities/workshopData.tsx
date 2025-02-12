@@ -22,7 +22,7 @@ const workshopData: Feature[] = [
       description: "A AEFEUP em parceria com Ciências e Letras disponibiliza à sua comunidade um vasto conjunto de formações importantes para o contínuo desenvolvimento de competências e conhecimento. A formação é realizada nas instalações da FEUP ou em formato LiveTraining (formação on-line).\nCiência e Letras oferece uma ampla variedade de cursos técnicos para atender às necessidades dos nossos estudantes,  estando certificados em várias áreas incluindo Criação de Plantas de Emergência, Qgis, HL7 Fhir, Photoshop, AutoCad 2D, Revit Architecture, Revit MEP, Solidworks, Excel Avançado, MS Project, MS Word, VBA entre outros.\nCertificado SIGO no final da formação.\nTodos os semestres são partilhadas as formações e os horários disponíveis para os estudantes se inscreverem.\nAs inscrições devem ser feitas presencialmente na secretaria da AEFEUP e fecham até 3 dias antes do início das formações.\n",
       details: [
          "Email: secretaria@aefeup.pt",
-         "Telefone: 225 081 556",
+         "Telefone: (+351) 225 081 556",
       ],
       href: "www.ciencia-letras.pt",
    },

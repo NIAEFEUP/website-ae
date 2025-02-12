@@ -16,8 +16,8 @@ const ServicesPage = () => {
         data={servicesFeaturesData}
         headerInfo={{
           title: "Serviços",
-          subtitle: "Conheça as Nossas Ofertas",
-          description: `Lorem ipsum odor amet, consectetuer adipiscing elit. Ligula mollis nisi justo feugiat facilisis non.`,
+          subtitle: "Conhece as nossas ofertas",
+          description: `Temos à tua disposição vários serviços dos quais podes usufruir!`,
         }}
       />
       <Info sections={infoData} />

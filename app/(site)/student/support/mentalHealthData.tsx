@@ -10,7 +10,7 @@ const mentalHealthData: Feature[] = [
       "O Gabinete de Apoio ao Estudante exerce a sua atividade no âmbito do apoio aos estudantes da FEUP e da promoção do seu bem-estar e sucesso académico.",
     details: [
       "Email: goi@fe.up.pt",
-      "Telefone: 220 413 578",
+      "Telefone: (+351) 220 413 578",
       "Horário: 2ª a 6ª feira das 9:30 às 15:30 ",
     ],
     href: "https://fe.up.pt/goi",
@@ -23,7 +23,7 @@ const mentalHealthData: Feature[] = [
       "Apoio especializado para ajudar o estudante a desenvolver estratégias para a resolução de problemas em domínios de natureza psicossocial, vocacional e/ou de desenvolvimento pessoal.",
     details: [
       "Email: psigoi@fe.up.pt",
-      "Telefone: 220 413 578",
+      "Telefone: (+351) 220 413 578",
       "Horário: 2ª a 6ª feira das 9:30 às 15:30 ",
     ],
     href: "https://sigarra.up.pt/feup/pt/web_base.gera_pagina?p_pagina=FORMULARIO%20GOI",
