@@ -12,7 +12,7 @@ export const FeedbackLinks: CollectionConfig = {
     group: 'AEFEUP'
   },
   access: {
-    read: isStaff,
+    read: () => true,
     create: isStaff,
     update: isStaff,
     delete: isStaff
