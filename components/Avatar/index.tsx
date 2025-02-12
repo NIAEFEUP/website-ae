@@ -13,7 +13,7 @@ const Avatar = ({ person }: Props) => {
   const photo = person.photo as Media;
 
   return (
-    <div className="animate_top group w-50 flex flex-col justify-between rounded-lg border border-stroke bg-white p-5 shadow-solid-10 dark:border-strokedark dark:bg-blacksection dark:shadow-none hover:shadow-solid-4 dark:hover:bg-hoverdark">
+    <div className="animate_top group min-h-72 w-50 flex flex-col justify-around rounded-lg border border-stroke bg-primary p-5 shadow-solid-10 dark:border-strokedark dark:bg-blacksection dark:shadow-none hover:shadow-solid-4 dark:hover:bg-hoverdark">
       <div>
         <Image
           src={photo?.url ?? DefaultAvatarImage.src}
@@ -22,10 +22,14 @@ const Avatar = ({ person }: Props) => {
           height={80}
           className="w-20 h-20 object-cover mx-auto rounded-full"
         />
-        <h6 className="text-para2 font-medium text-black dark:text-white text-center">
-          {person.name}
-        </h6>
-        {person.position && <p className="text-sm text-gray-500 dark:text-gray-400 text-center mt-1">
+        <div className="mt-3">
+          <h6 className="text-2xl font-medium text-white dark:text-white text-center">
+            {person.name}
+          </h6>
+        </div>
+      </div>
+      <div className="">
+        {person.position && <p className="text-sm text-gray-300 dark:text-gray-400 text-center mt-1">
           {(person.position as Position).name}
         </p>}
       </div>

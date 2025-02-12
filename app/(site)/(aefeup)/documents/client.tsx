@@ -36,7 +36,7 @@ const DocumentsPageClient = ({ documents }: DocumentsPageClientProps) => {
             <DialogDescription>
                <iframe
                   src={selectedFile?.url!}
-                  className="w-full h-[700px]"
+                  className="w-full h-[800px]"
                />
             </DialogDescription>
          </DialogContent>
