@@ -32,6 +32,20 @@ const AssociationsClientPage = ({ associations } : Props) => {
         .filter(association => !association.in_aefeup)
         .sort((a, b) => a.name.localeCompare(b.name));
 
+    const drawAssociations = (associations: Association[]) => {
+        return (
+            <div className="flex justify-center items-center mt-10">
+                <div className="flex flex-wrap justify-center items-center mx-auto gap-20">
+                    {associations.map((association, index) => {
+                        return (
+                            <AssociationCard association={association} key={index} />
+                        );
+                    })}
+                </div>
+            </div>
+        );
+    };
+
     return (
         <main className="py-20 lg:py-25 xl:py-30">
 
@@ -45,15 +59,7 @@ const AssociationsClientPage = ({ associations } : Props) => {
                         <h1 className="mx-auto text-center mb-4 text-3xl font-bold text-black dark:text-white md:w-4/5 xl:w-1/2 xl:text-sectiontitle3">
                             Núcleos da AEFEUP
                         </h1>
-                        <div className="flex justify-center items-center mt-10">
-                            <div className="mx-auto grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-5">
-                                {aefeup_associations.map((association, index) => {
-                                    return (
-                                        <AssociationCard association={association} key={index} />
-                                    );
-                                })}
-                            </div>
-                        </div>
+                        {drawAssociations(aefeup_associations)}
                     </motion.section>
                 )}
 
@@ -73,15 +79,7 @@ const AssociationsClientPage = ({ associations } : Props) => {
                     <h1 className="mx-auto text-center mb-4 mt-10 text-3xl font-bold text-black dark:text-white md:w-4/5 xl:w-1/2 xl:text-sectiontitle3">
                         Núcleos e Associações da FEUP
                     </h1>
-                    <div className="flex justify-center items-center mt-10">
-                        <div className="mx-auto grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-5">
-                            {feup_associations.map((association, index) => {
-                                return (
-                                    <AssociationCard association={association} key={index} />
-                                );
-                            })}
-                        </div>
-                    </div>
+                    {drawAssociations(feup_associations)}
                 </motion.section>
                 )}
             </section>
