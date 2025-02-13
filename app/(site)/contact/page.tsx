@@ -43,10 +43,18 @@ const ContactsPage = async () => {
   return (
     <main>
       <div className="pt-20 lg:pt-25 xl:pt-30">
-        <FAQ faqData={faqData} />
+        {
+          faqData.length > 0 && (
+            <FAQ faqData={faqData} />
+          )
+        }
       </div>
       <div className="pt-7 lg:pt-10 xl:pt-15 pb-12 lg:pb-16">
-        <Feedback feedbackData={feedbackLinks}/>
+        {
+          feedbackLinks.length > 0 && (
+            <Feedback feedbackData={feedbackLinks}/>
+          )
+        }
       </div>
     </main>
   );
