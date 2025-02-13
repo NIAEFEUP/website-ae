@@ -83,14 +83,14 @@ const menuData: Menu[] = [
       },
     ],
   },
-  {
+/*   {
     title: "Loja",
     path: "/shop",
+  }, */
+  {
+    title: "Contactos",
+    path: "/contact",
   },
-  //{
-  //  title: "Contactos",
-  //  path: "/contact",
-  //},
 ];
 
 export default menuData;

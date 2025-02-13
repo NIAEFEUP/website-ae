@@ -16,41 +16,20 @@ const Info: React.FC<InfoProps> = ({ sections }) => {
     <>
       {sections.map((section, index) => (
         <section key={section.id} className="overflow-hidden pb-20 lg:pb-25 xl:pb-30">
-          <div className="mx-auto max-w-c-1235 px-4 md:px-8 xl:px-0">
+          <div className="mx-auto max-w-c-1235 px-10 md:px-8 xl:px-0">
             <div
               className={`flex flex-col-reverse md:flex-row items-center ${index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
                 }`}
             >
               {/* Image Section */}
-              <motion.div
-                variants={{
-                  hidden: { opacity: 0, x: index % 2 === 0 ? -20 : 20 },
-                  visible: { opacity: 1, x: 0 },
-                }}
-                initial="hidden"
-                whileInView="visible"
-                transition={{ duration: 0.5, delay: 0.1 }}
-                viewport={{ once: true }}
-                className={`relative md:w-1/2 flex items-center ${index % 2 === 0 ? "ustify-start" : "justify-end"
-                  }`}
-              >
-                <div className="w-full max-w-md aspect-[588/526.5] relative">
-                  <Image
-                    src={section.imageSrc}
-                    alt={section.title}
-                    layout="fill"
-                    objectFit="contain"
-                    className="dark:hidden"
-                  />
-                  <Image
-                    src={section.imageSrc}
-                    alt={section.title}
-                    layout="fill"
-                    objectFit="contain"
-                    className="hidden dark:block"
-                  />
-                </div>
-              </motion.div>
+                <Image
+                  src={section.imageSrc}
+                  alt={section.title}
+                  width={600}
+                  height={600}
+                  objectFit="contain"
+                  className="p-5"
+                />
 
               {/* Text Section */}
               <motion.div

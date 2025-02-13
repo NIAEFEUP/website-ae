@@ -11,7 +11,6 @@ await payload.db.drizzle.execute(sql`
 );
 
 DROP TABLE "board_section_members";
-ALTER TABLE "video" RENAME COLUMN "t_tulo" TO "title";
 CREATE INDEX IF NOT EXISTS "board_section_rels_order_idx" ON "board_section_rels" ("order");
 CREATE INDEX IF NOT EXISTS "board_section_rels_parent_idx" ON "board_section_rels" ("parent_id");
 CREATE INDEX IF NOT EXISTS "board_section_rels_path_idx" ON "board_section_rels" ("path");

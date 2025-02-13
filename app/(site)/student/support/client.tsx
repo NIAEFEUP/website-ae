@@ -76,7 +76,7 @@ const SocialAidClientPage = () => {
       </section>
 
       {/* <!-- CANAIS DE APOIO --> */}
-      <section className="overflow-hidden pb-20 pt-25 lg:pb-25 xl:pb-30">
+      <section className="overflow-hidden pb-20 lg:pb-25 xl:pb-30">
         <div className="mx-auto max-w-c-1315 px-4 md:px-8 xl:px-0">
           <div className="animate_top mx-auto text-center">
             <SectionHeader
