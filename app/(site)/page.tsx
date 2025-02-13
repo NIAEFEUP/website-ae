@@ -54,8 +54,6 @@ const Homepage = async () => {
       <FullScreenImage
         src="/images/landing/aefeup.png"
         alt="Landing Page Background"
-        logoSrc="/images/logo/aefeup.png"
-        logoAlt="AEFEUP Logo"
       />
 
       <Features
