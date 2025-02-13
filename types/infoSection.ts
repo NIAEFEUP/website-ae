@@ -1,8 +1,10 @@
+import React from "react";
+
 export type InfoSection = {
   id: number;
   title: string;
   subtitle: string;
-  text?: string;
+  text?: React.ReactNode;
   phone?: string;
   email?: string;
   avatar?: React.ReactElement;
