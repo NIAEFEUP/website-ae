@@ -21,6 +21,7 @@ const Avatar = ({ person }: Props) => {
           width={80}
           height={80}
           className="w-20 h-20 object-cover mx-auto rounded-full"
+          priority
         />
         <div className="mt-3">
           <h6 className="text-2xl font-medium text-white dark:text-white text-center">

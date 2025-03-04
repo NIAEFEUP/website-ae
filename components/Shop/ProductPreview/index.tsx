@@ -22,6 +22,7 @@ const ProductPreview = ({ product, setCartState, addToCart }: ProductPreviewProp
         width={300}
         height={300}
         className="rounded-t-full"
+        priority
       />
       <div className="flex items-center mt-4">
         <h1 className="text-5xl text-black tracking-tight font-thin font-serif">

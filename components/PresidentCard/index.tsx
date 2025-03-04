@@ -25,6 +25,7 @@ const PresidentCard = ({ person, description, className }: Props) => {
           width={200}
           height={200}
           className="w-40 h-40 md:w-52 md:h-52 lg:w-64 lg:h-64 object-cover mx-auto rounded-full"
+          priority
         />
       )}
       <div className="flex flex-col justify-center items-center">

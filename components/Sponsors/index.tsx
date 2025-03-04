@@ -41,6 +41,7 @@ const Sponsors = ({ sponsors }: Props) => {
                       src={logo?.url ?? ""}
                       alt={logo?.alt ?? ""}
                       fill
+                      priority
                     />
                   </Link>
                 </motion.div>

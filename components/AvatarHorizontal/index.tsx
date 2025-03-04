@@ -24,6 +24,7 @@ const AvatarHorizontal = ({ person, description, className }: Props) => {
           width={80}
           height={80}
           className="w-20 h-20 object-cover mx-auto rounded-full"
+          priority
         />
       )}
       <div className="flex flex-col justify-center">
