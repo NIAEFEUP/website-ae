@@ -16,6 +16,7 @@ export const AssociationCard = ({ association } : Props) => {
                 width={80}
                 height={80}
                 className="w-20 h-20 object-cover mx-auto"
+                priority
             />
 
             <h2 className="text-center text-lg font-semibold mt-1">{association.name}</h2>

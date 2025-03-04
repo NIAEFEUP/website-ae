@@ -71,6 +71,7 @@ const PaymentForm = ({
                 alt="mbway logo"
                 width={100}
                 height={100}
+                priority
               />
             </CardHeader>
           </Card>

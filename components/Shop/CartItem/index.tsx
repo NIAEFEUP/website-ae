@@ -39,6 +39,7 @@ const CartItem = ({ item, removeFromCart, updateItem }: CartItemProps) => {
         width={100}
         height={90}
         className="rounded"
+        priority
       />
       <div className="flex flex-col text-black justify-between flex-grow">
         <div>

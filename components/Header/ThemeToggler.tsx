@@ -16,6 +16,7 @@ const ThemeToggler = () => {
         width={21}
         height={21}
         className="dark:hidden"
+        priority
       />
 
       <Image
@@ -24,6 +25,7 @@ const ThemeToggler = () => {
         width={22}
         height={22}
         className="hidden dark:block"
+        priority
       />
     </button>
   );

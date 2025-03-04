@@ -16,6 +16,7 @@ const ErroPage = () => {
           className="mx-auto mb-7.5"
           width={400}
           height={400}
+          priority
         />
 
         <h2 className="mb-5 text-2xl font-semibold text-black dark:text-white md:text-4xl">

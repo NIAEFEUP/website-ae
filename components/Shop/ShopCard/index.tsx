@@ -32,6 +32,7 @@ const ShopCard = ({ product, addToCart, isProductInCart }: ShopCardProps) => {
         width={700}
         height={900}
         className="w-full max-h-96 min-h-96 min-w-80 max-w-80 object-cover rounded-xl rounded-b-none"
+        priority
       />
       <div className="p-4">
         <p className="mb-2.5 text-black dark:text-white tracking-tight font-semibold text-xl">

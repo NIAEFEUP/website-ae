@@ -19,6 +19,7 @@ const Footer = () => {
                 src="/images/logo/feup.png"
                 alt="Logo"
                 className="dark:hidden"
+                priority
               />
               <Image
                 width={150}
@@ -26,6 +27,7 @@ const Footer = () => {
                 src="/images/logo/feup-white.png"
                 alt="Logo"
                 className="hidden dark:block"
+                priority
               />
             </a>
             <a href="/">
@@ -34,6 +36,7 @@ const Footer = () => {
                 height={200}
                 src="/images/logo/aefeup.png"
                 alt="Logo"
+                priority
               />
             </a>
           </div>
@@ -80,6 +83,7 @@ const Footer = () => {
                 src="/images/logo/niaefeup.svg"
                 alt="Logo"
                 className=""
+                priority
               />
             </a>
           </div>
