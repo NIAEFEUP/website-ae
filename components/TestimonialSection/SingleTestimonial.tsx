@@ -13,7 +13,14 @@ const SingleTestimonial = ({ review }: { review: Testimonial }) => {
           </h3>
           <p>{position}</p>
         </div>
-        <Image width={60} height={50} className="" src={url ? url : ''} alt={name} />
+        <Image 
+          width={60} 
+          height={50} 
+          className="" 
+          src={url ? url : ''} 
+          alt={name}
+          priority
+        />
       </div>
 
       <p>{content}</p>

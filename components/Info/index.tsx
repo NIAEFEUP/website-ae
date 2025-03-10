@@ -29,6 +29,7 @@ const Info: React.FC<InfoProps> = ({ sections }) => {
                   height={600}
                   objectFit="contain"
                   className="p-5"
+                  priority
                 />
 
               {/* Text Section */}
