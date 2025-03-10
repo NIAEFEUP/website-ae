@@ -30,9 +30,9 @@ const AvatarLineup = ({ sections }: Props) => {
     >
       {main_board && (
         <div className="flex flex-col items-center mt-5 gap-7 ">
-          <h3 className="text-black dark:text-white text-3xl font-medium  text-center">Presidência</h3>
+          <h3 className="text-black dark:text-white text-3xl font-medium text-center">Presidência</h3>
           <div className="flex justify-center flex-wrap gap-5 ">
-            {main_board && main_board.members.map((person) => (<Avatar person={person as Person} />))}
+            {main_board && main_board.members.map((person,key) => (<Avatar key={key} person={person as Person} />))}
           </div>
         </div>
       )}
