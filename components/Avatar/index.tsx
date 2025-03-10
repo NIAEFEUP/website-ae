@@ -21,6 +21,8 @@ const Avatar = ({ person }: Props) => {
           width={80}
           height={80}
           className="w-20 h-20 object-cover mx-auto rounded-full"
+          blurDataURL="/images/landing/aefeup.png"
+          placeholder="blur"
           priority
         />
         <div className="mt-3">

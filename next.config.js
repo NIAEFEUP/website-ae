@@ -4,6 +4,7 @@ const { withPayload } = require("@payloadcms/next/withPayload");
 const nextConfig = {
   output: "standalone",
   images: {
+    minimumCacheTTL: 2678400, // 31 days
     domains: ["localhost"],
     remotePatterns: [
       {
