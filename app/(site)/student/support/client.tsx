@@ -42,20 +42,17 @@ const SocialAidClientPage = () => {
         {categories.map((category) => (
           <button
             key={category.filter}
-            className={`px-4 py-2 rounded text-white transition-all duration-200
-              ${
-                selectedCategory === category.filter
-                  ? "bg-[#97321D] font-bold"
-                  : "bg-gray-500 hover:bg-gray-600"
-              }`}
+            className={`py-2 px-4 rounded-lg transition-all duration-300 flex justify-center gap-5 sm:gap-4 ${selectedCategory === category.filter
+              ? "bg-primary text-white"
+              : "bg-gray-200 dark:bg-gray-400 dark:text-black hover:shadow-lg"
+            }`}
             onClick={() =>
-              setSelectedCategory(
-                category.filter
-              )
+              setSelectedCategory(category.filter)
             }
           >
             {category.label}
           </button>
+
         ))}
       </div>
 
