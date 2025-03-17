@@ -38,17 +38,28 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
 
   return (
     <div
-      className="w-full bg-white dark:bg-neutral-950 font-sans md:px-10"
+      className="w-full font-sans md:px-10"
       ref={containerRef}
     >
       <div
         ref={ref}
         className="relative mx-auto max-w-c-1315 pb-20 px-4 md:px-8 xl:px-0"
       >
+        <motion.div
+                    className="flex justify-center sm:my-12.5 md:my-20"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, ease: "easeOut" }}
+                    >
+                    <h1 className="text-3xl font-bold text-black dark:text-white md:text-4xl lg:text-5xl text-center">
+                        Conquistas
+                    </h1>
+                    </motion.div>     
         {data.map((item, index) => (
           <motion.div
             key={index}
-            className="flex justify-start pt-10 md:pt-40 md:gap-10"
+            className="flex justify-start md:gap-10"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
