@@ -36,12 +36,10 @@ const Sponsors = ({ sponsors }: Props) => {
                   viewport={{ once: true }}
                 >
                   <Link href={sponsor.url}>
-                    <Image
+                    <img
                       className="opacity-65 transition-all duration-300 hover:opacity-100 dark:hidden"
                       src={logo?.url ?? ""}
                       alt={logo?.alt ?? ""}
-                      fill
-                      priority
                     />
                   </Link>
                 </motion.div>

@@ -13,30 +13,27 @@ const Footer = () => {
         <div className="flex items-center justify-around flex-wrap m-3 py-10 gap-5">
           <div className="flex flex-col sm:flex-row xl:flex-col items-center gap-2">
             <a href="https://sigarra.up.pt/feup/pt/web_page.inicial">
-              <Image
+              <img
                 width={150}
                 height={150}
                 src="/images/logo/feup.png"
                 alt="Logo"
                 className="dark:hidden"
-                priority
               />
-              <Image
+              <img
                 width={150}
                 height={150}
                 src="/images/logo/feup-white.png"
                 alt="Logo"
                 className="hidden dark:block"
-                priority
               />
             </a>
             <a href="/">
-              <Image
+              <img
                 width={150}
                 height={200}
                 src="/images/logo/aefeup.png"
                 alt="Logo"
-                priority
               />
             </a>
           </div>
@@ -77,13 +74,12 @@ const Footer = () => {
           <div className="flex items-center justify-center gap-5">
             <p>Developed and Powered by <a href="https://niaefeup.pt" className="hover:text-primary">NIAEFEUP</a></p>
             <a href="https://niaefeup.pt">
-              <Image
+              <img
                 width={70}
                 height={70}
                 src="/images/logo/niaefeup.svg"
                 alt="Logo"
                 className=""
-                priority
               />
             </a>
           </div>

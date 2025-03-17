@@ -66,12 +66,11 @@ const PaymentForm = ({
             onClick={() => {}}
           >
             <CardHeader>
-              <Image
+              <img
                 src="/images/shop/mbway.svg"
                 alt="mbway logo"
                 width={100}
                 height={100}
-                priority
               />
             </CardHeader>
           </Card>

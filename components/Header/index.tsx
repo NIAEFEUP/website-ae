@@ -27,12 +27,11 @@ const Header = () => {
       <div className="relative mx-auto max-w-c-1390 items-center justify-between px-4 md:px-8 lg:flex">
         <div className="flex w-full items-center justify-between lg:w-1/4">
           <a href="/">
-            <Image
+            <img
               src="/images/logo/aefeup.svg"
               alt="logo"
               width={119.03}
               height={30}
-              priority
             />
           </a>
 
