@@ -18,7 +18,7 @@ const Sponsors = ({ sponsors }: Props) => {
           {sponsors.map((sponsor, index) => {
             const logo = sponsor.logo as Media;
             return (
-              <div className="animate_top mx-w-full relative block h-10 w-[98px]" key={sponsor.id}>
+              <div className="animate_top mx-w-full relative block h-10 w-40 md:h-30 md:w-40 w-[98px]" key={sponsor.id}>
                 <motion.div
                   variants={{
                     hidden: {

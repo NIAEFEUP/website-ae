@@ -117,11 +117,7 @@ const Header = () => {
                     <Link
                       onClick={() => { setOpenSubmenu(null); setNavigationOpen(!navigationOpen) }}
                       href={`${menuItem.path}`}
-                      className={
-                        pathUrl === menuItem.path
-                          ? "text-primary hover:text-primary"
-                          : "text-white hover:text-primary"
-                      }
+                      className="text-white"
                     >
                       {menuItem.title}
                     </Link>
