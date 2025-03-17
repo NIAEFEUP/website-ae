@@ -15,15 +15,12 @@ const Avatar = ({ person }: Props) => {
   return (
     <div className="animate_top group min-h-72 w-50 flex flex-col justify-around rounded-lg border border-stroke bg-primary p-5 shadow-solid-10 dark:border-strokedark dark:bg-blacksection dark:shadow-none hover:shadow-solid-4 dark:hover:bg-hoverdark">
       <div>
-        <Image
+        <img
           src={photo?.url ?? DefaultAvatarImage.src}
           alt={photo?.alt ?? ""}
           width={80}
           height={80}
           className="w-20 h-20 object-cover mx-auto rounded-full"
-          blurDataURL="/images/landing/aefeup.png"
-          placeholder="blur"
-          priority
         />
         <div className="mt-3">
           <h6 className="text-2xl font-medium text-white dark:text-white text-center">
