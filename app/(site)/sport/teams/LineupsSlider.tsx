@@ -3,6 +3,8 @@
 import { Pagination, EffectCards } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
+import "swiper/css/pagination";
+
 import { Swiper, SwiperSlide } from "swiper/react";
 import { motion } from "framer-motion";
 import ReactDOMServer from "react-dom/server";
@@ -63,7 +65,9 @@ const LineupsSlider = ({ teams }: Props) => (
               <div className="flex justify-center gap-5 my-5 flex-col-reverse sm:flex-row">
                 <AvatarHorizontal person={team.coach as Person} description="Treinador" className="w-fit mx-auto sm:mx-0" />
                 <div className="flex flex-col justify-center text-center sm:text-start">
-                  <p className="font-semibold">Treinos</p>
+                  {team.workouts && team.workouts.length > 0 &&
+                    <p className="font-semibold">Treinos</p>
+                  }
                   {team.workouts?.map((workout, index) => (
                     <p key={index}>{workout.weekDay}: {workout.hour}</p>
                   ))}

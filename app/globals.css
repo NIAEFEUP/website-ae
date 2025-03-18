@@ -35,6 +35,30 @@
   @apply relative pt-[50px];
 }
 
+.swiper-custom-pagination .swiper-pagination-bullet{
+  --tw-shadow: 0px 8px 30px rgba(45, 74, 170, .06);
+
+  width: 3.75rem;
+  height: 3.75rem;
+  
+  background-color: rgb(255 255 255);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  font-size: 1.5rem;
+  line-height: 2rem;
+
+  border-color: rgb(238 238 238);
+  border-width: 1px;
+  border-radius: 50%;
+  cursor: pointer;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin: 0 !important;
+  opacity: 1 !important;
+}
+
 #supportCheckbox:checked ~ div span {
   @apply opacity-100;
 }
