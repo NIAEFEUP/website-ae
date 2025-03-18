@@ -12,6 +12,7 @@ const AssociationsPage = async () => {
 
   const associations = await (await getPayload({ config })).find({
     collection: 'association',
+    limit: 100,
   });
 
   return <AssociationsClientPage associations={associations.docs} />;

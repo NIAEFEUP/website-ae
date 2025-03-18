@@ -12,6 +12,7 @@ const AEFEUPHistoryPage = async () => {
 
   const presidents = await (await getPayload({ config })).find({
     collection: 'president',
+    limit: 100
   });
 
   return <AEFEUPHistoryClientPage presidents={presidents.docs} />;
