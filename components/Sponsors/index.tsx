@@ -18,7 +18,7 @@ const Sponsors = ({ sponsors }: Props) => {
           {sponsors.map((sponsor, index) => {
             const logo = sponsor.logo as Media;
             return (
-              <div className="animate_top mx-w-full relative block h-10 w-[98px]" key={sponsor.id}>
+              <div className="animate_top mx-w-full relative block h-10 w-40 md:h-30 md:w-40 w-[98px]" key={sponsor.id}>
                 <motion.div
                   variants={{
                     hidden: {
@@ -36,12 +36,10 @@ const Sponsors = ({ sponsors }: Props) => {
                   viewport={{ once: true }}
                 >
                   <Link href={sponsor.url}>
-                    <Image
+                    <img
                       className="opacity-65 transition-all duration-300 hover:opacity-100 dark:hidden"
                       src={logo?.url ?? ""}
                       alt={logo?.alt ?? ""}
-                      fill
-                      priority
                     />
                   </Link>
                 </motion.div>

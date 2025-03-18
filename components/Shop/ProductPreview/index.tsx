@@ -16,13 +16,12 @@ const ProductPreview = ({ product, setCartState, addToCart }: ProductPreviewProp
 
   return (
     <>
-      <Image
+      <img
         src={productImage.url ?? ""}
         alt={productImage.alt ?? ""}
         width={300}
         height={300}
         className="rounded-t-full"
-        priority
       />
       <div className="flex items-center mt-4">
         <h1 className="text-5xl text-black tracking-tight font-thin font-serif">

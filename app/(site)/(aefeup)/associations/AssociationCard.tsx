@@ -10,13 +10,12 @@ export const AssociationCard = ({ association } : Props) => {
     const logo = association.logo as Media;
     return (
         <div className="flex flex-col justify-center w-fit">
-            <Image
+            <img
                 src={logo?.url ?? ""}
                 alt={logo?.alt ?? ""}
                 width={80}
                 height={80}
                 className="w-20 h-20 object-cover mx-auto"
-                priority
             />
 
             <h2 className="text-center text-lg font-semibold mt-1">{association.name}</h2>

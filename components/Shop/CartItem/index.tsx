@@ -33,13 +33,12 @@ const CartItem = ({ item, removeFromCart, updateItem }: CartItemProps) => {
 
   return (
     <div className="flex gap-5 border p-2 rounded">
-      <Image
+      <img
         src={productImage.url ?? ""}
         alt={productImage.alt ?? ""}
         width={100}
         height={90}
         className="rounded"
-        priority
       />
       <div className="flex flex-col text-black justify-between flex-grow">
         <div>
