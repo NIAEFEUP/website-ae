@@ -27,7 +27,7 @@ const Text: React.FC<TextProps> = ({ sections }) => {
         <section key={section.id} className="overflow-hidden pb-6">
           <div className="mx-auto max-w-c-1235 px-4 md:px-8 xl:px-0">
             <div className="flex flex-col items-start gap-6 lg:gap-8">
-              <motion.div
+{/*               <motion.div
                 variants={{
                   hidden: { opacity: 0, x: index % 2 === 0 ? 20 : -20 },
                   visible: { opacity: 1, x: 0 },
@@ -36,7 +36,7 @@ const Text: React.FC<TextProps> = ({ sections }) => {
                 whileInView="visible"
                 transition={{ duration: 0.5, delay: 0.1 }}
                 viewport={{ once: true }}
-              >
+              > */}
                 {section.title && <h2 className="relative mb-4 text-2xl font-bold text-black dark:text-white">
                   {section.title}
                 </h2>}
@@ -68,7 +68,7 @@ const Text: React.FC<TextProps> = ({ sections }) => {
                     ))}
                   </div>
                 )}
-              </motion.div>
+{/*               </motion.div> */}
             </div>
           </div>
         </section>
