@@ -11,7 +11,7 @@ export const StudentGuide: CollectionConfig = {
         group: 'Estudante',
     },
     access: {
-        read: isStaff,
+        read: () => true,
         create: isStaff,
         update: isStaff,
         delete: isStaff
