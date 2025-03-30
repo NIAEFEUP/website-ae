@@ -2,8 +2,6 @@
 import { Media } from "@/payload-types";
 import { EventLink } from "@/types/eventType";
 import { motion } from "framer-motion";
-import Image from "next/image";
-
 
 type EventData = {
   eventId: number;
