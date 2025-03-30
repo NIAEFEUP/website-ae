@@ -125,7 +125,7 @@ export default buildConfig({
   },
   upload: {
     limits : {
-      fileSize: 5000000 // 5 mb
+      fileSize: 50000000 // 50 mb
     }
   }
   //livePreview: false, // Lets set it to true if we use pages collection (Globals)
