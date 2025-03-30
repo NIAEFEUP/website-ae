@@ -19,12 +19,12 @@ const DocumentSection = ({ title, folders, setFile }: DocumentFolderProps) => {
    const [selectedFolder, setFolder] = useState<DocumentFolder | null>(null)
 
    return (
-      <section className="px-24">
+      <section className="px-4 md:px-24">
          <h2 className="text-2xl text-black font-bold mt-5 mb-2">{title}</h2>
          <Separator />
          <section className="flex mt-5 gap-3">
-            {folders.map((folder) => (
-               <Card className={`w-52 cursor-pointer bg-gray-50 hover:bg-slate-100 ${selectedFolder?.folder_name === folder.folder_name ? "border-solid-1 border-blue-500 bg-gray-100" : "border-none"}`} onClick={() => { setFolder(selectedFolder?.folder_name === folder.folder_name ? null : folder); }}>
+            {folders.map((folder,key) => (
+               <Card key={key} className={`w-52 cursor-pointer bg-gray-50 hover:bg-slate-100 ${selectedFolder?.folder_name === folder.folder_name ? "border-solid-1 border-blue-500 bg-gray-100" : "border-none"}`} onClick={() => { setFolder(selectedFolder?.folder_name === folder.folder_name ? null : folder); }}>
                   <CardContent className="flex flex-col gap-3 p-4">
                      {selectedFolder?.folder_name === folder.folder_name ?
                         <FolderOpen size={45} color="gray" /> :

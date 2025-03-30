@@ -47,7 +47,7 @@ const LineupsSlider = ({ teams }: Props) => (
           renderBullet: function (index, className) {
             return ReactDOMServer.renderToString(
               <span
-                className={`${className} bg-white [&.swiper-pagination-bullet-active]:bg-slate-100 border border-stroke dark:border-strokedark  cursor-pointer w-15 h-15 flex justify-center items-center borderclassNamep-3 text-2xl rounded-full shadow-solid-10  dark:bg-blacksection dark:shadow-none`}
+                className={`${className} bg-white [&.swiper-pagination-bullet-active]:bg-slate-100 border border-stroke dark:border-strokedark cursor-pointer flex justify-center items-center borderclassNamep-3 text-2xl rounded-full shadow-solid-10  dark:bg-blacksection dark:shadow-none`}
               >
                 {teams[index].emoji}
               </span>

@@ -62,7 +62,7 @@ const Text: React.FC<TextProps> = ({ sections }) => {
                   </div>
                 )}
                 {section.buttons && (
-                  <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
                     {section.buttons.map((button, buttonIndex) => (
                       <Button key={buttonIndex} url={button.url} label={button.label} />
                     ))}
