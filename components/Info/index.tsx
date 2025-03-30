@@ -22,14 +22,11 @@ const Info: React.FC<InfoProps> = ({ sections }) => {
                 }`}
             >
               {/* Image Section */}
-                <Image
+                <img
                   src={section.imageSrc}
                   alt={section.title}
                   width={600}
                   height={600}
-                  objectFit="contain"
-                  className="p-5"
-                  priority
                 />
 
               {/* Text Section */}

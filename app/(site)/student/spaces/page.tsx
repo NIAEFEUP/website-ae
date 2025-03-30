@@ -60,7 +60,7 @@ const SpacesPage = async () => {
   );
 
   return (
-    <section className="pb-20 pt-20 lg:pb-25 xl:pb-30">
+    <section className="pb-20 pt-15 lg:pb-25 xl:pb-30">
       <SpacesPageContent places={mergedPlaces} />
     </section>
   );

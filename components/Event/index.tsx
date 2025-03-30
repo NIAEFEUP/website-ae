@@ -65,11 +65,9 @@ const EventImage= ({eventData} : {eventData:EventData}) => {
               viewport={{ once: true }}
               // className="animate_right relative mx-auto hidden aspect-[588/526.5] md:block md:w-1/2"
             >
-              <Image
+              <img
                 src={eventData.eventImage!.url!}
                 alt="event-image"
-                fill
-                priority
               />
             </motion.div>
           </div>

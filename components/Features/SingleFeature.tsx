@@ -28,12 +28,11 @@ const SingleFeature = ({ feature }: { feature: Feature }) => {
       >
         <div className="relative flex h-16 w-16 items-center justify-center rounded-[4px] bg-primary">
           {typeof icon === "string" ? (
-            <Image 
+            <img
             src={icon} 
             width={36} 
             height={36} 
             alt={title} 
-            priority
             />
           ) : (
             //@ts-ignore
