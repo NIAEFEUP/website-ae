@@ -3,6 +3,8 @@ import Feature from "@/components/Features";
 import motorsportFeaturesData from "./motorsportFeaturesData";
 import Info from "@/components/Info";
 import { motorsportInfoData } from "./motorsportInfoData";
+import { HorizontalTimeline } from "@/components/ui/timeline-horizontal";
+import timelineData from "./timelineData";
 
 export const metadata: Metadata = {
   title: "Motorsport",
@@ -21,6 +23,7 @@ const MotorsportPage = () => {
         }}
       />
       <Info sections={motorsportInfoData} />
+      <HorizontalTimeline data={timelineData} />
     </main>
   );
 };
