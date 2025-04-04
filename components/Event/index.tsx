@@ -2,8 +2,6 @@
 import { Media } from "@/payload-types";
 import { EventLink } from "@/types/eventType";
 import { motion } from "framer-motion";
-import Image from "next/image";
-
 
 type EventData = {
   eventId: number;
@@ -20,9 +18,9 @@ const EventComponent= ({eventData} : {eventData:EventData}) => {
       <div>
         <div className="pb-36 md:pb-24 xl:pb-32">
           <div className="mx-auto max-w-c-1235 overflow-hidden px-4 md:px-8 2xl:px-0">
-            <div className="flex items-center gap-8 lg:gap-32.5">
-              {EventImage({eventData:eventData})}
+            <div className="flex flex-col md:flex-row items-center gap-8 lg:gap-32.5">
               {EventContent({eventData:eventData})}
+              {EventImage({eventData:eventData})}
             </div>
           </div>
         </div>
@@ -33,7 +31,7 @@ const EventComponent= ({eventData} : {eventData:EventData}) => {
       <div>
         <div className="pb-36 md:pb-24 xl:pb-32">
           <div className="mx-auto max-w-c-1235 overflow-hidden px-4 md:px-8 2xl:px-0">
-            <div className="flex items-center gap-8 lg:gap-32.5">
+            <div className="flex flex-col md:flex-row items-center gap-8 lg:gap-32.5">
               {EventContent({eventData:eventData})}
               {EventImage({eventData:eventData})}
             </div>
@@ -46,7 +44,7 @@ const EventComponent= ({eventData} : {eventData:EventData}) => {
 
 const EventImage= ({eventData} : {eventData:EventData}) => {
   return (
-          <div className="animate_right relative mx-auto hidden aspect-[3/2] md:block md:w-1/2">
+          <div className="animate_right relative mx-auto aspect-[3/2] md:w-1/2">
             <motion.div
               variants={{
                 hidden: {
@@ -79,7 +77,7 @@ const EventContent = ({eventData} : {eventData:EventData}) => {
   
   return (
           <div className="animate_left md:w-1/2">
-            <motion.div
+{/*             <motion.div
               variants={{
                 hidden: {
                   opacity: 0,
@@ -96,7 +94,7 @@ const EventContent = ({eventData} : {eventData:EventData}) => {
               transition={{ duration: 1, delay: 0.1 }}
               viewport={{ once: true }}
               // className="animate_left md:w-1/2"
-            >
+            > */}
               <h4 className="font-medium uppercase text-black dark:text-white">
                   {/* Festa de Receção */}
                   {eventType}
@@ -128,7 +126,7 @@ const EventContent = ({eventData} : {eventData:EventData}) => {
                   </a>
                 ))}
               </div>
-            </motion.div>
+{/*             </motion.div> */}
           </div>
 
   )

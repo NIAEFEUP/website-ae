@@ -6,7 +6,7 @@ const landingFeaturesData: Feature[] = [
     id: 1,
     icon: <Building />,
     title: "Cedências de Espaço",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In convallis tortor.",
+    description: "Dispomos de um programa de apoio às estruturas estudantis que permite o aluguer dos espaços da Associação, bem como de materiais que sejam pretendidos. Efetua aqui a tua pré-reserva, verificando o calendário de disponibilidades do edifício e do material.",
     href: "requests"
   },
 /*   {
@@ -20,14 +20,14 @@ const landingFeaturesData: Feature[] = [
     id: 2,
     icon: <HandPlatter />,
     title: "Ementas",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In convallis tortor.",
+    description: "Oferecemos uma seleção variada de snacks, refeições e bebidas no nosso bar. Consulta aqui nossa ementa fixa e semanal para aproveitares os melhores momentos de pausa entre as aulas.",
     href: "menu"
   },
   {
     id: 3,
     icon: <Map />,
     title: "Espaços",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In convallis tortor.",
+    description: "Apresentamos-te informações detalhadas sobre os locais de alojamento, alimentação, estudo e mobilidade, com horários de funcionamento atualizados e um mapa interativo que te ajuda a localizar rapidamente cada um desses espaços. Explora aqui o mapa e planifica o teu tempo!",
     href: "student/spaces"
   },
 /*   {

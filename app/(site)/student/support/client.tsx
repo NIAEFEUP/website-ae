@@ -57,16 +57,18 @@ const SocialAidClientPage = () => {
       </div>
 
         {/* Scholarships List*/}
-        <div className="flex flex-wrap justify-center gap-4 xl:gap-6 m-10 w-full">
-          {filterScholarships(selectedCategory).map((feature) => (
-              <LearnMore
-                icon={feature.icon}
-                title={feature.title}
-                description={feature.description}
-                href={feature.href}
-                buttonLabel="Saber mais"
-              />
-          ))}
+        <div className="flex justify-center m-5">
+          <div className="flex flex-col md:flex-row gap-6 w-full lg:w-2/3">
+            {filterScholarships(selectedCategory).map((feature) => (
+                <LearnMore
+                  icon={feature.icon}
+                  title={feature.title}
+                  description={feature.description}
+                  href={feature.href}
+                  buttonLabel="Saber mais"
+                />
+            ))}
+          </div>
         </div>
 
 

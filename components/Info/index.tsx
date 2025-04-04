@@ -27,6 +27,7 @@ const Info: React.FC<InfoProps> = ({ sections }) => {
                   alt={section.title}
                   width={600}
                   height={600}
+                  className="p-5"
                 />
 
               {/* Text Section */}
@@ -39,7 +40,7 @@ const Info: React.FC<InfoProps> = ({ sections }) => {
                 whileInView="visible"
                 transition={{ duration: 0.5, delay: 0.1 }}
                 viewport={{ once: true }}
-                className="md:w-1/2 flex-1 space-y-4"
+                className="md:w-1/2 flex-1 space-y-4 m-2"
               >
                 <h2 className="relative mb-4 text-3xl font-bold text-black dark:text-white xl:text-hero">
                   {section.title}

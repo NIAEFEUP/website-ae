@@ -70,9 +70,9 @@ const MenuDescription = ({ sections }: Props) => {
 
           <div
             className="flex flex-col md:w-3/4 items-center"
-            style={{ minHeight: menuHeight }}
+/*             style={{ minHeight: menuHeight }} */
           >
-            <div className="p-5 rounded-lg shadow-lg bg-gray-200 w-full min-h-80">
+            <div className="p-5 rounded-lg shadow-lg bg-gray-200 w-full">
               <h3 className="text-2xl font-semibold mb-4 text-center">
                 {sections[selected]?.name}
               </h3>

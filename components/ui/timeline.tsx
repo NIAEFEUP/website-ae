@@ -57,7 +57,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
             {/* Sticky Title */}
             <div className="sticky flex flex-col md:flex-row z-40 items-center top-40 self-start max-w-xs lg:max-w-[405px] md:w-full">
               <motion.div
-                className="h-10 absolute left-3 md:left-3 w-10 rounded-full bg-white dark:bg-black flex items-center justify-center"
+                className="h-10 absolute left-1 md:left-3 w-10 rounded-full bg-white dark:bg-black flex items-center justify-center"
                 initial={{ scale: 0 }}
                 whileInView={{ scale: 1 }}
                 viewport={{ once: true }}
@@ -80,7 +80,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
 
             {/* Main Content */}
             <motion.div
-              className="relative pl-20 pr-4 md:pl-4 w-full"
+              className="relative pl-10 pr-4 md:pl-4 w-full"
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}

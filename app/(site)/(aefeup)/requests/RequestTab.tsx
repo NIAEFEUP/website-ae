@@ -106,7 +106,7 @@ export default function RequestTab({ materialData, availableSpaces, regulation }
 
   return (
     <>
-      <section className="relative pb-20 pt-18.5 lg:pb-22.5">
+      <section className="relative pb-20 lg:pb-22.5">
         <div className="relative mx-auto max-w-c-1390 px-4 md:px-8 2xl:px-0">
           <SectionHeader
             title="Pedido de Reserva de Espaço e Material"
