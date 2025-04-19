@@ -1,5 +1,4 @@
 import { Association, Media } from "@/payload-types";
-import Image from "next/image";
 import SocialLink from "@/components/SocialLink";
 
 interface Props {
@@ -9,7 +8,7 @@ interface Props {
 export const AssociationCard = ({ association } : Props) => {
     const logo = association.logo as Media;
     return (
-        <div className="flex flex-col justify-center w-fit">
+        <div className="flex flex-col justify-center w-fit bg-white">
             <img
                 src={logo?.url ?? ""}
                 alt={logo?.alt ?? ""}
