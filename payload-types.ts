@@ -239,7 +239,7 @@ export interface Association {
   address?: string | null;
   socials?:
     | {
-        type: 'website' | 'linkedin' | 'facebook' | 'instagram';
+        type: 'linkedin' | 'facebook' | 'website' | 'instagram' | 'email';
         link: string;
         id?: string | null;
       }[]
