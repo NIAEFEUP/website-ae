@@ -1,5 +1,6 @@
 import { isStaff } from '@/lib/utils';
 import type { CollectionConfig } from 'payload'
+import { Socials } from './SocialsField';
 
 
 export const Association: CollectionConfig = {
@@ -50,49 +51,7 @@ export const Association: CollectionConfig = {
             label: 'Morada',
             type: 'textarea',
         },
-
-        // TODO: This is repeated in Person.ts. Find some way to share this field
-        {
-            name: 'socials',
-            label: 'Redes sociais',
-            type: 'array',
-            fields: [
-                {
-                    name: 'type',
-                    label: 'Plataforma',
-                    type: 'select',
-                    hasMany: false,
-                    options: [
-                        {
-                            label: 'Website',
-                            value: 'website'
-                        },
-                        {
-                            label: 'Linkedin',
-                            value: 'linkedin',
-                        },
-                        {
-                            label: 'Facebook',
-                            value: 'facebook',
-                        },
-                        {
-                            label: 'Instagram',
-                            value: 'instagram',
-                        },
-                    ],
-                    required: true,
-                },
-                {
-                    name: 'link',
-                    label: 'Link',
-                    type: 'text',
-                    required: true,
-                    admin: {
-                        placeholder: 'https://niaefeup.pt',
-                    }
-                },
-            ],
-        },
+        Socials
     ],
 };
 
