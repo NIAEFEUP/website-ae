@@ -11,6 +11,7 @@ const Avatar = ({ person }: Props) => {
 
   if (!person) return null;
   const photo = person.photo as Media;
+  const socials = person.socials || [];
 
   return (
     <div className="animate_top group min-h-72 w-50 flex flex-col justify-around rounded-lg border border-stroke bg-primary p-5 shadow-solid-10 dark:border-strokedark dark:bg-blacksection dark:shadow-none hover:shadow-solid-4 dark:hover:bg-hoverdark">
@@ -28,16 +29,21 @@ const Avatar = ({ person }: Props) => {
           </h6>
         </div>
       </div>
-      <div className="">
-        {person.position && <p className="text-sm text-gray-300 dark:text-gray-400 text-center mt-1">
-          {(person.position as Position).name}
-        </p>}
-      </div>
-      <div className="flex justify-center gap-2.5 mt-2">
-        {person.socials?.map((social) => (
-          <SocialLink key={social.type} social={social} />  
-        ))}
-      </div>
+      {person.position &&
+        <div>
+          <p className="text-sm text-gray-300 dark:text-gray-400 text-center mt-1">
+            {(person.position as Position).name}
+          </p>
+        </div>
+      }
+
+      {socials.length > 0 && (
+        <div className="flex justify-center gap-2.5 mt-2">
+          {socials.map((social) => (
+            <SocialLink key={social.type} social={social} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };
