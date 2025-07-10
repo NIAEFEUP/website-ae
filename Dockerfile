@@ -29,7 +29,7 @@ COPY .env .env
 # Build using GH secrets (for registry)
 FROM base AS prod-build-with-content-vars
 
-ARG AE_DOTENV_CONTENT
+ARG AE_VARS_CONTENT
 RUN echo "${AE_VARS_CONTENT}" | base64 -d > .env
 
 # Build source code for production
