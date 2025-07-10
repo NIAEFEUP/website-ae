@@ -1,0 +1,27 @@
+name: Dump Env File to Server
+
+on:
+  workflow_dispatch:
+
+jobs:
+  dump-env:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Decode AE_VARS_CONTENT to .env
+        run: |
+          echo "${AE_VARS_CONTENT}" | base64 -d > .env
+          echo ".env file decoded and ready to upload"
+        env:
+          AE_VARS_CONTENT: ${{ secrets.AE_VARS_CONTENT }}
+
+      - name: Set up SSH private key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+        shell: bash
+
+      - name: Upload .env to server
+        run: |
+          scp -o StrictHostKeyChecking=no .env root@144.91.115.254:/root/.env
