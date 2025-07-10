@@ -1,13 +1,13 @@
 ARG AE_VARS_METHOD=dotenv
 
 FROM node:22.12.0-alpine AS base
+RUN npm install -g corepack@latest
 
 # Install dependencies only when needed
 FROM base AS deps
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
-RUN npm install -g corepack@latest
 RUN corepack enable pnpm && pnpm i --frozen-lockfile
 
 # Development environment run
