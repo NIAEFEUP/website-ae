@@ -1,6 +1,9 @@
 ARG AE_VARS_METHOD=dotenv
 
 FROM node:22.12.0-alpine AS base
+
+WORKDIR /app
+
 RUN npm install -g corepack@latest
 
 # Install dependencies only when needed
@@ -12,7 +15,6 @@ RUN corepack enable pnpm && pnpm i --frozen-lockfile
 
 # Development environment run
 FROM base AS dev
-WORKDIR /app
 
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
@@ -34,14 +36,12 @@ RUN echo "${AE_VARS_CONTENT}" | base64 -d > .env
 
 # Build source code for production
 FROM prod-build-with-${AE_VARS_METHOD} AS builder
-WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 RUN corepack enable pnpm && pnpm run build
 
 # Production image, copy all the files and run next
 FROM base AS prod 
-WORKDIR /app
 ENV NODE_ENV production
 
 RUN addgroup --system --gid 1001 nodejs
