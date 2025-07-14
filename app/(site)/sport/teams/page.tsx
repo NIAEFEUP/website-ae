@@ -4,6 +4,8 @@ import { getPayload } from 'payload'
 import config from 'payload.config'
 import SectionHeader from "@/components/Common/SectionHeader";
 
+export const dynamic = 'force-dynamic'
+
 export const metadata: Metadata = {
   title: "Seleções",
   description: "Equipas de desporto da AEFEUP.",

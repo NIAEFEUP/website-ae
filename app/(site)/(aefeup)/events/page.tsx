@@ -7,6 +7,7 @@ import { Metadata } from "next";
 
 export const revalidate = 10
 export const dynamicParams = true
+export const dynamic = 'force-dynamic'
 
 export const metadata: Metadata = {
   title: "Eventos",
@@ -14,9 +15,9 @@ export const metadata: Metadata = {
 };
 
 async function getEvents() {
-  if(process.env.IS_BUILD) {
-     console.log('skipping getProjects DB call during build')
-     return []
+  if (process.env.IS_BUILD) {
+    console.log('skipping getProjects DB call during build')
+    return []
   }
 
   const payload = await getPayload({ config })

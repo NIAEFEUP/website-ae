@@ -4,6 +4,10 @@ import { getPayload } from "payload";
 import config from "payload.config";
 import { Feedback } from "./Feedback";
 
+export const revalidate = 10
+export const dynamicParams = true
+export const dynamic = 'force-dynamic'
+
 export const metadata: Metadata = {
   title: "Contacto",
   description: "Contacta-nos para qualquer dúvida ou sugestão. Estamos aqui para ajudar!",
@@ -34,7 +38,7 @@ async function getFeedbackLinks() {
     collection: 'feedbacklinks'
   })).docs;
 
-  return feedbackLinks  
+  return feedbackLinks
 }
 
 const ContactsPage = async () => {
@@ -46,7 +50,7 @@ const ContactsPage = async () => {
         <FAQ faqData={faqData} />
       </div>
       <div className="pt-7 lg:pt-10 xl:pt-15 pb-12 lg:pb-16">
-        <Feedback feedbackData={feedbackLinks}/>
+        <Feedback feedbackData={feedbackLinks} />
       </div>
     </main>
   );

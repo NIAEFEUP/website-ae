@@ -7,11 +7,12 @@ import config from 'payload.config';
 
 export const revalidate = 10
 export const dynamicParams = true
+export const dynamic = 'force-dynamic'
 
 async function getStudentGuide() {
-  if(process.env.IS_BUILD) {
-     console.log('skipping getStudentGuide DB call during build')
-     return []
+  if (process.env.IS_BUILD) {
+    console.log('skipping getStudentGuide DB call during build')
+    return []
   }
 
   const payload = await getPayload({ config });
@@ -23,9 +24,9 @@ async function getStudentGuide() {
 }
 
 async function getLinksData() {
-  if(process.env.IS_BUILD) {
-     console.log('skipping getLinksData DB call during build')
-     return []
+  if (process.env.IS_BUILD) {
+    console.log('skipping getLinksData DB call during build')
+    return []
   }
 
   const payload = await getPayload({ config });
@@ -33,7 +34,7 @@ async function getLinksData() {
     collection: "link"
   })).docs
 
-  return linksData 
+  return linksData
 }
 
 

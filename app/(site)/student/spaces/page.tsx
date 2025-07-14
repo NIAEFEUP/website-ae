@@ -4,6 +4,10 @@ import { getPayload } from 'payload'
 import config from 'payload.config'
 import { Place } from '@/payload-types';
 
+export const revalidate = 10
+export const dynamicParams = true
+export const dynamic = 'force-dynamic'
+
 export const metadata: Metadata = {
   title: "Espaços",
   description: "Mapa Interativo para facilitar a tua experiência universitária: Espaços de Estudo, Alimentação, Alojamento e Transporte.",
@@ -24,8 +28,8 @@ const haversineDistance = (lat1, lon1, lat2, lon2) => {
   const deltaLambda = (lon2 - lon1) * Math.PI / 180;
 
   const a = Math.sin(deltaPhi / 2) * Math.sin(deltaPhi / 2) +
-            Math.cos(phi1) * Math.cos(phi2) *
-            Math.sin(deltaLambda / 2) * Math.sin(deltaLambda / 2);
+    Math.cos(phi1) * Math.cos(phi2) *
+    Math.sin(deltaLambda / 2) * Math.sin(deltaLambda / 2);
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
   return R * c; // Distance in meters
@@ -54,7 +58,7 @@ const SpacesPage = async () => {
     category: 'Alimentação',
   }));
 
-  const mergedPlaces = places.concat(placesData).sort((a,b) =>
+  const mergedPlaces = places.concat(placesData).sort((a, b) =>
     haversineDistance(refLat, refLon, a.position.lat, a.position.lng) -
     haversineDistance(refLat, refLon, b.position.lat, b.position.lng)
   );

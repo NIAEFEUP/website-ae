@@ -11,6 +11,7 @@ import Sponsors from "@/components/Sponsors";
 
 export const revalidate = 10
 export const dynamicParams = true
+export const dynamic = 'force-dynamic'
 
 export const metadata: Metadata = {
   title: "AEFEUP",
@@ -18,7 +19,7 @@ export const metadata: Metadata = {
 };
 
 async function getTestimonials() {
-  if(process.env.IS_BUILD) {
+  if (process.env.IS_BUILD) {
     console.log('skipping getTestimonials DB call during build')
     return []
   }
@@ -32,7 +33,7 @@ async function getTestimonials() {
 }
 
 async function getSponsors() {
-  if(process.env.IS_BUILD) {
+  if (process.env.IS_BUILD) {
     console.log('skipping getSponsors DB call during build')
     return []
   }
