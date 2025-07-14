@@ -4,6 +4,8 @@ import servicesFeaturesData from './servicesFeaturesData';
 import Info from "@/components/Info";
 import { infoData } from "./servicesInfoData";
 
+export const dynamic = 'force-dynamic'
+
 export const metadata: Metadata = {
   title: "Serviços",
   description: "Informações sobre os serviços oferecidos pela AEFEUP, incluindo a Secretaria e Loja, Cafetaria e Reprografia. Detalhes sobre horários de atendimento e formas de contato.",

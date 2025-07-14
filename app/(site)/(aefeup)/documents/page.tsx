@@ -5,29 +5,30 @@ import config from "payload.config";
 
 export const revalidate = 10
 export const dynamicParams = true
+export const dynamic = 'force-dynamic'
 
 export const metadata: Metadata = {
-   title: "Documentos",
-   description: "Nesta página podes ver vários documentos relacionados com a AEFEUP e a comunidade FEUP.",
- };
+  title: "Documentos",
+  description: "Nesta página podes ver vários documentos relacionados com a AEFEUP e a comunidade FEUP.",
+};
 
 async function getDocuments() {
-   if(process.env.IS_BUILD) {
-      console.log('skipping getProjects DB call during build')
-      return []
-   }
+  if (process.env.IS_BUILD) {
+    console.log('skipping getProjects DB call during build')
+    return []
+  }
 
-   const payload = await getPayload({ config });
-   const documents = await payload.find({
-      collection: "documentFolder",
-   });
+  const payload = await getPayload({ config });
+  const documents = await payload.find({
+    collection: "documentFolder",
+  });
 
-   return documents.docs
+  return documents.docs
 }
- 
+
 const DocumentsPage = async () => {
-   const documents = await getDocuments()
-   return <DocumentsPageClient documents={documents}></DocumentsPageClient>
+  const documents = await getDocuments()
+  return <DocumentsPageClient documents={documents}></DocumentsPageClient>
 }
 
 export default DocumentsPage
