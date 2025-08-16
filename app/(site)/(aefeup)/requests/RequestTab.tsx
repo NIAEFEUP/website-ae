@@ -151,6 +151,14 @@ export default function RequestTab({ materialData, availableSpaces, regulation }
                     <label htmlFor="responsible_name">Nome do responsável <span className="text-primary">*</span></label>
                     <input type="text" name="responsible_name" id="responsible_name" className="p-2 border rounded" required />
                   </div>
+                  <div className="flex flex-col p-2">
+                    <label htmlFor="contact_number">Contacto telefónico <span className="text-primary">*</span></label>
+                    <input type="text" name="contact_number" id="contact_number" className="p-2 border rounded" required />
+                  </div>
+                  <div className="flex flex-col p-2">
+                    <label htmlFor="email">Email de Contacto <span className="text-primary">*</span></label>
+                    <input type="text" name="email" id="email" className="p-2 border rounded" required />
+                  </div>
                   <div className="p-2 flex flex-col">
                     <label htmlFor="space">Espaço <span className="text-primary">*</span></label>
                     <select name="space" id="space" className="p-3 border bg-white rounded" required>
@@ -161,10 +169,6 @@ export default function RequestTab({ materialData, availableSpaces, regulation }
                     </select>
                   </div>
                   <div className="p-2 flex flex-col">
-                    <label htmlFor="num_people">Número de pesssoas <span className="text-primary">*</span></label>
-                    <input type="number" min={0} max={250} name="num_people" id="num_people" className="p-2 border rounded" required />
-                  </div>
-                  <div className="p-2 flex flex-col">
                     <label htmlFor="start_date">Data de Início <span className="text-primary">*</span></label>
                     <DatePickerComponent currentDate={startDate} setDate={setStartDate} />
                   </div>
@@ -172,13 +176,9 @@ export default function RequestTab({ materialData, availableSpaces, regulation }
                     <label htmlFor="end_date">Data de Fim <span className="text-primary">*</span></label>
                     <DatePickerComponent currentDate={endDate} setDate={setEndDate} minDate={startDate} />
                   </div>
-                  <div className="flex flex-col p-2">
-                    <label htmlFor="contact_number">Contacto telefónico <span className="text-primary">*</span></label>
-                    <input type="text" name="contact_number" id="contact_number" className="p-2 border rounded" required />
-                  </div>
-                  <div className="flex flex-col p-2">
-                    <label htmlFor="email">Email de Contacto <span className="text-primary">*</span></label>
-                    <input type="text" name="email" id="email" className="p-2 border rounded" required />
+                  <div className="p-2 flex flex-col">
+                    <label htmlFor="num_people">Número de pesssoas <span className="text-primary">*</span></label>
+                    <input type="number" min={0} max={250} name="num_people" id="num_people" className="p-2 border rounded" required />
                   </div>
                   <div className="flex flex-col p-2">
                     <label htmlFor="">Descrição do Evento <span className="text-primary">*</span></label>
@@ -235,6 +235,18 @@ export default function RequestTab({ materialData, availableSpaces, regulation }
                   <div className="flex flex-col p-2">
                     <label htmlFor="email">Email de Contacto <span className="text-primary">*</span></label>
                     <input type="text" name="email" id="email" className="p-2 border rounded" required />
+                  </div>
+                  <div className="p-2 flex flex-col">
+                    <label htmlFor="start_date">Data de Início <span className="text-primary">*</span></label>
+                    <DatePickerComponent currentDate={startDate} setDate={setStartDate} />
+                  </div>
+                  <div className="p-2 flex flex-col">
+                    <label htmlFor="end_date">Data de Fim <span className="text-primary">*</span></label>
+                    <DatePickerComponent currentDate={endDate} setDate={setEndDate} minDate={startDate} />
+                  </div>
+                  <div className="flex flex-col p-2">
+                    <label htmlFor="">Descrição do Evento <span className="text-primary">*</span></label>
+                    <textarea name="event_description" id="event_description" className="flex-grow p-2 border rounded" required />
                   </div>
                   <MaterialSelector materialData={materialData} />
                   <div className="flex flex-col p-2">
