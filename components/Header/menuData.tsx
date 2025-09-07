@@ -43,14 +43,14 @@ const menuData: Menu[] = [
     title: "Estudante",
     path: "student",
     submenu: [
-      {
-        title: "Bem-vindo à FEUP",
-        path: "welcome"
-      },
-      {
-        title: "Guia do Estudante",
-        path: "guide"
-      },
+      // {
+      //   title: "Bem-vindo à FEUP",
+      //   path: "welcome"
+      // },
+      // {
+      //   title: "Guia do Estudante",
+      //   path: "guide"
+      // },
       {
         title: "Espaços",
         path: "spaces"
@@ -73,20 +73,20 @@ const menuData: Menu[] = [
         title: "História e Troféus",
         path: "history"
       },
-      {
-        title: "Seleções",
-        path: "teams"
-      },
+      // {
+      //   title: "Seleções",
+      //   path: "teams"
+      // },
       {
         title: "Motorsport",
         path: "motorsport"
       },
     ],
   },
-/*   {
-    title: "Loja",
-    path: "/shop",
-  }, */
+  /*   {
+      title: "Loja",
+      path: "/shop",
+    }, */
   {
     title: "Contactos",
     path: "/contact",
