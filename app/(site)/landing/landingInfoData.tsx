@@ -1,6 +1,6 @@
 import { ArrowRight } from "lucide-react";
 
-export const landingInfoData = [
+export const landingInfoData = [/*
   {
     id: 1,
     title: "Temos Novidades!",
@@ -14,5 +14,5 @@ export const landingInfoData = [
       icon: <ArrowRight size={16} className="text-current" />,
     },
 
-  },
+  },*/
 ];
