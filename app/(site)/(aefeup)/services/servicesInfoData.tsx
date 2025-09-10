@@ -7,7 +7,7 @@ export const infoData : InfoSection[] = [
     title: "Secretaria",
     subtitle: "Secretariado de apoio às necessidades dos estudantes e da direção da AEFEUP.",
     phone: "(+351) 225 081 556",
-    email: "aefeup@aefeup.pt",
+    email: "secretaria@aefeup.pt",
     schedule: [
       { label: 'segunda-feira', value: '10:00–12:30, 14:00–17:30' },
       { label: 'terça-feira', value: '10:00–12:30, 14:00–17:30' },
