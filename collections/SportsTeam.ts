@@ -34,6 +34,16 @@ export const SportsTeam: CollectionConfig = {
             type: 'number',
         },
         {
+            name: 'showOnTeamsPage',
+            label: 'Mostrar na página das equipas',
+            type: 'checkbox',
+            required: true,
+            defaultValue: true,
+            admin: {
+                description: 'Marcar se esta seleção deve aparecer na página das equipas ativas.',
+            },
+        },
+        {
             name: 'coach',
             label: "Treinador",
             type: 'relationship',
@@ -101,7 +111,6 @@ export const SportsTeam: CollectionConfig = {
             label: 'Imagem de fundo',
             type: 'upload',
             relationTo: 'media',
-            required: true,
         },
     ],
 };
