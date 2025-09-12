@@ -56,16 +56,6 @@ export const sectionsData : TextSection[] = [
           </p>
         </>
       )],
-      buttons: [
-        {
-          url: "https://www.up.pt/mentoriaup/inscricoes-para-mentores-as-u-porto-2022-2023/",
-          label: "Candidaturas Mentor",
-        },
-        {
-          url: "https://docs.google.com/forms/d/e/1FAIpQLSebJ9eq6allh6dUumsAxKzJM2Yt93kTXNIRjJ-SGhpc-tGo4g/viewform",
-          label: "Candidaturas Mentorado",
-        },
-      ],
     },
     {
         id: 4,
@@ -111,4 +101,3 @@ export const sectionsData : TextSection[] = [
         )],
       },
   ];
-  

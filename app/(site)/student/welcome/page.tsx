@@ -26,10 +26,23 @@ async function getVideos() {
   return videos
 }
 
-const WelcomePage = async () => {
-  const videos = await getVideos()
+async function getMentoringLinks() {
+  if (process.env.IS_BUILD) {
+    console.log('skipping getMentoringLinks DB call during build')
+    return []
+  }
+  const payload = await getPayload({ config });
+  const links = (await payload.find({
+    collection: "mentoringLinks",
+  })).docs;
+  return links;
+}
 
-  return <WelcomeClientPage videos={videos} />
+const WelcomePage = async () => {
+  const videos = await getVideos();
+  const mentoringLinks = await getMentoringLinks();
+
+  return <WelcomeClientPage videos={videos} mentoringLinks={mentoringLinks} />
 };
 
 export default WelcomePage;

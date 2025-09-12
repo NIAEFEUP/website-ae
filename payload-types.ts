@@ -37,6 +37,7 @@ export interface Config {
     trophies: Trophy;
     competitions: Competition;
     standings: Standing;
+    mentoringLinks: MentoringLink;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -523,6 +524,18 @@ export interface Competition {
 export interface Standing {
   id: number;
   name: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "mentoringLinks".
+ */
+export interface MentoringLink {
+  id: number;
+  title: string;
+  url: string;
+  order?: number | null;
   updatedAt: string;
   createdAt: string;
 }

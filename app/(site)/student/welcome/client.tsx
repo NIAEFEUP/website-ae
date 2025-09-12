@@ -7,12 +7,23 @@ import { sectionsData } from "./sectionsData";
 
 interface Props {
   videos: Video[];
+  mentoringLinks: { url: string; title: string }[];
 }
 
-const WelcomeClientPage = ({ videos }: Props) => {
+const WelcomeClientPage = ({ videos, mentoringLinks }: Props) => {
+  const sections = sectionsData.map((section) => {
+    if (section.id === 3) {
+      return {
+        ...section,
+        buttons: mentoringLinks.map((link) => ({ url: link.url, label: link.title })),
+      };
+    }
+    return section;
+  });
+
   return (
     <>
-      {sectionsData.map((section) => (
+      {sections.map((section) => (
         <section
           key={section.id}
           className={`overflow-hidden pb-20 ${section.id === 1 ? 'pt-25' : ''} lg:pb-25 xl:pb-30`}
@@ -24,11 +35,9 @@ const WelcomeClientPage = ({ videos }: Props) => {
               />
             </div>
           </div>
-            {section.id === 2 && videos.length === 0 && (
-              <Text sections={[{ ...section, title: undefined }]} />
-            )}
-            {section.id !== 2 && <Text sections={[{ ...section, title: undefined }]} />}
-            {section.id === 2 && (
+          {section.id === 2 && videos.length === 0 && <Text sections={[{ ...section, title: undefined }]} />}
+          {section.id !== 2 && <Text sections={[{ ...section, title: undefined }]} />}
+          {section.id === 2 && (
             <div className="flex gap-5 justify-center mt-10">
               {/* TODO: Add animation to delay in each animation */}
               {videos.map((video) => (
