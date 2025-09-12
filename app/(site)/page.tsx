@@ -61,7 +61,7 @@ const Homepage = async () => {
       <Features
         data={landingFeaturesData}
         headerInfo={{
-          title: "Bem Vindo ao site da AEFEUP!",
+          title: "Bem-vindo ao site da AEFEUP!",
           description: `A AEFEUP é mais do que uma Associação de Estudantes – é um símbolo de inovação, união e defesa dos interesses estudantis, representando com orgulho a maior comunidade académica do Porto. Inspirada pelos valores da Engenharia, promove a formação integral dos estudantes, desafiando o presente e moldando o futuro.`,
         }}
       />

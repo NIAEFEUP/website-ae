@@ -24,7 +24,7 @@ const workshopData: Feature[] = [
          "Email: secretaria@aefeup.pt",
          "Telefone: (+351) 225 081 556",
       ],
-      href: "www.ciencia-letras.pt",
+      href: "https://www.ciencia-letras.pt",
    },
 ];
 

@@ -1,4 +1,4 @@
-import { Linkedin, Globe, Instagram, Facebook } from "lucide-react";
+import { Linkedin, Globe, Instagram, Facebook, Mail } from "lucide-react";
 
 interface Props {
   type: string; 
@@ -14,6 +14,8 @@ export const SocialIcon = ({type} : Props) => {
             return <Globe className="h-6" />;
         case "instagram":
             return <Instagram className="h-6" />;
+        case "email":
+            return <Mail className="h-6" />;
         default:
             return <></>
     }

@@ -88,8 +88,8 @@ const menuData: Menu[] = [
       path: "/shop",
     }, */
   {
-    title: "Contactos",
-    path: "/contact",
+    title: "Saber Mais",
+    path: "/learn-more",
   },
 ];
 
