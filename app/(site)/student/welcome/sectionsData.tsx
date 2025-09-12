@@ -3,7 +3,7 @@ import { TextSection } from "@/types/textSection";
 export const sectionsData : TextSection[] = [
     {
       id: 1,
-      title: "Bem Vindo à FEUP",
+      title: "Bem-vindo à FEUP",
 
       text: [(
         <>
