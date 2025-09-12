@@ -38,6 +38,7 @@ export interface Config {
     competitions: Competition;
     standings: Standing;
     mentoringLinks: MentoringLink;
+    opportunities: Opportunity;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -536,6 +537,48 @@ export interface MentoringLink {
   title: string;
   url: string;
   order?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "opportunities".
+ */
+export interface Opportunity {
+  id: number;
+  types?:
+    | {
+        title: string;
+        description?: string | null;
+        opportunities?:
+          | {
+              icon:
+                | 'HandHeart'
+                | 'BookOpenText'
+                | 'HeartHandshake'
+                | 'Heart'
+                | 'Users'
+                | 'GraduationCap'
+                | 'Globe'
+                | 'Sheet'
+                | 'Star'
+                | 'Briefcase'
+                | 'HelpingHand';
+              title: string;
+              description: string;
+              href?: string | null;
+              details?:
+                | {
+                    detail?: string | null;
+                    id?: string | null;
+                  }[]
+                | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt: string;
   createdAt: string;
 }

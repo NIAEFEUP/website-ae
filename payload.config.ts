@@ -35,6 +35,7 @@ import { Trophies } from "./collections/Trophies";
 import { Competitions } from "./collections/Competitions";
 import { Standings } from "./collections/Standings";
 import { MentoringLinks } from "./collections/MentoringLinks";
+import { Opportunities } from "./collections/Opportunities";
 
 import { en } from "@payloadcms/translations/languages/en";
 import { pt } from "@payloadcms/translations/languages/pt";
@@ -75,6 +76,7 @@ export default buildConfig({
     Competitions,
     Standings,
     MentoringLinks,
+    Opportunities,
   ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",
