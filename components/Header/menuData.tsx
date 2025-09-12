@@ -47,10 +47,10 @@ const menuData: Menu[] = [
       //   title: "Bem-vindo à FEUP",
       //   path: "welcome"
       // },
-      // {
-      //   title: "Guia do Estudante",
-      //   path: "guide"
-      // },
+      {
+        title: "Guia do Estudante",
+        path: "guide"
+      },
       {
         title: "Espaços",
         path: "spaces"
