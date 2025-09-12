@@ -41,7 +41,7 @@ const scholarshipData: Feature[] = [
     id: 6,
     icon: <Award />,
     title: "Bolsas DGES (Mérito)",
-    href: "https://www.dges.gov.pt/pt/pagina/bolsas-por-merito",
+    href: "https://www.dges.gov.pt/pt/pagina/informacoes-bolsa-por-merito",
     category: "merito",
   },
   {
