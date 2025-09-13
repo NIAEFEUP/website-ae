@@ -34,6 +34,11 @@ export interface Config {
     place: Place;
     testimonial: Testimonial;
     feedbacklinks: Feedbacklink;
+    trophies: Trophy;
+    competitions: Competition;
+    standings: Standing;
+    mentoringLinks: MentoringLink;
+    opportunities: Opportunity;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -159,6 +164,7 @@ export interface SportsTeam {
   id: number;
   sport_name: string;
   fap_id?: number | null;
+  showOnTeamsPage: boolean;
   coach?: (number | null) | Person;
   workouts?:
     | {
@@ -210,7 +216,7 @@ export interface SportsTeam {
         id?: string | null;
       }[]
     | null;
-  backgroundImage: number | Media;
+  backgroundImage?: number | Media | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -481,6 +487,98 @@ export interface Feedbacklink {
   id: number;
   name: string;
   link: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "trophies".
+ */
+export interface Trophy {
+  id: number;
+  year: string;
+  trophies?:
+    | {
+        competition: number | Competition;
+        sportsTeam: number | SportsTeam;
+        standing: number | Standing;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "competitions".
+ */
+export interface Competition {
+  id: number;
+  name: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "standings".
+ */
+export interface Standing {
+  id: number;
+  name: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "mentoringLinks".
+ */
+export interface MentoringLink {
+  id: number;
+  title: string;
+  url: string;
+  order?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "opportunities".
+ */
+export interface Opportunity {
+  id: number;
+  types?:
+    | {
+        title: string;
+        description?: string | null;
+        opportunities?:
+          | {
+              icon:
+                | 'HandHeart'
+                | 'BookOpenText'
+                | 'HeartHandshake'
+                | 'Heart'
+                | 'Users'
+                | 'GraduationCap'
+                | 'Globe'
+                | 'Sheet'
+                | 'Star'
+                | 'Briefcase'
+                | 'HelpingHand';
+              title: string;
+              description: string;
+              href?: string | null;
+              details?:
+                | {
+                    detail?: string | null;
+                    id?: string | null;
+                  }[]
+                | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt: string;
   createdAt: string;
 }

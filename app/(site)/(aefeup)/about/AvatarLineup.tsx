@@ -17,6 +17,11 @@ const AvatarLineup = ({ sections }: Props) => {
   const main_board = sections.find((e) => e.type === 'presidencia');
   const otherSections = sections.filter((e) => e.type === 'mesa_da_assembleia_geral' || e.type === 'conselho_fiscal');
 
+  if (!main_board) return null;
+
+  const firstRowMembers = main_board.members.slice(0, 3);
+  const secondRowMembers = main_board.members.slice(3);
+
   return (
     <motion.div
       initial="hidden"
@@ -31,8 +36,19 @@ const AvatarLineup = ({ sections }: Props) => {
       {main_board && (
         <div className="flex flex-col items-center mt-5 gap-7 ">
           <h3 className="text-black dark:text-white text-3xl font-medium text-center">Presidência</h3>
-          <div className="flex justify-center flex-wrap gap-5 ">
-            {main_board && main_board.members.map((person,key) => (<Avatar key={key} person={person as Person} />))}
+          <div className="flex flex-col gap-5 w-full">
+            <div className="flex justify-center flex-wrap gap-5">
+              {firstRowMembers.map((person, key) => (
+                <Avatar key={key} person={person as Person} />
+              ))}
+            </div>
+            {secondRowMembers.length > 0 && (
+              <div className="flex justify-center flex-wrap gap-5">
+                {secondRowMembers.map((person, key) => (
+                  <Avatar key={key} person={person as Person} />
+                ))}
+              </div>
+            )}
           </div>
         </div>
       )}
