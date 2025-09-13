@@ -82,7 +82,7 @@ const MenuDescription = ({ sections }: Props) => {
 
               <div className="flex flex-col items-center">
                 <div className="flex flex-col items-center sm:grid sm:grid-cols-2 lg:flex lg:flex-row justify-center gap-4 mb-6">
-                  {sections[selected].members.map((person) => (<Avatar person={person as Person} />))}
+                  {sections[selected].members.map((person) => (<Avatar key={`${crypto.randomUUID()}`}person={person as Person} />))}
                 </div>
               </div>
 
