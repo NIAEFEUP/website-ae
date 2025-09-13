@@ -7,16 +7,28 @@ import SportHistoryTable from "@/components/SportHistoryTable";
 import Text from "@/components/Text";
 import historyTextSections from "./historyTextSection";
 
+export const dynamicParams = true
+export const dynamic = 'force-dynamic'
+
 export const metadata: Metadata = {
   title: "História e Troféus",
   description: "Descobre a história e os troféus da AEFEUP",
 };
 
-const HistoryPage = async () => {
+async function getTrophies() {
+  if (process.env.IS_BUILD) {
+    console.log('skipping getTrophies DB call during build');
+    return [];
+  }
   const payload = await getPayload({ config });
-  const trophiesData = await payload.find({ collection: "trophies"});
+  const trophiesData = await payload.find({ collection: "trophies" });
+  return trophiesData.docs;
+}
 
-  const historyTimelineData = trophiesData.docs.map((yearData: any) => ({
+const HistoryPage = async () => {
+  const trophiesDocs = await getTrophies();
+
+  const historyTimelineData = trophiesDocs.map((yearData: any) => ({
     title: yearData.year,
     content: (
       <SportHistoryTable

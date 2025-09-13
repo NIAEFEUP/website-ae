@@ -3,9 +3,12 @@ import OpportunitiesClientPage from './client';
 import config from "payload.config";
 import { getPayload } from "payload";
 
+export const dynamicParams = true
+export const dynamic = 'force-dynamic'
+
 export const metadata: Metadata = {
-    title: "Oportunidades",
-    description: "Voluntariado e Formações – AEFEUP: Ações Sociais, Desenvolvimento Pessoal e Cursos Certificados.",
+  title: "Oportunidades",
+  description: "Voluntariado e Formações – AEFEUP: Ações Sociais, Desenvolvimento Pessoal e Cursos Certificados.",
 };
 
 async function getOpportunities() {
@@ -21,10 +24,10 @@ async function getOpportunities() {
 }
 
 const OpportunitiesPage = async () => {
-    const opportunities = await getOpportunities();
-    return (
-        <OpportunitiesClientPage opportunities={opportunities} />
-    );
+  const opportunities = await getOpportunities();
+  return (
+    <OpportunitiesClientPage opportunities={opportunities} />
+  );
 }
 
 export default OpportunitiesPage;
