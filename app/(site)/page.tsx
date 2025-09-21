@@ -8,7 +8,7 @@ import config from "payload.config"
 import { getPayload } from "payload"
 import TestimonialSection from "@/components/TestimonialSection";
 import Sponsors from "@/components/Sponsors";
-
+import ScrollArrow from "@/components/ScrollArrow";
 export const revalidate = 10
 export const dynamicParams = true
 export const dynamic = 'force-dynamic'
@@ -52,19 +52,24 @@ const Homepage = async () => {
 
   return (
     <main>
-      <FullScreenImage
-        src="/images/landing/aefeup.jpg"
-        alt="Landing Page Background"
-        logoAlt="AEFEUP Logo"
-      />
+      <div className="relative">
+        <FullScreenImage
+          src="/images/landing/aefeup.jpg"
+          alt="Landing Page Background"
+          logoAlt="AEFEUP Logo"
+        />
+        <ScrollArrow targetId="features-section" />
+      </div>
 
-      <Features
-        data={landingFeaturesData}
-        headerInfo={{
-          title: "Bem-vindo ao site da AEFEUP!",
-          description: `A AEFEUP é mais do que uma Associação de Estudantes – é um símbolo de inovação, união e defesa dos interesses estudantis, representando com orgulho a maior comunidade académica do Porto. Inspirada pelos valores da Engenharia, promove a formação integral dos estudantes, desafiando o presente e moldando o futuro.`,
-        }}
-      />
+      <div id="features-section">
+        <Features
+          data={landingFeaturesData}
+          headerInfo={{
+            title: "Bem-vindo ao site da AEFEUP!",
+            description: `A AEFEUP é mais do que uma Associação de Estudantes – é um símbolo de inovação, união e defesa dos interesses estudantis, representando com orgulho a maior comunidade académica do Porto. Inspirada pelos valores da Engenharia, promove a formação integral dos estudantes, desafiando o presente e moldando o futuro.`,
+          }}
+        />
+      </div>
 
       <Info sections={landingInfoData} />
 
