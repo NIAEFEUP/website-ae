@@ -7,9 +7,7 @@ const ScrollArrow = ({ targetId, label = "Ver mais" }: { targetId: string; label
   };
 
   return (
-      <div className="absolute bottom-8 inset-x-0 flex justify-center z-10" style={{
-        animation: 'bounce 2s infinite'
-      }}>
+    <div className="absolute bottom-8 inset-x-0 flex justify-center z-10 animate-bounce">
       <button
         onClick={handleClick}
         className="flex flex-col items-center text-white hover:text-primary transition-colors duration-300 group"
