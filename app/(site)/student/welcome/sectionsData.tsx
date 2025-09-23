@@ -39,7 +39,7 @@ export const sectionsData : TextSection[] = [
     */
     {
       id: 1,
-      title: "Videos Informativos",
+      title: "Vídeos Informativos",
       text: [(
         <>
           <p>
