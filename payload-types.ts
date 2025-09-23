@@ -30,6 +30,7 @@ export interface Config {
     documentFolder: DocumentFolder;
     docfile: Docfile;
     video: Video;
+    'informative-video': InformativeVideo;
     faq: Faq;
     place: Place;
     testimonial: Testimonial;
@@ -431,6 +432,18 @@ export interface Video {
   height?: number | null;
   focalX?: number | null;
   focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "informative-video".
+ */
+export interface InformativeVideo {
+  id: number;
+  title: string;
+  source: 'Instagram';
+  url: string;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
