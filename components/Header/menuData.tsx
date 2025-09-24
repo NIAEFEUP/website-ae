@@ -43,10 +43,10 @@ const menuData: Menu[] = [
     title: "Estudante",
     path: "student",
     submenu: [
-      // {
-      //   title: "Bem-vindo à FEUP",
-      //   path: "welcome"
-      // },
+      {
+        title: "Bem-vindo à FEUP",
+        path: "welcome"
+      },
       {
         title: "Guia do Estudante",
         path: "guide"
