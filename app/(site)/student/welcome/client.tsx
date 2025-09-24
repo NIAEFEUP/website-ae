@@ -3,6 +3,13 @@
 import SectionHeader from "@/components/Common/SectionHeader";
 import Text from "@/components/Text";
 import InstagramEmbed from "@/components/InstagramEmbed";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 import { InformativeVideo } from "@/payload-types";
 import { sectionsData } from "./sectionsData";
 import { useEffect } from "react";
@@ -46,14 +53,27 @@ const WelcomeClientPage = ({ informativeVideos, mentoringLinks }: Props) => {
           </div>
           {section.id !== 1 && <Text sections={[{ ...section, title: undefined }]} />}
           {section.id === 1 && (
-            <div className="flex gap-5 justify-center mt-10 flex-wrap">
-              {informativeVideos.map((video) => (
-                <InstagramEmbed
-                  key={video.id}
-                  url={video.url}
-                  title={video.title}
-                />
-              ))}
+            <div className="relative mx-auto max-w-6xl mt-10 px-8">
+              <Carousel
+                opts={{
+                  align: "start",
+                  slidesToScroll: 1,
+                }}
+                className="w-full px-12"
+              >
+                <CarouselContent>
+                  {informativeVideos.map((video) => (
+                    <CarouselItem key={video.id} className="basis-full sm:basis-1/2 xl:basis-1/3 flex justify-center items-center">
+                      <InstagramEmbed
+                        url={video.url}
+                        title={video.title}
+                      />
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                <CarouselPrevious className="absolute -left-4 top-1/2 -translate-y-1/2" />
+                <CarouselNext className="absolute -right-4 top-1/2 -translate-y-1/2" />
+              </Carousel>
             </div>
           )}
         </section>
