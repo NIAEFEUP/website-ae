@@ -12,18 +12,18 @@ export const metadata: Metadata = {
   description: "Bem-vindo à FEUP!",
 };
 
-async function getVideos() {
+async function getInformativeVideos() {
   if (process.env.IS_BUILD) {
-    console.log('skipping getVideos DB call during build')
+    console.log('skipping getInformativeVideos DB call during build')
     return []
   }
 
   const payload = await getPayload({ config });
-  const videos = (await payload.find({
-    collection: "video",
+  const informativeVideos = (await payload.find({
+    collection: "informative-video",
   })).docs
 
-  return videos
+  return informativeVideos
 }
 
 async function getMentoringLinks() {
@@ -39,10 +39,10 @@ async function getMentoringLinks() {
 }
 
 const WelcomePage = async () => {
-  const videos = await getVideos();
+  const informativeVideos = await getInformativeVideos();
   const mentoringLinks = await getMentoringLinks();
 
-  return <WelcomeClientPage videos={videos} mentoringLinks={mentoringLinks} />
+  return <WelcomeClientPage informativeVideos={informativeVideos} mentoringLinks={mentoringLinks} />
 };
 
 export default WelcomePage;

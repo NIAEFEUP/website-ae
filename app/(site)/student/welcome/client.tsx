@@ -2,17 +2,18 @@
 
 import SectionHeader from "@/components/Common/SectionHeader";
 import Text from "@/components/Text";
-import { Video } from "@/payload-types";
+import InstagramEmbed from "@/components/InstagramEmbed";
+import { InformativeVideo } from "@/payload-types";
 import { sectionsData } from "./sectionsData";
-
+import { useEffect } from "react";
 interface Props {
-  videos: Video[];
+  informativeVideos: InformativeVideo[];
   mentoringLinks: { url: string; title: string }[];
 }
 
-const WelcomeClientPage = ({ videos, mentoringLinks }: Props) => {
+const WelcomeClientPage = ({ informativeVideos, mentoringLinks }: Props) => {
   const sections = sectionsData.map((section) => {
-    if (section.id === 3) {
+    if (section.id === 2) {
       return {
         ...section,
         buttons: mentoringLinks.map((link) => ({ url: link.url, label: link.title })),
@@ -20,6 +21,14 @@ const WelcomeClientPage = ({ videos, mentoringLinks }: Props) => {
     }
     return section;
   });
+
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://www.instagram.com/embed.js';
+    script.async = true;
+    script.defer = true;
+    document.head.appendChild(script);
+  }, []);
 
   return (
     <>
@@ -31,22 +40,20 @@ const WelcomeClientPage = ({ videos, mentoringLinks }: Props) => {
           <div className="mx-auto max-w-c-1315 px-4 md:px-8 xl:px-0">
             <div className="animate_top mx-auto text-center">
               <SectionHeader
-            title={section.title}
+                title={section.title}
               />
             </div>
           </div>
-          {section.id === 2 && videos.length === 0 && <Text sections={[{ ...section, title: undefined }]} />}
-          {section.id !== 2 && <Text sections={[{ ...section, title: undefined }]} />}
-          {section.id === 2 && (
-            <div className="flex gap-5 justify-center mt-10">
-              {/* TODO: Add animation to delay in each animation */}
-              {videos.map((video) => (
-                video.url && (
-                  <div key={video.id} className="flex flex-col justify-center items-center">
-                    <h2 className="text-center mt-5 mb-2 text-xl">{video.title}</h2> {/* TODO: Change to tittle */}
-                    <video src={video.url} controls width={300} />
-                  </div>
-                )))}
+          {section.id !== 1 && <Text sections={[{ ...section, title: undefined }]} />}
+          {section.id === 1 && (
+            <div className="flex gap-5 justify-center mt-10 flex-wrap">
+              {informativeVideos.map((video) => (
+                <InstagramEmbed
+                  key={video.id}
+                  url={video.url}
+                  title={video.title}
+                />
+              ))}
             </div>
           )}
         </section>
@@ -56,3 +63,4 @@ const WelcomeClientPage = ({ videos, mentoringLinks }: Props) => {
 };
 
 export default WelcomeClientPage;
+
