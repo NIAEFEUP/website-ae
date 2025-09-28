@@ -1,6 +1,7 @@
 import { TextSection } from "@/types/textSection";
 
 export const sectionsData : TextSection[] = [
+  /*
     {
       id: 1,
       title: "Bem-vindo à FEUP",
@@ -35,9 +36,10 @@ export const sectionsData : TextSection[] = [
         </>
       )],
     },
+    */
     {
-      id: 2,
-      title: "Videos Informativos",
+      id: 1,
+      title: "Vídeos Informativos",
       text: [(
         <>
           <p>
@@ -47,7 +49,7 @@ export const sectionsData : TextSection[] = [
       )],
     },
     {
-      id: 3,
+      id: 2,
       title: "Programa de Mentoria",
       text: [(
         <>
@@ -57,6 +59,7 @@ export const sectionsData : TextSection[] = [
         </>
       )],
     },
+    /*
     {
         id: 4,
         title: "Estudantes Internacionais",
@@ -100,4 +103,5 @@ export const sectionsData : TextSection[] = [
           </>
         )],
       },
+      */
   ];

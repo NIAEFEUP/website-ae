@@ -27,6 +27,7 @@ import { Event } from "./collections/Event";
 import { DocumentFolder } from "./collections/DocumentFolder";
 import { DocFile } from "./collections/DocFile";
 import { Video } from "./collections/Video";
+import { InformativeVideo } from "./collections/InformativeVideo";
 import { Faq } from "./collections/Faq";
 import { Place } from "./collections/Place";
 import { Testimonal } from "./collections/Testimonial";
@@ -68,6 +69,7 @@ export default buildConfig({
     DocumentFolder,
     DocFile,
     Video,
+    InformativeVideo,
     Faq,
     Place,
     Testimonal,
