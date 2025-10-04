@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { Pool } from 'pg';
 import jwt from 'jsonwebtoken';
 import crypto from 'node:crypto';
+import { broadcastBusUpdate } from '../stream/route';
 
 // Initialize Postgres pool
 const pool = new Pool({
@@ -65,6 +66,9 @@ export async function POST(req: NextRequest) {
       `,
       [busId, lat, lon]
     );
+
+    // Send the update to all connected clients
+    broadcastBusUpdate({ busId, lat, lon, timestamp: new Date().toISOString() });
 
     return NextResponse.json({ success: true, message: 'Bus location updated' });
 
