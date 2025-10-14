@@ -40,9 +40,8 @@ async function getMentoringLinks() {
 
 const WelcomePage = async () => {
   const informativeVideos = await getInformativeVideos();
-  const mentoringLinks = await getMentoringLinks();
 
-  return <WelcomeClientPage informativeVideos={informativeVideos} mentoringLinks={mentoringLinks} />
+  return <WelcomeClientPage informativeVideos={informativeVideos} />
 };
 
 export default WelcomePage;
