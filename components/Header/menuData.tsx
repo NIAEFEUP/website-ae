@@ -22,10 +22,6 @@ const menuData: Menu[] = [
         path: "services"
       },
       {
-        title: "Ementa Bar",
-        path: "menu"
-      },
-      {
         title: "Eventos",
         path: "events"
       },
