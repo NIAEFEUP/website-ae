@@ -40,6 +40,7 @@ export interface Config {
     standings: Standing;
     mentoringLinks: MentoringLink;
     opportunities: Opportunity;
+    'artist-video': ArtistVideo;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -592,6 +593,18 @@ export interface Opportunity {
         id?: string | null;
       }[]
     | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "artist-video".
+ */
+export interface ArtistVideo {
+  id: number;
+  title: string;
+  source: 'Instagram';
+  url: string;
   updatedAt: string;
   createdAt: string;
 }

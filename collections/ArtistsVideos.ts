@@ -2,15 +2,15 @@ import { isStaff } from '@/lib/utils'
 import type { CollectionConfig } from 'payload'
 import { instagramVideoFields } from './InstagramVideoFields'
 
-export const InformativeVideo: CollectionConfig = {
-  slug: 'informative-video',
+export const ArtistsVideo: CollectionConfig = {
+  slug: 'artist-video',
   labels: {
-    singular: 'Vídeo Informativo',
-    plural: 'Vídeos Informativos',
+    singular: 'Vídeo de Artista',
+    plural: 'Vídeos de Artistas',
   },
   admin: {
     useAsTitle: 'title',
-    group: 'Estudante',
+    group: 'AEFEUP',
   },
   access: {
     read: () => true,
