@@ -3,8 +3,11 @@ import { getPayload } from 'payload';
 import config from 'payload.config';
 import ArraialClientPage from "./client";
 
+export const dynamicParams = true
+export const dynamic = 'force-dynamic'
+
 export const metadata: Metadata = {
-  title: "Arraial D'Engeharia 2025",
+  title: "Arraial D'Engenharia 2025",
   description:
     "A maior festa de recepção aos novos estudantes — 29, 30 e 31 outubro. EXPONOR. Compra já os teus bilhetes na BOL ou na secretaria da AEFEUP.",
 };

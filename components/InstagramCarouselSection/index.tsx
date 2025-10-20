@@ -62,48 +62,38 @@ const InstagramCarouselSection: React.FC<Props> = ({ informativeVideos, title = 
       const container = containerRef.current;
       if (!container) return false;
 
-      const blockquotes = container.querySelectorAll(".instagram-media");
-      const iframes = container.querySelectorAll('iframe[src*="instagram.com"]');
+      const blockquotes = container.querySelectorAll('blockquote[data-instgrm-permalink]');
 
-      if (blockquotes.length === 0) {
-        // nothing to load here
-        return true;
-      }
 
-      if (iframes.length >= blockquotes.length) {
-        return true;
-      }
+      if (blockquotes.length === 0) return true;
 
       return false;
     };
 
+    const observer = new MutationObserver(() => {
+      if (!mounted) return;
+      if (checkEmbedsInContainer()) {
+        setIsLoading(false);
+      }
+    });
+
+    const container = containerRef.current;
+    if (container) {
+      observer.observe(container, { childList: true, subtree: true });
+    }
+
     loadInstagramScriptOnce().then(() => {
-      // ask the instagram script to process newly added blockquotes inside the document
-      // (instagram's script will scan the DOM)
       try {
         (window as any).instgrm?.Embeds?.process?.();
-      } catch (e) {
-        // ignore
-      }
-
-      // keep checking until embeds are converted to iframes inside this container
-      const waitFor = () => {
-        if (!mounted) return;
-        if (checkEmbedsInContainer()) {
-          setIsLoading(false);
-          return;
-        }
-        setTimeout(waitFor, 500);
-      };
-
-      // small delay to let script initialize
-      setTimeout(waitFor, 500);
+      } catch { }
     });
 
     return () => {
       mounted = false;
+      observer.disconnect();
     };
   }, [informativeVideos]);
+
 
   return (
     <section className="overflow-hidden pb-20 py-5 lg:pb-25 xl:pb-30">
@@ -124,8 +114,10 @@ const InstagramCarouselSection: React.FC<Props> = ({ informativeVideos, title = 
             <p className="mt-4 text-gray-600">A carregar vídeos...</p>
           </div>
         )}
-
-        <div className={isLoading ? "opacity-0" : "opacity-100 transition-opacity duration-500"}>
+        <div
+          className={`transition-opacity duration-1000 ease-out ${isLoading ? "opacity-0" : "opacity-100"
+            }`}
+        >
           <Carousel
             opts={{
               align: "start",
@@ -138,7 +130,10 @@ const InstagramCarouselSection: React.FC<Props> = ({ informativeVideos, title = 
           >
             <CarouselContent className="-ml-1 sm:-ml-2">
               {informativeVideos.map((video) => (
-                <CarouselItem key={video.id} className="pl-1 sm:pl-2 basis-full sm:basis-1/2 lg:basis-1/3">
+                <CarouselItem
+                  key={video.id}
+                  className="pl-1 sm:pl-2 basis-full sm:basis-1/2 lg:basis-1/3"
+                >
                   <div className="w-full h-full px-1 sm:px-2">
                     <InstagramEmbed url={video.url} title={video.title} />
                   </div>
@@ -150,6 +145,7 @@ const InstagramCarouselSection: React.FC<Props> = ({ informativeVideos, title = 
             <CarouselNext className="absolute -right-1 sm:-right-2 top-1/2 -translate-y-1/2 h-8 w-8 z-10" />
           </Carousel>
         </div>
+
       </div>
     </section>
   );
