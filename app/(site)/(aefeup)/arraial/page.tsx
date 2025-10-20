@@ -21,9 +21,23 @@ async function getArtistsVideos() {
 
   return informativeVideos
 }
+
+async function getPhotobank() {
+  if (process.env.IS_BUILD) {
+    console.log('skipping getPhotobank DB call during build')
+    return null
+  }
+  const payload = await getPayload({ config });
+  const photobank = await payload.findGlobal({
+    slug: "photobank",
+  });
+  return photobank;
+}
+
 const ArraialPage = async () => {
   const artistsVideos = await getArtistsVideos();
-  return <ArraialClientPage artistsVideos ={artistsVideos} />
+  const photobank = await getPhotobank();
+  return <ArraialClientPage artistsVideos={artistsVideos} photobank={photobank} />
 };
 
 export default ArraialPage;

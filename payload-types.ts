@@ -47,7 +47,9 @@ export interface Config {
   db: {
     defaultIDType: number;
   };
-  globals: {};
+  globals: {
+    photobank: Photobank;
+  };
   locale: null;
   user: User & {
     collection: 'users';
@@ -371,7 +373,7 @@ export interface Event {
   title: string;
   type: string;
   description: string;
-  image: number | Media;
+  images: (number | Media)[];
   link?:
     | {
         description?: string | null;
@@ -641,6 +643,25 @@ export interface PayloadMigration {
   batch?: number | null;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "photobank".
+ */
+export interface Photobank {
+  id: number;
+  description: string;
+  active: boolean;
+  images: (number | Media)[];
+  links?:
+    | {
+        description?: string | null;
+        url?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

@@ -1,15 +1,18 @@
 "use client"
 
 import SectionHeader from "@/components/Common/SectionHeader";
-import { ArtistVideo} from "@/payload-types";
+import { ArtistVideo, Media, Photobank } from "@/payload-types";
 import Text from "@/components/Text";
 import { Instagram } from "lucide-react";
 import InstagramCarouselSection from "@/components/InstagramCarouselSection";
+import EventComponent from "@/components/Event";
+import { EventLink } from "@/types/eventType";
 
 interface Props {
   artistsVideos: ArtistVideo[];
+  photobank: Photobank | null;
 }
-const ArraialClientPage = ({ artistsVideos }: Props) => {
+const ArraialClientPage = ({ artistsVideos, photobank }: Props) => {
   return (
     <main className="py-20 lg:py-25 xl:py-30">
       <SectionHeader
@@ -17,7 +20,6 @@ const ArraialClientPage = ({ artistsVideos }: Props) => {
         subtitle={`29, 30 e 31 outubro\nExponor`}
       />
 
-      {/* centered Instagram */}
       <div className="flex justify-center">
         <a
           href="https://www.instagram.com/arraialdengenharia/"
@@ -34,7 +36,7 @@ const ArraialClientPage = ({ artistsVideos }: Props) => {
         {
           id: 1,
           text: [
-            <p key={1}>
+            <p className="text-center" key={1}>
               A maior festa de rececção aos novos estudantes está quase a começar, e tu não vais querer perder! Compra já os teus bilhetes no site da BOL ou na secretaria da AEFEUP: <a
                 href="https://aefeup.bol.pt/"
                 target="_blank"
@@ -43,7 +45,7 @@ const ArraialClientPage = ({ artistsVideos }: Props) => {
               >
                 aefeup.bol.pt
               </a>  </p>,
-            <p key={2}>
+            <p className="text-center" key={2}>
               E não te esqueças de trocar o teu passe por pulseira na secretaria da AEFEUP!
             </p>
           ]
@@ -54,7 +56,18 @@ const ArraialClientPage = ({ artistsVideos }: Props) => {
         informativeVideos={artistsVideos}
         title="Artistas"
       />
-
+      {photobank && photobank.active && (
+        <EventComponent
+          eventData={{
+            eventId: 1,
+            eventType: "",
+            eventTitle: "Banco de Fotografias",
+            eventContent: photobank.description ?? "Os melhores registos da tua noite já estão disponíveis!",
+            eventImages: (photobank.images ?? []) as Media[],
+            eventLinks: (photobank.links ?? []) as EventLink[],
+          }}
+        />
+      )}
     </main>
   );
 }

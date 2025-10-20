@@ -97,7 +97,7 @@ const InstagramCarouselSection: React.FC<Props> = ({ informativeVideos, title = 
       };
 
       // small delay to let script initialize
-      setTimeout(waitFor, 300);
+      setTimeout(waitFor, 500);
     });
 
     return () => {
