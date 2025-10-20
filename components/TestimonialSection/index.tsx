@@ -54,10 +54,6 @@ const TestimonialSection = ({ testimonialData } : Props) => {
               <Swiper
                 spaceBetween={50}
                 slidesPerView={2}
-                autoplay={{
-                  delay: 2500,
-                  disableOnInteraction: false,
-                }}
                 pagination={{
                   clickable: true,
                 }}
