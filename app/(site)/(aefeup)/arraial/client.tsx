@@ -1,18 +1,30 @@
 "use client"
 
 import SectionHeader from "@/components/Common/SectionHeader";
-import { ArtistVideo, Media, Photobank } from "@/payload-types";
+import { ArtistVideo, Media, Photobank, Place } from "@/payload-types";
 import Text from "@/components/Text";
 import { Instagram } from "lucide-react";
 import InstagramCarouselSection from "@/components/InstagramCarouselSection";
 import EventComponent from "@/components/Event";
 import { EventLink } from "@/types/eventType";
+import Map from "@/components/Map";
+import { useState } from "react";
 
 interface Props {
   artistsVideos: ArtistVideo[];
   photobank: Photobank | null;
 }
 const ArraialClientPage = ({ artistsVideos, photobank }: Props) => {
+  const [selectedPlaceId, setSelectedPlaceId] = useState<number | null>(null);
+  const arraialPlaces: Place[] = [
+    {
+      id: 999,
+      name: "Arraial D'Engenharia",
+      category: "Festival",
+      position: { lat: 41.198839, lng: -8.688565 },
+    } as unknown as Place
+  ];
+
   return (
     <main className="py-20 lg:py-25 xl:py-30">
       <SectionHeader
@@ -37,7 +49,7 @@ const ArraialClientPage = ({ artistsVideos, photobank }: Props) => {
           id: 1,
           text: [
             <p className="text-center" key={1}>
-              A maior festa de rececção aos novos estudantes está quase a começar, e tu não vais querer perder! Compra já os teus bilhetes no site da BOL ou na secretaria da AEFEUP: <a
+              A maior festa de recepção aos novos estudantes está quase a começar, e tu não vais querer perder! Compra já os teus bilhetes no site da BOL ou na secretaria da AEFEUP: <a
                 href="https://aefeup.bol.pt/"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -51,6 +63,16 @@ const ArraialClientPage = ({ artistsVideos, photobank }: Props) => {
           ]
         }
       ]} />
+
+      <section className="my-8">
+        <div className="mx-auto w-full max-w-6xl h-80 md:h-96 rounded-md overflow-hidden shadow-sm">
+          <Map
+            places={arraialPlaces}
+            selected={selectedPlaceId}
+            onChange={(id) => setSelectedPlaceId(id)}
+          />
+        </div>
+      </section>
 
       <InstagramCarouselSection
         informativeVideos={artistsVideos}
