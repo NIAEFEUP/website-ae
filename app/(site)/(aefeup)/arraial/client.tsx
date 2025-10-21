@@ -7,7 +7,9 @@ import { Instagram, MapPin } from "lucide-react";
 import InstagramCarouselSection from "@/components/InstagramCarouselSection";
 import EventComponent from "@/components/Event";
 import { EventLink } from "@/types/eventType";
-import Map from "@/components/Map";
+import dynamic from 'next/dynamic';
+// load Map only on client to avoid Leaflet/window during SSR
+const Map = dynamic(() => import("@/components/Map"), { ssr: false });
 import { useState } from "react";
 
 interface Props {

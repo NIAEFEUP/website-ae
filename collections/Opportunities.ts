@@ -8,7 +8,6 @@ export const Opportunities: CollectionConfig = {
     plural: 'Oportunidades',
   },
   admin: {
-    useAsTitle: 'title',
     group: 'Estudante',
   },
   access: {
