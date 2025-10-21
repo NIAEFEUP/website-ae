@@ -3,7 +3,7 @@
 import SectionHeader from "@/components/Common/SectionHeader";
 import { ArtistVideo, Media, Photobank, Place } from "@/payload-types";
 import Text from "@/components/Text";
-import { Instagram } from "lucide-react";
+import { Instagram, MapPin } from "lucide-react";
 import InstagramCarouselSection from "@/components/InstagramCarouselSection";
 import EventComponent from "@/components/Event";
 import { EventLink } from "@/types/eventType";
@@ -29,7 +29,21 @@ const ArraialClientPage = ({ artistsVideos, photobank }: Props) => {
     <main className="py-20 lg:py-25 xl:py-30">
       <SectionHeader
         title="Arraial D'Engenharia 2025"
-        subtitle={`29, 30 e 31 outubro\nExponor`}
+        subtitle={
+          <>
+            29, 30 e 31 outubro
+            <br />
+            <a
+              href="https://maps.app.goo.gl/KMc4yd6Ufjs6hHgYA"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary underline inline-flex items-center gap-1"
+            >
+              <MapPin className="w-4 h-4 inline-block mb-0.5" />
+              Exponor
+            </a>
+          </>
+        }
       />
 
       <div className="flex justify-center">
@@ -49,7 +63,7 @@ const ArraialClientPage = ({ artistsVideos, photobank }: Props) => {
           id: 1,
           text: [
             <p className="text-center" key={1}>
-              A maior festa de recepção aos novos estudantes está quase a começar, e tu não vais querer perder! Compra já os teus bilhetes no site da BOL ou na secretaria da AEFEUP: <a
+              A maior festa de receção aos novos estudantes está quase a começar, e tu não vais querer perder! Compra já os teus bilhetes no site da BOL ou na secretaria da AEFEUP: <a
                 href="https://aefeup.bol.pt/"
                 target="_blank"
                 rel="noopener noreferrer"
