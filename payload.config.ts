@@ -37,6 +37,8 @@ import { Competitions } from "./collections/Competitions";
 import { Standings } from "./collections/Standings";
 import { MentoringLinks } from "./collections/MentoringLinks";
 import { Opportunities } from "./collections/Opportunities";
+import { ArtistsVideo } from "./collections/ArtistsVideos";
+import { Photobank } from "./globals/Photobank";
 import { BusAccount } from "./collections/BusAccount";
 
 import { en } from "@payloadcms/translations/languages/en";
@@ -80,7 +82,11 @@ export default buildConfig({
     Standings,
     MentoringLinks,
     Opportunities,
+    ArtistsVideo,
     BusAccount,
+  ],
+  globals: [
+    Photobank,
   ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",

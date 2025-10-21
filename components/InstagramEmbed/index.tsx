@@ -14,6 +14,7 @@ const InstagramEmbed = ({ url, title }: InstagramEmbedProps) => {
           data-instgrm-version="14"
         />
       </div>
+
     </div>
   );
 };

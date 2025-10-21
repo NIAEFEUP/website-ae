@@ -24,10 +24,10 @@
 
 /* third-party libraries CSS */
 
-.testimonial-01 .swiper-pagination-bullet {
+.testimonial-01 .swiper-pagination-bullet, .event-image-slider-01 .swiper-pagination-bullet {
   @apply h-2.5 w-2.5 bg-stroke opacity-100;
 }
-.testimonial-01 .swiper-pagination-bullet-active {
+.testimonial-01 .swiper-pagination-bullet-active, .event-image-slider-01 .swiper-pagination-bullet-active{
   @apply w-5 rounded-full bg-primary;
 }
 

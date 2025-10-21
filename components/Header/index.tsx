@@ -80,7 +80,7 @@ const Header = () => {
           <nav>
             <ul className="flex flex-col gap-5 text-xl lg:flex-row lg:text-lg items-center lg:gap-10">
               {menuData.map((menuItem, key) => (
-                <li key={key} className={menuItem.submenu && "group relative"}>
+                <li key={key} className={menuItem.submenu ? "group relative" : ""}>
                   {menuItem.submenu ? (
                     <>
                       <button
@@ -98,25 +98,38 @@ const Header = () => {
                           </svg>
                         </span>
                       </button>
-                      <ul
-                        className={`dropdown ${openSubmenu === key ? "flex" : ""
-                          }`}
-                      >
-                        {menuItem.submenu.map((item, key) => (
-                          <li key={key} className="hover:text-primary">
-                            <Link 
-                              href={"/" + (menuItem.path ? menuItem.path + "/" : "") + item.path || "#"}
-                              onClick={() => { setOpenSubmenu(null); setNavigationOpen(!navigationOpen) }}
-                            >{item.title}</Link>
+
+                      <ul className={`dropdown ${openSubmenu === key ? "flex" : ""}`}>
+                        {menuItem.submenu.map((item, subKey) => (
+                          <li
+                            key={subKey}
+                            className="[&>a]:block [&>a]:w-full [&>a]:h-full hover:text-primary"
+                          >
+                            <Link
+                              href={
+                                "/" +
+                                (menuItem.path ? menuItem.path + "/" : "") +
+                                (item.path || "")
+                              }
+                              onClick={() => {
+                                setOpenSubmenu(null);
+                                setNavigationOpen(!navigationOpen);
+                              }}
+                            >
+                              {item.title}
+                            </Link>
                           </li>
                         ))}
                       </ul>
                     </>
                   ) : (
                     <Link
-                      onClick={() => { setOpenSubmenu(null); setNavigationOpen(!navigationOpen) }}
+                      onClick={() => {
+                        setOpenSubmenu(null);
+                        setNavigationOpen(!navigationOpen);
+                      }}
                       href={`${menuItem.path}`}
-                      className="text-white"
+                      className="block w-full h-full text-white hover:text-gray-300"
                     >
                       {menuItem.title}
                     </Link>

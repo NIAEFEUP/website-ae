@@ -42,21 +42,25 @@ const SpacesPage = async () => {
   })).docs as Place[]);
 
   const establishments = await fetch("http://ementas.sas.up.pt:3000/api/establishments").then((res) => res.json());
-
   // Converting establishments to places
-  const placesData = establishments.map((establishment) => ({
-    id: "up_menus_" + establishment.id,
-    name: establishment.name_pt,
-    schedule: establishment.schedules.map((schedule) => ({
-      day: "",
-      hours: schedule.startHour + " - " + schedule.finishHour,
-    })),
-    position: {
-      lat: establishment.address.coordinates.split(",")[0],
-      lng: establishment.address.coordinates.split(",")[1],
-    },
-    category: 'Alimentação',
-  }));
+  const placesData = establishments
+    .map((establishment) => {
+      const [latStr, lngStr] = establishment.address.coordinates.split(",");
+      const lat = parseFloat(latStr);
+      const lng = parseFloat(lngStr);
+      if (!lat || !lng) return null; // filters out 0,0 and NaN
+      return {
+        id: "up_menus_" + establishment.id,
+        name: establishment.name_pt,
+        schedule: establishment.schedules.map((schedule) => ({
+          day: "",
+          hours: schedule.startHour + " - " + schedule.finishHour,
+        })),
+        position: { lat, lng },
+        category: 'Alimentação',
+      };
+    })
+    .filter(Boolean);
 
   const mergedPlaces = places.concat(placesData).sort((a, b) =>
     haversineDistance(refLat, refLon, a.position.lat, a.position.lng) -
