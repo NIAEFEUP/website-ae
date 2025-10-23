@@ -1,7 +1,7 @@
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
-import { useEffect, useRef, memo } from 'react';
+import { useEffect, useRef, memo, useState } from 'react';
 import { Bus, Clock, MapPin, Wifi, WifiOff } from 'lucide-react';
 import type { EnrichedBusData } from "@/types/bus";
 
@@ -140,6 +140,7 @@ const AnimatedBusMarker = memo(({ bus, isSelected, onClick }: { bus: EnrichedBus
   const markerRef = useRef<L.Marker | null>(null);
   const prevPosition = useRef({ lat: bus.lat, lon: bus.lon });
   const prevSelected = useRef(isSelected);
+  const [, forceUpdate] = useState({});
 
   useEffect(() => {
     if (markerRef.current) {
@@ -164,6 +165,45 @@ const AnimatedBusMarker = memo(({ bus, isSelected, onClick }: { bus: EnrichedBus
     }
     prevSelected.current = isSelected;
   }, [isSelected]);
+
+  // Update relative time with dynamic interval based on time elapsed
+  useEffect(() => {
+    if (!isSelected) return;
+    
+    const getUpdateInterval = () => {
+      const lastUpdate = new Date(bus.timestamp);
+      const now = new Date();
+      const diffMs = now.getTime() - lastUpdate.getTime();
+      const minutesAgo = Math.floor(diffMs / 60000);
+      const hoursAgo = Math.floor(diffMs / (60 * 60000));
+
+      if (minutesAgo < 60) {
+        return 60000; // Update every minute
+      } else if (hoursAgo < 24) {
+        return 60 * 60000; // Update every hour
+      } else {
+        return 24 * 60 * 60000; // Update every day
+      }
+    };
+
+    let timeoutId: NodeJS.Timeout;
+
+    const scheduleNextUpdate = () => {
+      const interval = getUpdateInterval();
+      timeoutId = setTimeout(() => {
+        forceUpdate({});
+        scheduleNextUpdate();
+      }, interval);
+    };
+
+    scheduleNextUpdate();
+
+    return () => {
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+    };
+  }, [isSelected, bus.timestamp]);
 
   const lastUpdate = new Date(bus.timestamp);
   const now = new Date();
