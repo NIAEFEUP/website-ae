@@ -2,7 +2,7 @@ import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import { useEffect, useRef, memo, useState } from 'react';
-import { Bus, Clock, MapPin, Wifi, WifiOff } from 'lucide-react';
+import { Bus, Clock, MapPin, Wifi, WifiOff, PartyPopper } from 'lucide-react';
 import type { EnrichedBusData } from "@/types/bus";
 
 interface BusMapProps {
@@ -10,7 +10,21 @@ interface BusMapProps {
   isConnected?: boolean;
   selectedBusId?: string | null;
   onBusClick?: (busId: string) => void;
+  showStops?: boolean;
+  showFestival?: boolean;
 }
+
+const BUS_STOPS = [
+  { id: 'HSJ', name: 'Hospital São João', lat: 41.1832476, lon: -8.6000586, color: '#0063EC' },
+  { id: 'EXP', name: 'Exponor', lat: 41.198222205665814, lon: -8.69155082756477, color: '#10b981' },
+  { id: 'BXP', name: 'Baixa do Porto', lat: 41.14521356392103, lon: -8.615951335581975, color: '#9D2F21' },
+];
+
+const FESTIVAL_LOCATION = {
+  name: "Arraial D'Engenharia",
+  lat: 41.198839,
+  lon: -8.688565,
+};
 
 const createBusIcon = (line: string, isStale: boolean, isSelected: boolean) => {
   const colors = {
@@ -20,33 +34,14 @@ const createBusIcon = (line: string, isStale: boolean, isSelected: boolean) => {
   
   const color = colors[line as keyof typeof colors] || '#6b7280';
   const opacity = isStale ? 0.5 : 1;
-  const scale = isSelected ? 1.2 : 1;
   
   return L.divIcon({
     className: 'custom-bus-icon',
     html: `
-      <div style="
-        position: relative;
-        width: 40px;
-        height: 40px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      ">
-        <div style="
-          width: 40px;
-          height: 40px;
-          background: ${color};
-          opacity: ${opacity};
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-          border: 3px solid white;
-          transition: transform 0.3s ease;
-        ">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <div class="relative flex items-center justify-center w-10 h-10">
+        <div class="flex items-center justify-center w-10 h-10 rounded-full border-2 border-white shadow-md transition-transform duration-300"
+             style="background: ${color}; opacity: ${opacity}; transform: ${isSelected ? 'scale(1.2)' : 'scale(1)'};">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M8 6v6"/>
             <path d="M15 6v6"/>
             <path d="M2 12h19.6"/>
@@ -56,17 +51,7 @@ const createBusIcon = (line: string, isStale: boolean, isSelected: boolean) => {
           </svg>
         </div>
         ${!isStale ? `
-          <div style="
-            position: absolute;
-            top: -2px;
-            right: -2px;
-            width: 12px;
-            height: 12px;
-            background: #10b981;
-            border: 2px solid white;
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-          "></div>
+          <div class="absolute -top-0.5 -right-0.5 w-3 h-3 bg-emerald-500 border-2 border-white rounded-full animate-[pulse_2s_infinite]"></div>
         ` : ''}
       </div>
       <style>
@@ -82,6 +67,53 @@ const createBusIcon = (line: string, isStale: boolean, isSelected: boolean) => {
   });
 };
 
+// Create icon for bus stops
+const createStopIcon = (stopId: string, color: string) => {
+  return L.divIcon({
+    className: 'custom-stop-icon',
+    html: `
+      <div class="flex items-center justify-center w-8 h-8 border-2 border-white shadow-md"
+           style="border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:${color};">
+        <span class="text-white font-bold text-[12px]" style="transform:rotate(45deg);">${stopId}</span>
+      </div>
+    `,
+    iconSize: [32, 32],
+    iconAnchor: [16, 32],
+    popupAnchor: [0, -32],
+  });
+};
+
+const createFestivalIcon = () => {
+  return L.divIcon({
+    className: 'custom-festival-icon',
+    html: `
+      <div class="w-10 h-10 rounded-full flex items-center justify-center border-2 border-white shadow-lg animate-[festivalPulse_3s_infinite]"
+           style="background: linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%);">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5.8 11.3 2 22l10.7-3.79"/>
+          <path d="M4 3h.01"/>
+          <path d="M22 8h.01"/>
+          <path d="M15 2h.01"/>
+          <path d="M22 20h.01"/>
+          <path d="m22 2-2.24.75a2.9 2.9 0 0 0-1.96 3.12c.1.86-.57 1.63-1.45 1.63h-.38c-.86 0-1.6.6-1.76 1.44L14 10"/>
+          <path d="m22 13-.82-.33c-.86-.34-1.82.2-1.98 1.11c-.11.7-.72 1.22-1.43 1.22H17"/>
+          <path d="m11 2 .33.82c.34.86-.2 1.82-1.11 1.98C9.52 4.9 9 5.52 9 6.23V7"/>
+          <path d="M11 13c1.93 1.93 2.83 4.17 2 5-.83.83-3.07-.07-5-2-1.93-1.93-2.83-4.17-2-5 .83-.83 3.07.07 5 2Z"/>
+        </svg>
+      </div>
+      <style>
+        @keyframes festivalPulse {
+          0%, 100% { transform: scale(1); opacity: 1; }
+          50% { transform: scale(1.1); opacity: 0.9; }
+        }
+      </style>
+    `,
+    iconSize: [40, 40],
+    iconAnchor: [20, 40],
+    popupAnchor: [0, -40],
+  });
+};
+
 // Component to handle map bounds and animations
 const MapController = memo(({ buses, selectedBusId }: { buses: EnrichedBusData[], selectedBusId: string | null }) => {
   const map = useMap();
@@ -90,28 +122,49 @@ const MapController = memo(({ buses, selectedBusId }: { buses: EnrichedBusData[]
 
   useEffect(() => {
     if (buses.length > 0) {
-      const bounds = new L.LatLngBounds(
-        buses.map(bus => [bus.lat, bus.lon] as [number, number])
-      );
-      
+      const stopCoords = BUS_STOPS.map(stop => [stop.lat, stop.lon] as [number, number]);
+      const busCoords = buses.map(bus => [bus.lat, bus.lon] as [number, number]);
+      const allCoords = [...busCoords, ...stopCoords];
+      const bounds = new L.LatLngBounds(allCoords);
+
       if (isInitialMount.current) {
-        map.fitBounds(bounds, { padding: [50, 50], maxZoom: 15 });
+        map.fitBounds(bounds, { padding: [15, 15], maxZoom: 15 });
         isInitialMount.current = false;
       }
     }
   }, [buses, map]);
 
-  // Fly to selected bus when it changes
+  // Fly to selected marker when it changes (bus, stop, or festival)
   useEffect(() => {
     if (selectedBusId && selectedBusId !== prevSelectedBusId.current) {
+      let targetLat: number | null = null;
+      let targetLon: number | null = null;
+
+      // Check if it's a bus
       const selectedBus = buses.find(b => String(b.busId) === selectedBusId);
       if (selectedBus) {
+        targetLat = selectedBus.lat;
+        targetLon = selectedBus.lon;
+      } else {
+        // Check if it's a bus stop
+        const selectedStop = BUS_STOPS.find(s => s.id === selectedBusId);
+        if (selectedStop) {
+          targetLat = selectedStop.lat;
+          targetLon = selectedStop.lon;
+        } else if (selectedBusId === 'FESTIVAL') {
+          // Check if it's the festival location
+          targetLat = FESTIVAL_LOCATION.lat;
+          targetLon = FESTIVAL_LOCATION.lon;
+        }
+      }
+
+      if (targetLat !== null && targetLon !== null) {
         const isMobile = window.innerWidth < 768;
         const targetZoom = Math.max(map.getZoom(), 15);
         
         if (isMobile) {
           // On mobile, offset the target point downward so the popup fits above
-          const point = map.project([selectedBus.lat, selectedBus.lon], targetZoom);
+          const point = map.project([targetLat, targetLon], targetZoom);
           // Offset by ~25% of map height downward
           point.y -= map.getSize().y * 0.25;
           const newLatLng = map.unproject(point, targetZoom);
@@ -121,7 +174,7 @@ const MapController = memo(({ buses, selectedBusId }: { buses: EnrichedBusData[]
           });
         } else {
           // On desktop, center normally
-          map.flyTo([selectedBus.lat, selectedBus.lon], targetZoom, {
+          map.flyTo([targetLat, targetLon], targetZoom, {
             duration: 0.5
           });
         }
@@ -278,8 +331,117 @@ const AnimatedBusMarker = memo(({ bus, isSelected, onClick }: { bus: EnrichedBus
 
 AnimatedBusMarker.displayName = 'AnimatedBusMarker';
 
+// Animated stop marker component
+const AnimatedStopMarker = memo(({ stop, isSelected, onClick }: { stop: typeof BUS_STOPS[0], isSelected?: boolean, onClick?: (id: string) => void }) => {
+  const markerRef = useRef<L.Marker | null>(null);
+  const prevSelected = useRef(isSelected);
+
+  // Open/close popup when selection changes
+  useEffect(() => {
+    if (markerRef.current) {
+      if (isSelected && !prevSelected.current) {
+        markerRef.current.openPopup();
+      } else if (!isSelected && prevSelected.current) {
+        markerRef.current.closePopup();
+      }
+    }
+    prevSelected.current = isSelected;
+  }, [isSelected]);
+
+  return (
+    <Marker
+      ref={markerRef}
+      position={[stop.lat, stop.lon]}
+      icon={createStopIcon(stop.id, stop.color)}
+      eventHandlers={{
+        click: () => onClick?.(stop.id),
+        popupclose: () => {
+          if (isSelected) {
+            onClick?.(stop.id);
+          }
+        },
+      }}
+    >
+      <Popup>
+        <div className="p-2 min-w-[180px]">
+          <div className="flex items-center gap-2 mb-2">
+            <MapPin className="w-5 h-5" style={{ color: stop.color }} />
+            <h3 className="font-bold">{stop.name}</h3>
+          </div>
+          <div className="text-sm">
+            <span className="px-2 py-1 rounded text-white text-xs font-medium inline-block"
+                  style={{ backgroundColor: stop.color }}>
+              Paragem {stop.id}
+            </span>
+          </div>
+        </div>
+      </Popup>
+    </Marker>
+  );
+});
+
+AnimatedStopMarker.displayName = 'AnimatedStopMarker';
+
+// Animated festival marker component
+const AnimatedFestivalMarker = memo(({ isSelected, onClick }: { isSelected?: boolean, onClick?: (id: string) => void }) => {
+  const markerRef = useRef<L.Marker | null>(null);
+  const prevSelected = useRef(isSelected);
+
+  // Open/close popup when selection changes
+  useEffect(() => {
+    if (markerRef.current) {
+      if (isSelected && !prevSelected.current) {
+        markerRef.current.openPopup();
+      } else if (!isSelected && prevSelected.current) {
+        markerRef.current.closePopup();
+      }
+    }
+    prevSelected.current = isSelected;
+  }, [isSelected]);
+
+  return (
+    <Marker
+      ref={markerRef}
+      position={[FESTIVAL_LOCATION.lat, FESTIVAL_LOCATION.lon]}
+      icon={createFestivalIcon()}
+      eventHandlers={{
+        click: () => onClick?.('FESTIVAL'),
+        popupclose: () => {
+          if (isSelected) {
+            onClick?.('FESTIVAL');
+          }
+        },
+      }}
+    >
+      <Popup>
+        <div className="p-2 min-w-[200px]">
+          <div className="flex items-center gap-2 mb-2">
+            <PartyPopper className="w-5 h-5 text-pink-500" />
+            <h3 className="font-bold text-lg">{FESTIVAL_LOCATION.name}</h3>
+          </div>
+          <div className="space-y-1 text-sm">
+            <a
+              href="https://maps.app.goo.gl/KMc4yd6Ufjs6hHgYA"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary underline text-xs mt-2 block"
+            >
+              Abrir no Google Maps
+            </a>
+          </div>
+        </div>
+      </Popup>
+    </Marker>
+  );
+});
+
+AnimatedFestivalMarker.displayName = 'AnimatedFestivalMarker';
+
 // Main BusMap component
-const BusMap = ({ buses, isConnected = true, selectedBusId = null, onBusClick }: BusMapProps) => {
+const BusMap = ({ buses, isConnected = true, selectedBusId = null, onBusClick, showStops = true, showFestival = true }: BusMapProps) => {
+  const handleMarkerClick = (id: string) => {
+    onBusClick?.(id);
+  };
 
   return (
     <div className="relative w-full h-full">
@@ -313,12 +475,32 @@ const BusMap = ({ buses, isConnected = true, selectedBusId = null, onBusClick }:
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
         />
         <MapController buses={buses} selectedBusId={selectedBusId} />
+        
+        {/* Festival location marker */}
+        {showFestival && (
+          <AnimatedFestivalMarker
+            isSelected={selectedBusId === 'FESTIVAL'}
+            onClick={handleMarkerClick}
+          />
+        )}
+
+        {/* Bus stop markers */}
+        {showStops && BUS_STOPS.map((stop) => (
+          <AnimatedStopMarker
+            key={stop.id}
+            stop={stop}
+            isSelected={selectedBusId === stop.id}
+            onClick={handleMarkerClick}
+          />
+        ))}
+
+        {/* Bus markers */}
         {buses.map((bus) => (
           <AnimatedBusMarker
             key={bus.busId}
             bus={bus}
             isSelected={selectedBusId !== null && String(bus.busId) === String(selectedBusId)}
-            onClick={onBusClick}
+            onClick={handleMarkerClick}
           />
         ))}
       </MapContainer>

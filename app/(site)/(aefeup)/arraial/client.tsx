@@ -1,17 +1,16 @@
 "use client"
 
 import SectionHeader from "@/components/Common/SectionHeader";
-import { ArtistVideo, Media, Photobank, Place } from "@/payload-types";
+import { ArtistVideo, Media, Photobank } from "@/payload-types";
 import Text from "@/components/Text";
-import { Instagram, MapPin } from "lucide-react";
+import { Instagram, MapPin, PartyPopper } from "lucide-react";
 import InstagramCarouselSection from "@/components/InstagramCarouselSection";
 import EventComponent from "@/components/Event";
 import { EventLink } from "@/types/eventType";
 import dynamic from 'next/dynamic';
-const Map = dynamic(() => import("@/components/Map"), { ssr: false });
-import { useEffect, useState, useRef, useMemo, useCallback } from 'react';
 const BusMap = dynamic(() => import("@/components/BusMap"), { ssr: false });
 const BusSchedule = dynamic(() => import("@/components/BusSchedule"), { ssr: false });
+import { useEffect, useState, useRef, useMemo, useCallback } from 'react';
 import type { BusLocation, BusAccount, BusScheduleEntry, EnrichedBusData } from "@/types/bus";
 
 interface Props {
@@ -22,18 +21,8 @@ interface Props {
 }
 
 const ArraialClientPage = ({ artistsVideos, photobank, busAccounts, busSchedules }: Props) => {
-  const [selectedPlaceId, setSelectedPlaceId] = useState<number | null>(null);
   const [isConnected, setIsConnected] = useState(false);
   const [selectedBusId, setSelectedBusId] = useState<string | null>(null);
-
-  const arraialPlaces: Place[] = [
-    {
-      id: 999,
-      name: "Arraial D'Engenharia",
-      category: "Festival",
-      position: { lat: 41.198839, lng: -8.688565 },
-    } as unknown as Place
-  ];
 
   const [busLocations, setBusLocations] = useState<BusLocation[]>([]);
   const evtSourceRef = useRef<EventSource | null>(null);
@@ -63,7 +52,7 @@ const ArraialClientPage = ({ artistsVideos, photobank, busAccounts, busSchedules
     setSelectedBusId(busId);
     // Scroll to map when selecting a bus from schedule
     if (busId) {
-      const mapSection = document.getElementById('live-bus-map');
+      const mapSection = document.getElementById('live-map-section');
       mapSection?.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
   }, []);
@@ -237,23 +226,14 @@ const ArraialClientPage = ({ artistsVideos, photobank, busAccounts, busSchedules
                 className="text-primary underline"
               >
                 aefeup.bol.pt
-              </a>  </p>,
+              </a>
+            </p>,
             <p className="text-center" key={2}>
               E não te esqueças de trocar o teu passe por pulseira na secretaria da AEFEUP!
             </p>
           ]
         }
       ]} />
-
-      <section className="my-8">
-        <div className="mx-auto w-full max-w-6xl h-80 md:h-96 rounded-md overflow-hidden shadow-sm">
-          <Map
-            places={arraialPlaces}
-            selected={selectedPlaceId}
-            onChange={(id) => setSelectedPlaceId(id)}
-          />
-        </div>
-      </section>
 
       <InstagramCarouselSection
         informativeVideos={artistsVideos}
@@ -275,24 +255,96 @@ const ArraialClientPage = ({ artistsVideos, photobank, busAccounts, busSchedules
 
       <section className="mx-auto w-full max-w-6xl px-4 my-12">
         <div className="space-y-6">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-            <h2 className="text-2xl font-bold">Autocarros em Tempo Real</h2>
-
-            {/* Legend */}
-            <div className="flex items-center gap-4 text-sm">
-              <div className="flex items-center gap-2">
-                <div className="w-4 h-4 rounded-full" style={{ backgroundColor: '#0063EC' }}></div>
-                <span>Hospital São João ({enrichedBuses.filter(b => b.line === 'HSJ').length})</span>
+          <div className="space-y-4">
+            <h2 className="text-2xl font-bold">Mapa em Tempo Real</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+              {/* Bus lines legend */}
+              <div className="bg-gray-50 rounded-lg p-3">
+                <h3 className="font-semibold mb-2 text-gray-700">Autocarros Ativos</h3>
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2">
+                    <span className="w-6 h-6 rounded-full bg-[#0063EC] inline-block border-2 border-white"></span>
+                    <span>Hospital São João ({enrichedBuses.filter(b => b.line === 'HSJ').length})</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="w-6 h-6 rounded-full bg-[#9D2F21] inline-block border-2 border-white"></span>
+                    <span>Baixa do Porto ({enrichedBuses.filter(b => b.line === 'BXP').length})</span>
+                  </div>
+                </div>
               </div>
-              <div className="flex items-center gap-2">
-                <div className="w-4 h-4 rounded-full" style={{ backgroundColor: '#9D2F21' }}></div>
-                <span>Baixa do Porto ({enrichedBuses.filter(b => b.line === 'BXP').length})</span>
+
+              {/* Stops and festival legend */}
+              <div className="bg-gray-50 rounded-lg p-3">
+                <h3 className="font-semibold mb-2 text-gray-700">Paragens & Festival</h3>
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2">
+                    <div className="w-8 h-8 rounded-full flex items-center justify-center bg-gradient-to-br from-pink-500 to-purple-600">
+                      <PartyPopper className="w-4 h-4 text-white" />
+                    </div>
+                    <span>Arraial D'Engenharia</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div
+                      className="flex items-center justify-center w-8 h-8 border-2 border-white shadow-md"
+                      style={{
+                        borderRadius: '50% 50% 50% 0',
+                        transform: 'rotate(-45deg)',
+                        background: '#0063EC',
+                      }}
+                    >
+                      <span
+                        className="text-white font-bold text-[12px]"
+                        style={{ transform: 'rotate(45deg)' }}
+                      >
+                        HSJ
+                      </span>
+                    </div>
+                    <span>Hospital São João</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div
+                      className="flex items-center justify-center w-8 h-8 border-2 border-white shadow-md"
+                      style={{
+                        borderRadius: '50% 50% 50% 0',
+                        transform: 'rotate(-45deg)',
+                        background: '#10b981',
+                      }}
+                    >
+                      <span
+                        className="text-white font-bold text-[12px]"
+                        style={{ transform: 'rotate(45deg)' }}
+                      >
+                        EXP
+                      </span>
+                    </div>
+                    <span>Exponor</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div
+                      className="flex items-center justify-center w-8 h-8 border-2 border-white shadow-md"
+                      style={{
+                        borderRadius: '50% 50% 50% 0',
+                        transform: 'rotate(-45deg)',
+                        background: '#9D2F21',
+                      }}
+                    >
+                      <span
+                        className="text-white font-bold text-[12px]"
+                        style={{ transform: 'rotate(45deg)' }}
+                      >
+                        BXP
+                      </span>
+                    </div>
+                    <span>Baixa do Porto</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
 
+          {/* Map */}
           <div
-            id="live-bus-map"
+            id="live-map-section"
             className="h-80 md:h-[500px] rounded-lg overflow-hidden shadow-lg"
           >
             <BusMap
@@ -300,9 +352,12 @@ const ArraialClientPage = ({ artistsVideos, photobank, busAccounts, busSchedules
               isConnected={isConnected}
               selectedBusId={selectedBusId}
               onBusClick={handleBusClick}
+              showStops={true}
+              showFestival={true}
             />
           </div>
 
+          {/* Bus Schedule */}
           <div>
             <BusSchedule
               schedules={busSchedules}
