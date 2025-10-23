@@ -49,8 +49,8 @@ export const BusAccount: CollectionConfig = {
             label: "Linha do Autocarro",
             type: "radio",
             options: [
-                { label: "Trindade", value: "Trindade" },
-                { label: "São João", value: "São João" },
+                { label: "Baixa do Porto", value: "BXP" },
+                { label: "Hospital São João", value: "HSJ" },
             ],
             required: true,
         }
