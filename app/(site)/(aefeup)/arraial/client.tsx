@@ -62,6 +62,13 @@ const ArraialClientPage = ({ artistsVideos, photobank, busAccounts, busSchedules
     setSelectedBusId(prev => prev === busId ? null : busId);
   }, []);
 
+  // Handle legend click - selects marker and scrolls to map
+  const handleLegendClick = useCallback((id: string) => {
+    setSelectedBusId(prev => prev === id ? null : id);
+    const mapSection = document.getElementById('live-map-section');
+    mapSection?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }, []);
+
   // Function to connect to SSE
   const connectSSE = useCallback(() => {
     if (reconnectTimeoutRef.current) {
@@ -259,15 +266,29 @@ const ArraialClientPage = ({ artistsVideos, photobank, busAccounts, busSchedules
               <div className="bg-gray-50 rounded-lg p-3">
                 <h3 className="font-semibold mb-2 text-gray-700">Paragens & Festival</h3>
                 <div className="space-y-2">
-                  <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-full flex items-center justify-center bg-gradient-to-br from-pink-500 to-purple-600">
+                  <button
+                    onClick={() => handleLegendClick('FESTIVAL')}
+                    className={`flex items-center gap-2 w-full text-left p-2 rounded transition-colors ${
+                      selectedBusId === 'FESTIVAL'
+                        ? 'bg-pink-100 ring-2 ring-pink-500'
+                        : 'hover:bg-gray-100 active:bg-gray-200'
+                    }`}
+                  >
+                    <div className="w-8 h-8 rounded-full flex items-center justify-center bg-gradient-to-br from-pink-500 to-purple-600 shrink-0">
                       <PartyPopper className="w-4 h-4 text-white" />
                     </div>
                     <span>Arraial D'Engenharia</span>
-                  </div>
-                  <div className="flex items-center gap-2">
+                  </button>
+                  <button
+                    onClick={() => handleLegendClick('HSJ')}
+                    className={`flex items-center gap-2 w-full text-left p-2 rounded transition-colors ${
+                      selectedBusId === 'HSJ'
+                        ? 'bg-blue-100 ring-2 ring-[#0063EC]'
+                        : 'hover:bg-gray-100 active:bg-gray-200'
+                    }`}
+                  >
                     <div
-                      className="flex items-center justify-center w-8 h-8 border-2 border-white shadow-md"
+                      className="flex items-center justify-center w-8 h-8 border-2 border-white shadow-md shrink-0"
                       style={{
                         borderRadius: '50% 50% 50% 0',
                         transform: 'rotate(-45deg)',
@@ -282,10 +303,17 @@ const ArraialClientPage = ({ artistsVideos, photobank, busAccounts, busSchedules
                       </span>
                     </div>
                     <span>Hospital São João</span>
-                  </div>
-                  <div className="flex items-center gap-2">
+                  </button>
+                  <button
+                    onClick={() => handleLegendClick('EXP')}
+                    className={`flex items-center gap-2 w-full text-left p-2 rounded transition-colors ${
+                      selectedBusId === 'EXP'
+                        ? 'bg-emerald-100 ring-2 ring-emerald-500'
+                        : 'hover:bg-gray-100 active:bg-gray-200'
+                    }`}
+                  >
                     <div
-                      className="flex items-center justify-center w-8 h-8 border-2 border-white shadow-md"
+                      className="flex items-center justify-center w-8 h-8 border-2 border-white shadow-md shrink-0"
                       style={{
                         borderRadius: '50% 50% 50% 0',
                         transform: 'rotate(-45deg)',
@@ -300,10 +328,17 @@ const ArraialClientPage = ({ artistsVideos, photobank, busAccounts, busSchedules
                       </span>
                     </div>
                     <span>Exponor</span>
-                  </div>
-                  <div className="flex items-center gap-2">
+                  </button>
+                  <button
+                    onClick={() => handleLegendClick('BXP')}
+                    className={`flex items-center gap-2 w-full text-left p-2 rounded transition-colors ${
+                      selectedBusId === 'BXP'
+                        ? 'bg-red-100 ring-2 ring-[#9D2F21]'
+                        : 'hover:bg-gray-100 active:bg-gray-200'
+                    }`}
+                  >
                     <div
-                      className="flex items-center justify-center w-8 h-8 border-2 border-white shadow-md"
+                      className="flex items-center justify-center w-8 h-8 border-2 border-white shadow-md shrink-0"
                       style={{
                         borderRadius: '50% 50% 50% 0',
                         transform: 'rotate(-45deg)',
@@ -318,7 +353,7 @@ const ArraialClientPage = ({ artistsVideos, photobank, busAccounts, busSchedules
                       </span>
                     </div>
                     <span>Baixa do Porto</span>
-                  </div>
+                  </button>
                 </div>
               </div>
             </div>
