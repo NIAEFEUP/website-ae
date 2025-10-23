@@ -235,24 +235,6 @@ const ArraialClientPage = ({ artistsVideos, photobank, busAccounts, busSchedules
         }
       ]} />
 
-      <InstagramCarouselSection
-        informativeVideos={artistsVideos}
-        title="Artistas"
-      />
-
-      {photobank && photobank.active && (
-        <EventComponent
-          eventData={{
-            eventId: 1,
-            eventType: "",
-            eventTitle: "Banco de Fotografias",
-            eventContent: photobank.description ?? "Os melhores registos da tua noite já estão disponíveis!",
-            eventImages: (photobank.images ?? []) as Media[],
-            eventLinks: (photobank.links ?? []) as EventLink[],
-          }}
-        />
-      )}
-
       <section className="mx-auto w-full max-w-6xl px-4 my-12">
         <div className="space-y-6">
           <div className="space-y-4">
@@ -368,6 +350,25 @@ const ArraialClientPage = ({ artistsVideos, photobank, busAccounts, busSchedules
           </div>
         </div>
       </section>
+
+      <InstagramCarouselSection
+        informativeVideos={artistsVideos}
+        title="Artistas"
+      />
+
+      {photobank && photobank.active && (
+        <EventComponent
+          eventData={{
+            eventId: 1,
+            eventType: "",
+            eventTitle: "Banco de Fotografias",
+            eventContent: photobank.description ?? "Os melhores registos da tua noite já estão disponíveis!",
+            eventImages: (photobank.images ?? []) as Media[],
+            eventLinks: (photobank.links ?? []) as EventLink[],
+          }}
+        />
+      )}
+
     </main>
   );
 }
