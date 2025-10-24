@@ -72,7 +72,6 @@ const ArraialClientPage = ({ artistsVideos, photobank, busAccounts, busSchedules
   // Cleanup function for SSE and timers
   const cleanup = useCallback(() => {
     if (evtSourceRef.current) {
-      console.log('[SSE] Closing connection');
       evtSourceRef.current.close();
       evtSourceRef.current = null;
     }
@@ -89,8 +88,6 @@ const ArraialClientPage = ({ artistsVideos, photobank, busAccounts, busSchedules
   // Function to connect to SSE
   const connectSSE = useCallback(() => {
     cleanup();
-
-    console.log('[SSE] Connecting to event stream...');
     const evtSource = new EventSource('/api/bus/stream');
     evtSourceRef.current = evtSource;
     lastMessageTimeRef.current = Date.now();
@@ -102,11 +99,8 @@ const ArraialClientPage = ({ artistsVideos, photobank, busAccounts, busSchedules
       }
       heartbeatTimeoutRef.current = setTimeout(() => {
         const timeSinceLastMessage = Date.now() - lastMessageTimeRef.current;
-        console.log('[SSE] Heartbeat check: last message', timeSinceLastMessage, 'ms ago');
-
         // If no message in 90 seconds, assume connection is dead
         if (timeSinceLastMessage > 90000) {
-          console.log('[SSE] No heartbeat for 90s, reconnecting...');
           setIsConnected(false);
           cleanup();
           scheduleReconnect();
@@ -118,7 +112,6 @@ const ArraialClientPage = ({ artistsVideos, photobank, busAccounts, busSchedules
     };
 
     evtSource.onopen = () => {
-      console.log('[SSE] Connection established');
       setIsConnected(true);
       reconnectAttemptsRef.current = 0;
       lastMessageTimeRef.current = Date.now();
@@ -130,11 +123,9 @@ const ArraialClientPage = ({ artistsVideos, photobank, busAccounts, busSchedules
       
       const data = JSON.parse(event.data);
       if (data.type === 'connected') {
-        console.log('[SSE] Received connection confirmation');
         return;
       }
 
-      console.log('[SSE] Received bus update:', data);
       setBusLocations((prev) => {
         const index = prev.findIndex((b) => b.busId === data.busId);
         if (index >= 0) {
@@ -148,8 +139,6 @@ const ArraialClientPage = ({ artistsVideos, photobank, busAccounts, busSchedules
     };
 
     evtSource.onerror = (error) => {
-      console.error('[SSE] Connection error:', error);
-      console.log('[SSE] ReadyState:', evtSource.readyState);
       setIsConnected(false);
       cleanup();
       scheduleReconnect();
@@ -164,35 +153,24 @@ const ArraialClientPage = ({ artistsVideos, photobank, busAccounts, busSchedules
     // Exponential backoff: 2s, 4s, 8s, 16s, max 30s
     const delay = Math.min(2000 * Math.pow(2, reconnectAttemptsRef.current - 1), 30000);
     
-    console.log(`[SSE] Scheduling reconnect in ${delay}ms (attempt ${reconnectAttemptsRef.current})`);
     reconnectTimeoutRef.current = setTimeout(() => {
       reconnectTimeoutRef.current = null;
       // Check if tab is visible before reconnecting
       if (!document.hidden) {
-        console.log('[SSE] Attempting reconnection');
         connectSSE();
-      } else {
-        console.log('[SSE] Tab hidden, will reconnect when visible');
       }
     }, delay);
   }, [connectSSE]);
 
   useEffect(() => {
     const handleVisibilityChange = () => {
-      console.log('[SSE] Visibility changed, hidden:', document.hidden);
-      
       if (!document.hidden) {
         const evtSource = evtSourceRef.current;
         
         // Check if we need to reconnect
         if (!evtSource || evtSource.readyState !== EventSource.OPEN) {
-          console.log('[SSE] Tab visible and not connected, reconnecting...');
           connectSSE();
-        } else {
-          console.log('[SSE] Tab visible and already connected');
         }
-      } else {
-        console.log('[SSE] Tab hidden, connection will be maintained with heartbeat check');
       }
     };
 
@@ -211,15 +189,13 @@ const ArraialClientPage = ({ artistsVideos, photobank, busAccounts, busSchedules
       // If tab is visible and either not connected or no message in 90s, reconnect
       if (!document.hidden) {
         if (!evtSource || evtSource.readyState !== EventSource.OPEN) {
-          console.log('[SSE] Health check: not connected, reconnecting...');
           connectSSE();
         } else if (timeSinceLastMessage > 90000) {
-          console.log('[SSE] Health check: stale connection (no message in 60s), reconnecting...');
           cleanup();
           connectSSE();
         }
       }
-    }, 45000); // Check every 30 seconds
+    }, 30000); // Check every 30 seconds
 
     return () => clearInterval(healthCheckInterval);
   }, [connectSSE, cleanup]);
