@@ -5,7 +5,7 @@ export const Photobank: GlobalConfig = {
   slug: "photobank",
   label: "Banco de Fotografias",
   admin: {
-    group: "AEFEUP",
+    group: "Arraial",
   },
   access: {
     read: isStaff,

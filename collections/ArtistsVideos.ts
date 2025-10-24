@@ -10,7 +10,7 @@ export const ArtistsVideo: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'title',
-    group: 'AEFEUP',
+    group: 'Arraial',
   },
   access: {
     read: () => true,

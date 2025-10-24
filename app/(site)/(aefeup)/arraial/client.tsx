@@ -27,8 +27,9 @@ const ArraialClientPage = ({ artistsVideos, photobank, busAccounts, busSchedules
   const [busLocations, setBusLocations] = useState<BusLocation[]>([]);
   const evtSourceRef = useRef<EventSource | null>(null);
   const reconnectTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const heartbeatTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const reconnectAttemptsRef = useRef(0);
-  const isVisibleRef = useRef(true);
+  const lastMessageTimeRef = useRef<number>(Date.now());
 
   // Merge bus locations with bus account data
   const enrichedBuses: EnrichedBusData[] = useMemo(() => {
@@ -50,7 +51,6 @@ const ArraialClientPage = ({ artistsVideos, photobank, busAccounts, busSchedules
   // Handle bus selection from schedule
   const handleScheduleClick = useCallback((busId: string | null) => {
     setSelectedBusId(busId);
-    // Scroll to map when selecting a bus from schedule
     if (busId) {
       const mapSection = document.getElementById('live-map-section');
       mapSection?.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -62,35 +62,72 @@ const ArraialClientPage = ({ artistsVideos, photobank, busAccounts, busSchedules
     setSelectedBusId(prev => prev === busId ? null : busId);
   }, []);
 
-  // Handle legend click - selects marker and scrolls to map
+  // Handle legend click
   const handleLegendClick = useCallback((id: string) => {
     setSelectedBusId(prev => prev === id ? null : id);
     const mapSection = document.getElementById('live-map-section');
     mapSection?.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }, []);
 
-  // Function to connect to SSE
-  const connectSSE = useCallback(() => {
+  // Cleanup function for SSE and timers
+  const cleanup = useCallback(() => {
+    if (evtSourceRef.current) {
+      console.log('[SSE] Closing connection');
+      evtSourceRef.current.close();
+      evtSourceRef.current = null;
+    }
     if (reconnectTimeoutRef.current) {
       clearTimeout(reconnectTimeoutRef.current);
       reconnectTimeoutRef.current = null;
     }
-
-    if (evtSourceRef.current) {
-      evtSourceRef.current.close();
+    if (heartbeatTimeoutRef.current) {
+      clearTimeout(heartbeatTimeoutRef.current);
+      heartbeatTimeoutRef.current = null;
     }
+  }, []);
+
+  // Function to connect to SSE
+  const connectSSE = useCallback(() => {
+    cleanup();
 
     console.log('[SSE] Connecting to event stream...');
     const evtSource = new EventSource('/api/bus/stream');
     evtSourceRef.current = evtSource;
+    lastMessageTimeRef.current = Date.now();
+
+    // Set up heartbeat check
+    const startHeartbeatCheck = () => {
+      if (heartbeatTimeoutRef.current) {
+        clearTimeout(heartbeatTimeoutRef.current);
+      }
+      heartbeatTimeoutRef.current = setTimeout(() => {
+        const timeSinceLastMessage = Date.now() - lastMessageTimeRef.current;
+        console.log('[SSE] Heartbeat check: last message', timeSinceLastMessage, 'ms ago');
+
+        // If no message in 90 seconds, assume connection is dead
+        if (timeSinceLastMessage > 90000) {
+          console.log('[SSE] No heartbeat for 90s, reconnecting...');
+          setIsConnected(false);
+          cleanup();
+          scheduleReconnect();
+        } else {
+          // Check again in 30 seconds
+          startHeartbeatCheck();
+        }
+      }, 30000);
+    };
 
     evtSource.onopen = () => {
       console.log('[SSE] Connection established');
       setIsConnected(true);
       reconnectAttemptsRef.current = 0;
+      lastMessageTimeRef.current = Date.now();
+      startHeartbeatCheck();
     };
 
     evtSource.onmessage = (event) => {
+      lastMessageTimeRef.current = Date.now();
+      
       const data = JSON.parse(event.data);
       if (data.type === 'connected') {
         console.log('[SSE] Received connection confirmation');
@@ -112,37 +149,50 @@ const ArraialClientPage = ({ artistsVideos, photobank, busAccounts, busSchedules
 
     evtSource.onerror = (error) => {
       console.error('[SSE] Connection error:', error);
+      console.log('[SSE] ReadyState:', evtSource.readyState);
       setIsConnected(false);
-      evtSource.close();
-
-      // Exponential backoff: 2s, 4s, 8s, max 30s
-      reconnectAttemptsRef.current++;
-      const delay = Math.min(2000 * Math.pow(2, reconnectAttemptsRef.current - 1), 30000);
-
-      console.log(`[SSE] Reconnecting in ${delay}ms (attempt ${reconnectAttemptsRef.current})...`);
-      reconnectTimeoutRef.current = setTimeout(() => {
-        // Only reconnect if tab is visible
-        if (isVisibleRef.current) {
-          connectSSE();
-        }
-      }, delay);
+      cleanup();
+      scheduleReconnect();
     };
-  }, []);
+  }, [cleanup]);
 
-  // Handle visibility changes
+  // Schedule a reconnection with exponential backoff
+  const scheduleReconnect = useCallback(() => {
+    if (reconnectTimeoutRef.current) return;
+
+    reconnectAttemptsRef.current++;
+    // Exponential backoff: 2s, 4s, 8s, 16s, max 30s
+    const delay = Math.min(2000 * Math.pow(2, reconnectAttemptsRef.current - 1), 30000);
+    
+    console.log(`[SSE] Scheduling reconnect in ${delay}ms (attempt ${reconnectAttemptsRef.current})`);
+    reconnectTimeoutRef.current = setTimeout(() => {
+      reconnectTimeoutRef.current = null;
+      // Check if tab is visible before reconnecting
+      if (!document.hidden) {
+        console.log('[SSE] Attempting reconnection');
+        connectSSE();
+      } else {
+        console.log('[SSE] Tab hidden, will reconnect when visible');
+      }
+    }, delay);
+  }, [connectSSE]);
+
   useEffect(() => {
     const handleVisibilityChange = () => {
-      isVisibleRef.current = !document.hidden;
-
-      if (document.hidden) {
-        console.log('[SSE] Tab hidden, keeping connection but reducing activity');
-      } else {
-        console.log('[SSE] Tab visible again');
-        // If we're not connected and tab becomes visible, reconnect
-        if (!isConnected && evtSourceRef.current?.readyState !== EventSource.OPEN) {
-          console.log('[SSE] Reconnecting after tab became visible');
+      console.log('[SSE] Visibility changed, hidden:', document.hidden);
+      
+      if (!document.hidden) {
+        const evtSource = evtSourceRef.current;
+        
+        // Check if we need to reconnect
+        if (!evtSource || evtSource.readyState !== EventSource.OPEN) {
+          console.log('[SSE] Tab visible and not connected, reconnecting...');
           connectSSE();
+        } else {
+          console.log('[SSE] Tab visible and already connected');
         }
+      } else {
+        console.log('[SSE] Tab hidden, connection will be maintained with heartbeat check');
       }
     };
 
@@ -150,7 +200,29 @@ const ArraialClientPage = ({ artistsVideos, photobank, busAccounts, busSchedules
     return () => {
       document.removeEventListener('visibilitychange', handleVisibilityChange);
     };
-  }, [isConnected, connectSSE]);
+  }, [connectSSE]);
+
+  // Periodic connection health check
+  useEffect(() => {
+    const healthCheckInterval = setInterval(() => {
+      const evtSource = evtSourceRef.current;
+      const timeSinceLastMessage = Date.now() - lastMessageTimeRef.current;
+      
+      // If tab is visible and either not connected or no message in 90s, reconnect
+      if (!document.hidden) {
+        if (!evtSource || evtSource.readyState !== EventSource.OPEN) {
+          console.log('[SSE] Health check: not connected, reconnecting...');
+          connectSSE();
+        } else if (timeSinceLastMessage > 90000) {
+          console.log('[SSE] Health check: stale connection (no message in 60s), reconnecting...');
+          cleanup();
+          connectSSE();
+        }
+      }
+    }, 45000); // Check every 30 seconds
+
+    return () => clearInterval(healthCheckInterval);
+  }, [connectSSE, cleanup]);
 
   // Initial data fetch and SSE connection
   useEffect(() => {
@@ -177,16 +249,9 @@ const ArraialClientPage = ({ artistsVideos, photobank, busAccounts, busSchedules
 
     return () => {
       cancelled = true;
-      if (evtSourceRef.current) {
-        evtSourceRef.current.close();
-        evtSourceRef.current = null;
-      }
-      if (reconnectTimeoutRef.current) {
-        clearTimeout(reconnectTimeoutRef.current);
-        reconnectTimeoutRef.current = null;
-      }
+      cleanup();
     };
-  }, [connectSSE]);
+  }, [connectSSE, cleanup]);
 
   return (
     <main className="py-20 lg:py-25 xl:py-30">
