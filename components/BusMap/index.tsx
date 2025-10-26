@@ -121,17 +121,16 @@ const MapController = memo(({ buses, selectedBusId }: { buses: EnrichedBusData[]
   const prevSelectedBusId = useRef<string | null>(null);
 
   useEffect(() => {
-    if (buses.length > 0) {
-      const stopCoords = BUS_STOPS.map(stop => [stop.lat, stop.lon] as [number, number]);
-      const busCoords = buses.map(bus => [bus.lat, bus.lon] as [number, number]);
-      const allCoords = [...busCoords, ...stopCoords];
-      const bounds = new L.LatLngBounds(allCoords);
+    const stopCoords = BUS_STOPS.map(stop => [stop.lat, stop.lon] as [number, number]);
+    const busCoords = buses.map(bus => [bus.lat, bus.lon] as [number, number]);
+    const allCoords = [...busCoords, ...stopCoords];
+    const bounds = new L.LatLngBounds(allCoords);
 
-      if (isInitialMount.current) {
-        map.fitBounds(bounds, { padding: [15, 15], maxZoom: 15 });
-        isInitialMount.current = false;
-      }
+    if (isInitialMount.current) {
+      map.fitBounds(bounds, { padding: [15, 15], maxZoom: 15 });
+      isInitialMount.current = false;
     }
+
   }, [buses, map]);
 
   // Fly to selected marker when it changes (bus, stop, or festival)
@@ -505,15 +504,6 @@ const BusMap = ({ buses, isConnected = true, selectedBusId = null, onBusClick, s
         ))}
       </MapContainer>
 
-      {/* No buses message */}
-      {buses.length === 0 && (
-        <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-90 z-[1000]">
-          <div className="text-center">
-            <Bus className="w-12 h-12 mx-auto text-gray-400 mb-2" />
-            <p className="text-gray-600">Nenhum autocarro disponível</p>
-          </div>
-        </div>
-      )}
     </div>
   );
 };
