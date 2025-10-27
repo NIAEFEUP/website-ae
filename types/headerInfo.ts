@@ -1,5 +1,5 @@
 export type HeaderInfo = {
   title: string;
-  subtitle?: string;
+  subtitle?: React.ReactNode;
   description?: string;
 };

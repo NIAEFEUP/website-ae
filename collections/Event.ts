@@ -37,10 +37,11 @@ export const Event: CollectionConfig = {
       required: true
     },
     {
-      name: 'image',
-      label: 'Imagem',
+      name: 'images',
+      label: 'Imagens',
       type: 'relationship',
       relationTo: 'media',
+      hasMany: true,
       required: true
     },
     {

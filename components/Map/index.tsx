@@ -7,6 +7,7 @@ import backpackIcon from "@/public/images/map/backpack.svg";
 import utensilsIcon from "@/public/images/map/utensils.svg";
 import houseIcon from "@/public/images/map/house.svg";
 import carfrontIcon from "@/public/images/map/carfront.svg";
+import festivalIcon from "@/public/images/map/festival.svg";
 
 const customIcons = {
   "Espaços de Estudo": L.icon({
@@ -26,6 +27,11 @@ const customIcons = {
   }),
   "Mobilidade": L.icon({
     iconUrl: carfrontIcon.src,
+    iconSize: [50, 50],
+    iconAnchor: [25, 50],
+  }),
+  "Festival": L.icon({
+    iconUrl: festivalIcon.src,
     iconSize: [50, 50],
     iconAnchor: [25, 50],
   }),

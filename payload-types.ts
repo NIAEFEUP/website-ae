@@ -9,6 +9,7 @@
 export interface Config {
   auth: {
     users: UserAuthOperations;
+    busAccount: BusAccountAuthOperations;
   };
   collections: {
     users: User;
@@ -40,17 +41,26 @@ export interface Config {
     standings: Standing;
     mentoringLinks: MentoringLink;
     opportunities: Opportunity;
+    'artist-video': ArtistVideo;
+    busAccount: BusAccount;
+    busSchedule: BusSchedule;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
   db: {
     defaultIDType: number;
   };
-  globals: {};
-  locale: null;
-  user: User & {
-    collection: 'users';
+  globals: {
+    photobank: Photobank;
   };
+  locale: null;
+  user:
+    | (User & {
+        collection: 'users';
+      })
+    | (BusAccount & {
+        collection: 'busAccount';
+      });
 }
 export interface UserAuthOperations {
   forgotPassword: {
@@ -66,6 +76,22 @@ export interface UserAuthOperations {
   };
   unlock: {
     email: string;
+  };
+}
+export interface BusAccountAuthOperations {
+  forgotPassword: {
+    username: string;
+  };
+  login: {
+    username: string;
+    password: string;
+  };
+  registerFirstUser: {
+    username: string;
+    password: string;
+  };
+  unlock: {
+    username: string;
   };
 }
 /**
@@ -370,7 +396,7 @@ export interface Event {
   title: string;
   type: string;
   description: string;
-  image: number | Media;
+  images: (number | Media)[];
   link?:
     | {
         description?: string | null;
@@ -597,14 +623,66 @@ export interface Opportunity {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "artist-video".
+ */
+export interface ArtistVideo {
+  id: number;
+  title: string;
+  source: 'Instagram';
+  url: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "busAccount".
+ */
+export interface BusAccount {
+  id: number;
+  busId: number;
+  name?: string | null;
+  line: 'BXP' | 'HSJ';
+  updatedAt: string;
+  createdAt: string;
+  email?: string | null;
+  username: string;
+  resetPasswordToken?: string | null;
+  resetPasswordExpiration?: string | null;
+  salt?: string | null;
+  hash?: string | null;
+  loginAttempts?: number | null;
+  lockUntil?: string | null;
+  password?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "busSchedule".
+ */
+export interface BusSchedule {
+  id: number;
+  bus?: (number | null) | BusAccount;
+  route: 'HSJ-EX' | 'BXP-EX' | 'EX-HSJ' | 'EX-BXP';
+  departureTime: string;
+  arrivalTime?: string | null;
+  routeDisplay?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-preferences".
  */
 export interface PayloadPreference {
   id: number;
-  user: {
-    relationTo: 'users';
-    value: number | User;
-  };
+  user:
+    | {
+        relationTo: 'users';
+        value: number | User;
+      }
+    | {
+        relationTo: 'busAccount';
+        value: number | BusAccount;
+      };
   key?: string | null;
   value?:
     | {
@@ -628,6 +706,25 @@ export interface PayloadMigration {
   batch?: number | null;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "photobank".
+ */
+export interface Photobank {
+  id: number;
+  description: string;
+  active: boolean;
+  images: (number | Media)[];
+  links?:
+    | {
+        description?: string | null;
+        url?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

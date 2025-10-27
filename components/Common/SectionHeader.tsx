@@ -29,7 +29,7 @@ const SectionHeader = ({ title, subtitle, description }: HeaderInfo ) => {
             {title}
           </h1>
           {subtitle && (
-            <h2 className="mb-2 text-xl font-medium text-gray-700 dark:text-gray-300">
+            <h2 className="mb-2 text-xl font-medium text-gray-700 dark:text-gray-300 whitespace-pre-line">
               {subtitle}
             </h2>
           )}

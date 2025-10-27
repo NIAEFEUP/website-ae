@@ -43,7 +43,7 @@ const EventsPage = async () => {
               eventType: event.type,
               eventTitle: event.title,
               eventContent: event.description,
-              eventImage: (event.image as Media),
+              eventImages: event.images as Media[],
               eventLinks: event.link!
             }}
           />
