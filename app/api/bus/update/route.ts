@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { Pool } from 'pg';
 import jwt from 'jsonwebtoken';
 import crypto from 'node:crypto';
-import { broadcastBusUpdate } from '../stream/route';
+import { broadcastBusUpdate } from '../stream/broadcast';
 
 // Initialize Postgres pool
 const pool = new Pool({
