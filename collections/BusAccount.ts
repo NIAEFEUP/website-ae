@@ -12,7 +12,6 @@ export const BusAccount: CollectionConfig = {
         maxLoginAttempts: 5,
         lockTime: 5 * 60 * 1000,
         tokenExpiration: 60 * 60,
-        useSessions: false,
     },
     admin: {
         group: 'Arraial',
