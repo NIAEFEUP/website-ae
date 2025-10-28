@@ -435,9 +435,6 @@ const ArraialClientPage = ({ artistsVideos, photobank, busAccounts, busSchedules
       />
 
       <section className="pt-12 pb-12">
-        <div className="mx-auto max-w-c-1315 px-4 md:px-8 xl:px-0">
-          <h2 className="text-3xl font-bold mb-8 text-center">Lineup</h2>
-        </div>
         <LineupTimeline data={lineupData} />
       </section>
 
