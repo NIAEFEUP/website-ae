@@ -12,6 +12,8 @@ const BusMap = dynamic(() => import("@/components/BusMap"), { ssr: false });
 const BusSchedule = dynamic(() => import("@/components/BusSchedule"), { ssr: false });
 import { useEffect, useState, useRef, useMemo, useCallback } from 'react';
 import type { BusLocation, BusAccount, BusScheduleEntry, EnrichedBusData } from "@/types/bus";
+import LineupTimeline from "@/components/LineupTimeline";
+import { lineupData } from "./lineupData";
 
 interface Props {
   artistsVideos: ArtistVideo[];
@@ -431,6 +433,13 @@ const ArraialClientPage = ({ artistsVideos, photobank, busAccounts, busSchedules
         informativeVideos={artistsVideos}
         title="Artistas"
       />
+
+      <section className="pt-12 pb-12">
+        <div className="mx-auto max-w-c-1315 px-4 md:px-8 xl:px-0">
+          <h2 className="text-3xl font-bold mb-8 text-center">Lineup</h2>
+        </div>
+        <LineupTimeline data={lineupData} />
+      </section>
 
       {photobank && photobank.active && (
         <EventComponent
