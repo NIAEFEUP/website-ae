@@ -37,10 +37,67 @@ async function getPhotobank() {
   return photobank;
 }
 
+async function getBusAccounts() {
+  if (process.env.IS_BUILD) {
+    console.log('skipping getBusAccounts DB call during build')
+    return []
+  }
+  const payload = await getPayload({ config });
+  const busAccounts = (await payload.find({
+    collection: "busAccount",
+    limit: 100,
+  })).docs;
+
+  return busAccounts.map(account => ({
+    busId: account.busId,
+    name: account.name || `Autocarro ${account.busId}`,
+    line: account.line,
+  }));
+}
+
+async function getBusSchedules() {
+  if (process.env.IS_BUILD) {
+    console.log('skipping getBusSchedules DB call during build')
+    return []
+  }
+  const payload = await getPayload({ config });
+  const schedules = (await payload.find({
+    collection: "busSchedule",
+    limit: 1000,
+    sort: 'departureTime',
+  })).docs;
+
+  const normalizeBus = (b: any) => {
+    if (b == null) return null;
+    if (typeof b === 'object') {
+      const busId = String(b.busId);
+      const name = b.name ?? `Autocarro ${busId}`;
+      return { busId, name };
+    }
+    const num = String(b);
+    return { busId: num, name: `Autocarro ${num}` };
+  };
+
+  return schedules.map((s: any) => ({
+    ...s,
+    bus: normalizeBus(s.bus),
+  }));
+}
 const ArraialPage = async () => {
   const artistsVideos = await getArtistsVideos();
   const photobank = await getPhotobank();
-  return <ArraialClientPage artistsVideos={artistsVideos} photobank={photobank} />
+  const busAccounts = await getBusAccounts();
+  const busSchedules = await getBusSchedules();
+
+  return (
+    <ArraialClientPage
+      artistsVideos={artistsVideos}
+      photobank={photobank}
+      busAccounts={busAccounts}
+      busSchedules={busSchedules}
+    />
+  );
 };
+
 
 export default ArraialPage;
