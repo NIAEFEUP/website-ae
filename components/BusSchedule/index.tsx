@@ -16,6 +16,12 @@ const routeLabels: Record<string, { label: string; color: string; short: string 
   'EX-BXP': { label: 'Exponor → Baixa do Porto', color: '#9D2F21', short: 'Expo → BXP' },
 };
 
+const formatHourMinute = (time: string) => {
+  // Accepts "HH:mm" or "HH:mm:ss" and returns "HH:mm"
+  const [h, m] = time.split(':');
+  return `${h.padStart(2, '0')}:${m.padStart(2, '0')}`;
+};
+
 const BusSchedule = ({ schedules, activeBuses, selectedBusId, onScheduleClick }: BusScheduleProps) => {
   const [expandedRoutes, setExpandedRoutes] = useState<Set<string>>(new Set([]));
 
@@ -30,10 +36,12 @@ const BusSchedule = ({ schedules, activeBuses, selectedBusId, onScheduleClick }:
 
   // Sort schedules by departure time within each route, starting the "day" at 22:00
   const timeToOffset = (time: string, startHour = 22) => {
-    const [h, m] = time.split(':').map(Number);
-    const minutes = (Number.isFinite(h) && Number.isFinite(m)) ? h * 60 + m : 0;
+    const [h, m] = time.split(':');
+    const hours = Number(h);
+    const minutes = Number(m);
+    const totalMinutes = (Number.isFinite(hours) && Number.isFinite(minutes)) ? hours * 60 + minutes : 0;
     const start = startHour * 60;
-    return (minutes - start + 24 * 60) % (24 * 60);
+    return (totalMinutes - start + 24 * 60) % (24 * 60);
   };
 
   Object.keys(schedulesByRoute).forEach(route => {
@@ -51,10 +59,10 @@ const BusSchedule = ({ schedules, activeBuses, selectedBusId, onScheduleClick }:
   };
 
   const isNow = (departureTime: string, arrivalTime: string | null) => {
-    // Converts "HH:mm" to minutes since midnight
+    // Converts "HH:mm" or "HH:mm:ss" to minutes since midnight
     const toMinutes = (t: string) => {
-      const [h, m] = t.split(':').map(Number);
-      return h * 60 + m;
+      const [h, m] = t.split(':');
+      return Number(h) * 60 + Number(m);
     };
 
     const now = new Date();
@@ -72,9 +80,12 @@ const BusSchedule = ({ schedules, activeBuses, selectedBusId, onScheduleClick }:
   };
 
   const calculateArrival = (departure: string): string => {
-    const [hours, minutes] = departure.split(':').map(Number);
-    const arrivalMinutes = minutes + 30;
-    const arrivalHours = hours + Math.floor(arrivalMinutes / 60);
+    // Accepts "HH:mm" or "HH:mm:ss"
+    const [hours, minutes] = departure.split(':');
+    const h = Number(hours);
+    const m = Number(minutes);
+    const arrivalMinutes = m + 30;
+    const arrivalHours = h + Math.floor(arrivalMinutes / 60);
     return `${String(arrivalHours % 24).padStart(2, '0')}:${String(arrivalMinutes % 60).padStart(2, '0')}`;
   };
 
@@ -201,7 +212,9 @@ const BusSchedule = ({ schedules, activeBuses, selectedBusId, onScheduleClick }:
                               </div>
                               <div className="text-xs text-gray-500 flex items-center gap-2">
                                 <Clock className="w-3 h-3" />
-                                <span>{entry.departureTime} → {arrival}</span>
+                                <span>
+                                  {formatHourMinute(entry.departureTime)} → {formatHourMinute(arrival)}
+                                </span>
                               </div>
                             </div>
                           </div>
