@@ -24,11 +24,7 @@ const menuData: Menu[] = [
       {
         title: "Eventos",
         path: "events"
-      },
-      {
-        title: "Arraial D'Engenharia",
-        path: "arraial",
-      },
+      },,
       {
         title: "Núcleos e Associações",
         path: "associations"
