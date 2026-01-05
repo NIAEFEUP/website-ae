@@ -24,7 +24,7 @@ const menuData: Menu[] = [
       {
         title: "Eventos",
         path: "events"
-      },,
+      },
       {
         title: "Núcleos e Associações",
         path: "associations"
