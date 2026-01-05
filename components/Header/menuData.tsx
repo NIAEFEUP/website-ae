@@ -26,10 +26,6 @@ const menuData: Menu[] = [
         path: "events"
       },
       {
-        title: "Arraial D'Engenharia",
-        path: "arraial",
-      },
-      {
         title: "Núcleos e Associações",
         path: "associations"
       },
