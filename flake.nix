@@ -1,5 +1,5 @@
 {
-  description = "A Nix flake for the development of AEFEUP's website.";
+  description = "A Nix flake for the development of the AEFEUP's website.";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -22,6 +22,7 @@
           packages = with pkgs; [
             nodejs_22
             pnpm
+            postgresql_16
           ];
         };
       }
