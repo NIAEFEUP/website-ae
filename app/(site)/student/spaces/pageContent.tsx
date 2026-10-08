@@ -2,9 +2,11 @@
 
 import { ReactElement, useState } from 'react';
 import { Backpack, Utensils, House, CarFront } from "lucide-react";
-import Map from '@/components/Map';
 import PlaceBoard from '@/components/PlaceBoard';
 import { Place } from '@/payload-types';
+import dynamic from 'next/dynamic';
+
+const Map = dynamic(() => import('@/components/Map'), { ssr: false });
 
 type Category = {
   name: string;
