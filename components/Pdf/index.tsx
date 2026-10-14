@@ -60,7 +60,7 @@ const PdfViewer = ({ files }: Props) => {
                     : "bg-gray-200 dark:bg-gray-400 dark:text-black hover:shadow-lg"
                 }`}
               >
-                {pdfItem.language}
+                {pdfItem.language === "Inglês" ? "English" : pdfItem.language}
               </button>
             </div>
           ))}
