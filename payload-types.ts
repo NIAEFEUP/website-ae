@@ -52,6 +52,7 @@ export interface Config {
   };
   globals: {
     photobank: Photobank;
+    'calendar-settings': CalendarSetting;
   };
   locale: null;
   user:
@@ -723,6 +724,14 @@ export interface Photobank {
         id?: string | null;
       }[]
     | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+export interface CalendarSetting {
+  id: number;
+  calendarLink?: string | null;
+  calendarApiKey?: string | null;
+  displayMode?: ('fullcalendar' | 'iframe') | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }

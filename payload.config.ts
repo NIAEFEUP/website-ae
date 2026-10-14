@@ -39,6 +39,7 @@ import { MentoringLinks } from "./collections/MentoringLinks";
 import { Opportunities } from "./collections/Opportunities";
 import { ArtistsVideo } from "./collections/ArtistsVideos";
 import { Photobank } from "./globals/Photobank";
+import { CalendarSettings } from "./globals/CalendarSettings";
 import { BusAccount } from "./collections/BusAccount";
 import { BusSchedule } from "./collections/BusSchedule";
 
@@ -89,6 +90,7 @@ export default buildConfig({
   ],
   globals: [
     Photobank,
+    CalendarSettings,
   ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",
