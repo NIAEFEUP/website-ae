@@ -20,9 +20,10 @@ interface Props {
   photobank: Photobank | null;
   busAccounts: BusAccount[];
   busSchedules: BusScheduleEntry[];
+  cartoApiKey?: string;
 }
 
-const ArraialClientPage = ({ artistsVideos, photobank, busAccounts, busSchedules }: Props) => {
+const ArraialClientPage = ({ artistsVideos, photobank, busAccounts, busSchedules, cartoApiKey }: Props) => {
   const [isConnected, setIsConnected] = useState(false);
   const [selectedBusId, setSelectedBusId] = useState<string | null>(null);
 
@@ -414,6 +415,7 @@ const ArraialClientPage = ({ artistsVideos, photobank, busAccounts, busSchedules
               onBusClick={handleBusClick}
               showStops={true}
               showFestival={true}
+              apiKey={cartoApiKey}
             />
           </div>
 
