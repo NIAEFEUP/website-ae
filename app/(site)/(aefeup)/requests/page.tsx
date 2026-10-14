@@ -3,6 +3,8 @@ import { getPayload } from "payload"
 import RequestPageContent from "./client"
 import config from "payload.config"
 
+import { extractGoogleCalendarId, getGoogleCalendarEmbedUrl } from "@/lib/calendar"
+
 export const revalidate = 10
 export const dynamicParams = true
 export const dynamic = 'force-dynamic'
@@ -10,6 +12,23 @@ export const dynamic = 'force-dynamic'
 export const metadata: Metadata = {
   title: "Cedências de Espaço",
   description: "Envia solicitações para reservas de espaço para eventos ou pedidos de material",
+}
+
+async function getCalendarSettings() {
+  if (process.env.IS_BUILD) {
+    return null;
+  }
+
+  try {
+    const payload = await getPayload({ config });
+    const calendarSettings = await payload.findGlobal({
+      slug: "calendar-settings",
+    });
+    return calendarSettings;
+  } catch (error) {
+    console.error("Error fetching calendar settings:", error);
+    return null;
+  }
 }
 
 async function getMaterialData() {
@@ -61,17 +80,25 @@ async function getAvailableSpaces() {
 }
 
 export default async function Request() {
-  const calendarID = process.env.GOOGLE_CALENDAR_ID
-  const calendarApiKey = process.env.GOOGLE_CALENDAR_API_KEY
+  const calendarSettings = await getCalendarSettings();
 
-  const materialData = await getMaterialData()
-  const availableSpaces = await getAvailableSpaces()
-  const regulation = await getRegulation()
+  const rawCalendarLink = calendarSettings?.calendarLink || process.env.GOOGLE_CALENDAR_ID;
+  const calendarApiKey = calendarSettings?.calendarApiKey || process.env.GOOGLE_CALENDAR_API_KEY;
+  const displayMode = (calendarSettings?.displayMode as "fullcalendar" | "iframe" | undefined) || "fullcalendar";
+
+  const calendarID = extractGoogleCalendarId(rawCalendarLink);
+  const embedUrl = getGoogleCalendarEmbedUrl(rawCalendarLink);
+
+  const materialData = await getMaterialData();
+  const availableSpaces = await getAvailableSpaces();
+  const regulation = await getRegulation();
 
   return (
     <RequestPageContent
       calendarID={calendarID}
       calendarApiKey={calendarApiKey}
+      embedUrl={embedUrl}
+      displayMode={displayMode}
       materialData={materialData}
       availableSpaces={availableSpaces}
       regulation={regulation.length > 0 ? regulation[0] : undefined}

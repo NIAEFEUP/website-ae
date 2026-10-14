@@ -67,9 +67,11 @@ const SpacesPage = async () => {
     haversineDistance(refLat, refLon, b.position.lat, b.position.lng)
   );
 
+  const cartoApiKey = process.env.NEXT_PUBLIC_CARTO_API_KEY || process.env.CARTO_API_KEY;
+
   return (
     <section className="pb-20 pt-15 lg:pb-25 xl:pb-30">
-      <SpacesPageContent places={mergedPlaces} />
+      <SpacesPageContent places={mergedPlaces} cartoApiKey={cartoApiKey} />
     </section>
   );
 }

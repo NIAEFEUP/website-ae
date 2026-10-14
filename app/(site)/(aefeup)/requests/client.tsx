@@ -8,15 +8,30 @@ import RequestTab from "./RequestTab";
 interface Props {
     calendarID?: string;
     calendarApiKey?: string;
+    embedUrl?: string;
+    displayMode?: "fullcalendar" | "iframe";
     materialData: Material[];
     availableSpaces: Space[];
     regulation?: Docfile;
 }
 
-const RequestPageContent = ({ calendarID, calendarApiKey, materialData, availableSpaces, regulation }: Props) => {
+const RequestPageContent = ({
+    calendarID,
+    calendarApiKey,
+    embedUrl,
+    displayMode,
+    materialData,
+    availableSpaces,
+    regulation,
+}: Props) => {
     return (
         <Dialog>
-            <CalendarComponent calendarID={calendarID} calendarApiKey={calendarApiKey} />
+            <CalendarComponent
+                calendarID={calendarID}
+                calendarApiKey={calendarApiKey}
+                embedUrl={embedUrl}
+                displayMode={displayMode}
+            />
             <RequestTab materialData={materialData} availableSpaces={availableSpaces} regulation={regulation} />
             <DialogContent>
                 <DialogDescription>

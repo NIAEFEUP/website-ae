@@ -88,6 +88,7 @@ const ArraialPage = async () => {
   const photobank = await getPhotobank();
   const busAccounts = await getBusAccounts();
   const busSchedules = await getBusSchedules();
+  const cartoApiKey = process.env.NEXT_PUBLIC_CARTO_API_KEY || process.env.CARTO_API_KEY;
 
   return (
     <ArraialClientPage
@@ -95,6 +96,7 @@ const ArraialPage = async () => {
       photobank={photobank}
       busAccounts={busAccounts}
       busSchedules={busSchedules}
+      cartoApiKey={cartoApiKey}
     />
   );
 };

@@ -2,7 +2,8 @@
 
 import { ReactElement, useState } from 'react';
 import { Backpack, Utensils, House, CarFront } from "lucide-react";
-import Map from '@/components/Map';
+import dynamic from 'next/dynamic';
+const Map = dynamic(() => import('@/components/Map'), { ssr: false });
 import PlaceBoard from '@/components/PlaceBoard';
 import { Place } from '@/payload-types';
 
@@ -20,9 +21,10 @@ const categories: Category[] = [
 
 interface Props {
   places: Place[];
+  cartoApiKey?: string;
 }
 
-const SpacesPageContent = ({ places }: Props) => {
+const SpacesPageContent = ({ places, cartoApiKey }: Props) => {
   const [selectedCategory, setSelectedCategory] = useState(0)
   const [selectedPlace, setSelectedPlace] = useState<number | null>(null)
 
@@ -36,7 +38,12 @@ const SpacesPageContent = ({ places }: Props) => {
   return (
     <>
       <div className="relative flex h-[calc(50vh)] mx-auto">
-        <Map places={filteredPlaces} selected={selectedPlace} onChange={setSelectedPlace} />
+        <Map
+          places={filteredPlaces}
+          selected={selectedPlace}
+          onChange={setSelectedPlace}
+          apiKey={cartoApiKey}
+        />
       </div>
       <section className='flex justify-center gap-5 my-5'>
         {categories.map((category, key) => (

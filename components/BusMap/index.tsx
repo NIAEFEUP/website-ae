@@ -1,9 +1,12 @@
+'use client';
+
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import { useEffect, useRef, memo, useState } from 'react';
 import { Bus, Clock, MapPin, Wifi, WifiOff, PartyPopper } from 'lucide-react';
 import type { EnrichedBusData } from "@/types/bus";
+import { getCartoRasterTileUrl, CARTO_ATTRIBUTION } from '@/lib/carto';
 
 interface BusMapProps {
   buses: EnrichedBusData[];
@@ -12,6 +15,8 @@ interface BusMapProps {
   onBusClick?: (busId: string) => void;
   showStops?: boolean;
   showFestival?: boolean;
+  apiKey?: string;
+  tileStyle?: string;
 }
 
 const BUS_STOPS = [
@@ -437,7 +442,17 @@ const AnimatedFestivalMarker = memo(({ isSelected, onClick }: { isSelected?: boo
 AnimatedFestivalMarker.displayName = 'AnimatedFestivalMarker';
 
 // Main BusMap component
-const BusMap = ({ buses, isConnected = true, selectedBusId = null, onBusClick, showStops = true, showFestival = true }: BusMapProps) => {
+const BusMap = ({
+  buses,
+  isConnected = true,
+  selectedBusId = null,
+  onBusClick,
+  showStops = true,
+  showFestival = true,
+  apiKey,
+  tileStyle = "light_all",
+}: BusMapProps) => {
+  const tileUrl = getCartoRasterTileUrl({ style: tileStyle, apiKey });
   const handleMarkerClick = (id: string) => {
     onBusClick?.(id);
   };
@@ -470,8 +485,8 @@ const BusMap = ({ buses, isConnected = true, selectedBusId = null, onBusClick, s
         zoomControl={true}
       >
         <TileLayer
-          url='https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png'
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+          url={tileUrl}
+          attribution={CARTO_ATTRIBUTION}
         />
         <MapController buses={buses} selectedBusId={selectedBusId} />
         

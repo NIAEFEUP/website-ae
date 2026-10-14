@@ -26,18 +26,6 @@ async function getInformativeVideos() {
   return informativeVideos
 }
 
-async function getMentoringLinks() {
-  if (process.env.IS_BUILD) {
-    console.log('skipping getMentoringLinks DB call during build')
-    return []
-  }
-  const payload = await getPayload({ config });
-  const links = (await payload.find({
-    collection: "mentoringLinks",
-  })).docs;
-  return links;
-}
-
 const WelcomePage = async () => {
   const informativeVideos = await getInformativeVideos();
 

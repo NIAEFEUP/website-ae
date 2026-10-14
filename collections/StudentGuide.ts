@@ -29,7 +29,7 @@ export const StudentGuide: CollectionConfig = {
                     value: "Português",
                 },
                 {
-                    label: "Inglês",
+                    label: "English",
                     value: "Inglês",
                 }
             ],

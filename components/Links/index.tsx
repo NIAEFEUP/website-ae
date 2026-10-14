@@ -3,15 +3,21 @@
 import { Link } from "@/payload-types";
 import { motion } from "framer-motion";
 import { SquareArrowOutUpRight } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface Props {
   links: Link[];
 }
 
 const UsefulLinks = ({ links }: Props) => {
-  const isMobileDevice = window.navigator.userAgent.toLowerCase().includes("mobi");
-  const [selectedLinks,setSelectedLinks] = useState(-1)
+  const [isMobileDevice, setIsMobileDevice] = useState(false);
+  const [selectedLinks, setSelectedLinks] = useState(-1);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setIsMobileDevice(window.navigator.userAgent.toLowerCase().includes("mobi"));
+    }
+  }, []);
   return (
     <>
       <div className="animate_top mx-auto text-center flex flex-col items-center">

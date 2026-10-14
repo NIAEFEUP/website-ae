@@ -1,8 +1,11 @@
+'use client';
+
 import { MapContainer, TileLayer, Marker, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import { useEffect } from 'react';
 import { Place } from '@/payload-types';
+import { getCartoRasterTileUrl, CARTO_ATTRIBUTION } from '@/lib/carto';
 import backpackIcon from "@/public/images/map/backpack.svg";
 import utensilsIcon from "@/public/images/map/utensils.svg";
 import houseIcon from "@/public/images/map/house.svg";
@@ -41,6 +44,8 @@ interface Props {
   places: Place[];
   selected: null | number;
   onChange: (placeId: number | null) => void;
+  apiKey?: string;
+  tileStyle?: string;
 }
 
 const FitMapBounds = ({ places, selected }: { places: Place[], selected: null | number }) => {
@@ -59,7 +64,15 @@ const FitMapBounds = ({ places, selected }: { places: Place[], selected: null | 
   return null;
 };
 
-const Map = ({ places = [], selected, onChange }: Props) => {
+const Map = ({
+  places = [],
+  selected,
+  onChange,
+  apiKey,
+  tileStyle = "light_nolabels",
+}: Props) => {
+  const tileUrl = getCartoRasterTileUrl({ style: tileStyle, apiKey });
+
   return (
     <MapContainer 
       center={[41.17821442317816, -8.595717162899934]} 
@@ -68,8 +81,8 @@ const Map = ({ places = [], selected, onChange }: Props) => {
       style={{ width: '100%', height: '100%' }}
     >
       <TileLayer
-        url='https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png'
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+        url={tileUrl}
+        attribution={CARTO_ATTRIBUTION}
       />
       <FitMapBounds places={places} selected={selected} />
       {places.map(place => (

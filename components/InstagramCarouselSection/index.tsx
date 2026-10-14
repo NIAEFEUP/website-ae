@@ -18,25 +18,26 @@ interface Props {
 let instagramLoader: Promise<void> | null = null;
 
 function loadInstagramScriptOnce(): Promise<void> {
+  if (typeof window === "undefined") {
+    return Promise.resolve();
+  }
+
+  if ((window as any).instgrm && (window as any).instgrm.Embeds) {
+    return Promise.resolve();
+  }
+
   if (instagramLoader) return instagramLoader;
 
   instagramLoader = new Promise((resolve) => {
-    if (typeof window === "undefined") {
-      resolve();
-      return;
-    }
-
-    // If already present and instgrm is ready resolve immediately
-    if ((window as any).instgrm && (window as any).instgrm.Embeds) {
-      resolve();
-      return;
-    }
-
     const existing = document.querySelector('script[src="https://www.instagram.com/embed.js"]');
     if (existing) {
+      if ((window as any).instgrm?.Embeds) {
+        resolve();
+        return;
+      }
       existing.addEventListener("load", () => resolve(), { once: true });
-      // also try to resolve quickly if instgrm is already ready
-      setTimeout(() => resolve(), 500);
+      existing.addEventListener("error", () => resolve(), { once: true });
+      setTimeout(() => resolve(), 300);
       return;
     }
 
@@ -45,27 +46,41 @@ function loadInstagramScriptOnce(): Promise<void> {
     s.async = true;
     s.defer = true;
     s.onload = () => resolve();
+    s.onerror = () => resolve();
     document.head.appendChild(s);
+
+    // Timeout safety fallback
+    setTimeout(() => resolve(), 600);
   });
 
   return instagramLoader;
 }
 
 const InstagramCarouselSection: React.FC<Props> = ({ informativeVideos, title = "Vídeos Informativos" }) => {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(informativeVideos.length > 0);
   const containerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     let mounted = true;
 
+    if (!informativeVideos || informativeVideos.length === 0) {
+      setIsLoading(false);
+      return;
+    }
+
     const checkEmbedsInContainer = () => {
       const container = containerRef.current;
       if (!container) return false;
 
-      const blockquotes = container.querySelectorAll('blockquote[data-instgrm-permalink]');
+      const unrenderedBlockquotes = container.querySelectorAll(
+        'blockquote[data-instgrm-permalink]:not(.instagram-media-rendered)'
+      );
+      const iframes = container.querySelectorAll('iframe.instagram-media');
 
-
-      if (blockquotes.length === 0) return true;
+      // Ready if any iframe is already rendered or all blockquotes have been processed
+      if (unrenderedBlockquotes.length === 0 || iframes.length > 0) {
+        return true;
+      }
 
       return false;
     };
@@ -82,14 +97,34 @@ const InstagramCarouselSection: React.FC<Props> = ({ informativeVideos, title = 
       observer.observe(container, { childList: true, subtree: true });
     }
 
+    // Attempt processing immediately if script was already loaded
+    if ((window as any).instgrm?.Embeds?.process) {
+      try {
+        (window as any).instgrm.Embeds.process();
+      } catch {}
+    }
+
     loadInstagramScriptOnce().then(() => {
+      if (!mounted) return;
       try {
         (window as any).instgrm?.Embeds?.process?.();
       } catch { }
+
+      if (checkEmbedsInContainer()) {
+        setIsLoading(false);
+      }
     });
+
+    // Max wait time: reveal content after 700ms so user is never stuck waiting
+    const timer = setTimeout(() => {
+      if (mounted) {
+        setIsLoading(false);
+      }
+    }, 700);
 
     return () => {
       mounted = false;
+      clearTimeout(timer);
       observer.disconnect();
     };
   }, [informativeVideos]);
@@ -115,7 +150,7 @@ const InstagramCarouselSection: React.FC<Props> = ({ informativeVideos, title = 
           </div>
         )}
         <div
-          className={`transition-opacity duration-1000 ease-out ${isLoading ? "opacity-0" : "opacity-100"
+          className={`transition-opacity duration-300 ease-out ${isLoading ? "opacity-0" : "opacity-100"
             }`}
         >
           <Carousel
