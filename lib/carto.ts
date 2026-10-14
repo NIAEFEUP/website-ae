@@ -25,8 +25,8 @@ interface CartoTileOptions {
 export function getCartoRasterTileUrl(options?: CartoTileOptions): string {
   const apiKey =
     options?.apiKey ||
-    process.env.NEXT_PUBLIC_CARTO_API_KEY ||
-    process.env.CARTO_API_KEY;
+    process.env.CARTO_API_KEY ||
+    process.env.NEXT_PUBLIC_CARTO_API_KEY;
 
   const style =
     options?.style ||
@@ -41,7 +41,7 @@ export function getCartoRasterTileUrl(options?: CartoTileOptions): string {
  * Returns the CARTO vector GL style URL with optional API key.
  *
  * @param style - The vector style name (default: 'voyager-gl-style')
- * @param apiKey - Optional API key (falls back to NEXT_PUBLIC_CARTO_API_KEY or CARTO_API_KEY)
+ * @param apiKey - Optional API key (falls back to CARTO_API_KEY or NEXT_PUBLIC_CARTO_API_KEY)
  */
 export function getCartoVectorStyleUrl(
   style: string = "voyager-gl-style",
@@ -49,8 +49,8 @@ export function getCartoVectorStyleUrl(
 ): string {
   const key =
     apiKey ||
-    process.env.NEXT_PUBLIC_CARTO_API_KEY ||
-    process.env.CARTO_API_KEY;
+    process.env.CARTO_API_KEY ||
+    process.env.NEXT_PUBLIC_CARTO_API_KEY;
 
   const baseUrl = `https://basemaps.cartocdn.com/gl/${style}/style.json`;
   return key ? `${baseUrl}?key=${encodeURIComponent(key)}` : baseUrl;
