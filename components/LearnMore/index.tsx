@@ -1,14 +1,13 @@
-// LearnMore.tsx
-import { motion } from "framer-motion";
 import React from "react";
 
 interface LearnMoreProps {
   icon: React.ReactNode;
   title: string;
-  description?: string;
+  description?: React.ReactNode;
   details?: string[]; // can be optional
   href?: string; // can be optional
   buttonLabel?: string; // can be optional
+  cozecareBooking?: string;
 }
 
 const LearnMore = ({
@@ -17,52 +16,62 @@ const LearnMore = ({
   description,
   details,
   href,
-  buttonLabel = 'Saber mais',
+  buttonLabel = "Saber mais",
+  cozecareBooking,
 }: LearnMoreProps) => {
+  const Card = cozecareBooking ? "section" : "div";
+  const TitleTag = cozecareBooking ? "h2" : "h4";
+
   return (
-    <div className="animate_top group relative rounded-lg border border-stroke bg-white p-7.5 shadow-solid-10 dark:border-strokedark dark:bg-blacksection dark:shadow-none md:w-[45%] lg:w-1/3 ">
-
-    <motion.div
-      variants={{
-        hidden: {
-          opacity: 0,
-          x: -20,
-        },
-
-        visible: {
-          opacity: 1,
-          x: 0,
-        },
-      }}
-      initial="hidden"
-      whileInView="visible"
-      transition={{ duration: 0.5, delay: 0.1 }}
-      viewport={{ once: true }}
-      // className="animate_left relative mx-auto hidden aspect-[588/526.5] md:block md:w-1/2"
+    <Card
+      className={`animate_top group relative rounded-lg border border-stroke bg-white p-7.5 shadow-solid-10 dark:border-strokedark dark:bg-blacksection dark:shadow-none md:w-[45%] lg:w-1/3 flex flex-col justify-between ${
+        cozecareBooking ? "cozecare-partner" : ""
+      }`}
     >
+      <div>
+        <div className="mb-4 text-primary dark:text-white">{icon}</div>
 
-      <div className="mb-4 text-primary dark:text-white">{icon}</div>
-      <h4 className="mb-2.5 text-para2 font-bold text-black dark:text-white">
-        {title}
-      </h4>
-      <p className="mb-2.5">{description}</p>
+        <TitleTag className="mb-2.5 text-para2 font-bold text-black dark:text-white">
+          {title}
+        </TitleTag>
+        <p className="mb-2.5">{description}</p>
 
-      {details && details.length > 0 && (
-        <div className="mt-9 border-t border-stroke pb-12.5 pt-9 dark:border-strokedark">
-          <ul>
-            {details.map((bullet, index) => (
-              <li
-                key={index}
-                className="mb-4 text-black last:mb-0 dark:text-manatee"
-              >
-                {bullet}
-              </li>
-            ))}
-          </ul>
+        {details && details.length > 0 && (
+          <div className="mt-9 border-t border-stroke pb-12.5 pt-9 dark:border-strokedark">
+            <ul>
+              {details.map((bullet, index) => (
+                <li
+                  key={index}
+                  className="mb-4 text-black last:mb-0 dark:text-manatee"
+                >
+                  {bullet}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+
+      {cozecareBooking ? (
+        <div className="mt-auto pt-4">
+          <div
+            data-cozecare-booking={cozecareBooking}
+            suppressHydrationWarning
+          />
+          <p
+            className="mt-2 text-gray-500 dark:text-gray-400"
+            style={{ fontSize: "11px", lineHeight: "16px" }}
+          >
+            Marcações pela{" "}
+            <a
+              href={`https://cozecare.com/parceiros/${cozecareBooking}`}
+              className="underline hover:text-gray-700 dark:hover:text-gray-300"
+            >
+              Cozecare
+            </a>
+          </p>
         </div>
-      )}
-
-      {href && (
+      ) : href ? (
         <a
           href={href}
           target="_blank"
@@ -83,9 +92,8 @@ const LearnMore = ({
             />
           </svg>
         </a>
-      )}
-      </motion.div>
-    </div>
+      ) : null}
+    </Card>
   );
 };
 

@@ -1,5 +1,5 @@
 import { Feature } from "@/types/feature";
-import { Heart, Users } from "lucide-react";
+import { Heart, Users, HeartHandshake } from "lucide-react";
 
 const mentalHealthData: Feature[] = [
   {
@@ -27,6 +27,27 @@ const mentalHealthData: Feature[] = [
       "Horário: 2ª a 6ª feira das 9:30 às 15:30 ",
     ],
     href: "https://sigarra.up.pt/feup/pt/web_base.gera_pagina?p_pagina=FORMULARIO%20GOI",
+  },
+  {
+    id: 3,
+    icon: <HeartHandshake />,
+    title:
+      "Apoio psicológico para a comunidade da Faculdade de Engenharia da Universidade do Porto",
+    description: (
+      <>
+        A Associação de Estudantes da Faculdade de Engenharia da Universidade do
+        Porto disponibiliza aos estudantes acesso a consultas de psicologia
+        através da{" "}
+        <a
+          href="https://cozecare.com/parceiros/associacao-de-estudantes-da-facu"
+          className="underline hover:text-primary"
+        >
+          Cozecare
+        </a>
+        , plataforma portuguesa de saúde mental.
+      </>
+    ),
+    cozecareBooking: "associacao-de-estudantes-da-facu",
   },
 ];
 

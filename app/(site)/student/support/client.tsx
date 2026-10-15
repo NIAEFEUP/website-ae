@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import Script from "next/script";
 import SectionHeader from "@/components/Common/SectionHeader";
 import LearnMore from "@/components/LearnMore";
 import scholarshipData from "./scholarshipsData";
@@ -23,6 +24,12 @@ const filterScholarships = (filter: string) => {
 
 const SocialAidClientPage = () => {
   const [selectedCategory, setSelectedCategory] = useState("acao-social");
+
+  useEffect(() => {
+    if (typeof window !== "undefined" && (window as any).__cozecareWidget?.rescan) {
+      (window as any).__cozecareWidget.rescan();
+    }
+  }, []);
 
   return (
     <>
@@ -61,6 +68,7 @@ const SocialAidClientPage = () => {
           <div className="flex flex-col md:flex-row gap-6 w-full lg:w-2/3">
             {filterScholarships(selectedCategory).map((feature) => (
                 <LearnMore
+                  key={feature.title}
                   icon={feature.icon}
                   title={feature.title}
                   description={feature.description}
@@ -111,7 +119,7 @@ const SocialAidClientPage = () => {
           </div>
         </div>
         <div className="py-7.5">
-          <div className="flex flex-wrap justify-center gap-7.5 lg:flex-nowrap xl:gap-12.5">
+          <div className="flex flex-wrap justify-center gap-7.5 xl:gap-10">
             {mentalHealthData.map((feature) => (
               <LearnMore
                 key={feature.id}
@@ -120,11 +128,13 @@ const SocialAidClientPage = () => {
                 description={feature.description}
                 details={feature.details}
                 href={feature.href}
+                cozecareBooking={feature.cozecareBooking}
                 buttonLabel="Saber mais"
               />
             ))}
           </div>
         </div>
+        <Script async src="https://cozecare.com/widget.js" strategy="afterInteractive" />
       </section>
     </>
   );
