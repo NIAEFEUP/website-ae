@@ -48,21 +48,23 @@ async function getMaterialData() {
 
 async function getRegulation() {
   if (process.env.IS_BUILD) {
-    console.log('skipping getProjects DB call during build')
+    console.log('skipping getRegulation DB call during build')
     return []
   }
 
   const payload = await getPayload({ config });
 
-  const regulation = (await payload.find({
-    collection: "docfile",
-    limit: 1,
-    where: {
-      type: { equals: "regulation" },
-    },
-  })).docs;
-
-  return regulation;
+  try {
+    // Regulamento de Cedência do Edifício da AEFEUP
+    const regulation = await payload.findByID({
+      collection: "docfile",
+      id: 15,
+    });
+    return [regulation];
+  } catch (error) {
+    console.error("Error fetching regulation:", error);
+    return [];
+  }
 }
 
 async function getAvailableSpaces() {
